@@ -1,0 +1,135 @@
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+html {
+  font-size: 20px;
+}
+
+.ChiTietSanPham {
+  margin: 100px auto;
+  width: 1920px;
+  height: 900px;
+  background-color: #131313;
+}
+.ChiTietSanPham .ProductDetail {
+  margin: 0 auto;
+  width: 84.0104166667%;
+  display: flex;
+  justify-content: space-between;
+  padding: 59px 0;
+}
+.ChiTietSanPham .ProductDetail .img {
+  width: 649px;
+  height: 690px;
+  border-radius: 30px;
+}
+.ChiTietSanPham .ProductDetail .img img {
+  width: 100%;
+  -o-object-position: center;
+     object-position: center;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.ChiTietSanPham .ProductDetail .form {
+  width: 56.3546187229%;
+  height: 690px;
+  background-color: rgba(51, 51, 51, 0.15);
+}
+.ChiTietSanPham .ProductDetail .form form {
+  width: 841px;
+  margin: 0 auto;
+  margin-top: 45px;
+  margin-bottom: 55px;
+}
+.ChiTietSanPham .ProductDetail .form form h2 {
+  color: #F7C427;
+  font-family: Bitter;
+  font-size: 3rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+.ChiTietSanPham .ProductDetail .form form .hr {
+  margin-top: 6px;
+  margin-bottom: 20px;
+  height: 13px;
+  width: 841px;
+  background-color: #F7C427;
+}
+.ChiTietSanPham .ProductDetail .form form ul {
+  font-size: 40px;
+  color: white;
+  margin-left: 34px;
+  font-family: Bitter;
+}
+.ChiTietSanPham .ProductDetail .form form ul li del {
+  color: rgba(255, 255, 255, 0.5);
+}
+.ChiTietSanPham .ProductDetail .form form ul li span {
+  font-size: 50px;
+}
+.ChiTietSanPham .ProductDetail .form form .soluong {
+  margin: 35px 0px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.ChiTietSanPham .ProductDetail .form form .soluong .tanggiam {
+  display: flex;
+  border: 1px solid #F7C427;
+  align-items: center;
+  border-radius: 5px;
+  padding: 5px;
+}
+.ChiTietSanPham .ProductDetail .form form .soluong .tanggiam p {
+  font-size: 40px;
+  color: white;
+}
+.ChiTietSanPham .ProductDetail .form form .soluong .tanggiam button {
+  width: 50px;
+  font-size: 50px;
+  text-align: center;
+  vertical-align: middle;
+  font-weight: bold;
+}
+.ChiTietSanPham .ProductDetail .form form .soluong .tanggiam input {
+  background-color: transparent;
+  border: 2px solid #F7C427;
+  color: #F7C427;
+  font-size: 35px;
+  text-align: center;
+  padding: 0;
+  border: none;
+  width: 40px;
+}
+.ChiTietSanPham .ProductDetail .form form .soluong .tanggiam input::-webkit-inner-spin-button, .ChiTietSanPham .ProductDetail .form form .soluong .tanggiam input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+          appearance: none;
+  display: none;
+}
+.ChiTietSanPham .ProductDetail .form form .soluong .tanggiam input::-moz-placeholder {
+  color: #F7C427;
+}
+.ChiTietSanPham .ProductDetail .form form .soluong .tanggiam input::placeholder {
+  color: #F7C427;
+}
+.ChiTietSanPham .ProductDetail .form form .soluong span {
+  font-size: 50px;
+  color: red;
+}
+.ChiTietSanPham .ProductDetail .form form button {
+  width: 100%;
+  height: 57px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-family: Bitter;
+  font-size: 30px;
+  font-weight: 700;
+  background-color: #F7C427;
+}
+.ChiTietSanPham .ProductDetail .form form button:hover {
+  background-color: #585353;
+  color: #D7D7D7;
+}/*# sourceMappingURL=ChiTietSanPham.css.map */
