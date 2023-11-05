@@ -10,15 +10,14 @@ html{
 .ChiTietSanPham{
     margin: 100px auto;
     width: 1920px;
-    height: 900px;
-    background-color:#131313 ;
+    background-color: #131313;
     
     .ProductDetail{
         margin: 0 auto;
         width: calc((1613/1920)*100%);
         display: flex;
         justify-content: space-between;
-        padding: 59px 0;
+        padding: 59px 0 0 0;
 
         .img{
 
@@ -37,7 +36,7 @@ html{
             width: calc((909/1613)*100%);
             height: 690px;
             background-color: rgba(51, 51, 51, 0.15);
-            
+            border-radius: 30px;
             form{
                 width: 841px;
                 margin: 0 auto;
@@ -143,4 +142,149 @@ html{
 
     }
 
+    .list{
+        width: calc((1613/1920)*100%);
+        margin: 60px auto;
+        height: auto;
+        padding: 20px 20px 10px 20px;
+        background-color: #1D1D1D;
+        border-radius: 30px;
+        display: flex;
+        overflow-x: hidden;
+
+        &:hover{
+            overflow-x: auto;
+        }
+        &::-webkit-scrollbar{
+            background-color: transparent;
+        }
+        &::-webkit-scrollbar-thumb{
+            background-color: #3A3838;
+            width: 1px;
+            border-radius: 100px;
+        }
+        .pro{
+            width: 316px;
+            padding: 15px 0;
+            margin: 10px;
+            border-radius: 30px;
+            background-color:#3A3838;
+            text-align: center;
+            flex-direction: column;
+            flex-shrink: 0;
+
+            img{
+                display: block;
+                margin: 0 auto;
+                width: 80%;
+                max-width: 80%;
+            }
+            p{  
+                // background-color: green;
+                margin-top: 10px;
+                font-size: 30px;
+            }
+        }
+    }
+
+    .top{
+        width: calc((1613/1920)*100%);
+        background-color: #2E2C2C;
+        border-radius: 30px;
+        padding: 33px;
+        padding-bottom: 70px;
+        margin: 0 auto;
+        h2{
+            text-align: center;
+            color: #F7C427;
+            font-size: 50px;
+            margin-bottom: 30px;
+        }
+        .list_item{
+            display: flex;
+            justify-content: space-around;
+    
+            .item{
+                background-color: rgba(29, 29, 29, 0.70);
+                border-radius: 30px;
+                width: 27%;
+                padding-bottom: 30px;
+                text-align: center;
+                img{
+                    width: 100%;
+                }
+                p{
+                    margin: 15px 0;
+                    font-size: 30px;
+                    color: white;
+                }
+                h3{
+                    font-size: 30px;
+                    color: #F7C427;
+                }
+            }
+        }
+        
+    }
+
+    .comment{
+        width: calc((1613/1920)*100%);
+        margin: 0 auto;
+        margin-top: 30px;
+
+        .list_comment{
+
+            .content{
+                display: flex;
+                justify-content: space-between;
+
+                p{
+                    width: 85%;
+                    color: white;
+                    word-wrap: break-word;
+                    font-size: 48px;
+                    font-family: Rufina;
+                }
+                .img{
+                    display: flex;
+                    justify-content: center;
+                    width: 200px;
+                    height: 200px;
+                    border-radius: 50%;
+                    overflow: hidden;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    background-color: #ccc; /* Màu nền của hình tròn */
+                    img{
+                        width: 100%;
+                       
+                    }
+                }
+            }
+
+        }
+        .tang_giam{
+            margin-top: 15px ;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            button {
+                background-color: transparent;
+                margin: 0 20px;
+                border: none;
+                color: white;
+                font-size: 30px;
+                font-style: italic;
+            }
+            .position-display{
+                color: white;
+                font-size: 30px;
+                font-style: italic;
+
+            }
+        }
+    }
 }
