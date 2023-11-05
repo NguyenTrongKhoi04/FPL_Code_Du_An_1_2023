@@ -18,10 +18,10 @@ decreaseButton.addEventListener("click", function () {
 
 
 
-
-
-
-
+/**
+ * Xử lý hiển thị số khi nhấn tăng giảm
+ * 
+ */
 document.addEventListener("DOMContentLoaded", function() {
     const contents = document.querySelectorAll(".content");
     let currentIndex = 0;

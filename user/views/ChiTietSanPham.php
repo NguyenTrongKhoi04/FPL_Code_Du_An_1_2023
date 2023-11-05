@@ -61,7 +61,8 @@
                     <div class="content" style="display: <?= $i === 0 ? 'flex' : 'none'; ?>">
                         <div class="img">
                             <img src="../../assets/img/Rectangle 33.png" alt="">
-                        </div>
+                            </div>
+                        <?= $i ?>
                         <p>dfasfdafdsafsafdsfsdafsafdsafsadfsdafsdfsdafdsafdsfdsfsadfsdfdsfdsfdsffs</p>
                     </div>
                 <?php endfor ?>

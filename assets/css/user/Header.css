@@ -1,0 +1,89 @@
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+html {
+  font-size: 20px;
+}
+
+header {
+  width: 1920px;
+  background-color: #282828;
+  margin: 0 auto;
+}
+header .content_header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+header .content_header .menu {
+  margin-top: 17px;
+  margin-bottom: 17px;
+  margin-left: 30px;
+  display: flex;
+}
+header .content_header .menu img {
+  width: 137px;
+  margin-right: 24px;
+}
+header .content_header .menu ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+header .content_header .menu ul li {
+  margin: 0 13px;
+  display: inline-block;
+}
+header .content_header .menu ul li a {
+  font-size: 40px;
+  color: white;
+  text-decoration: none;
+}
+header .content_header .menu ul li a:hover {
+  color: #F7C427;
+  text-decoration: underline;
+}
+header .content_header .login {
+  display: flex;
+  align-items: center;
+  margin-right: 11px;
+}
+header .content_header .login .button_Login {
+  margin: 0 16px;
+  width: 218px;
+  height: 67px;
+  flex-shrink: 0;
+  background-color: #F7C427;
+  border-radius: 10px;
+  border: none;
+  transition: background-color 1s;
+}
+header .content_header .login .button_Login:hover {
+  background-color: white;
+}
+header .content_header .login .button_Login a {
+  color: black;
+  font-size: 30px;
+  text-decoration: none;
+}
+header .content_header .login .login_success {
+  margin: 13px;
+}
+header .content_header .login .img_avatar {
+  margin-right: 30px;
+}
+header .content_header .login .img_avatar .avatar {
+  display: flex;
+  justify-content: center;
+  width: 125px;
+  height: 118px;
+  border-radius: 50%;
+  overflow: hidden;
+  align-items: center;
+  background-color: #ccc;
+}
+header .content_header .login .img_avatar .avatar img {
+  width: 100%;
+}/*# sourceMappingURL=Header.css.map */

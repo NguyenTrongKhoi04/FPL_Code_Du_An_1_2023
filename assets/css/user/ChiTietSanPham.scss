@@ -151,7 +151,7 @@ html{
         border-radius: 30px;
         display: flex;
         overflow-x: hidden;
-
+        
         &:hover{
             overflow-x: auto;
         }
@@ -252,8 +252,6 @@ html{
                     height: 200px;
                     border-radius: 50%;
                     overflow: hidden;
-                    display: flex;
-                    justify-content: center;
                     align-items: center;
                     background-color: #ccc; /* Màu nền của hình tròn */
                     img{

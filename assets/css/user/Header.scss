@@ -1,0 +1,101 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+html{
+    font-size: 20px;
+}
+
+header{
+    width: 1920px;
+    background-color: #282828;
+    margin: 0 auto;
+
+    .content_header{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+
+        .menu{
+            margin-top: 17px;
+            margin-bottom: 17px;
+            margin-left: 30px;
+            display: flex;
+
+            img{
+                width: 137px;
+                margin-right:24px ;
+            }
+            ul{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                li{
+                    margin: 0 13px;
+                    display: inline-block;
+                    a{
+                        font-size: 40px;
+                        color: white;
+                        text-decoration: none;
+
+                        &:hover{
+                            color:#F7C427;
+                            text-decoration: underline;
+                        }
+                    }
+                }
+            }
+        }
+
+        .login{
+            display: flex;
+            align-items: center;
+            margin-right: 11px;
+
+            .button_Login{
+                margin: 0 16px;
+                width: 218px;
+                height: 67px;
+                flex-shrink: 0;
+                background-color: #F7C427;
+                border-radius: 10px;
+                border: none;
+                transition: background-color 1s;
+
+                &:hover{
+                    background-color: white;
+                }
+                a{
+                    color: black;
+                    font-size: 30px;
+                    text-decoration: none;
+                }
+            }
+
+             //khi Login được
+            .login_success{
+                margin: 13px;
+                
+            }
+            .img_avatar{
+                margin-right: 30px;
+                 .avatar{
+                    display: flex;
+                    justify-content: center;
+                    width: 125px;
+                    height: 118px;
+                    border-radius: 50%;
+                    overflow: hidden;
+                    align-items: center;
+                    background-color: #ccc;
+                     
+                    img{
+                        width: 100%;
+                    }
+                    }
+                    
+            }
+        }
+    }
+}
