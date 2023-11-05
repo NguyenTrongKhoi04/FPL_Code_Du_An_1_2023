@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<link rel="stylesheet" href="../../assets/css/user/BillThanhToan.css">
+<link rel="stylesheet" href="../../assets/css/user/BillPayment.css">
 <link rel="stylesheet" href="../../assets/themify-icons/themify-icons.css">
 <body>
     <section class="page">
