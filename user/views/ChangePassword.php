@@ -20,10 +20,12 @@
             <form action="" method="post" class="main">
                 <label for="">Tài khoản *</label>
                 <input type="text"  name = "account">
-                <label for="">Mật khẩu *</label>
+                <label for="">Mật khẩu  mới*</label>
                 <input  type = "password" name = "password">
+                <label for="">Nhập lại mật khẩu mới*</label>
+                <input  type = "password" name = "comfimPassword">
                 <input  type = "submit" name="submit" value="Đăng nhập">
-                <a href="#">Quên mật khẩu ?</a>
+
             </form>
             <section class="footerMain">
                 <section class="itemContent1">
