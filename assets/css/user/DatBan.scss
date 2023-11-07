@@ -1,0 +1,118 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+html{
+    font-size: 20px;
+}
+
+.datban{
+    width: 1920px;
+    margin: 0 auto;
+    background: #131313;
+    padding: 50px 0;
+    .sodo{
+        padding-top: 30px;
+        width: 90%;
+        margin: 0 auto;
+        border-radius: 30px;
+        background: #2E2C2C;
+        
+        >h1{
+            color: white;
+            text-align: center;
+            font-size: 60px;
+        }
+        .door_kitchen{
+            display: flex;
+            justify-content: space-between;
+            .cua_ra_vao{
+                height: 100px;
+                color: white;
+                padding-left: 10px;
+                border-left: 5px solid white;
+                
+                p{
+                    font-size: 50px;
+                }
+            }
+            .kitchen{
+                padding: 40px;
+                background: #D9D9D9;
+                font-size: 60px;
+            }
+        }
+
+        .so_do_cho_ngoi{
+            display: flex;
+            justify-content: space-between;
+            form{
+                display: flex;
+                
+                tr{
+                    display: flex;
+                    
+                    td{
+                        margin: 40px;
+                        
+                        .ban {
+                            width: 150px;
+                            background: #F7C427;
+                            font-size: 50px;
+                            color: white;
+                            
+                            input {
+                                transform: scale(4);
+                                margin: 20px;
+                                margin-bottom: 30px;    
+                                margin-left: 50px;
+                            }
+                        }
+
+                        .ban_to {
+                            display: flex;
+                            width: 150px;
+                            border-radius: 15px;
+                            background: #F7C427;
+                            font-size: 70px;
+                            color: white;
+                            padding: 40px;
+                            input {
+                                transform: scale(4);
+                                margin: 20px;
+                                margin-bottom: 30px;    
+                                margin-left: 50px;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .QuayLeTan{
+                width: 100%;
+                height: 1000px;
+                display: flex;                
+                justify-content: center;
+                align-items: center;
+
+                .thanhtoan{
+                    color: white;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 50%;
+                    height: 900px;
+                    background-color: gray;
+                    float: right;    
+                    font-size: 50px;
+
+                    p{
+                        text-align: center;
+                        font-size: 50px;
+                    }
+                }
+            }
+        }
+    }
+}
