@@ -18,21 +18,21 @@
                 <article class="nameAge">
                     <article class="name">
                         <label for="">Tên *</label>
-                        <input type="text"  name = "name">
+                        <input required title= "Không được để trống" type="text"  name = "name">
                     </article>
                     <article class="age">
                         <label for="">Tuổi *</label>
-                        <input  type = "password" name = "age">
+                        <input required title= "Không được để trống"  type = "number" name = "age" min="0" max = "100">
                     </article>
                   </article>
                 <label for="">Địa chỉ *</label>
-                <input type="text"  name = "address">
+                <input required title= "Không được để trống" type="text"  name = "address">
                 <label for="">Email *</label>
-                <input type="email"  name = "email">
+                <input required title= "Không được để trống" type="email"  name = "email">
                 <label for="">Tài khoản  *</label>
-                <input  type = "text" name = "account">
+                <input required title= "Không được để trống"  type = "text" name = "account">
                 <label for="">Mật khẩu *</label>
-                <input  type = "password" name = "password">
+                <input required title= "Không được để trống"  type = "password" name = "password">
                 <input  type = "submit" name="submit" value="Đăng nhập">
             </form>
             <section class="footerMain">

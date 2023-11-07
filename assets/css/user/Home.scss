@@ -219,6 +219,7 @@ html{
                         align-items: center;
                         height: 10%;
                         overflow: auto;
+                        position: relative;
 
                         h1 {
                             font-size: 2rem;
@@ -230,6 +231,21 @@ html{
                             line-height: 140%;
                             letter-spacing: 0.8px;
                             padding: 0px 5%;
+                        }
+                    }
+                    .description:hover ~ .buttonAction{
+                        animation-name: displayButton;
+                        animation-duration: 1s;
+                        animation-timing-function: linear;
+                        animation-fill-mode: forwards;
+
+                    }
+                    @keyframes displayButton {
+                        0%{
+                            top: 100%;
+                        }
+                        100%{
+                            top: 75%;
                         }
                     }
                     .description {
@@ -244,12 +260,14 @@ html{
                         height: 12%;
                         overflow: auto;
                         padding: 0px 5%;
+                        
 
                         p {
                             font-size: 1rem;
                             color: var(--color6);
                         }
-                    }
+
+                       }
                     .price {
                         width: 100%;
                         display: grid;
@@ -261,14 +279,17 @@ html{
                             color: var(--color6);
                         }
                     }
+
+
                     .buttonAction {
                         width: 100%;
                         height: 30%;
                         display: flex;
                         justify-content: space-around;
-                        align-items: center;
+                        align-items: flex-start;
                         background-color: var(--color);
                         position: absolute;
+                        top: 100%;
 
                         button {
                             width: 40%;

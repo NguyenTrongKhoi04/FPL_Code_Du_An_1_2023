@@ -60,7 +60,6 @@ html {
   height: 81%;
   margin-left: 5%;
   color: var(--color6);
-  font-feature-settings: "clig" off, "liga" off;
   font-family: Lato;
   font-size: 3.5rem;
   font-style: normal;

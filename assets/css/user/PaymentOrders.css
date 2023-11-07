@@ -39,6 +39,7 @@ html {
   height: 100%;
   background-color: var(--color);
   grid-area: main;
+  padding: 0 5%;
 }
 .page main .titleMain {
   width: 100%;
