@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 01, 2023 lúc 01:02 PM
--- Phiên bản máy phục vụ: 10.4.28-MariaDB
--- Phiên bản PHP: 8.2.4
+-- Host: 127.0.0.1
+-- Generation Time: Nov 07, 2023 at 06:32 PM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,53 +18,86 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Cơ sở dữ liệu: `duan1`
+-- Database: `duan1`
 --
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `account`
+-- Table structure for table `accompanyingfood`
+--
+
+CREATE TABLE `accompanyingfood` (
+  `IdAccompanyingFood` int(11) NOT NULL,
+  `IdProduct` int(11) NOT NULL,
+  `Quantity` int(11) NOT NULL,
+  `Price` int(11) NOT NULL,
+  `Quantily` int(11) NOT NULL,
+  `Image` varchar(100) NOT NULL,
+  `Status` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `account`
 --
 
 CREATE TABLE `account` (
   `IdAccount` int(11) NOT NULL,
+  `Name` varchar(100) NOT NULL,
   `Gmail` varchar(100) NOT NULL,
+  `Gender` int(11) DEFAULT NULL,
   `Password` varchar(100) NOT NULL,
-  `Gender` varchar(10) DEFAULT NULL,
   `Status` int(11) DEFAULT NULL,
   `Type` varchar(10) NOT NULL,
-  `DateEdit` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `DateEdit` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `card`
+-- Table structure for table `bill`
+--
+
+CREATE TABLE `bill` (
+  `IdBill` int(11) NOT NULL,
+  `IdAccount` int(11) NOT NULL,
+  `IdProduct` int(11) NOT NULL,
+  `IdTable` int(11) NOT NULL,
+  `IdAccompanyingFood` int(11) NOT NULL,
+  `Quantity` int(11) NOT NULL,
+  `Price` int(11) NOT NULL,
+  `Status` int(11) DEFAULT NULL,
+  `DateEdit` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `Note` varchar(100) DEFAULT NULL,
+  `Payments` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `card`
 --
 
 CREATE TABLE `card` (
   `IdCart` int(11) NOT NULL,
-  `IdProduct` int(11) NOT NULL,
   `IdAccount` int(11) NOT NULL,
-  `Content` varchar(100) NOT NULL,
-  `Price` int(11) NOT NULL,
-  `Size` int(11) NOT NULL,
-  `Tables` int(11) NOT NULL,
+  `IdProduct` int(11) NOT NULL,
+  `IdSize` int(11) NOT NULL,
   `Quantity` int(11) NOT NULL,
-  `Status` int(11) DEFAULT NULL,
-  `DateEdit` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `Price` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `category`
+-- Table structure for table `category`
 --
 
 CREATE TABLE `category` (
   `IdCategory` int(11) NOT NULL,
-  `Category` varchar(100) NOT NULL,
+  `NameCategory` varchar(100) NOT NULL,
   `Status` int(11) DEFAULT NULL,
   `DateEdit` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -72,14 +105,14 @@ CREATE TABLE `category` (
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `comment`
+-- Table structure for table `comment`
 --
 
 CREATE TABLE `comment` (
   `IdComment` int(11) NOT NULL,
-  `IdProduct` int(11) NOT NULL,
   `IdAccount` int(11) NOT NULL,
-  `Content` varchar(100) NOT NULL,
+  `IdProduct` int(11) NOT NULL,
+  `Content` int(11) NOT NULL,
   `Status` int(11) DEFAULT NULL,
   `DateEdit` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -87,7 +120,7 @@ CREATE TABLE `comment` (
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `details`
+-- Table structure for table `details`
 --
 
 CREATE TABLE `details` (
@@ -99,28 +132,7 @@ CREATE TABLE `details` (
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `orders`
---
-
-CREATE TABLE `orders` (
-  `IdOder` int(11) NOT NULL,
-  `IdProduct` int(11) NOT NULL,
-  `IdAccount` int(11) NOT NULL,
-  `Type` varchar(100) NOT NULL,
-  `Price` int(11) NOT NULL,
-  `Size` int(11) NOT NULL,
-  `Tables` int(11) NOT NULL,
-  `Quantity` int(11) NOT NULL,
-  `Number` int(11) NOT NULL,
-  `Note` varchar(10) NOT NULL,
-  `Status` int(11) DEFAULT NULL,
-  `DateEdit` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Cấu trúc bảng cho bảng `product`
+-- Table structure for table `product`
 --
 
 CREATE TABLE `product` (
@@ -128,9 +140,9 @@ CREATE TABLE `product` (
   `IdCategory` int(11) NOT NULL,
   `IdDetails` int(11) NOT NULL,
   `Name` varchar(100) NOT NULL,
-  `Image` varchar(100) NOT NULL,
   `Quantity` int(11) NOT NULL,
   `Price` int(11) NOT NULL,
+  `Image` varchar(100) NOT NULL,
   `Status` int(11) DEFAULT NULL,
   `DateEdit` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -138,74 +150,97 @@ CREATE TABLE `product` (
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `size`
+-- Table structure for table `size`
 --
 
 CREATE TABLE `size` (
   `IdSize` int(11) NOT NULL,
-  `IdProduct` int(11) NOT NULL,
-  `IdSizeDefault` int(11) NOT NULL
+  `IdSizeDefault` int(11) NOT NULL,
+  `IdProduct` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `sizedefault`
+-- Table structure for table `sizedefault`
 --
 
 CREATE TABLE `sizedefault` (
   `IdSizeDefault` int(11) NOT NULL,
-  `Size` varchar(10) NOT NULL
+  `SizeDefault` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tables`
+--
+
+CREATE TABLE `tables` (
+  `IdTable` int(11) NOT NULL,
+  `Number` varchar(20) NOT NULL,
+  `NumberPeople` int(11) NOT NULL,
+  `Status` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Chỉ mục cho các bảng đã đổ
+-- Indexes for dumped tables
 --
 
 --
--- Chỉ mục cho bảng `account`
+-- Indexes for table `accompanyingfood`
+--
+ALTER TABLE `accompanyingfood`
+  ADD PRIMARY KEY (`IdAccompanyingFood`),
+  ADD KEY `IdProduct` (`IdProduct`);
+
+--
+-- Indexes for table `account`
 --
 ALTER TABLE `account`
   ADD PRIMARY KEY (`IdAccount`);
 
 --
--- Chỉ mục cho bảng `card`
+-- Indexes for table `bill`
+--
+ALTER TABLE `bill`
+  ADD PRIMARY KEY (`IdBill`),
+  ADD KEY `IdTable` (`IdTable`),
+  ADD KEY `IdProduct` (`IdProduct`),
+  ADD KEY `IdAccompanyingFood` (`IdAccompanyingFood`),
+  ADD KEY `IdAccount` (`IdAccount`);
+
+--
+-- Indexes for table `card`
 --
 ALTER TABLE `card`
   ADD PRIMARY KEY (`IdCart`),
-  ADD KEY `IdAccount` (`IdAccount`),
-  ADD KEY `IdProduct` (`IdProduct`);
+  ADD KEY `IdSize` (`IdSize`),
+  ADD KEY `IdProduct` (`IdProduct`),
+  ADD KEY `IdAccount` (`IdAccount`);
 
 --
--- Chỉ mục cho bảng `category`
+-- Indexes for table `category`
 --
 ALTER TABLE `category`
   ADD PRIMARY KEY (`IdCategory`);
 
 --
--- Chỉ mục cho bảng `comment`
+-- Indexes for table `comment`
 --
 ALTER TABLE `comment`
   ADD PRIMARY KEY (`IdComment`),
-  ADD KEY `IdAccount` (`IdAccount`),
-  ADD KEY `IdProduct` (`IdProduct`);
+  ADD KEY `IdProduct` (`IdProduct`),
+  ADD KEY `IdAccount` (`IdAccount`);
 
 --
--- Chỉ mục cho bảng `details`
+-- Indexes for table `details`
 --
 ALTER TABLE `details`
   ADD PRIMARY KEY (`IdDetails`);
 
 --
--- Chỉ mục cho bảng `orders`
---
-ALTER TABLE `orders`
-  ADD PRIMARY KEY (`IdOder`),
-  ADD KEY `IdAccount` (`IdAccount`),
-  ADD KEY `IdProduct` (`IdProduct`);
-
---
--- Chỉ mục cho bảng `product`
+-- Indexes for table `product`
 --
 ALTER TABLE `product`
   ADD PRIMARY KEY (`IdProduct`),
@@ -213,7 +248,7 @@ ALTER TABLE `product`
   ADD KEY `IdDetails` (`IdDetails`);
 
 --
--- Chỉ mục cho bảng `size`
+-- Indexes for table `size`
 --
 ALTER TABLE `size`
   ADD PRIMARY KEY (`IdSize`),
@@ -221,103 +256,130 @@ ALTER TABLE `size`
   ADD KEY `IdProduct` (`IdProduct`);
 
 --
--- Chỉ mục cho bảng `sizedefault`
+-- Indexes for table `sizedefault`
 --
 ALTER TABLE `sizedefault`
   ADD PRIMARY KEY (`IdSizeDefault`);
 
 --
--- AUTO_INCREMENT cho các bảng đã đổ
+-- Indexes for table `tables`
+--
+ALTER TABLE `tables`
+  ADD PRIMARY KEY (`IdTable`);
+
+--
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT cho bảng `account`
+-- AUTO_INCREMENT for table `accompanyingfood`
+--
+ALTER TABLE `accompanyingfood`
+  MODIFY `IdAccompanyingFood` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `account`
 --
 ALTER TABLE `account`
   MODIFY `IdAccount` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT cho bảng `card`
+-- AUTO_INCREMENT for table `bill`
+--
+ALTER TABLE `bill`
+  MODIFY `IdBill` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `card`
 --
 ALTER TABLE `card`
   MODIFY `IdCart` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT cho bảng `category`
+-- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
   MODIFY `IdCategory` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT cho bảng `comment`
+-- AUTO_INCREMENT for table `comment`
 --
 ALTER TABLE `comment`
   MODIFY `IdComment` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT cho bảng `details`
+-- AUTO_INCREMENT for table `details`
 --
 ALTER TABLE `details`
   MODIFY `IdDetails` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT cho bảng `orders`
---
-ALTER TABLE `orders`
-  MODIFY `IdOder` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT cho bảng `product`
+-- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
   MODIFY `IdProduct` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT cho bảng `size`
+-- AUTO_INCREMENT for table `size`
 --
 ALTER TABLE `size`
   MODIFY `IdSize` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT cho bảng `sizedefault`
+-- AUTO_INCREMENT for table `sizedefault`
 --
 ALTER TABLE `sizedefault`
   MODIFY `IdSizeDefault` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- Các ràng buộc cho các bảng đã đổ
+-- AUTO_INCREMENT for table `tables`
+--
+ALTER TABLE `tables`
+  MODIFY `IdTable` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- Constraints for dumped tables
 --
 
 --
--- Các ràng buộc cho bảng `card`
+-- Constraints for table `accompanyingfood`
+--
+ALTER TABLE `accompanyingfood`
+  ADD CONSTRAINT `accompanyingfood_ibfk_1` FOREIGN KEY (`IdProduct`) REFERENCES `product` (`IdProduct`);
+
+--
+-- Constraints for table `bill`
+--
+ALTER TABLE `bill`
+  ADD CONSTRAINT `bill_ibfk_1` FOREIGN KEY (`IdTable`) REFERENCES `tables` (`IdTable`),
+  ADD CONSTRAINT `bill_ibfk_2` FOREIGN KEY (`IdProduct`) REFERENCES `product` (`IdProduct`),
+  ADD CONSTRAINT `bill_ibfk_3` FOREIGN KEY (`IdAccompanyingFood`) REFERENCES `accompanyingfood` (`IdAccompanyingFood`),
+  ADD CONSTRAINT `bill_ibfk_4` FOREIGN KEY (`IdAccount`) REFERENCES `account` (`IdAccount`);
+
+--
+-- Constraints for table `card`
 --
 ALTER TABLE `card`
-  ADD CONSTRAINT `card_ibfk_1` FOREIGN KEY (`IdAccount`) REFERENCES `account` (`IdAccount`),
-  ADD CONSTRAINT `card_ibfk_2` FOREIGN KEY (`IdProduct`) REFERENCES `product` (`IdProduct`);
+  ADD CONSTRAINT `card_ibfk_1` FOREIGN KEY (`IdSize`) REFERENCES `size` (`IdSize`),
+  ADD CONSTRAINT `card_ibfk_2` FOREIGN KEY (`IdProduct`) REFERENCES `product` (`IdProduct`),
+  ADD CONSTRAINT `card_ibfk_3` FOREIGN KEY (`IdAccount`) REFERENCES `account` (`IdAccount`);
 
 --
--- Các ràng buộc cho bảng `comment`
+-- Constraints for table `comment`
 --
 ALTER TABLE `comment`
-  ADD CONSTRAINT `comment_ibfk_1` FOREIGN KEY (`IdAccount`) REFERENCES `account` (`IdAccount`),
-  ADD CONSTRAINT `comment_ibfk_2` FOREIGN KEY (`IdProduct`) REFERENCES `product` (`IdProduct`);
+  ADD CONSTRAINT `comment_ibfk_1` FOREIGN KEY (`IdProduct`) REFERENCES `product` (`IdProduct`),
+  ADD CONSTRAINT `comment_ibfk_2` FOREIGN KEY (`IdAccount`) REFERENCES `account` (`IdAccount`);
 
 --
--- Các ràng buộc cho bảng `orders`
---
-ALTER TABLE `orders`
-  ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`IdAccount`) REFERENCES `account` (`IdAccount`),
-  ADD CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`IdProduct`) REFERENCES `product` (`IdProduct`);
-
---
--- Các ràng buộc cho bảng `product`
+-- Constraints for table `product`
 --
 ALTER TABLE `product`
   ADD CONSTRAINT `product_ibfk_1` FOREIGN KEY (`IdCategory`) REFERENCES `category` (`IdCategory`),
   ADD CONSTRAINT `product_ibfk_2` FOREIGN KEY (`IdDetails`) REFERENCES `details` (`IdDetails`);
 
 --
--- Các ràng buộc cho bảng `size`
+-- Constraints for table `size`
 --
 ALTER TABLE `size`
   ADD CONSTRAINT `size_ibfk_1` FOREIGN KEY (`IdSizeDefault`) REFERENCES `sizedefault` (`IdSizeDefault`),
