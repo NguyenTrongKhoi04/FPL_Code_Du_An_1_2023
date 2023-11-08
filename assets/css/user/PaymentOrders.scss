@@ -23,15 +23,10 @@ html{
     display: grid;
     background-color: var(--color);
     grid-template-columns: 100%;
-    grid-template-rows: 5% 80% 15%;
-    grid-template-areas: "header" "main" "footer";
+    grid-template-rows: 100%;
+    grid-template-areas: "main" ;
+    margin: 0 auto;
 
-    header{
-        width: 100%;
-        height: 100%;
-        background-color: var(--color4);
-        grid-area: header;
-    }
     main{
         width: 100%;
         height: 100%;
@@ -276,11 +271,6 @@ html{
             }
         }
     }
-    footer{
-        width: 100%;
-        height: 100%;
-        background-color: var(--color5);
-        grid-area: footer;
-    }
+
     
 }

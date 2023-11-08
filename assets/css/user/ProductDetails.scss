@@ -22,15 +22,11 @@ html {
     height: 4525px;
     display: grid;
     grid-template-columns: 100%;
-    grid-template-rows: 2% 11% 77% 10%;
-    grid-template-areas: "header" "banner" "main" "footer";
+    grid-template-rows: 11% 89%;
+    grid-template-areas:  "banner" "main" ;
+    margin: 0  auto;
 
-    header{
-        width: 100%;
-        height: 100%;
-        background-color: #c42c2c;
-        grid-area: header;
-    }
+    
     .banner{
         width: 100%;
         height: 100%;
@@ -224,10 +220,5 @@ html {
 
         }
     }
-    footer{
-        width: 100%;
-        height: 100%;
-        background-color: #282828;
-        grid-area: footer;
-    }
+
 }

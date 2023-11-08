@@ -23,15 +23,10 @@ html {
   height: 11642px;
   display: grid;
   grid-template-columns: 100%;
-  grid-template-rows: 1% 96% 3%;
-  grid-template-areas: "header" "main" "footer";
+  grid-template-rows: 100%;
+  grid-template-areas: "main";
   font-family: Lato;
-}
-.page header {
-  width: 100%;
-  height: 100%;
-  background-color: rgb(202, 9, 16);
-  grid-area: header;
+  margin: 0 auto;
 }
 .page main {
   width: 100%;
@@ -177,17 +172,18 @@ html {
   width: 100%;
   height: 80%;
   display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   padding: 2%;
-  overflow: auto;
+  overflow-x: hidden;
+  overflow-y: hidden;
 }
 .page main .myProduct .listProduct .contentListProduct {
   width: 30%;
   height: 95%;
   position: relative;
-  margin: 2% 1%;
+  margin: 2% 3%;
   overflow: hidden;
+  flex-shrink: 0;
 }
 .page main .myProduct .listProduct .contentListProduct .image {
   width: 100%;
@@ -277,6 +273,17 @@ html {
   color: var(--color);
   font-size: 1rem;
   border-radius: 30px;
+}
+.page main .myProduct .listProduct:hover {
+  overflow-x: auto;
+}
+.page main .myProduct .listProduct::-webkit-scrollbar {
+  background-color: transparent;
+}
+.page main .myProduct .listProduct::-webkit-scrollbar-thumb {
+  background-color: var(--color3);
+  width: 1px;
+  border-radius: 100px;
 }
 .page main .chef {
   width: 100%;
@@ -706,10 +713,4 @@ html {
   font-style: normal;
   font-weight: 700;
   line-height: 48px;
-}
-.page footer {
-  width: 100%;
-  height: 100%;
-  background-color: rgb(202, 9, 16);
-  grid-area: footer;
 }/*# sourceMappingURL=Home.css.map */

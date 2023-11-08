@@ -25,14 +25,9 @@ html {
   display: grid;
   background-color: var(--color);
   grid-template-columns: 100%;
-  grid-template-rows: 5% 80% 15%;
-  grid-template-areas: "header" "main" "footer";
-}
-.page header {
-  width: 100%;
-  height: 100%;
-  background-color: var(--color4);
-  grid-area: header;
+  grid-template-rows: 100%;
+  grid-template-areas: "main";
+  margin: 0 auto;
 }
 .page main {
   width: 100%;
@@ -250,10 +245,4 @@ html {
   font-style: normal;
   font-weight: 700;
   line-height: normal;
-}
-.page footer {
-  width: 100%;
-  height: 100%;
-  background-color: var(--color5);
-  grid-area: footer;
 }/*# sourceMappingURL=PaymentOrders.css.map */

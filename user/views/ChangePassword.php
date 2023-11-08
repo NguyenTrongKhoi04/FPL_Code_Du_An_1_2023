@@ -1,13 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<link rel="stylesheet" href="../../assets/css/user/ChangePassword.css">
-<link rel="stylesheet" href="../../assets/themify-icons/themify-icons.css">
-<body>
+
+    <link rel="stylesheet" href="../../assets/css/user/ChangePassword.css">
     <section class="page">
         <article class="banner">
             <img src="../../assets/img/banner1.png" alt="banner1">
@@ -40,5 +32,3 @@
             </section>
         </section>
     </section>
-</body>
-</html>
