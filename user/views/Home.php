@@ -1,14 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
-</head>
-<link rel="stylesheet" href="../../assets/css/user/Home.css">
-<link rel="stylesheet" href="../../assets/themify-icons/themify-icons.css">
 
-<body>
 <section class="page">
         <header>               
         </header>
@@ -290,5 +280,3 @@
         </main>
         <footer></footer>
     </section>
-</body>
-</html>

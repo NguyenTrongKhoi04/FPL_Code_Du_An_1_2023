@@ -4,9 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="../assets/css/user/Home.css">
+    <link rel="stylesheet" href="../assets/themify-icons/themify-icons.css">
+    <link rel="stylesheet" href="../assets/css/user/Header.css">
 </head>
 <body>
-    <link rel="stylesheet" href="../css/user/Header.css">
     <header>
         <div class="content_header">
             <div class="menu">
@@ -37,5 +39,3 @@
             <?php }?>
         </div>
     </header>
-</body>
-</html>
