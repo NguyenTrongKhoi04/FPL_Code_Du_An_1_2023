@@ -22,7 +22,7 @@ if(isset($_GET['act'])&&($_GET['act'] !='' )){
         }
     }
     }else{
-        include_once 'views/Home.php';
+        include_once 'views/BillPayment.php';
     }    
 
 include_once '../assets/global/Footer.php';

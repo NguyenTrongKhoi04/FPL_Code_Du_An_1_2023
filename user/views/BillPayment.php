@@ -33,7 +33,6 @@
                 </section>
                 <section class="contentMain">
                     <table>
-                        <?php for($i=0;$i<10;$i++) :?>
                         <tr>
                             <th>Tên khách hàng</th>
                             <th>Tên sản phẩm</th>
@@ -42,7 +41,17 @@
                             <th>Bàn</th>
                             <th>Loại order</th>
                         </tr>
+                        <?php for($i=0;$i<10;$i++) : ?>
+                        <tr>
+                            <td>Nguyễn Trọng Khôi</td>
+                            <td>Chickend</td>
+                            <td>245$</td>
+                            <td>Bank pay</td>
+                            <td>16</td>
+                            <td>Online</td>
+                        </tr>
                         <?php endfor ?>
+                       
                     </table>
                 </section>
             </section>
