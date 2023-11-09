@@ -10,11 +10,11 @@
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Neque congue arcu</p>
                     </section>
                     <section class="contentItemImg">
-                        <img src="../../assets/img/Image.png" alt="img">
+                        <img src="assets/img/Image.png" alt="img">
                         <article class="lisstImg">
-                            <img src="../../assets/img/spices1.png" alt="img">
-                            <img src="../../assets/img/spices2.png" alt="img">
-                            <img src="../../assets/img/spices3.png" alt="img">
+                            <img src="assets/img/spices1.png" alt="img">
+                            <img src="assets/img/spices2.png" alt="img">
+                            <img src="assets/img/spices3.png" alt="img">
                         </article>
                     </section>
                 </section>

@@ -6,7 +6,6 @@ include_once '../assets/global/User.php';
 include_once 'models/TaiKhoan.php';
 include_once '../assets/global/Header.php';
 
-
 if(isset($_GET['act'])&&($_GET['act'] !='' )){
     if(empty($_SESSION['user'])){
         header('location: views/LoginThuong.php');
