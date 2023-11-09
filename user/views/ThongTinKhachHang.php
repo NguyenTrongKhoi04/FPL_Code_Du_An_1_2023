@@ -1,10 +1,10 @@
-<link rel="stylesheet" href="../../assets/css/user/ThongTinKhachHang.css">
 <div class="ThongTinKhachHang">
+    <link rel="stylesheet" href="../assets/css/user/ThongTinKhachHang.css">
     <div class="card">
         <div class="content">
             <div class="img_center">
                 <div class="img">
-                    <img src="../../assets/img/Logo.png" alt="">
+                    <img src="<?= $img_path?>Logo.png" alt="">
                 </div>
             </div>
             <h3>Nguyễn Trọng Khôi</h3>

@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="../../assets/css/user/DonHangVanChuyen.css">
+<link rel="stylesheet" href="../assets/css/user/DonHangVanChuyen.css">
 <div class="DonHangVanChuyen">
     <h1>Thanh Toán Đơn Hàng</h1>
     <div class="donhang">

@@ -1,8 +1,8 @@
-<link rel="stylesheet" href="../../assets/css/user/ProductDetails.css">
 
 <section class="page">
+<link rel="stylesheet" href="../assets/css/user/ProductDetails.css">
     <section class="banner">
-        <img src="../../assets/img/banner.png" alt="banner">
+        <img src="<?= $img_path?>banner.png" alt="banner">
     </section>
     <main>
         <nav class="nav">
@@ -22,9 +22,10 @@
         </nav>
 
         <section class="lisstProduct">
+            <?php for($i=0;$i<10;$i++) :?>
             <section class="product">
                 <article class="img">
-                    <img src="../../assets/img/Image2.png" alt="Image">
+                    <img src="<?= $img_path?>Image2.png" alt="Image">
                 </article>
                 <article class="title">
                     <h1>Bít tết với kim chi nướng</h1>
@@ -39,244 +40,7 @@
                     <button>Thêm vào giỏ hàng</button>
                 </article>
             </section>
-            <section class="product">
-                <article class="img">
-                    <img src="../../assets/img/Image2.png" alt="Image">
-                </article>
-                <article class="title">
-                    <h1>Bít tết với kim chi nướng</h1>
-                </article>
-                <article class="description">
-                    <p>Thị bò được nhập khẩu từ mĩ. Với các cô bò hành phúc, đem lại trải nhiệm tuyệt vời</p>
-                </article>
-                <article class="price">
-                    <h1>145$</h1>
-                </article>
-                <article class="AddToCart">
-                    <button>Thêm vào giỏ hàng</button>
-                </article>
-            </section>
-            <section class="product">
-                <article class="img">
-                    <img src="../../assets/img/Image2.png" alt="Image">
-                </article>
-                <article class="title">
-                    <h1>Bít tết với kim chi nướng</h1>
-                </article>
-                <article class="description">
-                    <p>Thị bò được nhập khẩu từ mĩ. Với các cô bò hành phúc, đem lại trải nhiệm tuyệt vời</p>
-                </article>
-                <article class="price">
-                    <h1>145$</h1>
-                </article>
-                <article class="AddToCart">
-                    <button>Thêm vào giỏ hàng</button>
-                </article>
-            </section>
-            <section class="product">
-                <article class="img">
-                    <img src="../../assets/img/Image2.png" alt="Image">
-                </article>
-                <article class="title">
-                    <h1>Bít tết với kim chi nướng</h1>
-                </article>
-                <article class="description">
-                    <p>Thị bò được nhập khẩu từ mĩ. Với các cô bò hành phúc, đem lại trải nhiệm tuyệt vời</p>
-                </article>
-                <article class="price">
-                    <h1>145$</h1>
-                </article>
-                <article class="AddToCart">
-                    <button>Thêm vào giỏ hàng</button>
-                </article>
-            </section>
-            <section class="product">
-                <article class="img">
-                    <img src="../../assets/img/Image2.png" alt="Image">
-                </article>
-                <article class="title">
-                    <h1>Bít tết với kim chi nướng</h1>
-                </article>
-                <article class="description">
-                    <p>Thị bò được nhập khẩu từ mĩ. Với các cô bò hành phúc, đem lại trải nhiệm tuyệt vời</p>
-                </article>
-                <article class="price">
-                    <h1>145$</h1>
-                </article>
-                <article class="AddToCart">
-                    <button>Thêm vào giỏ hàng</button>
-                </article>
-            </section>
-            <section class="product">
-                <article class="img">
-                    <img src="../../assets/img/Image2.png" alt="Image">
-                </article>
-                <article class="title">
-                    <h1>Bít tết với kim chi nướng</h1>
-                </article>
-                <article class="description">
-                    <p>Thị bò được nhập khẩu từ mĩ. Với các cô bò hành phúc, đem lại trải nhiệm tuyệt vời</p>
-                </article>
-                <article class="price">
-                    <h1>145$</h1>
-                </article>
-                <article class="AddToCart">
-                    <button>Thêm vào giỏ hàng</button>
-                </article>
-            </section>
-            <section class="product">
-                <article class="img">
-                    <img src="../../assets/img/Image2.png" alt="Image">
-                </article>
-                <article class="title">
-                    <h1>Bít tết với kim chi nướng</h1>
-                </article>
-                <article class="description">
-                    <p>Thị bò được nhập khẩu từ mĩ. Với các cô bò hành phúc, đem lại trải nhiệm tuyệt vời</p>
-                </article>
-                <article class="price">
-                    <h1>145$</h1>
-                </article>
-                <article class="AddToCart">
-                    <button>Thêm vào giỏ hàng</button>
-                </article>
-            </section>
-            <section class="product">
-                <article class="img">
-                    <img src="../../assets/img/Image2.png" alt="Image">
-                </article>
-                <article class="title">
-                    <h1>Bít tết với kim chi nướng</h1>
-                </article>
-                <article class="description">
-                    <p>Thị bò được nhập khẩu từ mĩ. Với các cô bò hành phúc, đem lại trải nhiệm tuyệt vời</p>
-                </article>
-                <article class="price">
-                    <h1>145$</h1>
-                </article>
-                <article class="AddToCart">
-                    <button>Thêm vào giỏ hàng</button>
-                </article>
-            </section>
-            <section class="product">
-                <article class="img">
-                    <img src="../../assets/img/Image2.png" alt="Image">
-                </article>
-                <article class="title">
-                    <h1>Bít tết với kim chi nướng</h1>
-                </article>
-                <article class="description">
-                    <p>Thị bò được nhập khẩu từ mĩ. Với các cô bò hành phúc, đem lại trải nhiệm tuyệt vời</p>
-                </article>
-                <article class="price">
-                    <h1>145$</h1>
-                </article>
-                <article class="AddToCart">
-                    <button>Thêm vào giỏ hàng</button>
-                </article>
-            </section>
-            <section class="product">
-                <article class="img">
-                    <img src="../../assets/img/Image2.png" alt="Image">
-                </article>
-                <article class="title">
-                    <h1>Bít tết với kim chi nướng</h1>
-                </article>
-                <article class="description">
-                    <p>Thị bò được nhập khẩu từ mĩ. Với các cô bò hành phúc, đem lại trải nhiệm tuyệt vời</p>
-                </article>
-                <article class="price">
-                    <h1>145$</h1>
-                </article>
-                <article class="AddToCart">
-                    <button>Thêm vào giỏ hàng</button>
-                </article>
-            </section>
-            <section class="product">
-                <article class="img">
-                    <img src="../../assets/img/Image2.png" alt="Image">
-                </article>
-                <article class="title">
-                    <h1>Bít tết với kim chi nướng</h1>
-                </article>
-                <article class="description">
-                    <p>Thị bò được nhập khẩu từ mĩ. Với các cô bò hành phúc, đem lại trải nhiệm tuyệt vời</p>
-                </article>
-                <article class="price">
-                    <h1>145$</h1>
-                </article>
-                <article class="AddToCart">
-                    <button>Thêm vào giỏ hàng</button>
-                </article>
-            </section>
-            <section class="product">
-                <article class="img">
-                    <img src="../../assets/img/Image2.png" alt="Image">
-                </article>
-                <article class="title">
-                    <h1>Bít tết với kim chi nướng</h1>
-                </article>
-                <article class="description">
-                    <p>Thị bò được nhập khẩu từ mĩ. Với các cô bò hành phúc, đem lại trải nhiệm tuyệt vời</p>
-                </article>
-                <article class="price">
-                    <h1>145$</h1>
-                </article>
-                <article class="AddToCart">
-                    <button>Thêm vào giỏ hàng</button>
-                </article>
-            </section>
-            <section class="product">
-                <article class="img">
-                    <img src="../../assets/img/Image2.png" alt="Image">
-                </article>
-                <article class="title">
-                    <h1>Bít tết với kim chi nướng</h1>
-                </article>
-                <article class="description">
-                    <p>Thị bò được nhập khẩu từ mĩ. Với các cô bò hành phúc, đem lại trải nhiệm tuyệt vời</p>
-                </article>
-                <article class="price">
-                    <h1>145$</h1>
-                </article>
-                <article class="AddToCart">
-                    <button>Thêm vào giỏ hàng</button>
-                </article>
-            </section>
-            <section class="product">
-                <article class="img">
-                    <img src="../../assets/img/Image2.png" alt="Image">
-                </article>
-                <article class="title">
-                    <h1>Bít tết với kim chi nướng</h1>
-                </article>
-                <article class="description">
-                    <p>Thị bò được nhập khẩu từ mĩ. Với các cô bò hành phúc, đem lại trải nhiệm tuyệt vời</p>
-                </article>
-                <article class="price">
-                    <h1>145$</h1>
-                </article>
-                <article class="AddToCart">
-                    <button>Thêm vào giỏ hàng</button>
-                </article>
-            </section>
-            <section class="product">
-                <article class="img">
-                    <img src="../../assets/img/Image2.png" alt="Image">
-                </article>
-                <article class="title">
-                    <h1>Bít tết với kim chi nướng</h1>
-                </article>
-                <article class="description">
-                    <p>Thị bò được nhập khẩu từ mĩ. Với các cô bò hành phúc, đem lại trải nhiệm tuyệt vời</p>
-                </article>
-                <article class="price">
-                    <h1>145$</h1>
-                </article>
-                <article class="AddToCart">
-                    <button>Thêm vào giỏ hàng</button>
-                </article>
-            </section>
+            <?php endfor ?>
         </section>
 
         <section class="navigationBar">

@@ -1,5 +1,7 @@
 
 <section class="page">
+    <link rel="stylesheet" href="../assets/css/user/Home.css">
+    <link rel="stylesheet" href="../assets/themify-icons/themify-icons.css">
         <main>
             <section class="seoProduct">
                 <section class="containerItem1">
@@ -8,23 +10,23 @@
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Neque congue arcu</p>
                     </section>
                     <section class="contentItemImg">
-                        <img src="assets/img/Image.png" alt="img">
+                        <img src="<?= $img_path  ?>Image.png" alt="img">
                         <article class="lisstImg">
-                            <img src="assets/img/spices1.png" alt="img">
-                            <img src="assets/img/spices2.png" alt="img">
-                            <img src="assets/img/spices3.png" alt="img">
+                            <img src="<?= $img_path ?>spices1.png" alt="img">
+                            <img src="<?= $img_path ?>spices2.png" alt="img">
+                            <img src="<?= $img_path ?>spices3.png" alt="img">
                         </article>
                     </section>
                 </section>
                 <section class="containerItem2">
                     <section class="product">
-                        <img src="../../assets/img/Image1.png" alt="img">
+                        <img src="<?= $img_path ?>Image1.png" alt="img">
                         <h1>Bắt đầu lên kế hoạch ăn kiêng ngay hôm nay</h1>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Neque congue arcu</p>
                     </section>
                     <section class="product">
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Neque congue arcu</p>
-                        <img src="../../assets/img/Image2.png" alt="img">
+                        <img src="<?= $img_path ?>Image2.png" alt="img">
                     </section>
                 </section>
             </section>
@@ -33,10 +35,10 @@
                     <h1>Sản phẩm của chúng tôi</h1>
                 </section>
                 <section class="listProduct">
-                    
+                        <?php for($i=0;$i<9;$i++) :?>
                             <section class="contentListProduct">
                                 <article class="image">
-                                <img src="../../assets/img/Image3.png" alt="img">
+                                <img src="<?= $img_path ?>Image3.png" alt="img">
                                 </article>
                                 <article class="title">
                                     <h1>Bít tết với kim chi nướng</h1>
@@ -52,93 +54,14 @@
                                     <button>Thêm vào giỏ hàng</button>
                                     <button>Mua ngay</button>
                                 </article>
-                            </section>                            
-                            
-                            <section class="contentListProduct">
-                                <article class="image">
-                                <img src="../../assets/img/Image3.png" alt="img">
-                                </article>
-                                <article class="title">
-                                    <h1>Bít tết với kim chi nướng</h1>
-                                </article>
-                                <article class="description">
-                                    <p>Thị bò được nhập khẩu từ mĩ. Với các cô bò hành phúc, đem lại trải nhiệm tuyệt vời</p>
-                                </article>
-                                <article class="price">
-                                    <h1>145$</h1>
-                                </article>
-        
-                                <article class="buttonAction">
-                                    <button>Thêm vào giỏ hàng</button>
-                                    <button>Mua ngay</button>
-                                </article>
-                            </section>                            
-                            
-                            <section class="contentListProduct">
-                                <article class="image">
-                                <img src="../../assets/img/Image3.png" alt="img">
-                                </article>
-                                <article class="title">
-                                    <h1>Bít tết với kim chi nướng</h1>
-                                </article>
-                                <article class="description">
-                                    <p>Thị bò được nhập khẩu từ mĩ. Với các cô bò hành phúc, đem lại trải nhiệm tuyệt vời</p>
-                                </article>
-                                <article class="price">
-                                    <h1>145$</h1>
-                                </article>
-        
-                                <article class="buttonAction">
-                                    <button>Thêm vào giỏ hàng</button>
-                                    <button>Mua ngay</button>
-                                </article>
-                            </section>                            
-                            
-                            <section class="contentListProduct">
-                                <article class="image">
-                                <img src="../../assets/img/Image3.png" alt="img">
-                                </article>
-                                <article class="title">
-                                    <h1>Bít tết với kim chi nướng</h1>
-                                </article>
-                                <article class="description">
-                                    <p>Thị bò được nhập khẩu từ mĩ. Với các cô bò hành phúc, đem lại trải nhiệm tuyệt vời</p>
-                                </article>
-                                <article class="price">
-                                    <h1>145$</h1>
-                                </article>
-        
-                                <article class="buttonAction">
-                                    <button>Thêm vào giỏ hàng</button>
-                                    <button>Mua ngay</button>
-                                </article>
-                            </section>                            
-                            
-                            <section class="contentListProduct">
-                                <article class="image">
-                                <img src="../../assets/img/Image3.png" alt="img">
-                                </article>
-                                <article class="title">
-                                    <h1>Bít tết với kim chi nướng</h1>
-                                </article>
-                                <article class="description">
-                                    <p>Thị bò được nhập khẩu từ mĩ. Với các cô bò hành phúc, đem lại trải nhiệm tuyệt vời</p>
-                                </article>
-                                <article class="price">
-                                    <h1>145$</h1>
-                                </article>
-        
-                                <article class="buttonAction">
-                                    <button>Thêm vào giỏ hàng</button>
-                                    <button>Mua ngay</button>
-                                </article>
-                            </section>                            
-                                            </section>
+                            </section>             
+                        <?php endfor ?>               
+                </section>
             </section>
             <section class="chef">
-                <img src="../../assets/img/Image4.png" alt="img">
-                <img src="../../assets/img/Leaf1.png" alt="img">
-                <img src="../../assets/img/Leaf.png" alt="img">
+                <img src="<?= $img_path ?>Image4.png" alt="img">
+                <img src="<?= $img_path ?>Leaf1.png" alt="img">
+                <img src="<?= $img_path ?>Leaf.png" alt="img">
                 <article class="contentChef">
                     <h1>Đầu bếp xuất sắc</h1>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Purus lorem id penatibus imperdiet. Turpis egestas ultricies purus auctor tincidunt lacus nunc. </p>
@@ -147,17 +70,17 @@
             </section>
             <section class="seoIngredient">
                 <section class="Ingredient">
-                <img src="../../assets/img/CircleIcon.png" alt="img">
+                <img src="<?= $img_path ?>CircleIcon.png" alt="img">
                     <h1>Chất lượng cao</h1>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Neque congue arcu</p>
                 </section>
                 <section class="Ingredient">
-                <img src="../../assets/img/CircleIcon1.png" alt="img">
+                <img src="<?= $img_path ?>CircleIcon1.png" alt="img">
                     <h1>Rau theo mùa</h1>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Neque congue arcu</p>
                 </section>
                 <section class="Ingredient">
-                <img src="../../assets/img/CircleIcon2.png" alt="img">
+                <img src="<?= $img_path ?>CircleIcon2.png" alt="img">
                     <h1>Hoa quả tươi</h1>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Neque congue arcu</p>
                 </section>
@@ -171,7 +94,7 @@
                 <i class="ti-arrow-right"></i>
                 <section class="contentLisstBestProducts">
                     <section class="lisstBestProducts">
-                        <img src="../../assets/img/FeatureImage.png" alt="img">
+                        <img src="<?= $img_path ?>FeatureImage.png" alt="img">
                             <article class="titile">
                                 <h1>Thị bò mỹ cao cấp</h1>
                             </article>
@@ -181,7 +104,7 @@
 
                     </section>
                     <section class="lisstBestProducts">
-                         <img src="../../assets/img/FeatureImage1.png" alt="img">
+                         <img src="<?= $img_path ?>FeatureImage1.png" alt="img">
                         <article class="titile">
                             <h1>Thị bò hun khói </h1>
                         </article>
@@ -234,19 +157,19 @@
                 <i class="ti-arrow-right"></i>
                 <section class="productCalorieBalance">
                     <article class="contentProductCalorieBalance">
-                        <img src="../../assets/img/Image5.png" alt="img">
+                        <img src="<?= $img_path ?>Image5.png" alt="img">
                         <h1>Starters</h1>
                     </article>
                     <article class="contentProductCalorieBalance">
-                        <img src="../../assets/img/MenuCategory.png" alt="img">
+                        <img src="<?= $img_path ?>MenuCategory.png" alt="img">
                         <h1>Mains</h1>
                     </article>
                     <article class="contentProductCalorieBalance">
-                        <img src="../../assets/img/Image6.png" alt="img">
+                        <img src="<?= $img_path ?>Image6.png" alt="img">
                         <h1>Soups</h1>
                     </article>
                     <article class="contentProductCalorieBalance">
-                        <img src="../../assets/img/Image6.png" alt="img">
+                        <img src="<?= $img_path ?>Image6.png" alt="img">
                         <h1>Soups</h1>
                     </article>
                 
@@ -258,7 +181,7 @@
                 </article>
                 <section class="itemDispayComment">
                     <section class="persion">
-                        <img src="../../assets/img/Avatar.svg" alt="img">
+                        <img src="<?= $img_path ?>Avatar.svg" alt="img">
                         <article class="title">
                             <h1>John Doe</h1>
                             <p>Bloger</p>
