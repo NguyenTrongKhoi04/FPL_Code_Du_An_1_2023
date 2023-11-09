@@ -3,6 +3,7 @@
     <link rel="stylesheet" href="../assets/css/user/Home.css">
     <link rel="stylesheet" href="../assets/themify-icons/themify-icons.css">
         <main>
+            <a href="UserController.php?act=billthanhtoan">bill</a>
             <section class="seoProduct">
                 <section class="containerItem1">
                     <section class="contentItem1">

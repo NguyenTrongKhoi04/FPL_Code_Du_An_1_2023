@@ -19,7 +19,7 @@
                     <li><a href="">Đồ Ăn Nhanh</a></li>
                 </ul>
             </div>
-            <?php if(isset($_SESSION['user'])) {?>
+            <?php if(empty($_SESSION['user'])) {?>
                 <div class="login">
                     <button class="button_Login"><a href="">Đăng nhập</a></button>
                     <button class="button_Login"><a href="">Đăng Ký</a></button>
