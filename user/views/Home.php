@@ -1,7 +1,5 @@
 
 <section class="page">
-        <header>               
-        </header>
         <main>
             <section class="seoProduct">
                 <section class="containerItem1">
@@ -278,5 +276,5 @@
                 </section>
             </section>
         </main>
-        <footer></footer>
+
     </section>

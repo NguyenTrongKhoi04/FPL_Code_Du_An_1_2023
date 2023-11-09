@@ -20,19 +20,11 @@ html{
     height: 11642px;
     display: grid;
     grid-template-columns: 100%;
-    grid-template-rows: 1% 96% 3%;
+    grid-template-rows: 100%;
     grid-template-areas:
-        "header"
-        "main"
-        "footer";
+        "main";
     font-family: Lato;
-
-    header {
-        width: 100%;
-        height: 100%;
-        background-color: rgb(202, 9, 16);
-        grid-area: header;
-    }
+    margin: 0 auto;
 
     main {
         width: 100%;
@@ -190,17 +182,19 @@ html{
                 width: 100%;
                 height: 80%;
                 display: flex;
-                justify-content: space-around;
-                flex-wrap: wrap;
+                flex-wrap: nowrap;
                 padding: 2%;
-                overflow: auto;
+                overflow-x: hidden;
+                overflow-y: hidden;
 
                 .contentListProduct {
                     width: 30%;
                     height: 95%;
                     position: relative;
-                    margin: 2% 1%;
+                    margin: 2% 3%;
                     overflow: hidden;
+                    flex-shrink: 0;
+
 
                     .image {
                         width: 100%;
@@ -300,6 +294,18 @@ html{
                             border-radius: 30px;
                         }
                     }
+                }
+
+                &:hover{
+                    overflow-x: auto;
+                }
+                &::-webkit-scrollbar{
+                    background-color: transparent;
+                }
+                &::-webkit-scrollbar-thumb{
+                    background-color: var(--color3);
+                    width: 1px;
+                    border-radius: 100px;
                 }
             }
         }
@@ -797,10 +803,4 @@ html{
         
     }
 
-    footer {
-        width: 100%;
-        height: 100%;
-        background-color: rgb(202, 9, 16);
-        grid-area: footer;
-    }
 }

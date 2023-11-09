@@ -1,13 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<link rel="stylesheet" href="../../assets/css/user/CreateAccount.css">
-<link rel="stylesheet" href="../../assets/themify-icons/themify-icons.css">
-<body>
+    <link rel="stylesheet" href="../../assets/css/user/CreateAccount.css">
     <section class="page">
         <section class="main">
             <article class="headerMain">
@@ -46,5 +37,3 @@
             <img src="../../assets/img/banner1.png" alt="banner1">
         </article>
     </section>
-</body>
-</html>

@@ -1,11 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
     <link rel="stylesheet" href="../../assets/css/user/ChiTietSanPham.css">
     <div class="ChiTietSanPham">
         <div class="ProductDetail">
@@ -74,6 +66,4 @@
             </div>
         </div>
     </div>
-</body>
-<script src="../../assets/js/ChiTietSanPham.js"></script>
-</html>
+    <script src="../../assets/js/ChiTietSanPham.js"></script>
