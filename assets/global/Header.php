@@ -11,7 +11,9 @@
     <header>
         <div class="content_header">
             <div class="menu">
-                <img src="../assets/img/Logo.png" alt="">
+                <a href="<?= $userAction ?>">
+                    <img src="<?= $img_Path?>Logo.png" alt="">
+                </a>
                 <ul>
                     <li><a href="">Đồ Ăn</a></li>
                     <li><a href="">Đồ Uống</a></li>
@@ -21,17 +23,17 @@
             </div>
             <?php if(empty($_SESSION['user'])) {?>
                 <div class="login">
-                    <button class="button_Login"><a href="">Đăng nhập</a></button>
-                    <button class="button_Login"><a href="">Đăng Ký</a></button>
+                    <button class="button_Login"><a href="<?= $userAction ?>dangnhap">Đăng nhập</a></button>
+                    <button class="button_Login"><a href="<?= $userAction ?>dangky">Đăng Ký</a></button>
                 </div>
             <?php }else{ ?>
                 <div class="login">
-                    <a href="" class="login_success"><img src="../assets/img/Glyph_ undefined.png" alt=""></a>
-                    <a href="" class="login_success"><img src="../assets/img/Vector.png" alt=""></a>
-                    <a href="" class="login_success"><img src="../assets/img/out.png" alt=""></a>
+                    <a href="" class="login_success"><img src="<?= $img_Path ?>Glyph_ undefined.png" alt=""></a>
+                    <a href="" class="login_success"><img src="<?= $img_Path ?>Vector.png" alt=""></a>
+                    <a href="" class="login_success"><img src="<?= $img_Path ?>out.png" alt=""></a>
                     <a href="" class="img_avatar">
                         <div class="avatar">
-                            <img src="../assets/img/Rectangle 33.png" alt="">
+                            <img src="<?= $img_Path ?>Rectangle 33.png" alt="">
                         </div>
                     </a>
                 </div>

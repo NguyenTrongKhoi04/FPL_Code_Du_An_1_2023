@@ -109,9 +109,9 @@ function check_Login(){
         
         if(is_array($arrCheck)){
             $_SESSION['user']=$arrCheck;
-            echo '<pre>';
-            print_r($_SESSION);
-            echo '</pre>';
+            // echo '<pre>';
+            // print_r($_SESSION);
+            // echo '</pre>';
             unset($tk,$mk);
         }
     }

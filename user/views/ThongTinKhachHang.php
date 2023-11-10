@@ -4,7 +4,7 @@
         <div class="content">
             <div class="img_center">
                 <div class="img">
-                    <img src="<?= $img_path?>Logo.png" alt="">
+                    <img src="<?= $img_Path?>Logo.png" alt="">
                 </div>
             </div>
             <h3>Nguyễn Trọng Khôi</h3>

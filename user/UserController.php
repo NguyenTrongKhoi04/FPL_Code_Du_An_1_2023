@@ -3,7 +3,7 @@ session_start();
 ob_start();
 include_once '../app/Pdo.php';
 include_once '../assets/global/User.php';
-include_once '../assets/global/Img_Path.php';
+include_once '../assets/global/url_Path.php';
 include_once 'models/TaiKhoan.php';
 include_once '../assets/global/Header.php';
 

@@ -4,7 +4,7 @@
             <aside class="aside">
                 <section class="headerAside">
                     <article class="img">
-                        <img src="<?= $img_path?>Image.png" alt="">
+                        <img src="<?= $img_Path?>Image.png" alt="">
                     </article>
                     <article class="content">
                         <h1>Nguyễn Trọng Khôi</h1>

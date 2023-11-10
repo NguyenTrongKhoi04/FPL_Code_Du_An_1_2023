@@ -1,9 +1,8 @@
 
 <section class="page">
-    <link rel="stylesheet" href="../assets/css/user/Home.css">
+    <link rel="stylesheet" href="<?= $userStyle?>Home.css">
     <link rel="stylesheet" href="../assets/themify-icons/themify-icons.css">
         <main>
-            <a href="UserController.php?act=billthanhtoan">bill</a>
             <section class="seoProduct">
                 <section class="containerItem1">
                     <section class="contentItem1">
@@ -11,23 +10,23 @@
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Neque congue arcu</p>
                     </section>
                     <section class="contentItemImg">
-                        <img src="<?= $img_path  ?>Image.png" alt="img">
+                        <img src="<?= $img_Path  ?>Image.png" alt="img">
                         <article class="lisstImg">
-                            <img src="<?= $img_path ?>spices1.png" alt="img">
-                            <img src="<?= $img_path ?>spices2.png" alt="img">
-                            <img src="<?= $img_path ?>spices3.png" alt="img">
+                            <img src="<?= $img_Path ?>spices1.png" alt="img">
+                            <img src="<?= $img_Path ?>spices2.png" alt="img">
+                            <img src="<?= $img_Path ?>spices3.png" alt="img">
                         </article>
                     </section>
                 </section>
                 <section class="containerItem2">
                     <section class="product">
-                        <img src="<?= $img_path ?>Image1.png" alt="img">
+                        <img src="<?= $img_Path ?>Image1.png" alt="img">
                         <h1>Bắt đầu lên kế hoạch ăn kiêng ngay hôm nay</h1>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Neque congue arcu</p>
                     </section>
                     <section class="product">
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Neque congue arcu</p>
-                        <img src="<?= $img_path ?>Image2.png" alt="img">
+                        <img src="<?= $img_Path ?>Image2.png" alt="img">
                     </section>
                 </section>
             </section>
@@ -39,7 +38,7 @@
                         <?php for($i=0;$i<9;$i++) :?>
                             <section class="contentListProduct">
                                 <article class="image">
-                                <img src="<?= $img_path ?>Image3.png" alt="img">
+                                <img src="<?= $img_Path ?>Image3.png" alt="img">
                                 </article>
                                 <article class="title">
                                     <h1>Bít tết với kim chi nướng</h1>
@@ -60,9 +59,9 @@
                 </section>
             </section>
             <section class="chef">
-                <img src="<?= $img_path ?>Image4.png" alt="img">
-                <img src="<?= $img_path ?>Leaf1.png" alt="img">
-                <img src="<?= $img_path ?>Leaf.png" alt="img">
+                <img src="<?= $img_Path ?>Image4.png" alt="img">
+                <img src="<?= $img_Path ?>Leaf1.png" alt="img">
+                <img src="<?= $img_Path ?>Leaf.png" alt="img">
                 <article class="contentChef">
                     <h1>Đầu bếp xuất sắc</h1>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Purus lorem id penatibus imperdiet. Turpis egestas ultricies purus auctor tincidunt lacus nunc. </p>
@@ -71,17 +70,17 @@
             </section>
             <section class="seoIngredient">
                 <section class="Ingredient">
-                <img src="<?= $img_path ?>CircleIcon.png" alt="img">
+                <img src="<?= $img_Path ?>CircleIcon.png" alt="img">
                     <h1>Chất lượng cao</h1>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Neque congue arcu</p>
                 </section>
                 <section class="Ingredient">
-                <img src="<?= $img_path ?>CircleIcon1.png" alt="img">
+                <img src="<?= $img_Path ?>CircleIcon1.png" alt="img">
                     <h1>Rau theo mùa</h1>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Neque congue arcu</p>
                 </section>
                 <section class="Ingredient">
-                <img src="<?= $img_path ?>CircleIcon2.png" alt="img">
+                <img src="<?= $img_Path ?>CircleIcon2.png" alt="img">
                     <h1>Hoa quả tươi</h1>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Neque congue arcu</p>
                 </section>
@@ -95,7 +94,7 @@
                 <i class="ti-arrow-right"></i>
                 <section class="contentLisstBestProducts">
                     <section class="lisstBestProducts">
-                        <img src="<?= $img_path ?>FeatureImage.png" alt="img">
+                        <img src="<?= $img_Path ?>FeatureImage.png" alt="img">
                             <article class="titile">
                                 <h1>Thị bò mỹ cao cấp</h1>
                             </article>
@@ -105,7 +104,7 @@
 
                     </section>
                     <section class="lisstBestProducts">
-                         <img src="<?= $img_path ?>FeatureImage1.png" alt="img">
+                         <img src="<?= $img_Path ?>FeatureImage1.png" alt="img">
                         <article class="titile">
                             <h1>Thị bò hun khói </h1>
                         </article>
@@ -158,19 +157,19 @@
                 <i class="ti-arrow-right"></i>
                 <section class="productCalorieBalance">
                     <article class="contentProductCalorieBalance">
-                        <img src="<?= $img_path ?>Image5.png" alt="img">
+                        <img src="<?= $img_Path ?>Image5.png" alt="img">
                         <h1>Starters</h1>
                     </article>
                     <article class="contentProductCalorieBalance">
-                        <img src="<?= $img_path ?>MenuCategory.png" alt="img">
+                        <img src="<?= $img_Path ?>MenuCategory.png" alt="img">
                         <h1>Mains</h1>
                     </article>
                     <article class="contentProductCalorieBalance">
-                        <img src="<?= $img_path ?>Image6.png" alt="img">
+                        <img src="<?= $img_Path ?>Image6.png" alt="img">
                         <h1>Soups</h1>
                     </article>
                     <article class="contentProductCalorieBalance">
-                        <img src="<?= $img_path ?>Image6.png" alt="img">
+                        <img src="<?= $img_Path ?>Image6.png" alt="img">
                         <h1>Soups</h1>
                     </article>
                 
@@ -182,7 +181,7 @@
                 </article>
                 <section class="itemDispayComment">
                     <section class="persion">
-                        <img src="<?= $img_path ?>Avatar.svg" alt="img">
+                        <img src="<?= $img_Path ?>Avatar.svg" alt="img">
                         <article class="title">
                             <h1>John Doe</h1>
                             <p>Bloger</p>

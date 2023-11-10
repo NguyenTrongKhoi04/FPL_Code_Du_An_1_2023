@@ -2,7 +2,7 @@
     <link rel="stylesheet" href="../assets/css/user/ChangePassword.css">
     <section class="page">
         <article class="banner">
-            <img src="<?= $img_path?>banner1.png" alt="banner1">
+            <img src="<?= $img_Path?>banner1.png" alt="banner1">
         </article>
         <section class="main">
             <article class="headerMain">

@@ -2,7 +2,7 @@
 <section class="page">
 <link rel="stylesheet" href="../assets/css/user/ProductDetails.css">
     <section class="banner">
-        <img src="<?= $img_path?>banner.png" alt="banner">
+        <img src="<?= $img_Path?>banner.png" alt="banner">
     </section>
     <main>
         <nav class="nav">
@@ -25,7 +25,7 @@
             <?php for($i=0;$i<10;$i++) :?>
             <section class="product">
                 <article class="img">
-                    <img src="<?= $img_path?>Image2.png" alt="Image">
+                    <img src="<?= $img_Path?>Image2.png" alt="Image">
                 </article>
                 <article class="title">
                     <h1>Bít tết với kim chi nướng</h1>
