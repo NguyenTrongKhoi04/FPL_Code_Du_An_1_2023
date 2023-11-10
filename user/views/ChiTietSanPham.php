@@ -1,7 +1,7 @@
-    <link rel="stylesheet" href="../../assets/css/user/ChiTietSanPham.css">
     <div class="ChiTietSanPham">
+        <link rel="stylesheet" href="../assets/css/user/ChiTietSanPham.css">
         <div class="ProductDetail">
-            <div class="img"><img src="../../assets/img/Rectangle 33.png" alt=""></div>
+            <div class="img"><img src="<?= $img_Path?>Rectangle 33.png" alt=""></div>
             <div class="form">
                 <form>
                     <h2>Hambegur bò bít tết</h2>
@@ -29,7 +29,7 @@
             <?php for($i=0;$i<10;$i++) :?>
             <div class="pro">
                 <div class="img">
-                    <img src="../../assets/img/Rectangle 33.png" alt="">
+                    <img src="<?= $img_Path?>Rectangle 33.png" alt="">
                 </div>
                 <p>Hambegur Thập cẩmdsdsadsadsdsadsa</p>
             </div>
@@ -40,7 +40,7 @@
             <div class="list_item">
                 <?php for($i=0;$i<3;$i++) : ?>
                 <div class="item">
-                    <img src="../../assets/img/Rectangle 33.png" alt="">
+                    <img src="<?= $img_Path?>Rectangle 33.png" alt="">
                     <p>Combo fast food 66k</p>
                     <h3>100.000 Sẩn phẩm đã bán</h3>
                 </div>
@@ -52,7 +52,7 @@
                 <?php for ($i = 0; $i < 10; $i++) : ?>
                     <div class="content" style="display: <?= $i === 0 ? 'flex' : 'none'; ?>">
                         <div class="img">
-                            <img src="../../assets/img/Rectangle 33.png" alt="">
+                            <img src="<?= $img_Path?>Rectangle 33.png" alt="">
                             </div>
                         <?= $i ?>
                         <p>dfasfdafdsafsafdsfsdafsafdsafsadfsdafsdfsdafdsafdsfdsfsadfsdfdsfdsfdsffs</p>
@@ -66,4 +66,4 @@
             </div>
         </div>
     </div>
-    <script src="../../assets/js/ChiTietSanPham.js"></script>
+    <script src="../assets/js/ChiTietSanPham.js"></script>

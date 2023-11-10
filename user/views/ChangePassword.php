@@ -1,8 +1,8 @@
 
-    <link rel="stylesheet" href="../../assets/css/user/ChangePassword.css">
+    <link rel="stylesheet" href="../assets/css/user/ChangePassword.css">
     <section class="page">
         <article class="banner">
-            <img src="../../assets/img/banner1.png" alt="banner1">
+            <img src="<?= $img_Path?>banner1.png" alt="banner1">
         </article>
         <section class="main">
             <article class="headerMain">

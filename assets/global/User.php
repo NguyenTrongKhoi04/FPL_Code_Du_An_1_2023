@@ -81,11 +81,12 @@
     return query_All($sql);
 };
 
+
 function select_One($tenBang,$tenCot=null,$where,$limit=null){
     if(empty($tenCot)){
         $tenCot = ' * ';
     }
-    $sql = 'SELECT '.$tenCot.' FROM '.' $tenBang';
+    $sql = 'SELECT '.$tenCot.' FROM '.$tenBang;
     if(isset($where)){
         $sql.= ' WHERE '.$where;
     }
@@ -94,6 +95,25 @@ function select_One($tenBang,$tenCot=null,$where,$limit=null){
         $sql.=' LIMIT '.$limit;
     }
     var_dump($sql);
-    return query_One($sql);
+    $account=query_One($sql);
+    return $account;
+}
+
+function check_Login(){
+    $tk = $_POST['tk'] ?? null;
+    $mk = $_POST['mk'] ?? null;
+    if(isset($tk)&&isset($mk)){
+        $tk = $_POST['tk'];
+        $mk = ($_POST['mk']);//md5
+        $arrCheck = select_One('account',null," Name = '$tk' AND Password = '$mk'");
+        
+        if(is_array($arrCheck)){
+            $_SESSION['user']=$arrCheck;
+            // echo '<pre>';
+            // print_r($_SESSION);
+            // echo '</pre>';
+            unset($tk,$mk);
+        }
+    }
 }
 

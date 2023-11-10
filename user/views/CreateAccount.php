@@ -1,4 +1,4 @@
-    <link rel="stylesheet" href="../../assets/css/user/CreateAccount.css">
+    <link rel="stylesheet" href="../assets/css/user/CreateAccount.css">
     <section class="page">
         <section class="main">
             <article class="headerMain">
@@ -29,11 +29,11 @@
             <section class="footerMain">
                 <section class="itemContent">
                     <p>Tôi đã có tải khoản</p>
-                    <p>. Đăng nhập</p>
+                    <p> Đăng nhập</p>
                 </section>
             </section>
         </section>
         <article class="banner">
-            <img src="../../assets/img/banner1.png" alt="banner1">
+            <img src="<?= $img_Path ?>banner1.png" alt="banner1">
         </article>
     </section>

@@ -1,8 +1,8 @@
-<link rel="stylesheet" href="../../assets/css/user/LoginThuong.css">
+<link rel="stylesheet" href="../assets/css/user/LoginThuong.css">
 <div class="Login_thuong">
-    <div class="img"><img src="../../assets/img/Login.png" alt=""></div>
+    <div class="img"><img src="<?= $img_Path?>Login.png" alt=""></div>
     <div class="content_login_thuong">
-        <form action="../UserController.php?act=dangnhap" method="POST">
+        <form action="../user/UserController.php?act=dangnhap" method="POST">
             <h2>ĐĂNG NHẬP</h2>
             <p>Tài Khoản</p>
             <input type="text" placeholder="" name="tk">

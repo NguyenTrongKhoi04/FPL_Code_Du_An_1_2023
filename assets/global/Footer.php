@@ -1,8 +1,7 @@
-
-    <footer>
+<footer>
         <div class="head_footer">
             <div class="logo_content">
-                <img src="../img/Logo.png" alt="">
+                <img src="<?= $img_path?>Logo.png" alt="">
                 <div class="content">
                     <h3>Contact</h3>
                     <div class="info">
@@ -30,8 +29,8 @@
             <hr>
             <div class="content_end">
             © 2020 Zero Inc. All rights Reserved
-            </div>
         </div>
-    </footer>
+    </div>
+</footer>
 </body>
 </html>

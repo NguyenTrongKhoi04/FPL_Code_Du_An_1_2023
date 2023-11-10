@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="../../assets/css/user/PaymentOrders.css">
+<link rel="stylesheet" href="../assets/css/user/PaymentOrders.css">
 <section class="page">
     <main>
         <article class="titleMain">

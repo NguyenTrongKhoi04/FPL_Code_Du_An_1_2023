@@ -1,10 +1,10 @@
-<link rel="stylesheet" href="../../assets/css/user/BillPayment.css">
+<link rel="stylesheet" href="../assets/css/user/BillPayment.css">
 <section class="page">
         <main>
             <aside class="aside">
                 <section class="headerAside">
                     <article class="img">
-                        <img src="../../assets/img/Image.png" alt="">
+                        <img src="<?= $img_Path?>Image.png" alt="">
                     </article>
                     <article class="content">
                         <h1>Nguyễn Trọng Khôi</h1>
@@ -41,6 +41,7 @@
                             <th>Bàn</th>
                             <th>Loại order</th>
                         </tr>
+                        <?php for($i=0;$i<10;$i++) : ?>
                         <tr>
                             <td>Nguyễn Trọng Khôi</td>
                             <td>Chickend</td>
@@ -49,46 +50,8 @@
                             <td>16</td>
                             <td>Online</td>
                         </tr>
-                        <tr>
-                            <td>Nguyễn Trọng Khôi</td>
-                            <td>Chickend</td>
-                            <td>245$</td>
-                            <td>Bank pay</td>
-                            <td>16</td>
-                            <td>Online</td>
-                        </tr>
-                        <tr>
-                            <td>Nguyễn Trọng Khôi</td>
-                            <td>Chickend</td>
-                            <td>245$</td>
-                            <td>Bank pay</td>
-                            <td>16</td>
-                            <td>Online</td>
-                        </tr>
-                        <tr>
-                            <td>Nguyễn Trọng Khôi</td>
-                            <td>Chickend</td>
-                            <td>245$</td>
-                            <td>Bank pay</td>
-                            <td>16</td>
-                            <td>Online</td>
-                        </tr>
-                        <tr>
-                            <td>Nguyễn Trọng Khôi</td>
-                            <td>Chickend</td>
-                            <td>245$</td>
-                            <td>Bank pay</td>
-                            <td>16</td>
-                            <td>Online</td>
-                        </tr>
-                        <tr>
-                            <td>Nguyễn Trọng Khôi</td>
-                            <td>Chickend</td>
-                            <td>245$</td>
-                            <td>Bank pay</td>
-                            <td>16</td>
-                            <td>Online</td>
-                        </tr>
+                        <?php endfor ?>
+                       
                     </table>
                 </section>
             </section>

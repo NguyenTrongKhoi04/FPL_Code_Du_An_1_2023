@@ -1,5 +1,5 @@
-<link rel="stylesheet" href="../../assets/css/user/DatBan.css">
 <div class="datban">
+    <link rel="stylesheet" href="../assets/css/user/DatBan.css">
     <div class="sodo">
         <h1>SƠ ĐỒ NHÀ HÀNG</h1>
         <div class="door_kitchen">
