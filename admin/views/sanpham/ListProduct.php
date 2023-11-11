@@ -443,12 +443,15 @@
                                                     case 3:
                                                         $stauts = "Đẩy mạnh bán sản phẩm";
                                                     break;
-                                                    case 3:
+                                                    case 4:
                                                         $stauts = "Đang SEO";
+                                                    break;
+                                                    default:
+                                                        $stauts = "Error";
                                                     break;
 
                                                 }
-                                               
+                                               echo $stauts;
                                                 echo "
                                                 <tr>
                                                     <td>{$values['Name']}</td>
@@ -462,7 +465,7 @@
                                                     <td>{$values['ProductDetails']}</td>
                                                     <td>{$values['ProductDescription']}</td>
                                                     <td>
-                                                        <a href='AdminController.php?act=UpdateProduct'>
+                                                        <a href='AdminController.php?act=UpdateProduct&IdProduct={$values['IdProduct']}'>
                                                             <input type='button' value='Sửa'> 
                                                         </a>
                                                         <a href='AdminController.php?act=ListProduct&delete={$values['IdProduct']}'>

@@ -4,9 +4,13 @@ ob_start();
 include_once '../app/Pdo.php';
 include_once '../assets/global/User.php';
 include_once '../assets/global/url_Path.php';
-include_once './models/AddProduct.php';
 include_once './models/ListProduct.php';
 include_once './models/UpdateProduct.php';
+include_once './models/AddProduct.php';
+include_once './models/UpdateProduct.php';
+include_once './models/AddAccount.php';
+include_once './models/ListAccount.php';
+include_once './models/UpdateAccount.php';
 // include_once 'models/TaiKhoan.php';
 
 
@@ -31,7 +35,7 @@ if(!empty($_SESSION['user'])){
  *                                 Thêm product
  * ====================================================================================
  */
-                    pushProduct($data, $imgData, $IdDetails);
+                pushProduct($data, $imgData, $IdDetails);
                 }
                 include_once "views/sanpham/AddProduct.php";
             break;
@@ -59,11 +63,49 @@ if(!empty($_SESSION['user'])){
                     $IdDetails = $_GET["IdDetails"];
                     updateListProduct($data, $dataImg, $IdProduct, $IdDetails);
                 } 
-
                 include_once "views/sanpham/UpdateProduct.php";
             break;
+/**
+ * ====================================================================================
+ *                                 Thêm account
+ * ====================================================================================
+ */
+            case 'AddAccount':
+                if($_SERVER['REQUEST_METHOD'] === 'POST' ){
+                    $dataProduct = $_POST;
+                    $dataImg = $_FILES['Image'];
 
+                    pushAcount($dataProduct, $dataImg);
+                } 
+                include_once "views/taikhoan/AddAccount.php";
+            break;
 
+            case "ListAccount":
+/**
+ * ====================================================================================
+ *                                 Xoa account
+ * ====================================================================================
+ */
+            if(isset($_GET['delete'])&&($_GET['delete'] !='' )){
+                deleteAccount($_GET['delete']);
+            }                
+            include_once "views/taikhoan/ListAccount.php";
+        break;
+
+/**
+ * ====================================================================================
+ *                                 Sửa account
+ * ====================================================================================
+ */
+            case "UpdateAccount":
+                if($_SERVER['REQUEST_METHOD'] === 'POST' ){
+                    $data = $_POST;
+                    $dataImg = $_FILES['Image'];
+                    $IdAccount = $_GET["IdAccount"];
+                    updateListAccount($data, $dataImg, $IdAccount);
+                } 
+                include_once "views/taikhoan/UpdateAccount.php";
+            break;            
             default:
             // include_once 'views/Home.php';
                 break;

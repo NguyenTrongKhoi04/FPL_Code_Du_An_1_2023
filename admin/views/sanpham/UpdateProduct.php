@@ -417,31 +417,30 @@
                                                         
                                    <tbody> 
                                     <?php 
-                                    $dataProduct =getListProduct();
-                                    extract($dataProduct['0']);
-                                    $stauts = null;
-                                    // echo "<pre>";
-                                    // var_dump($dataProduct['0']) ; die();
-                                    switch($Status){
-                                        case 0:
-                                            $stauts = "Đang bán";
-                                        break;
-                                        case 1:
-                                            $stauts = "Ngừng bán";
-                                        break;
-                                        case 2:
-                                            $stauts = "Hạn chế bán";
-                                        break;
-                                        case 3:
-                                            $stauts = "Đẩy mạnh bán sản phẩm";
-                                        break;
-                                        case 4:
-                                            $stauts = "Đang SEO";
-                                        break;
+                                    if(isset($_GET["IdProduct"]) && !empty($_GET["IdProduct"])){
+                                        $dataProduct =getProductById($_GET['IdProduct']);
+                                        extract($dataProduct['0']);
+                                        $stauts = null;
+                                        switch($Status){
+                                            case 0:
+                                                $stauts = "Đang bán";
+                                            break;
+                                            case 1:
+                                                $stauts = "Ngừng bán";
+                                            break;
+                                            case 2:
+                                                $stauts = "Hạn chế bán";
+                                            break;
+                                            case 3:
+                                                $stauts = "Đẩy mạnh bán sản phẩm";
+                                            break;
+                                            case 4:
+                                                $stauts = "Đang SEO";
+                                            break;
 
-                                    }                                    
-                                    ?>               
-                                   <form action="AdminController.php?act=UpdateProduct&IdProduct=<?= $IdProduct?>&IdDetails=<?= $IdDetails ?>" method="post" enctype="multipart/form-data">
+                                        }          
+                                      ?>
+                                        <form action="AdminController.php?act=UpdateProduct&IdProduct=<?= $IdProduct?>&IdDetails=<?= $IdDetails ?>" method="post" enctype="multipart/form-data">
                                                 <tr>
                                                 <td>Tên</td>
                                                     <td><input value="<?= $Name ?>" name = "Name" type="text"></td>
@@ -509,7 +508,13 @@
                                             </tr>
         
                                             <td><input  name = "submit" type="submit" value="thêm"></td>                              
-                                        </form>                        
+                                    </form>          
+                                      <?php  
+                                    }else{
+                                        echo "404 Not Fount";
+                                    }
+                                                              
+                                    ?>                          
                                    </tbody>
                                </table>
                         </div>
