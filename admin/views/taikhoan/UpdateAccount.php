@@ -423,7 +423,7 @@
                                         // print_r($data); die();
                                             $types = null;
                                             $gender = null;
-                                            $status = $data["Status"] ===  0 ? "Hoạt động " : "Đã xóa";
+                                            $status = $data["StatusAccount"] ===  0 ? "Hoạt động " : "Đã xóa";
                                             switch($data['Gender'] ){
                                                 case 0:
                                                     $gender = "Nam";
@@ -458,7 +458,7 @@
                                    <form action="AdminController.php?act=UpdateAccount&IdAccount=<?= $IdAccount?>" method="post" enctype="multipart/form-data">
                                                 <tr>
                                                 <td>Tên</td>
-                                                    <td><input value="<?= $Name ?>" name = "Name" type="text"></td>
+                                                    <td><input value="<?= $NameAccounts ?>" name = "Name" type="text"></td>
                                                     
                                             </tr>
                                             <tr>
@@ -489,7 +489,7 @@
                                             <tr>
                                                 <td>Ảnh</td>
                                                 <td>
-                                                    <input type="file" name = "Image" value="<?= $Image ?>">
+                                                    <input type="file" name = "Image" value="<?= $ImageAccounts ?>">
                                                 </td>
                                                     
                                             </tr>

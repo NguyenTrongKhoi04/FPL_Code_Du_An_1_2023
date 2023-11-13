@@ -399,10 +399,14 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Tables</h1>
-                    <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
-                        For more information about DataTables, please visit the <a target="_blank"
-                            href="https://datatables.net">official DataTables documentation</a>.</p>
+                    <h1 style="color: red">
+                        <?php
+                            if(isset($alert)){
+                                echo $alert === true ? "Xóa sản phẩm thành công" : "Xóa sản phẩm thất bại";                                  
+
+                            }
+                        ?>
+                    </h1>
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
@@ -430,7 +434,7 @@
                                         <?php 
                                             foreach(getListProduct() as $values){
                                                 $stauts = null;
-                                                switch($values['Status']){
+                                                switch($values['StatusProducts']){
                                                     case 0:
                                                         $stauts = "Đang bán";
                                                     break;
@@ -451,14 +455,14 @@
                                                     break;
 
                                                 }
-                                               echo $stauts;
+                                               
                                                 echo "
                                                 <tr>
-                                                    <td>{$values['Name']}</td>
-                                                    <td>{$values['Quantity']}</td>
-                                                    <td>{$values['Price']} VND</td>
+                                                    <td>{$values['NameProducts']}</td>
+                                                    <td>{$values['QuantityProducts']}</td>
+                                                    <td>{$values['PriceProducts']} VND</td>
                                                     <td style='max-width: 100px'>
-                                                        <img style='max-width: 100%' src='../assets/upload/{$values['Image']}' alt='image' >
+                                                        <img style='max-width: 100%' src='../assets/img/admin/{$values['ImageProducts']}' alt='image' >
                                                     </td>          
                                                     <td>{$stauts}</td>
                                                     <td>{$values['NameCategory']}</td>

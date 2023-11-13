@@ -399,7 +399,14 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Thêm tài khoản</h1>
+                    <h1 style="color: red">
+                        <?php
+                            if(isset($alert)){
+                                echo $alert === true ? "Cập nhật sản phẩm thành công" : "Cập nhật sản phẩm thất bại";                                  
+
+                            }
+                        ?>
+                    </h1>
                     
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
@@ -421,7 +428,7 @@
                                         $dataProduct =getProductById($_GET['IdProduct']);
                                         extract($dataProduct['0']);
                                         $stauts = null;
-                                        switch($Status){
+                                        switch($StatusProducts){
                                             case 0:
                                                 $stauts = "Đang bán";
                                             break;
@@ -443,26 +450,26 @@
                                         <form action="AdminController.php?act=UpdateProduct&IdProduct=<?= $IdProduct?>&IdDetails=<?= $IdDetails ?>" method="post" enctype="multipart/form-data">
                                                 <tr>
                                                 <td>Tên</td>
-                                                    <td><input value="<?= $Name ?>" name = "Name" type="text"></td>
+                                                    <td><input value="<?= $NameProducts ?>" name = "Name" type="text"></td>
                                                     
                                             </tr>
                                             <tr>
                                                 <td>Số lượng</td>
-                                                <td><input value="<?= $Quantity ?>" name = "Quantity" type="number"></td>
+                                                <td><input value="<?= $QuantityProducts ?>" name = "Quantity" type="number"></td>
                                                 
                                             </tr>
                 
                                             <tr>
                                                 <td>Giá</td>
                                                 <td>
-                                                        <input value="<?= $Price ?>" type="number" name = "Price" id="">
+                                                        <input value="<?= $PriceProducts ?>" type="number" name = "Price" id="">
                                                     </td>
                                                     
                                             </tr>
                                             <tr>
                                                 <td>Ảnh</td>
                                                 <td>
-                                                        <input type="file" name = "Image" value="<?= $Image ?>">
+                                                        <input type="file" name = "Image" value="<?= $ImageProducts ?>">
                                                 </td>
                                                     
                                             </tr>

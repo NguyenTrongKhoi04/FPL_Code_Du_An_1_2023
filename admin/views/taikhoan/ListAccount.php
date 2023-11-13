@@ -425,7 +425,7 @@
                                         foreach(getListAccount() as $values){
                                             $types = null;
                                             $gender = null;
-                                            $status = $values["Status"] ===  0 ? "Hoạt động " : "Đã xóa";
+                                            $status = $values["StatusAccount"] ===  0 ? "Hoạt động " : "Đã xóa";
                                             switch($values['Gender'] ){
                                                 case 0:
                                                     $gender = "Nam";
@@ -458,16 +458,16 @@
                                             
                                             echo "
                                             <tr>
-                                                <td>{$values['Name']}</td>
+                                                <td>{$values['NameAccounts']}</td>
                                                 <td>{$values['Gmail']}</td>
                                                 <td>{$gender}</td>
                                                 <td>{$values['Password']}</td>
                                                 <td style='max-width: 100px'>
-                                                    <img style='max-width: 100%' src='../assets/upload/{$values['Image']}' alt='image' >
+                                                    <img style='max-width: 100%' src='../assets/img/admin/{$values['ImageAccounts']}' alt='image' >
                                                 </td>          
                                                 <td>{$status}</td>
                                                 <td>{$types}</td>
-                                                <td>{$values['DateEdit']}</td>
+                                                <td>{$values['DateEditAccount']}</td>
 
                                                 <td>
                                                     <a href='AdminController.php?act=UpdateAccount&IdAccount={$values['IdAccount']}'>

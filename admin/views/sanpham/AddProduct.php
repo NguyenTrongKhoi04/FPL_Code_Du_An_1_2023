@@ -404,6 +404,14 @@
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-body">
+                            <h1 style="color: red">
+                                <?php
+                                    if(isset($alert)){
+                                        echo $alert === true ? "Thêm sản phẩm thành công" : $alert;                                  
+
+                                    }
+                                ?>
+                            </h1>
                             <div class="table-responsive">
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                    
