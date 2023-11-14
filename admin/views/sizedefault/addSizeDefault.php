@@ -1,14 +1,3 @@
-<?php
-    include "Connect.php";
-    include "Pdo.php ";
-
-    $sql = 'SELECT * FROM size ';
-    $conn = pdo_get_connection();
-    $stmt = $conn->prepare($sql);
-    $stmt->execute();
-    $a = $stmt->fetchAll();
-
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,19 +9,19 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Tables</title>
+    <title>Bảng</title>
 
     <!-- Custom fonts for this template -->
-    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="../assets/css/admin/all.min.css" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="../assets/css/admin/sb-admin-2.min.css" rel="stylesheet">
 
     <!-- Custom styles for this page -->
-    <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="../assets/css/admin/dataTables.bootstrap4.min.css" rel="stylesheet">
 
 </head>
 
@@ -49,7 +38,7 @@
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+                <div class="sidebar-brand-text mx-3">ADMIN</div>
             </a>
 
             <!-- Divider -->
@@ -59,7 +48,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="index.html">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
+                    <span>Trang chủ</span></a>
             </li>
 
             <!-- Divider -->
@@ -67,7 +56,7 @@
 
             <!-- Heading -->
             <div class="sidebar-heading">
-                Interface
+                DANH SÁCH
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
@@ -75,15 +64,22 @@
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-cog"></i>
-                    <span>Components</span>
+                    <span>Tài Khoản</span>
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Components:</h6>
-                        <a class="collapse-item" href="buttons.html">Buttons</a>
-                        <a class="collapse-item" href="cards.html">Cards</a>
+                        <h6 class="collapse-header">Quản Lý Tài Khoản</h6>
+                        <a class="collapse-item" href="cards.html">Danh Sách Tài Khoản</a>
+                        <a class="collapse-item" href="buttons.html">Thêm Tài Khoản</a>
+
+                        <h6 class="collapse-header">Giỏ hàng-Bill-Comment</h6>
+                        <a class="collapse-item" href="buttons.html">Danh Sách Giỏ Hàng</a>
+                        <a class="collapse-item" href="buttons.html">Danh Sách Comment</a>
+                        <a class="collapse-item" href="buttons.html">Danh Sách Bill</a>
+
                     </div>
                 </div>
+                
             </li>
 
             <!-- Nav Item - Utilities Collapse Menu -->
@@ -91,26 +87,54 @@
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
                     aria-expanded="true" aria-controls="collapseUtilities">
                     <i class="fas fa-fw fa-wrench"></i>
-                    <span>Utilities</span>
+                    <span>Quản lý đồ ăn</span>
+                </a>
+                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+                data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Product</h6>
+                        <a class="collapse-item" href="utilities-color.html">danh sách món ăn</a>
+                        <a class="collapse-item" href="utilities-color.html">Thêm món ăn</a>
+                        <h6 class="collapse-header">Danh mục</h6>
+                        <a class="collapse-item" href="utilities-color.html">Danh mục chính</a>
+                        <a class="collapse-item" href="utilities-color.html">Thêm danh mục chính </a>
+                        <a class="collapse-item" href="utilities-color.html">Danh mục phụ</a>
+                        <a class="collapse-item" href="utilities-color.html">Thêm danh mục phụ</a>
+                        <h6 class="collapse-header">Size</h6>
+                        <a class="collapse-item" href="utilities-border.html">Size</a>
+                        <a class="collapse-item" href="utilities-border.html">Thêm size</a>
+                        <a class="collapse-item" href="utilities-border.html">Size default</a>
+                        <a class="collapse-item" href="utilities-border.html">Thêm size default</a>
+                        <h6 class="collapse-header">Pro-Details</h6>
+                        <a class="collapse-item" href="utilities-animation.html">Details</a>
+                        <a class="collapse-item" href="utilities-other.html">Thêm Details</a>
+                    </div>
+                </div>
+            </li>
+            
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+                    aria-expanded="true" aria-controls="collapseUtilities">
+                    <i class="fas fa-fw fa-wrench"></i>
+                    <span>bàn ăn</span>
                 </a>
                 <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Utilities:</h6>
-                        <a class="collapse-item" href="utilities-color.html">Colors</a>
-                        <a class="collapse-item" href="utilities-border.html">Borders</a>
-                        <a class="collapse-item" href="utilities-animation.html">Animations</a>
-                        <a class="collapse-item" href="utilities-other.html">Other</a>
-                    </div>
+                        <h6 class="collapse-header">Orders</h6>
+                        <a class="collapse-item" href="utilities-animation.html">Danh sách Order</a>
+                        <a class="collapse-item" href="utilities-other.html">Danh Sách Order phụ</a>
+                        </div>
                 </div>
             </li>
+            
 
             <!-- Divider -->
             <hr class="sidebar-divider">
 
             <!-- Heading -->
             <div class="sidebar-heading">
-                Addons
+                Thống kê
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
@@ -118,7 +142,7 @@
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
                     aria-expanded="true" aria-controls="collapsePages">
                     <i class="fas fa-fw fa-folder"></i>
-                    <span>Pages</span>
+                    <span>Bil</span>
                 </a>
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
@@ -283,7 +307,7 @@
                                 </h6>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_1.svg"
+                                        <img class="rounded-circle" src="<?= $adminImg ?>undraw_profile_1.svg"
                                             alt="...">
                                         <div class="status-indicator bg-success"></div>
                                     </div>
@@ -295,7 +319,7 @@
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_2.svg"
+                                        <img class="rounded-circle" src="<?= $adminImg ?>undraw_profile_2.svg"
                                             alt="...">
                                         <div class="status-indicator"></div>
                                     </div>
@@ -307,7 +331,7 @@
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_3.svg"
+                                        <img class="rounded-circle" src="<?= $adminImg ?>undraw_profile_3.svg"
                                             alt="...">
                                         <div class="status-indicator bg-warning"></div>
                                     </div>
@@ -341,7 +365,7 @@
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
                                 <img class="img-profile rounded-circle"
-                                    src="img/undraw_profile.svg">
+                                    src="<?= $adminImg ?>undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -372,54 +396,42 @@
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
-
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Tables</h1>
-                    <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
-                        For more information about DataTables, please visit the <a target="_blank"
-                            href="https://datatables.net">official DataTables documentation</a>.</p>
-
+                    <h1 class="h3 mb-2 text-gray-800">Thêm SizeDefault</h1>
+                    
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
-                        </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    
-                                        <tr>
-                                            <th>IdSize</th>
-                                            <th>IdSizeDefault</th>
-                                            <th>IdProduct</th>
-                                            <th>AddSize</th>
-                                        </tr>
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                   
+                                   <tr>
+                                           <th></th>
+                                           <th>Nhập Thông tin</th>
+                                           <th></th>     
+                                   </tr>
+                
 
-                                    <tbody>
-                                        <?php foreach($a as $i) : ?>
-                                             
-                                        <tr>
-                                            
-                                            <td><?=$i['IdSize']?></td>
-                                            <td><?=$i['IdSizeDefault']?></td>
-                                            <td><?=$i['IdProduct']?></td>
-                                            <td>
-                                            <a href="<?= 'xóa' ?>"><input type="button" value="Xóa"></a>
-                                            <a href="<?= 'sửa' ?>"><input type="button" value="Sửa"></a>
-                                            </td>
-                                        </tr>
-                                        <?php endforeach ?>
-                                        <input type="button" value="Thêm">
-                                    </tbody>
-                                </table>
+                                   <tbody>                
+                                       <form action="AdminController.php?act=AddSizeDefault" method="post">
+                                            <tr>
+                                               <td>IdSizeDefault</td>
+                                                <td><input name = "SizeDefault" type="text"></td>
+                                                
+                                           </tr>
+             
+                                           <td><input name = "submit" type="submit" value="thêm"></td>                              
+                                        </form>
+
+                                   </tbody>
+                               </table>
                             </div>
                         </div>
-                        
                     </div>
+
                 </div>
-                
                 <!-- /.container-fluid -->
 
             </div>
@@ -466,23 +478,22 @@
         </div>
     </div>
 
+    
     <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="../assets/js/jquery.min.js"></script>
+<script src="../assets/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+<!-- Core plugin JavaScript-->
+<script src="../assets/js/jquery.easing.min.js"></script>
+<!-- Custom scripts for all pages-->
+<script src="../assets/js/sb-admin-2.min.js"></script>
 
-    <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
+<!-- Page level plugins -->
+<script src="../assets/js/jquery.dataTables.min.js"></script>
+<script src="../assets/js/dataTables.bootstrap4.min.js"></script>
 
-    <!-- Page level plugins -->
-    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="js/demo/datatables-demo.js"></script>
-
+<!-- Page level custom scripts -->
+<script src="../assets/js/datatables-demo.js"></script>
 </body>
 
 </html>

@@ -1,14 +1,4 @@
-<?php
-    include "Connect.php";
-    include "Pdo.php ";
 
-    $sql = 'SELECT * FROM size ';
-    $conn = pdo_get_connection();
-    $stmt = $conn->prepare($sql);
-    $stmt->execute();
-    $a = $stmt->fetchAll();
-
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,16 +13,17 @@
     <title>SB Admin 2 - Tables</title>
 
     <!-- Custom fonts for this template -->
-    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="../assets/css/admin/all.min.css" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="../assets/css/admin/sb-admin-2.min.css" rel="stylesheet">
 
     <!-- Custom styles for this page -->
-    <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="../assets/css/admin/dataTables.bootstrap4.min.css" rel="stylesheet">
+
 
 </head>
 
@@ -372,47 +363,53 @@
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
-
+              
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Tables</h1>
+                    <h1 class="h3 mb-2 text-gray-800">Tables list IdAccompanyingFood </h1>
                     <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
                         For more information about DataTables, please visit the <a target="_blank"
                             href="https://datatables.net">official DataTables documentation</a>.</p>
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+                        <div class="card-header py-3">Update category</h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    
-                                        <tr>
-                                            <th>IdSize</th>
-                                            <th>IdSizeDefault</th>
-                                            <th>IdProduct</th>
-                                            <th>AddSize</th>
-                                        </tr>
+                                   
+                                    <tr>
+                                            <th></th>
+                                            <th>Thông tin</th>                                           
+                                            <th></th>
+                                    </tr>
+                                                           
+                                    <tbody>                
+                                   <?php 
+                                    if(isset($_GET["IdSizeDefault"]) && !empty($_GET["IdSizeDefault"])){
+                                        $data = getSizeDefault($_GET["IdSizeDefault"])[0];
+                                            extract($data);
+                                            ?>
 
-                                    <tbody>
-                                        <?php foreach($a as $i) : ?>
-                                             
-                                        <tr>
+                                        <form action="AdminController.php?act=UpdateSizeDefault&IdSizeDefault=<?= $IdSizeDefault ?>" method="post">
+                                                <tr>
+                                                <td>Tên Size</td>
+                                                <td><input value="<?= $SizeDefault ?>" name = "Name" type="text"></td>
+                                                    
+                                            </tr>
                                             
-                                            <td><?=$i['IdSize']?></td>
-                                            <td><?=$i['IdSizeDefault']?></td>
-                                            <td><?=$i['IdProduct']?></td>
-                                            <td>
-                                            <a href="<?= 'xóa' ?>"><input type="button" value="Xóa"></a>
-                                            <a href="<?= 'sửa' ?>"><input type="button" value="Sửa"></a>
-                                            </td>
-                                        </tr>
-                                        <?php endforeach ?>
-                                        <input type="button" value="Thêm">
-                                    </tbody>
+        
+                                            <td><input type="submit" value="Sửa"></td>                              
+                                    </form>
+                                    <a href="AdminController.php?act=ListSizeDefault"><input  class="mr20" type="button" value="DANH SÁCH"></a>  
+                                    <?php
+
+                                    }
+                                        
+                                    ?>                          
+                                   </tbody>
                                 </table>
                             </div>
                         </div>
