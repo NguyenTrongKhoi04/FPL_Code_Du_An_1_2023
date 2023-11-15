@@ -105,11 +105,7 @@
                         if (empty(home_GetAllProduct())) {
                             echo "<h1>Không có sản phẩm </h1>";
                         } else {
-                    ?>
-
-
-                       
-        
+                    ?>        
                 </section>
             </section>
             <section class="book">
@@ -118,19 +114,35 @@
                         <h1>Đặt bàn</h1>
                         <p>Liên hệ với nhà hàng</p>
                     </article>
-                    <form action="" method="post">
+                    <form action="http://localhost:3000/user/UserController.php?act=trangchu" method="post">
                         <section class="contentForm">
-                            <input type="date" name="" id="">
-                            <select name="" id="" class="time">
-                                <option value="">Time</option>
+                            <input required type="date" name="Date" id="">
+                            <select required name="IdTable" id="" class="time">
+                                <option value=''>Chọn số bàn</option>
+                                <?php
+                                if(!empty(home_GetAllTable())){
+                                    foreach(home_GetAllTable() as $itemTable){
+                                        echo "<option value='{$itemTable['IdTable']}'>
+                                        Bàn: {$itemTable['NumberTables']} _ 
+                                        Số lượng người tối đa: {$itemTable['NumberPeopleDefaultInTables']}
+                                        </option>";
+                                    }
+                                }
+                                ?>
                             </select>
-                            <select name="" id="" class="persion">
-                                <option value="">Time</option>
-    
+                            <select required name="NumberPeopleInTables" id="" class="persion">
+                                <option value="">Chọn số lượng người</option>
+                                <?php
+                                if(!empty(home_GetAllTable())){
+                                    foreach(home_GetAllTable() as $itemTable){
+                                        echo "<option value='{$itemTable['NumberPeopleDefaultInTables']}'>{$itemTable['NumberPeopleDefaultInTables']} Người </option>";
+                                    }
+                                }
+                                ?>
                             </select>
                         </section>
                         <article class="footerBook">
-                            <button>Đặt Ngay</button>
+                            <button type="submit" >Đặt Ngay</button>
                         </article>
                     </form>
                 </section>
@@ -193,6 +205,10 @@
     $products = json_encode(home_GetAllProduct());
       
     echo "<script>onloadProduct($products, 'leftBestProducts', 'rightBestProducts',  'contentLisstBestProducts', 2);</script>";
+
+    if(isset($alert)  && !empty($alert)){
+        echo "<script> alert('$alert') </script>";
+    }
 
 }
 

@@ -18,8 +18,8 @@ function onloadProduct(products, next, back,  classData, numberProductPage){
 
                 if (products[i]) {
                     const itemProduct = products[i];
-                    productSection.innerHTML += `
-                    <section class='lisstBestProducts'>
+                    productSection.innerHTML += 
+                    `<section class='lisstBestProducts'>
                         <img src='../assets/img/admin/${itemProduct['ImageProducts']}' alt='img'>
                         <article class='titile'>
                             <h1>${itemProduct['NameProducts']}</h1>
@@ -27,8 +27,7 @@ function onloadProduct(products, next, back,  classData, numberProductPage){
                         <article class='description'>
                             <p>${itemProduct['ProductDetails']}</p>
                         </article>
-                    </section>
-                `;
+                    </section>`;
                 }
             }
         }

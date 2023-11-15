@@ -9,7 +9,7 @@ include_once 'models/Home.php';
 include_once '../assets/global/Header.php';
 
 check_Login();
-// $_SESSION['user']= "test";
+$_SESSION['user']= "test";
 if(isset($_GET['act'])&&($_GET['act'] !='' )){
     if(empty($_SESSION['user'])){
         include_once 'views/LoginThuong.php';
@@ -22,6 +22,13 @@ if(isset($_GET['act'])&&($_GET['act'] !='' )){
                 }else
                 include_once 'views/Home.php';
                 break;
+            case 'trangchu':
+                if($_SERVER['REQUEST_METHOD'] === 'POST' ){
+                    $dataBooking = $_POST;
+                    $alert = home_BookingTable($dataBooking);
+                } 
+                include_once 'views/Home.php';                
+                break;
 
             case 'billthanhtoan':
                 include_once 'views/BillPayment.php' ;
@@ -31,6 +38,12 @@ if(isset($_GET['act'])&&($_GET['act'] !='' )){
                 include_once 'views/ChiTietSanPham.php' ;
                 break; 
             default:
+            if($_SERVER['REQUEST_METHOD'] === 'POST' ){
+                $dataBooking = $_POST;
+                echo "<pre>";
+                print_r($dataBooking); die();
+                // home_BookingTable($dataBooking);
+            } 
             include_once 'views/Home.php';
                 break;
         }
