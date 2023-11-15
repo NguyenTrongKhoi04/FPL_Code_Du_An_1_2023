@@ -4,9 +4,13 @@ ob_start();
 include_once '../app/Pdo.php';
 include_once '../assets/global/User.php';
 include_once '../assets/global/url_Path.php';
+<<<<<<< HEAD
 include_once './models/Product.php';
 include_once './models/Account.php';
 
+=======
+include_once 'models/TaiKhoan.php';
+>>>>>>> 1e839dd7581a04d6a3e70f3be1eb0b56d7da6e4c
 // include_once 'models/TaiKhoan.php';
 
 
@@ -103,6 +107,6 @@ if(!empty($_SESSION['user'])){
                 break;
         }
     }else{
-        include_once 'views/Home.php';
+        // include_once 'views/Home.php';
     }    
     }

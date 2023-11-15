@@ -10,7 +10,7 @@
                 <p>Bếp</p>
             </div>
         </div>
-        <?php $arr=[1,2,5,6]?>
+        <?php $arr=[1,2,5,6,8,10,4]?>
         <div class="so_do_cho_ngoi">
             <form action="">
                 <div>
