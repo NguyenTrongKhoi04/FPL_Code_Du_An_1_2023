@@ -94,7 +94,6 @@ function select_One($tenBang,$tenCot=null,$where,$limit=null){
     if(isset($limit)){
         $sql.=' LIMIT '.$limit;
     }
-    var_dump($sql);
     $account=query_One($sql);
     return $account;
 }
