@@ -1,7 +1,9 @@
+@charset "UTF-8";
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  text-decoration: none;
 }
 
 :root {
@@ -265,6 +267,7 @@ html {
   background-color: var(--color);
   position: absolute;
   top: 100%;
+  pointer-events: none; /* Không cho phép tương tác ban đầu */
 }
 .page main .myProduct .listProduct .contentListProduct .buttonAction button {
   width: 40%;

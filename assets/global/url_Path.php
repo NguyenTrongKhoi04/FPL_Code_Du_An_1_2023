@@ -7,6 +7,7 @@
 $img_Path ="../assets/img/html/";
 $userAction= '../user/UserController.php?act=';
 $userStyle='../assets/css/user/';
+$imgPathAdmin = "../assets/img/admin/";
 
 /**
  * ================================================================================

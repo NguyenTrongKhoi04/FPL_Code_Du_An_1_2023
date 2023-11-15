@@ -4,14 +4,9 @@ ob_start();
 include_once '../app/Pdo.php';
 include_once '../assets/global/User.php';
 include_once '../assets/global/url_Path.php';
-<<<<<<< HEAD
 include_once './models/Product.php';
 include_once './models/Account.php';
-
-=======
 include_once 'models/TaiKhoan.php';
->>>>>>> 1e839dd7581a04d6a3e70f3be1eb0b56d7da6e4c
-// include_once 'models/TaiKhoan.php';
 
 
 if(!empty($_SESSION['user'])){
@@ -22,7 +17,7 @@ if(!empty($_SESSION['user'])){
         switch($act){
             /**
              * ====================================================================================
-             *                                 Thêm product
+             *                                 product
              * ====================================================================================
              */
             case 'AddProduct':
@@ -34,24 +29,14 @@ if(!empty($_SESSION['user'])){
                     
                 }
                 include_once "views/sanpham/AddProduct.php";
-            break;
+                break;
             case 'ListProduct':
-                /**
-                 * ====================================================================================
-                 *                                 Xoa product
-                 * ====================================================================================
-                 */
                 if(isset($_GET['delete'])&&($_GET['delete'] !='' )){
                     $alert = deleteProduct($_GET['delete']);
                 }
                 include_once "views/sanpham/ListProduct.php";
-            break;
+                break;
             case 'UpdateProduct':
-                /**
-                 * ====================================================================================
-                 *                                 Sửa product
-                 * ====================================================================================
-                 */
                 if($_SERVER['REQUEST_METHOD'] === 'POST' ){
                     $data = $_POST;
                     $dataImg = $_FILES['Image'];
@@ -60,10 +45,10 @@ if(!empty($_SESSION['user'])){
                     $alert= updateListProduct($data, $dataImg, $IdProduct, $IdDetails);
                 } 
                 include_once "views/sanpham/UpdateProduct.php";
-            break;
+                break;
             /**
              * ====================================================================================
-             *                                 Thêm account
+             *                                 account
              * ====================================================================================
              */
             case 'AddAccount':
@@ -74,25 +59,15 @@ if(!empty($_SESSION['user'])){
                     pushAcount($dataProduct, $dataImg);
                 } 
                 include_once "views/taikhoan/AddAccount.php";
-            break;
+                break;
 
             case "ListAccount":
-                /**
-                 * ====================================================================================
-                 *                                 Xoa account
-                 * ====================================================================================
-                 */
                 if(isset($_GET['delete'])&&($_GET['delete'] !='' )){
                     deleteAccount($_GET['delete']);
                 }                
                 include_once "views/taikhoan/ListAccount.php";
-            break;
+                break;
 
-            /**
-             * ====================================================================================
-             *                                 Sửa account
-             * ====================================================================================
-             */
             case "UpdateAccount":
                 if($_SERVER['REQUEST_METHOD'] === 'POST' ){
                     $data = $_POST;
@@ -101,7 +76,7 @@ if(!empty($_SESSION['user'])){
                     updateListAccount($data, $dataImg, $IdAccount);
                 } 
                 include_once "views/taikhoan/UpdateAccount.php";
-            break;            
+                break;            
             default:
             // include_once 'views/Home.php';
                 break;

@@ -35,27 +35,35 @@
                     <h1>Sản phẩm của chúng tôi</h1>
                 </section>
                 <section class="listProduct">
-                        <?php for($i=0;$i<9;$i++) :?>
-                            <section class="contentListProduct">
-                                <article class="image">
-                                <img src="<?= $img_Path ?>Image3.png" alt="img">
-                                </article>
-                                <article class="title">
-                                    <h1>Bít tết với kim chi nướng</h1>
-                                </article>
-                                <article class="description">
-                                    <p>Thị bò được nhập khẩu từ mĩ. Với các cô bò hành phúc, đem lại trải nhiệm tuyệt vời</p>
-                                </article>
-                                <article class="price">
-                                    <h1>145$</h1>
-                                </article>
-        
-                                <article class="buttonAction">
-                                    <button>Thêm vào giỏ hàng</button>
-                                    <button>Mua ngay</button>
-                                </article>
-                            </section>             
-                        <?php endfor ?>               
+                        <?php if(empty(home_GetAllProduct())){
+                            echo "<h1>Không có sản phẩm </h1>";
+                        }else{
+                            foreach(home_GetAllProduct() as $itemProduct) {
+                                // link sang chi tiết sản phẩm
+                                echo "
+                                <a href= '?act=ChiTietSanPham&id={$itemProduct['IdProduct']}' class='contentListProduct'>
+                                    <article class='image'>
+                                    <img src='{$imgPathAdmin}{$itemProduct['ImageProducts']}' alt='img'>
+                                    </article>
+                                    <article class='title'>
+                                        <h1>{$itemProduct['NameProducts']}</h1>
+                                    </article>
+                                    <article class='description'>
+                                        <p>{$itemProduct['ProductDetails']}</p>
+                                    </article>
+                                    <article class='price'>
+                                        <h1>{$itemProduct['PriceProducts']}$</h1>
+                                    </article>
+            
+                                    <article class='buttonAction'>
+                                        <button>Thêm vào giỏ hàng</button>
+                                        <button>Mua ngay</button>
+                                    </article>
+                                </a>                         
+                                ";                                
+                            }
+                        }
+                        ?>
                 </section>
             </section>
             <section class="chef">
@@ -90,39 +98,18 @@
                 <article class="contentTitileBestProduct">
                     <h1>Các sản phẩm bán chạy nhất</h1>
                 </article>
-                <i class="ti-arrow-left"></i>
-                <i class="ti-arrow-right"></i>
-                <section class="contentLisstBestProducts">
-                    <section class="lisstBestProducts">
-                        <img src="<?= $img_Path ?>FeatureImage.png" alt="img">
-                            <article class="titile">
-                                <h1>Thị bò mỹ cao cấp</h1>
-                            </article>
-                            <article class="description">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
-                            </article>
+                <i class="ti-arrow-left" id="leftBestProducts" ></i>
+                <i class="ti-arrow-right" id="rightBestProducts" ></i>
+                <section class="contentLisstBestProducts" id="contentLisstBestProducts">
+                    <?php 
+                        if (empty(home_GetAllProduct())) {
+                            echo "<h1>Không có sản phẩm </h1>";
+                        } else {
+                    ?>
 
-                    </section>
-                    <section class="lisstBestProducts">
-                         <img src="<?= $img_Path ?>FeatureImage1.png" alt="img">
-                        <article class="titile">
-                            <h1>Thị bò hun khói </h1>
-                        </article>
-                        <article class="description">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
-                        </article>
 
-                    </section>
-                    <section class="lisstBestProducts">
-                        <img src="" alt="">
-                        <article class="titile">
-                            <h1></h1>
-                            <article class="description">
-                                <p></p>
-                            </article>
-                        </article>
-
-                    </section>
+                       
+        
                 </section>
             </section>
             <section class="book">
@@ -201,3 +188,12 @@
         </main>
 
     </section>
+    <script src="../assets/js/Home.js"></script>
+    <?php
+    $products = json_encode(home_GetAllProduct());
+      
+    echo "<script>onloadProduct($products, 'leftBestProducts', 'rightBestProducts',  'contentLisstBestProducts', 2);</script>";
+
+}
+
+?>

@@ -5,10 +5,11 @@ include_once '../app/Pdo.php';
 include_once '../assets/global/User.php';
 include_once '../assets/global/url_Path.php';
 include_once 'models/Login.php';
+include_once 'models/Home.php';
 include_once '../assets/global/Header.php';
 
 check_Login();
-
+// $_SESSION['user']= "test";
 if(isset($_GET['act'])&&($_GET['act'] !='' )){
     if(empty($_SESSION['user'])){
         include_once 'views/LoginThuong.php';
@@ -24,6 +25,10 @@ if(isset($_GET['act'])&&($_GET['act'] !='' )){
 
             case 'billthanhtoan':
                 include_once 'views/BillPayment.php' ;
+                break; 
+
+            case 'ChiTietSanPham':
+                include_once 'views/ChiTietSanPham.php' ;
                 break; 
             default:
             include_once 'views/Home.php';
