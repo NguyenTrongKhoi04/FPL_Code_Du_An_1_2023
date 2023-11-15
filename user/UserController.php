@@ -17,7 +17,7 @@ if(isset($_GET['act'])&&($_GET['act'] !='' )){
         switch($act){
             case 'dangnhap':
                 if($_SESSION['user']['Type']==1){
-                    header('location: ../admin');
+                    header('location: ../admin/AdminController.php');
                 }else
                 include_once 'views/Home.php';
                 break;
