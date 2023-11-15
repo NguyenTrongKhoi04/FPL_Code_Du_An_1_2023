@@ -8,6 +8,7 @@ include_once './models/SizeDefault.php';
 include_once './models/Category.php';
 include_once './models/Size.php';
 include_once './models/SubCategories.php';
+include_once './models/accompanyingfood.php';
 // include_once 'models/TaiKhoan.php';
 
 
@@ -100,7 +101,11 @@ if(!empty($_SESSION['user'])){
                     $data = $_POST;
                     
                     $IdSize = $_GET["IdSize"];
-                    
+                    if(isset($_GET["IdSize"])) {
+                        $IdSize = $_GET["IdSize"];   
+                    }else{
+                        $IdSize = $data['IdSize'];
+                    }
                     updateSize($data, $IdSize);
                 } 
                 include_once "views/size/UpdateSize.php";
@@ -137,7 +142,25 @@ if(!empty($_SESSION['user'])){
                     updateSubCategories($data, $IdSubCategories);
                 }
                 include_once "views/subcategories/UpdateSubCategories.php";
-                break;    
+                break; 
+            /**
+             * ====================================================================================
+             *                                  ACCOMPANYINGFOOD
+             * ====================================================================================
+             */  
+            case 'AddAccompanyingfood':
+                if($_SERVER['REQUEST_METHOD'] === "POST"){
+                    $data = $_POST;
+                    echo'123';
+                
+                    $imgData = $_FILES['ImageAccompanyingFood'];
+                       
+                    $alert= pushAccompanyingfood($data, $imgData);
+                        
+                }
+                include_once "views/accompanyingfood/AddAccompanyingfood.php";
+                break;
+
             default:
             // include_once 'views/Home.php';
                 break;

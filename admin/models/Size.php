@@ -57,7 +57,7 @@ function deleteSize($IdSize){
     return pdo_Execute($sql);
 }
  
-function updateSize($dataSize, $IdSizeDefault, $IdProduct){
+function updateSize($dataSize, $IdSize){
     extract($dataSize);
 
     $sqlSize = "

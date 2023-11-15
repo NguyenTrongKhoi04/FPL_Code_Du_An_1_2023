@@ -399,72 +399,94 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Thêm tài khoản</h1>
+                    <h1 class="h3 mb-2 text-gray-800">Thêm Sản Phẩm</h1>
                     
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-body">
+                            <h1 style="color: red">
+                                <?php
+                                    if(isset($alert)){
+                                        echo $alert === true ? "Thêm sản phẩm thành công" : $alert;                                  
+
+                                    }
+                                ?>
+                            </h1>
                             <div class="table-responsive">
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                    
                                    <tr>
                                            <th></th>
-                                           <th>Thông tin</th>
-                                           
-                                           <th></th>
+                                           <th>Nhập Thông tin</th>
+                                           <th></th>     
                                    </tr>
-                
-                                                        
-                                   <tbody> 
-                                    <?php 
-                                    if(isset($_GET["IdSize"]) && !empty($_GET["IdSize"])){
-                                        $dataSize =getSizeID($_GET['IdSize']);
-                                        extract($dataSize['0']);
-                           
-                                                
-                                      ?>
-                                        <form action="AdminController.php?act=UpdateSize&IdSize=<?= $IdSize?>" method="post" >
-                                        <tr>
-                                               <td>Id Size phụ</td>
+
+
+
+                                   <tbody>                
+                                       <form action="AdminController.php?act=AddAccompanyingfood" method="post" enctype="multipart/form-data">
+                                            <tr>
+                                               <td>id sản phẩm</td>
+                                               
                                                <td>
-                                                <select name="IdSizeDefault" id="">
-                                                    <option value="" selected hidden >Danh mục</option>
+                                                <select name="IdProduct" id="">
+                                                    
                                                     <?php
-                                                    foreach(getAllSizeDefault() as $valueSizeDefault){
+                                                    foreach(getAllProduct() as $valueProduct){
                                                         echo "
-                                                            <option value='{$valueSizeDefault['IdSizeDefault']}'>{$valueSizeDefault['SizeDefault']}</option>
+                                                            <option value='{$valueProduct['IdProduct']}'>{$valueProduct['IdProduct']}</option>
                                                         ";
                                                     }
-                                                    ?>                                                  
+                                                    ?>
+                                                    
                                                 </select>
                                                </td>
                                                 
+                                           </tr>  
+                                            <tr>
+                                               <td>Tên</td>
+                                                <td><input name = "NameAccompanyingFood" type="text"></td>
+                                                
                                            </tr>
-                                           
                                            <tr>
-                                               <td>ID Product</td>
+                                               <td>Số lượng</td>
+                                               <td><input name = "QuantityAccompanyingFood" type="number"></td>
+                                               
+                                           </tr>
+             
+                                           <tr>
+                                               <td>Giá</td>
                                                <td>
-                                                <select name="IdProduct" id="">
-                                                    <option value="" selected hidden >IdProduct</option>
-                                                    <?php
-                                                    foreach(getProduct() as $valueProduct){
-                                                        echo "
-                                                            <option value='{$valueProduct['IdProduct']}'>{$valueProduct['NameProducts']}</option>
-                                                        ";
-                                                    }
-                                                    ?>                                                  
-                                                </select>
+                                                    <input type="number" name = "PriceAccompanyingFood" id="">
+                                                </td>
+                                                
+                                           </tr>
+                                           <tr>
+                                               <td>Ảnh</td>
+                                               <td>
+                                                    <input type="file" name = "ImageAccompanyingFood" alt="">
+                                               </td>
+                                                
+                                           </tr>
+
+                                           <tr>
+                                               <td>Trạng thái</td>
+                                               <td>
+                                                    <select name="StatusAccompanyingFood" id="">
+                                                        <option value="" selected hidden>Sản phẩm</option>
+                                                        <option value="0">Bình thường</option>
+                                                        <option value="1">Không bán</option>
+                                                    </select>
                                                </td>
                                                
                                            </tr>
-                                           <input type="text" hidden value="<?= $IdSize?>" name="IdSize">
-                                           <a href="AdminController.php?act=ListSize"><input  class="mr20" type="button" value="DANH SÁCH"></a> 
-                                          <td><input name = "submit" type="submit" value="thêm"></td>  
-                                      <?php  
-                                    }                      
-                                    ?>                          
+       
+                                           <td><input name = "submit" type="submit" value="thêm"></td>                              
+                                        </form>
+
                                    </tbody>
                                </table>
+                            </div>
                         </div>
                     </div>
 

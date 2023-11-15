@@ -29,7 +29,7 @@ function pushSubCategories($data){
     var_dump($data);
 
     $sql= "insert into subcategories values('','$IdCategory','$SubCategories','')";
- var_dump($sql);
+    var_dump($sql);
     return pdo_Execute($sql);
 }
 

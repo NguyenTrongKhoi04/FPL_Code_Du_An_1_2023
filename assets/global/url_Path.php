@@ -15,4 +15,4 @@ $userStyle='../assets/css/user/';
  */
 $adminStyle ='../../assets/css/admin/';
 $adminJavaScript = '../../assets/js/';
-$adminImg = '../assets/img/';
+$adminImg = '../assets/img/admin';
