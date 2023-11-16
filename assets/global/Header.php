@@ -31,9 +31,9 @@
                     <a href="" class="login_success"><img src="<?= $img_Path ?>Glyph_ undefined.png" alt=""></a>
                     <a href="" class="login_success"><img src="<?= $img_Path ?>Vector.png" alt=""></a>
                     <a href="<?= $userAction ?>dangxuat" class="login_success"><img src="<?= $img_Path ?>out.png" alt=""></a>
-                    <a href="" class="img_avatar">
+            
                         <div class="avatar">
-                            <img src="<?= $img_Path ?>Rectangle 33.png" alt="">
+                            <img src="<?= $img_Path ?><?=$_SESSION['user']['ImageAccounts'] ?>" alt="">
                         </div>
                     </a>
                 </div>

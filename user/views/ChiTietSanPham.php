@@ -1,15 +1,16 @@
     <div class="ChiTietSanPham">
         <link rel="stylesheet" href="../assets/css/user/ChiTietSanPham.css">
         <div class="ProductDetail">
-            <div class="img"><img src="<?= $img_Path?>Rectangle 33.png" alt=""></div>
+            <div class="img"><img src="<?= $img_Path?><?=$pro['ImageProducts']?>" alt=""></div>
             <div class="form">
-                <form>
+                <form action="" method="POST">
                     <h2>Hambegur bò bít tết</h2>
                     <div class="hr"></div>
                     <ul>
-                        <li>Giá: <del>40.000</del> <span>20.000VNĐ</span></li>
-                        <li>Top 10 fast food bán chạy</li>
-                        <li>Sản phẩm được khách hàng đánh giá cao</li>
+                            <!-- <del>40.000</del> -->
+                        <li>Giá:<span><?= $pro['PriceProducts']?> VNĐ</span></li>
+                        <li><?= $pro['ProductDetails']?></li>
+                        <li><?= $pro['ProductDescription']?></li>
                     </ul>
                     <div class="soluong">
                         <div class="tanggiam">
@@ -18,7 +19,7 @@
                             <input type="number" value="1" id="quantity" value="0" min="1" max="10">
                             <button type="button" id="decrease">-</button>     
                         </div>
-                        <span>20.000VNĐ</span>
+                        <span><?= $pro['PriceProducts']?>VNĐ</span>
                     </div>
                     <button name="">THÊM VÀO GIỎ HÀNG</button>
                     <button name="">THANH TOÁN LUÔN</button>

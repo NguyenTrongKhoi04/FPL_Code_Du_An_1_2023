@@ -13,23 +13,26 @@ if (empty($_SESSION['user'])) {
     if (isset($_GET['act']) && ($_GET['act'] != '')) {
         $act = $_GET['act'];
         switch ($act) {
-
+            /**
+             * ====================================================================================
+             *                                 TÀI KHOẢN
+             * ====================================================================================
+             */
             case 'ListBan':
                 $listBan = select_All('tables');
                 include_once "views/ban/ListBan.php";
                 break;
 
             case 'UpdateBan':
-                
                 $id = $_GET['id'];
-                $ban_One = select_One('tables',null,"IdTable = $id");
-                if(isset($_POST['update'])&&($_POST['update'] !='')){
+                $ban_One = select_One('tables', null, "IdTable = $id");
+                if (isset($_POST['update']) && ($_POST['update'] != '')) {
                     extract($_POST);
                     //xử lý timestamp trong sql
                     $_POST['Date'] = strtotime($_POST['Date']);
-                    updateBan($id,$NumberPeopleInTables,$NumberTables,$StatusTables,$Date);
-                    $error= "Update Thành Công";
-                    header("location:".$adminAction."ListBan");
+                    updateBan($id, $NumberPeopleInTables, $NumberTables, $StatusTables, $Date);
+                    $error = "Update Thành Công";
+                    header("location:" . $adminAction . "ListBan");
                 }
                 include_once "views/ban/UpdateBan.php";
                 break;

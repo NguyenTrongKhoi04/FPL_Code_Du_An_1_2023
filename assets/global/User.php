@@ -84,7 +84,13 @@
     return query_All($sql);
 };
 
-
+/**
+ * return dự liệu được lọc bằng Where
+ * $where: điều kiện được viết dưới dạng chuỗi thuần
+ * $limit: giới hạn
+ * ví dụ: select_One('tables', null, "IdTable = 1");
+ *      =>> "SELECT * FROM tables WHERE IdTable = 1"
+ */
 function select_One($tenBang,$tenCot=null,$where,$limit=null){
     if(empty($tenCot)){
         $tenCot = ' * ';
