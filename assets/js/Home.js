@@ -1,55 +1,91 @@
-function onloadProduct(products, next, back,  classData, numberProductPage){
-
-
+function displayComment(dataComment, next, back, html, classData, idIndex, idLengthData) {
     document.addEventListener("DOMContentLoaded", function() {
+      const productSection = document.getElementById(classData);
+      const prevBtn = document.getElementById(back);
+      const nextBtn = document.getElementById(next);
+      const index= document.getElementById(idIndex);
+      document.getElementById(idLengthData).innerHTML = dataComment.length;
+  
+      const commentPerPage = 1; // Số lượng sản phẩm mỗi trang
+      let currentPage = 0; // Trang hiện tại
+  
+      function displayComment() {
+        productSection.innerHTML = ""; // Xóa sản phẩm hiện tại trước khi hiển thị sản phẩm mới
         
-        const productSection = document.getElementById(classData);
-        const prevBtn = document.getElementById(back);
-        const nextBtn = document.getElementById(next);
-        
-        const productsPerPage = numberProductPage; // Số lượng sản phẩm mỗi trang
-        let currentPage = 0; // Trang hiện tại
-        
-        function displayProducts() {
-            productSection.innerHTML = ""; // Xóa sản phẩm hiện tại trước khi hiển thị sản phẩm mới
-
-            for (let i = currentPage * productsPerPage; i < (currentPage + 1) * productsPerPage; i++) {
-                // console.log(products[i]);
-
-                if (products[i]) {
-                    const itemProduct = products[i];
-                    productSection.innerHTML += 
-                    `<section class='lisstBestProducts'>
-                        <img src='../assets/img/admin/${itemProduct['ImageProducts']}' alt='img'>
-                        <article class='titile'>
-                            <h1>${itemProduct['NameProducts']}</h1>
-                        </article>
-                        <article class='description'>
-                            <p>${itemProduct['ProductDetails']}</p>
-                        </article>
-                    </section>`;
-                }
-            }
+        const startIndex = currentPage * commentPerPage;
+        const endIndex = (currentPage + 1) * commentPerPage;
+        const commentToShow = dataComment.slice(startIndex, endIndex);
+  
+        for (let i = 0; i < commentToShow.length; i++) {
+          const itemComment = commentToShow[i];
+          commentection.innerHTML += html;
         }
-        
-        // Hiển thị sản phẩm khi trạng thái ban đầu
-        displayProducts();
-        
+      }
+  
+      // Hiển thị sản phẩm khi trạng thái ban đầu
+      displayComment();
+  
+      // Xử lý sự kiện khi nhấn nút "prev" (sang trang trước)
+      prevBtn.addEventListener("click", function() {
+        if (currentPage > 0) {
+          currentPage--;
+          displayComment();
+          index.innerHTML = currentPage;
+        }
+      });
+  
+      // Xử lý sự kiện khi nhấn nút "next" (sang trang tiếp theo)
+      nextBtn.addEventListener("click", function() {
+        if ((currentPage + 1) * productsPerPage < products.length) {
+          currentPage++;
+          displayComment();
+          index.innerHTML = currentPage;
+        }
+      });
 
-        // Xử lý sự kiện khi nhấn nút "prev" (sang trang trước)
-        prevBtn.addEventListener("click", function() {
-            if (currentPage > 0) {
-                currentPage--;
-                displayProducts();
-            }
-        });
-        
-        // Xử lý sự kiện khi nhấn nút "next" (sang trang tiếp theo)
-        nextBtn.addEventListener("click", function() {
-            if ((currentPage + 1) * productsPerPage < products.length) {
-                currentPage++;
-                displayProducts();
-            }
-        });
-    }); 
+    });
 }
+function onloadProduct(products, next, back, html, classData, numberProductPage) {
+    document.addEventListener("DOMContentLoaded", function() {
+      const productSection = document.getElementById(classData);
+      const prevBtn = document.getElementById(back);
+      const nextBtn = document.getElementById(next);
+  
+      const productsPerPage = numberProductPage; // Số lượng sản phẩm mỗi trang
+      let currentPage = 0; // Trang hiện tại
+  
+      function displayProducts() {
+        productSection.innerHTML = ""; // Xóa sản phẩm hiện tại trước khi hiển thị sản phẩm mới
+        
+        const startIndex = currentPage * productsPerPage;
+        const endIndex = (currentPage + 1) * productsPerPage;
+        const productsToShow = products.slice(startIndex, endIndex);
+  
+        for (let i = 0; i < productsToShow.length; i++) {
+          const itemProduct = productsToShow[i];
+          productSection.innerHTML += html;
+        }
+      }
+  
+      // Hiển thị sản phẩm khi trạng thái ban đầu
+      displayProducts();
+  
+      // Xử lý sự kiện khi nhấn nút "prev" (sang trang trước)
+      prevBtn.addEventListener("click", function() {
+        if (currentPage > 0) {
+          currentPage--;
+          displayProducts();
+        }
+      });
+  
+      // Xử lý sự kiện khi nhấn nút "next" (sang trang tiếp theo)
+      nextBtn.addEventListener("click", function() {
+        if ((currentPage + 1) * productsPerPage < products.length) {
+          currentPage++;
+          displayProducts();
+        }
+      });
+
+    });
+}
+  

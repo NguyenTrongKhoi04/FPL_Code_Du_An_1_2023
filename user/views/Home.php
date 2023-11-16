@@ -152,29 +152,26 @@
                     <h1>Cân bằng năng lượng calo</h1>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                 </article>
-                <i class="ti-arrow-left"></i>
-                <i class="ti-arrow-right"></i>
-                <section class="productCalorieBalance">
-                    <article class="contentProductCalorieBalance">
-                        <img src="<?= $img_Path ?>Image5.png" alt="img">
-                        <h1>Starters</h1>
-                    </article>
-                    <article class="contentProductCalorieBalance">
-                        <img src="<?= $img_Path ?>MenuCategory.png" alt="img">
-                        <h1>Mains</h1>
-                    </article>
-                    <article class="contentProductCalorieBalance">
-                        <img src="<?= $img_Path ?>Image6.png" alt="img">
-                        <h1>Soups</h1>
-                    </article>
-                    <article class="contentProductCalorieBalance">
-                        <img src="<?= $img_Path ?>Image6.png" alt="img">
-                        <h1>Soups</h1>
-                    </article>
+                <i class="ti-arrow-left" id="leftContentCalorieBalance" ></i>
+                <i class="ti-arrow-right" id="rightContentCalorieBalance" ></i>
+                <section class="productCalorieBalance" id="productCalorieBalance">
+                    <?php 
+                        if (empty(home_GetAllProduct())) {
+                            echo "<h1>Không có sản phẩm </h1>";
+                        } else {
+                    ?>
+
                 
                 </section>
             </section>
+            <?php home_GetComment() ?>
+
             <section class="displayCommet">
+                    <?php 
+                        if (empty(home_GetComment())) {
+                            echo "<h1>Không có sản phẩm </h1>";
+                        } else {
+                    ?>
                 <article class="contentDispayComment">
                     <h1> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Purus lorem id penatibus imperdiet. Turpis egestas ultricies purus  Lorem ipsum dolor sit amet.</h1>
                 </article>
@@ -187,29 +184,47 @@
                         </article>
                     </section>
                     <nav class="Nav">
-                    <i class="ti-arrow-left"></i>
+                    <i id="leftDispayComment" class="ti-arrow-left"></i>
                         <article class="contentNav">
-                            <h3>2</h3>
+                            <h3 id="indexComment">2</h3>
                             <h3>/</h3>
-                            <h3>3</h3>
+                            <h3 id="dataComment">3</h3>
                         </article>
-                    <i class="ti-arrow-right"></i>
+                    <i id="DispayCommentright" class="ti-arrow-right"></i>
                     </nav>
                 </section>
+
             </section>
         </main>
 
     </section>
     <script src="../assets/js/Home.js"></script>
+
+
     <?php
     $products = json_encode(home_GetAllProduct());
       
-    echo "<script>onloadProduct($products, 'leftBestProducts', 'rightBestProducts',  'contentLisstBestProducts', 2);</script>";
+    echo '
+    <script>
+        let html = "<section class=\'lisstBestProducts\'><img src=\'../assets/img/admin/'.$itemProduct["ImageProducts"].'\' alt=\'img\'><article class=\'titile\'><h1>'.$itemProduct["NameProducts"].'</h1></article><article class=\'description\'><p>'.$itemProduct["ProductDetails"].'</p></article></section>";
+        onloadProduct('.$products.', "leftBestProducts", "rightBestProducts",  html,"contentLisstBestProducts", 2);
+    </script>';
+    echo '
+    <script>
+        let htmlProductCalorieBalance = "<article class=\'contentProductCalorieBalance\'><img src=\'../assets/img/admin/'.$itemProduct["ImageProducts"].'\' alt=\'img\'><h1>'.$itemProduct["NameProducts"].'</h1></article>";
+        onloadProduct('.$products.', "leftContentCalorieBalance", "rightContentCalorieBalance", htmlProductCalorieBalance, "productCalorieBalance", 3);
+    </script>';
+    
+    
+    
+    
 
     if(isset($alert)  && !empty($alert)){
         echo "<script> alert('$alert') </script>";
     }
 
 }
+                        }
+                        }
 
 ?>
