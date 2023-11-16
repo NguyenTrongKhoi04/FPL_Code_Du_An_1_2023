@@ -1,6 +1,8 @@
 <?php
 include_once "../app/Pdo.php";
-
+/**
+ * lấy tất cả dữ liệu sản phẩm
+ */
 function home_GetAllProduct() {
     $sql = "select p.*, d.* from product p
     join details d on p.IdDetails = d.IdDetails
@@ -8,12 +10,17 @@ function home_GetAllProduct() {
     
    return query_All($sql);
 }
-
+/**
+ * lấy tất cả bàn
+ */
 function home_GetAllTable() {
     $sql = "select * from  tables where StatusTables != 0 and StatusTables = 1 ";
     return query_All($sql);
 }
-
+/**
+ * đặt bàn onlien chỉ hoạt động khi khách hàng đăng nhập
+ * $data: Dữ liệu nhận về từ khách hàng
+ */
 function home_BookingTable($data){
     extract($data);
     // kiểm tra dữ liệu người dùng nhập số số lượng người ngồi trên bàn có hợp lệ hay không.
