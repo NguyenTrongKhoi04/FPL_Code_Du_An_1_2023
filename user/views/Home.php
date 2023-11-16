@@ -39,7 +39,7 @@
                             echo "<h1>Không có sản phẩm </h1>";
                         }else{
                             foreach(home_GetAllProduct() as $itemProduct) {
-                                // link sang chi tiết sản phẩm
+                                // dieu_huong sang chi tiết sản phẩm
                                 echo "
                                 <a href= '?act=ChiTietSanPham&id={$itemProduct['IdProduct']}' class='contentListProduct'>
                                     <article class='image'>
@@ -164,35 +164,25 @@
                 
                 </section>
             </section>
-            <?php home_GetComment() ?>
+            <section class="displayCommet" id="displayCommet">
+                <section class="containerDisplayCommet" id="containerDisplayCommet">
+                <?php 
+                    if (empty(home_GetComment())) {
+                        echo "<h1>Không có bình luận </h1>";
+                    } else {
+                ?>
 
-            <section class="displayCommet">
-                    <?php 
-                        if (empty(home_GetComment())) {
-                            echo "<h1>Không có sản phẩm </h1>";
-                        } else {
-                    ?>
-                <article class="contentDispayComment">
-                    <h1> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Purus lorem id penatibus imperdiet. Turpis egestas ultricies purus  Lorem ipsum dolor sit amet.</h1>
-                </article>
-                <section class="itemDispayComment">
-                    <section class="persion">
-                        <img src="<?= $img_Path ?>Avatar.svg" alt="img">
-                        <article class="title">
-                            <h1>John Doe</h1>
-                            <p>Bloger</p>
-                        </article>
-                    </section>
-                    <nav class="Nav">
+                </section>
+
+                <nav class="Nav">
                     <i id="leftDispayComment" class="ti-arrow-left"></i>
                         <article class="contentNav">
-                            <h3 id="indexComment">2</h3>
+                            <h3 id="indexComment"></h3>
                             <h3>/</h3>
-                            <h3 id="dataComment">3</h3>
+                            <h3 id="dataComment"></h3>
                         </article>
-                    <i id="DispayCommentright" class="ti-arrow-right"></i>
-                    </nav>
-                </section>
+                    <i id="rightDispayComment" class="ti-arrow-right"></i>
+                </nav>
 
             </section>
         </main>
@@ -203,19 +193,27 @@
 
     <?php
     $products = json_encode(home_GetAllProduct());
-      
-    echo '
+    $dataComment = json_encode(home_GetComment()); 
+    foreach(home_GetComment() as $itemComment);
+    // dieu_huong sang chi tiết sản phẩm
+echo '
     <script>
-        let html = "<section class=\'lisstBestProducts\'><img src=\'../assets/img/admin/'.$itemProduct["ImageProducts"].'\' alt=\'img\'><article class=\'titile\'><h1>'.$itemProduct["NameProducts"].'</h1></article><article class=\'description\'><p>'.$itemProduct["ProductDetails"].'</p></article></section>";
+        let html = "<a href=\'?act=ChiTietSanPham&id='.$itemProduct["IdProduct"].'\' class=\'lisstBestProducts\'><img src=\'../assets/img/admin/'.$itemProduct["ImageProducts"].'\' alt=\'img\'><article class=\'titile\'><h1>'.$itemProduct["NameProducts"].'</h1></article><article class=\'description\'><p>'.$itemProduct["ProductDetails"].'</p></article></a>";
         onloadProduct('.$products.', "leftBestProducts", "rightBestProducts",  html,"contentLisstBestProducts", 2);
     </script>';
+
+    // dieu_huong sang chi tiết sản phẩm
     echo '
     <script>
-        let htmlProductCalorieBalance = "<article class=\'contentProductCalorieBalance\'><img src=\'../assets/img/admin/'.$itemProduct["ImageProducts"].'\' alt=\'img\'><h1>'.$itemProduct["NameProducts"].'</h1></article>";
+        let htmlProductCalorieBalance = "<a href=\'?act=ChiTietSanPham&id='.$itemProduct["IdProduct"].'\' class=\'contentProductCalorieBalance\'><img src=\'../assets/img/admin/'.$itemProduct["ImageProducts"].'\' alt=\'img\'><h1>'.$itemProduct["NameProducts"].'</h1></a>";
         onloadProduct('.$products.', "leftContentCalorieBalance", "rightContentCalorieBalance", htmlProductCalorieBalance, "productCalorieBalance", 3);
     </script>';
     
-    
+    echo '
+    <script>
+    displayComment('.$dataComment.', "leftDispayComment", "rightDispayComment", "containerDisplayCommet", "indexComment", "dataComment")
+    </script>
+    ';
     
     
 
@@ -224,7 +222,7 @@
     }
 
 }
-                        }
-                        }
+    }
+    }           
 
 ?>

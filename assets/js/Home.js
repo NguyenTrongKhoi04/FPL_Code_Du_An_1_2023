@@ -1,6 +1,6 @@
-function displayComment(dataComment, next, back, html, classData, idIndex, idLengthData) {
+function displayComment(dataComment, next, back,  classData, idIndex, idLengthData) {
     document.addEventListener("DOMContentLoaded", function() {
-      const productSection = document.getElementById(classData);
+      const commentection = document.getElementById(classData);
       const prevBtn = document.getElementById(back);
       const nextBtn = document.getElementById(next);
       const index= document.getElementById(idIndex);
@@ -10,7 +10,7 @@ function displayComment(dataComment, next, back, html, classData, idIndex, idLen
       let currentPage = 0; // Trang hiện tại
   
       function displayComment() {
-        productSection.innerHTML = ""; // Xóa sản phẩm hiện tại trước khi hiển thị sản phẩm mới
+        commentection.innerHTML = ""; // Xóa sản phẩm hiện tại trước khi hiển thị sản phẩm mới
         
         const startIndex = currentPage * commentPerPage;
         const endIndex = (currentPage + 1) * commentPerPage;
@@ -18,28 +18,42 @@ function displayComment(dataComment, next, back, html, classData, idIndex, idLen
   
         for (let i = 0; i < commentToShow.length; i++) {
           const itemComment = commentToShow[i];
-          commentection.innerHTML += html;
+          commentection.innerHTML += `
+          <section class=\'ContainerComment\'><article class=\'contentDispayComment\'>
+          <h1>${itemComment["Content"]}</h1>
+      </article>
+      <section class=\'itemDispayComment\'>
+          <section class=\'persion\'>
+              <img src=\'../assets/img/admin/${itemComment["ImageAccounts"]}\' alt=\'img\'>
+              <article class=\'title\'>
+                  <h1>${itemComment["NameAccounts"]}</h1>
+                  <p>${itemComment["Type"]}</p>
+              </article>
+          </section>
+      </section>
+  </section>`;
         }
       }
   
       // Hiển thị sản phẩm khi trạng thái ban đầu
       displayComment();
-  
+      index.innerHTML = currentPage + 1;
+
       // Xử lý sự kiện khi nhấn nút "prev" (sang trang trước)
-      prevBtn.addEventListener("click", function() {
+      nextBtn.addEventListener("click", function() {
         if (currentPage > 0) {
           currentPage--;
           displayComment();
-          index.innerHTML = currentPage;
+          index.innerHTML = currentPage + 1;
         }
       });
   
       // Xử lý sự kiện khi nhấn nút "next" (sang trang tiếp theo)
-      nextBtn.addEventListener("click", function() {
-        if ((currentPage + 1) * productsPerPage < products.length) {
+      prevBtn.addEventListener("click", function() {
+        if ((currentPage + 1) * commentPerPage < dataComment.length) {
           currentPage++;
           displayComment();
-          index.innerHTML = currentPage;
+          index.innerHTML = currentPage + 1;
         }
       });
 
@@ -71,7 +85,7 @@ function onloadProduct(products, next, back, html, classData, numberProductPage)
       displayProducts();
   
       // Xử lý sự kiện khi nhấn nút "prev" (sang trang trước)
-      prevBtn.addEventListener("click", function() {
+      nextBtn.addEventListener("click", function() {
         if (currentPage > 0) {
           currentPage--;
           displayProducts();
@@ -79,7 +93,7 @@ function onloadProduct(products, next, back, html, classData, numberProductPage)
       });
   
       // Xử lý sự kiện khi nhấn nút "next" (sang trang tiếp theo)
-      nextBtn.addEventListener("click", function() {
+      prevBtn.addEventListener("click", function() {
         if ((currentPage + 1) * productsPerPage < products.length) {
           currentPage++;
           displayProducts();

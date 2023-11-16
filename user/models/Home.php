@@ -30,9 +30,8 @@ function home_BookingTable($data){
 }
 
 function home_GetComment(){
-    $sql = "select c.Content, ac.ImageAccounts from comment c
+    $sql = "select c.Content, ac.ImageAccounts, ac.NameAccounts, ac.Type from comment c
     join account ac on c.IdAccount = ac.IdAccount where StatusComment = 0";
-    echo "<pre>";
     return query_All($sql);
 }
 ?>
