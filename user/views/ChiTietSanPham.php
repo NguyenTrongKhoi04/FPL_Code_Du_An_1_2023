@@ -4,10 +4,9 @@
             <div class="img"><img src="<?= $img_Path?><?=$pro['ImageProducts']?>" alt=""></div>
             <div class="form">
                 <form action="" method="POST">
-                    <input type="hidden" name="id_pro" value="">
-                    <input type="hidden" name="" value="">
-                    <input type="hidden" name="" value="">
-                    <h2>Hambegur bò bít tết</h2>
+                    <input type="hidden" name="idProduct" value="<?=$pro['IdProduct']?>">
+                    <input type="hidden" name="priceProduct" value="<?=$pro['PriceProducts']?>">
+                    <h2><?=$pro['NameProducts']?></h2>
                     <div class="hr"></div>
                     <ul>
                             <!-- <del>40.000</del> -->
@@ -19,18 +18,26 @@
                         <div class="tanggiam">
                             <p>Số lượng mua&nbsp;&nbsp;</p>
                             <button type="button" id="increase">+</button>
-                            <input type="number" value="1" id="quantity" value="0" min="1" max="10">
+                            <input type="number" value="1" name="quantityProduct" id="quantity" value="0" min="1" max="10">
                             <button type="button" id="decrease">-</button>     
                         </div>
-                        <span><?= $pro['PriceProducts']?>VNĐ</span>
+                        <div class="tanggiam">
+                            <p>Size&nbsp;&nbsp;</p>
+                            <select name="sizeProduct" style="font-size: 40px;">
+                            <?php foreach($proSize as $i) :?>
+                                <option value="<?=$i['IdSizeDefault'] ?>"><?= $i['SizeDefault']?></option>
+                            <?php endforeach ?>
+                            </select>
+                        </div>
+                        
                     </div>
-                    <button name="">THÊM VÀO GIỎ HÀNG</button>
-                    <button name="">THANH TOÁN LUÔN</button>
+                    <button name="add_to_cart">THÊM VÀO GIỎ HÀNG</button>
+                    <button name="add_to_bill">THANH TOÁN LUÔN</button>
                 </form>
             </div>
         </div>
         <div class="list">
-            <?php for($i=0;$i<10;$i+0) :?>
+            <?php for($i=0;$i<10;$i++) :?>
             <div class="pro">
                 <div class="img">
                     <img src="<?= $img_Path?>Rectangle 33.png" alt="">

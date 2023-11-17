@@ -11,26 +11,37 @@ function chiTietSanPham_LoadAll($id){
         INNER JOIN subcategories ON subcategories.IdCategory = category.IdCategory
         WHERE product.IdProduct = '$id'    
     ";   
-    var_dump($sql);
     return query_One($sql);
+}
+
+function chiTietSanPham_LoadSizePro($id){
+    $sql = "SELECT size.IdProduct,size.IdSizeDefault,sizedefault.SizeDefault
+        FROM product
+        INNER JOIN size ON size.IdProduct = product.IdProduct
+        INNER JOIN sizedefault ON size.IdSizeDefault = sizedefault.IdSizeDefault
+        WHERE product.IdProduct = '$id'
+    ";
+    return query_All($sql);
 }
 
 /**
  * return những sản phẩm cùng loại
  * Join 3 bảng (product + category + subcategories) 
  */
-function sanPhamCungLoai($danhmuc,$danhmucphu){
+function chiTietSanPham_ProCungLoai($danhmuc,$danhmucphu){
     $sql = "SELECT product.*
         FROM product 
         INNER JOIN category ON product.IdCategory = category.IdCategory
         INNER JOIN subcategories ON subcategories.IdCategory = category.IdCategory
         WHERE category.NameCategory ='$danhmuc' AND subcategories.SubCategories = '$danhmucphu'  
     ";
-    var_dump($sql);
     return query_One($sql);
 }
 
-function top3_SanPham(){
+/**
+ * Return top 3 product dưới dạng array
+ */
+function chiTietSanPham_Top3_SanPham(){
     // lấy số Id của 3 đối tượng xuất hiện nhiều nhất =>> cho ID 3 đối tượng vào 1 mảng
     $sql = "SELECT IdProduct ,COUNT(IdProduct) AS 'dem' FROM bill GROUP BY IdProduct ORDER BY COUNT(IdProduct) DESC LIMIT 3";
     $arrDem = query_All($sql);
@@ -53,4 +64,9 @@ function top3_SanPham(){
     // echo"</pre>";
 
     return $arr_Top3;
+}
+
+function chiTietSanPham_Add_To_Cart($idAccount,$idProduct,$idSize,$quantityProduct,$priceProduct){
+    $sql = "INSERT INTO card(IdAccount,IdProduct,IdSize,Quantity,Price) VALUES ('$idAccount','$idProduct','$idSize','$quantityProduct','$priceProduct')";
+    return pdo_Execute($sql);
 }

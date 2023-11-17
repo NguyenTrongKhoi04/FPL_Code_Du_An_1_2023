@@ -46,15 +46,19 @@ if (isset($_GET['act']) && ($_GET['act'] != '')) {
             case 'LoadChiTietSanPham':
                 $id = $_GET['id'];
                 $pro = chiTietSanPham_LoadAll($id);
-               
+                $proSize = chiTietSanPham_LoadSizePro($id);
+
                 // lấy danh mục và danh mục phụ của $pro để tìm ra được các sản phẩm Cùng loại
-                $pro_LienQuan = sanPhamCungLoai($pro['NameCategory'],$pro['SubCategories']);
-                            echo '<pre>';
-            print_r($_SESSION['user']);
-            echo '</pre>';
+                $pro_LienQuan = chiTietSanPham_ProCungLoai($pro['NameCategory'],$pro['SubCategories']);
+                
                 // lấy top 3 sản phẩm bán chạy
                     //$top3_Pro = top3_SanPham() ;
-           
+
+                // Thêm vào giỏ hàng user
+                if(isset($_POST['add_to_cart'])){
+                    extract($_POST);
+                    chiTietSanPham_Add_To_Cart($_SESSION['user']['IdAccount'],$idProduct,0,$quantityProduct,$priceProduct);
+                }
                 include_once 'views/ChiTietSanPham.php';
                 break;
 
