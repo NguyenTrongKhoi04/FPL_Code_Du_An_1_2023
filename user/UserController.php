@@ -38,6 +38,9 @@ if(isset($_GET['act'])&&($_GET['act'] !='' )){
             case 'ChiTietSanPham':
                 include_once 'views/ChiTietSanPham.php' ;
                 break; 
+            case 'TaoTaiKhoan':
+                include_once 'views/CreateAccount.php' ;
+                break; 
             case 'DanhMucSanPham':
                 if(isset($_GET['idCategory'])&&!empty($_GET['idCategory'])){
                     $idCategory = $_GET['idCategory'];
@@ -55,13 +58,7 @@ if(isset($_GET['act'])&&($_GET['act'] !='' )){
                 }
                 break; 
             default:
-            if($_SERVER['REQUEST_METHOD'] === 'POST' ){
-                $dataBooking = $_POST;
-                echo "<pre>";
-                print_r($dataBooking); die();
-                // home_BookingTable($dataBooking);
-            } 
-            include_once 'views/Home.php';
+                include_once 'views/Home.php';
                 break;
         }
     }
