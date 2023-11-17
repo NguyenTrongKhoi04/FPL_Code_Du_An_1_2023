@@ -18,6 +18,9 @@
  *      =>> "SELECT * FROM bang1 ORDER BY id DESC , ten , loai DESC "
  */
  function select_All($tenBang,$tenCot=null,$limit=null,$params=null,$desc=null){
+    if($tenCot==null){
+        $tenCot = ' * ';
+    }
     $sql ='SELECT '.$tenCot.' FROM '.$tenBang;
 
     //Kiểm tra tham sô truyền vào. Nếu 
@@ -75,13 +78,19 @@
         $sql .=" LIMIT ".$limit." ";
     }
     }
-
-    $sql .= join('',$arrList);
-    // var_dump($sql);
+    if(isset($arrList)){
+        $sql .= join('',$arrList);
+    }
     return query_All($sql);
 };
 
-
+/**
+ * return dự liệu được lọc bằng Where
+ * $where: điều kiện được viết dưới dạng chuỗi thuần
+ * $limit: giới hạn
+ * ví dụ: select_One('tables', null, "IdTable = 1");
+ *      =>> "SELECT * FROM tables WHERE IdTable = 1"
+ */
 function select_One($tenBang,$tenCot=null,$where,$limit=null){
     if(empty($tenCot)){
         $tenCot = ' * ';
@@ -104,7 +113,7 @@ function check_Login(){
     if(isset($tk)&&isset($mk)){
         $tk = $_POST['tk'];
         $mk = ($_POST['mk']);//md5
-        $arrCheck = select_One('account',null," Name = '$tk' AND Password = '$mk'");
+        $arrCheck = select_One('account',null," NameAccounts = '$tk' AND Password = '$mk'");
         
         if(is_array($arrCheck)){
             $_SESSION['user']=$arrCheck;

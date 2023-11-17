@@ -1,7 +1,7 @@
 <footer>
         <div class="head_footer">
             <div class="logo_content">
-                <img src="<?= $img_path?>Logo.png" alt="">
+                <img src="<?= $img_Path?>Logo.png" alt="">
                 <div class="content">
                     <h3>Contact</h3>
                     <div class="info">
