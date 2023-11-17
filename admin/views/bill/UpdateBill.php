@@ -399,7 +399,14 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Thêm Danh Mục</h1>
+                    <h1 style="color: red">
+                        <?php
+                            if(isset($alert)){
+                                echo $alert === true ? "Cập nhật sản phẩm thành công" : "Cập nhật sản phẩm thất bại";                                  
+
+                            }
+                        ?>
+                    </h1>
                     
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
@@ -410,58 +417,170 @@
                                    <tr>
                                            <th></th>
                                            <th>Thông tin</th>
+                                           
                                            <th></th>
-                                           <th></th>     
                                    </tr>
                 
+              
+                         
+                                   <tbody> 
+                                    <?php 
+                                    if(isset($_GET["IdBill"]) && !empty($_GET["IdBill"])){
+                                        $dataBill =getBill($_GET['IdBill']);
+                                        extract($dataBill['0']);
+                                        $payment = null;
+                                        switch($PaymentsBill){ 
+                                            case 'TM':
+                                                $payment = "Thanh toán tiền mặt";
+                                            break;
+                                            case 'NH':
+                                                $payment = "Thanh toán qua ngân hàng";
+                                            break;
+                                            default:
+                                            $payment = "Error";
+                                            break;
+                                        };
+                                        
+                                        $stauts = null;
+                                        switch($StatusBill){ 
+                                            case 0:
+                                                $stauts = "Chưa thanh toán";
+                                            break;
+                                            case 1:
+                                                $stauts = "Đã thanh toán";
+                                            break;
+                                            case 2:
+                                                $stauts = "thanh toán trước đang đợi lấy hàng";
+                                            break;
+                                            case 3:
+                                                $stauts = "Đã lấy hàng thành công";
+                                            break;
+                                            default:
+                                                $stauts = "";
+                                            break;
 
-                                   <tbody>                
-                                   <form action="AdminController.php?act=AddSize" method="post" >
-
-                                            <tr>
-                                                <td>Id Size phụ</td>
-                                                <td>
-                                                <select name="IdSizeDefault" id="">
-                                                    
-                                                    <?php
-                                                    foreach(getAllSizeDefault() as $valueSizeDefault){
-                                                        extract($valueSizeDefault);
-                                                        echo "
-                                                            <option value='{$valueSizeDefault['IdSizeDefault']}'>{$valueSizeDefault['SizeDefault']}</option>
-                                                        ";
-                                                    }
-                                                    ?>                                                  
-                                                </select>
-                                                </td>
-                                            </tr>
-                                            <h1></h1>
+                                        }     
+                                      ?>
+                                        <form action="AdminController.php?act=UpdateBill&IdBill=<?= $IdBill?>" method="post">
                                               <tr>
-                                                <td>Id Product id</td>
+                                                <td>Tên khách hàng</td>
                                                 <td>
-                                                <select name="IdProduct" id="">
-                                                   
-                                                    <?php
-                                                    foreach(getProduct() as $valueSizeDefault){
-                                                        extract($valueSizeDefault);
-                                                        echo "
-                                                            <option value='{$valueSizeDefault['IdProduct']}'>{$valueSizeDefault['NameProducts']}</option>
-                                                        ";
-                                                    }
-                                                    ?>                                                  
-                                                </select>
+                                                    <select name="IdAccount" id="">
+                                                        <option value="<?= $IdAccount?>" selected hidden><?= $NameAccounts ?></option>
+                                                        <?php
+                                                        foreach(getBAccount() as $valueAccount){
+                                                            echo "
+                                                                <option value='{$valueAccount['IdAccount']}'>{$valueAccount['NameAccounts']}</option>
+                                                            ";
+                                                        }
+                                                        ?>
+                                                        
+                                                    </select>
+                                                </td>                  
+                                            </tr>
+                                            <tr>
+                                            <tr>
+                                                <td>Tên Product</td>
+                                                <td>
+                                                    <select name="IdProduct" id="">
+                                                        <option value="<?= $IdProduct?>" selected hidden><?= $NameProducts ?></option>
+                                                        <?php
+                                                        foreach(getBProduct() as $valueProduct){
+                                                            echo "
+                                                                <option value='{$valueProduct['IdProduct']}'>{$valueProduct['NameProducts']}</option>
+                                                            ";
+                                                        }
+                                                        ?>
+                                                        
+                                                    </select>
+                                                </td>                  
+                                            </tr>
+                                             <tr>
+                                                <td>Tên bàn</td>
+                                                <td>
+                                                    <select name="IdTable" id="">
+                                                        <option value="<?= $IdTable?>" selected hidden><?= $NumberTables ?></option>
+                                                        <?php
+                                                        foreach(getBTable() as $valueTable){
+                                                            echo "
+                                                                <option value='{$valueTable['IdTable']}'>{$valueTable['NumberTables']}</option>
+                                                            ";
+                                                        }
+                                                        ?>
+                                                        
+                                                    </select>
+                                                </td>                  
+                                            </tr>
+                                            <tr>
+                                                <td>Tên accompanyingfood</td>
+                                                <td>
+                                                    <select name="IdAccompanyingFood" id="">
+                                                        <option value="<?= $IdAccompanyingFood?>" selected hidden><?= $NameAccompanyingFood ?></option>
+                                                        <?php
+                                                        foreach(getBAccompanyingfood() as $valueAccompanyingfood){
+                                                            echo "
+                                                                <option value='{$valueAccompanyingfood['IdAccompanyingFood']}'>{$valueAccompanyingfood['NameAccompanyingFood']}</option>
+                                                            ";
+                                                        }
+                                                        ?>
+                                                        
+                                                    </select>
+                                                </td>                  
+                                            </tr>   
+                                            <tr>
+                                                <td>Số lượng</td>
+                                                <td><input value="<?= $QuantityBill ?>" name = "QuantityBill" type="number"></td>        
+                                            </tr>
+                                                <td>Giá</td>
+                                                <td>
+                                                    <input value="<?= $PriceBill ?>" type="number" name = "PriceBill" id="">
+                                                </td>
+                                                    
+                                            </tr>
+                                            <tr>
+                                                <td>Trạng thái Bill</td>
+                                                <td>
+                                                    <select name="StatusBill" id="">
+                                                            <option value="<?= $StatusBill ?>" selected hidden><?= $stauts ?></option>
+                                                            <option value="0">Chưa thanh toán</option>
+                                                            <option value="1">Đã thanh toán</option>
+                                                            <option value="2">Đã thanh toán trước đang đợi lấy hàng</option>
+                                                            <option value="3">Đã lấy hàng thành công</option>
+                                                    </select>
                                                 </td>
                                                 
                                             </tr>
-                                     
-                                            <input name = "submit" type="submit" value="thêm">
-                                            <td> <a href="AdminController.php?act=ListSize"><input  class="mr20" type="button" value="DANH SÁCH"></a></td>              
-                                            </form>
-                                            <td></td>  
-                                          
-                                   
+
+                                             </tr>
+                                                <td>Note</td>
+                                                <td><input value="<?= $NoteBill ?>" name = "NoteBill" type="text"></td>
+                                                    
+                                            </tr>
+                                            <tr>
+                                                <td>Thanh toán</td>
+                                                <td>
+                                                    <select name="PaymentsBill" id="">
+                                                            <option value="<?= $PaymentsBill ?>" selected hidden><?= $payment ?></option>
+                                                            <option value="TM">Thanh toán tiền mặt</option>
+                                                        <option value="NH">thanh toán qua ngân hàng</option>
+                                                    </select>
+                                                </td>
+                                                
+                                            </tr>
+                              
+
+                                              <input type="text" hidden value="<?= $IdBill?>" name="IdBill">    
+                                            <td><input  name = "submit" type="submit" value="Sửa"></td>    
+ 
+                                    </form>  
+                                
+                                       <?php 
+                                       }
+
+                                       ?>
+          
                                    </tbody>
-                               </table>
-                            </div>
+                            </table>
                         </div>
                     </div>
 

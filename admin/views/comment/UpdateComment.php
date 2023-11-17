@@ -399,7 +399,14 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Thêm Danh Mục</h1>
+                    <h1 style="color: red">
+                        <?php
+                            if(isset($alert)){
+                                echo $alert === true ? "Cập nhật sản phẩm thành công" : "Cập nhật sản phẩm thất bại";                                  
+
+                            }
+                        ?>
+                    </h1>
                     
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
@@ -410,58 +417,106 @@
                                    <tr>
                                            <th></th>
                                            <th>Thông tin</th>
+                                           
                                            <th></th>
-                                           <th></th>     
                                    </tr>
                 
-
-                                   <tbody>                
-                                   <form action="AdminController.php?act=AddSize" method="post" >
+              
+                         
+                                   <tbody> 
+                                    <?php 
+                                    if(isset($_GET["IdComment"]) && !empty($_GET["IdComment"])){
+                                        $dataComment =getComment($_GET['IdComment']);
+                                        extract($dataComment['0']);
+                                        $stauts = null;
+                                        switch($StatusComment){
+                                            case 0:
+                                                $stauts = "Đồ ăn rất tệ";
+                                            break;
+                                            case 1:
+                                                $stauts = "Đồ ăn tệ";
+                                            break;
+                                            case 2:
+                                                $stauts = "Đồ ăn ngon";
+                                            break;
+                                            case 3:
+                                                $stauts = "Đồ ăn rất ngon";
+                                            break;
+                                            case 4:
+                                                $stauts = "Đồ ăn tuyệt vời";
+                                            break;
+                                        }          
+                                      ?>
+                                        <form action="AdminController.php?act=UpdateComment&IdComment=<?= $IdComment?>" method="post">
+        
+                                           <tr>
+                                                <td>Tên khách hàng</td>
+                                                <td>
+                                                    <select name="IdAccount" id="">
+                                                        <option value="<?= $IdAccount?>" selected hidden><?= $NameAccounts ?></option>
+                                                        <?php
+                                                        foreach(getCmAccount() as $valueAccount){
+                                                            echo "
+                                                                <option value='{$valueAccount['IdAccount']}'>{$valueAccount['NameAccounts']}</option>
+                                                            ";
+                                                        }
+                                                        ?>
+                                                        
+                                                    </select>
+                                                </td>                  
+                                            </tr> 
+                                            <tr>
+                                                <td>Tên Product</td>
+                                                <td>
+                                                    <select name="IdProduct" id="">
+                                                        <option value="<?= $IdProduct?>" selected hidden><?= $NameProducts ?></option>
+                                                        <?php
+                                                        foreach(getCmProduct() as $valueProduct){
+                                                            echo "
+                                                                <option value='{$valueProduct['IdProduct']}'>{$valueProduct['NameProducts']}</option>
+                                                            ";
+                                                        }
+                                                        ?>
+                                                        
+                                                    </select>
+                                                </td>                  
+                                            </tr>
 
                                             <tr>
-                                                <td>Id Size phụ</td>
+                                                <td>Content</td>
                                                 <td>
-                                                <select name="IdSizeDefault" id="">
-                                                    
-                                                    <?php
-                                                    foreach(getAllSizeDefault() as $valueSizeDefault){
-                                                        extract($valueSizeDefault);
-                                                        echo "
-                                                            <option value='{$valueSizeDefault['IdSizeDefault']}'>{$valueSizeDefault['SizeDefault']}</option>
-                                                        ";
-                                                    }
-                                                    ?>                                                  
-                                                </select>
+                                                        <input value="<?= $Content ?>" type="number" name = "Content" id="">
                                                 </td>
+                                                    
                                             </tr>
-                                            <h1></h1>
-                                              <tr>
-                                                <td>Id Product id</td>
+                                            <tr>
+                                                <td>Trạng thái sản phẩm</td>
                                                 <td>
-                                                <select name="IdProduct" id="">
-                                                   
-                                                    <?php
-                                                    foreach(getProduct() as $valueSizeDefault){
-                                                        extract($valueSizeDefault);
-                                                        echo "
-                                                            <option value='{$valueSizeDefault['IdProduct']}'>{$valueSizeDefault['NameProducts']}</option>
-                                                        ";
-                                                    }
-                                                    ?>                                                  
-                                                </select>
+                                                    <select name="StatusComment" id="">
+                                                            <option value="<?= $StatusComment?>" selected hidden><?= $stauts ?></option>
+                                                            <option value="0">Đồ ăn rất tệ</option>
+                                                            <option value="1">Đồ ăn tệ</option>
+                                                            <option value="2">Đồ ăn ngon</option>
+                                                            <option value="3">Đồ ăn rất ngon</option>
+                                                            <option value="4">Đồ ăn tuyệt vời</option>
+                                                    </select>
                                                 </td>
                                                 
                                             </tr>
-                                     
-                                            <input name = "submit" type="submit" value="thêm">
-                                            <td> <a href="AdminController.php?act=ListSize"><input  class="mr20" type="button" value="DANH SÁCH"></a></td>              
-                                            </form>
-                                            <td></td>  
-                                          
-                                   
+
+
+                                              <input type="text" hidden value="<?= $IdComment?>" name="IdComment">    
+                                            <td><input  name = "submit" type="submit" value="thêm"></td>    
+ 
+                                    </form>  
+                                
+                                       <?php 
+                                       }
+
+                                       ?>
+          
                                    </tbody>
-                               </table>
-                            </div>
+                            </table>
                         </div>
                     </div>
 

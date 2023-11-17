@@ -415,8 +415,8 @@
                                     <thead>
                                         <tr>
                                            
-                                            <th>Tên</th>
-                                            <th>Số lượng</th>
+                                            <th>Size</th>
+                                            <th>Sản phẩm</th>
                                             
                                            
 

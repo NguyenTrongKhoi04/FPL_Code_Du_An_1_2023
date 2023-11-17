@@ -429,12 +429,11 @@
                                                <td>id sản phẩm</td>
                                                
                                                <td>
-                                                <select name="IdProduct" id="">
-                                                    
+                                               <select name="IdProduct" id="">          
                                                     <?php
                                                     foreach(getAllProduct() as $valueProduct){
                                                         echo "
-                                                            <option value='{$valueProduct['IdProduct']}'>{$valueProduct['IdProduct']}</option>
+                                                            <option value='{$valueProduct['IdProduct']}'>{$valueProduct['NameProducts']}</option>
                                                         ";
                                                     }
                                                     ?>

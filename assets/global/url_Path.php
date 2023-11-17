@@ -7,7 +7,7 @@
 $img_Path ="../assets/img/";
 $userAction= '../user/UserController.php?act=';
 $userStyle='../assets/css/user/';
-
+echo "khoi";
 /**
  * ================================================================================
  *                               ADMIN
@@ -15,4 +15,4 @@ $userStyle='../assets/css/user/';
  */
 $adminStyle ='../../assets/css/admin/';
 $adminJavaScript = '../../assets/js/';
-$adminImg = '../assets/img/admin';
+$adminImg = '../assets/img/admin/';

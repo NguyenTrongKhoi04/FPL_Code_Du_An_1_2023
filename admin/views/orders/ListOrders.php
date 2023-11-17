@@ -399,68 +399,90 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Thêm Danh Mục</h1>
-                    
+                    <h1 class="h3 mb-2 text-gray-800">Tables</h1>
+                    <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
+                        For more information about DataTables, please visit the <a target="_blank"
+                            href="https://datatables.net">official DataTables documentation</a>.</p>
+
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+                        </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                   
-                                   <tr>
-                                           <th></th>
-                                           <th>Thông tin</th>
-                                           <th></th>
-                                           <th></th>     
-                                   </tr>
-                
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                           <th>Số bản</th>
+                                            <th>AccompanyingFood</th>
+                                            <th>Sản phẩm</th>
+                                            <th>Tên khách hàng</th>
+                                            <th>Giá</th>
+                                            
+                                            <th>Trạng thái</th>
+                                            <th>Số lượng</th>
+                                            <th>Note</th>
+                                            
+                            
+            
 
-                                   <tbody>                
-                                   <form action="AdminController.php?act=AddSize" method="post" >
+                                    </thead>
+                                    <tbody> 
+                                        <?php 
+                                            foreach(getListOrder() as $values){
+                        
+                                                    $stauts = null;
+                                                    switch($values['StatusOrders']){ 
+                                                        case 0:
+                                                            $stauts = "Bếp đang làm";
+                                                        break;
+                                                        case 1:
+                                                            $stauts = "Bếp làm xong";
+                                                        break;
+                                                        case 2:
+                                                            $stauts = "Nhân viên phục vụ đã nhận đồ";
+                                                        break;
+                                                        case 3:
+                                                            $stauts = "Khách đã nhận được sản phẩm";
+                                                        break;
+                                                        case 4:
+                                                            $stauts = "Trả lại sản phẩm";
+                                                        break;
+                                                        default:
+                                                            $stauts = "Error";
+                                                        break;
+    
+                                                    }
 
-                                            <tr>
-                                                <td>Id Size phụ</td>
-                                                <td>
-                                                <select name="IdSizeDefault" id="">
-                                                    
-                                                    <?php
-                                                    foreach(getAllSizeDefault() as $valueSizeDefault){
-                                                        extract($valueSizeDefault);
-                                                        echo "
-                                                            <option value='{$valueSizeDefault['IdSizeDefault']}'>{$valueSizeDefault['SizeDefault']}</option>
-                                                        ";
-                                                    }
-                                                    ?>                                                  
-                                                </select>
-                                                </td>
-                                            </tr>
-                                            <h1></h1>
-                                              <tr>
-                                                <td>Id Product id</td>
-                                                <td>
-                                                <select name="IdProduct" id="">
-                                                   
-                                                    <?php
-                                                    foreach(getProduct() as $valueSizeDefault){
-                                                        extract($valueSizeDefault);
-                                                        echo "
-                                                            <option value='{$valueSizeDefault['IdProduct']}'>{$valueSizeDefault['NameProducts']}</option>
-                                                        ";
-                                                    }
-                                                    ?>                                                  
-                                                </select>
-                                                </td>
-                                                
-                                            </tr>
-                                     
-                                            <input name = "submit" type="submit" value="thêm">
-                                            <td> <a href="AdminController.php?act=ListSize"><input  class="mr20" type="button" value="DANH SÁCH"></a></td>              
-                                            </form>
-                                            <td></td>  
-                                          
-                                   
-                                   </tbody>
-                               </table>
+                                                echo "
+                                                <tr>
+                                                    <td>{$values['IdTable']}</td>
+                                                    <td>{$values['IdAccompanyingFood']}</td>
+                                                    <td>{$values['IdProduct']}</td>
+                                                    <td>{$values['IdAccount']}</td>
+                                                    <td>{$values['PriceOrders']} VND</td>
+                                                             
+                                                    <td>{$stauts}</td>
+                                                    <td>{$values['QuantityOrders']}</td>  
+                                                    <td>{$values['NoteOrders']}</td>  
+                                                    <td>
+                                                        <a href='AdminController.php?act=UpdateOrders&IdOder={$values['IdOder']}'>
+                                                            <input type='button' value='Sửa'> 
+                                                        </a>
+                                                        <a href='AdminController.php?act=ListOrders&delete={$values['IdOder']}'>
+                                                            <input type='button' value='Xóa'>
+                                                        </a>                                                                                                               
+                                                    </td>   
+                                            </tr>                                                
+                                                ";
+                                            }
+                                            // {$values['']}
+                                        ?> 
+
+        
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>

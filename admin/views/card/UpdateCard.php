@@ -399,7 +399,14 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Thêm Danh Mục</h1>
+                    <h1 style="color: red">
+                        <?php
+                            if(isset($alert)){
+                                echo $alert === true ? "Cập nhật sản phẩm thành công" : "Cập nhật sản phẩm thất bại";                                  
+
+                            }
+                        ?>
+                    </h1>
                     
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
@@ -410,58 +417,97 @@
                                    <tr>
                                            <th></th>
                                            <th>Thông tin</th>
+                                           
                                            <th></th>
-                                           <th></th>     
                                    </tr>
                 
+              
+                         
+                                   <tbody> 
+                                    <?php 
+                                    
+                                    if(isset($_GET["IdCart"]) && !empty($_GET["IdCart"])){
+                                        $dataCard = getCard($_GET['IdCart']);
+                                        extract($dataCard['0']);     
+                        
+                                      ?>
 
-                                   <tbody>                
-                                   <form action="AdminController.php?act=AddSize" method="post" >
-
+                                        <form action="AdminController.php?act=UpdateCard&IdCart=<?= $IdCart?>" method="post">
                                             <tr>
-                                                <td>Id Size phụ</td>
+                                                <td>Tên khách hàng</td>
                                                 <td>
-                                                <select name="IdSizeDefault" id="">
+                                                    <select name="IdAccount" id="">
+                                                        <option value="<?= $IdAccount?>" selected hidden><?= $NameAccounts ?></option>
+                                                        <?php
+                                                        foreach(getCAccount() as $valueAccount){
+                                                            echo "
+                                                                <option value='{$valueAccount['IdAccount']}'>{$valueAccount['NameAccounts']}</option>
+                                                            ";
+                                                        }
+                                                        ?>
+                                                        
+                                                    </select>
+                                                </td>                  
+                                            </tr>
+                                            <tr>
+                                                <td>Tên Product</td>
+                                                <td>
+                                                    <select name="IdProduct" id="">
+                                                        <option value="<?= $IdProduct?>" selected hidden><?= $NameProducts ?></option>
+                                                        <?php
+                                                        foreach(getCProduct() as $valueProduct){
+                                                            echo "
+                                                                <option value='{$valueProduct['IdProduct']}'>{$valueProduct['NameProducts']}</option>
+                                                            ";
+                                                        }
+                                                        ?>
+                                                        
+                                                    </select>
+                                                </td>                  
+                                            </tr>
+                                            <tr>
+                                                <td>Size</td>
+                                                <td>
+                                                    <select name="IdSize" id="">
+                                                        <option value="<?= $IdSize?>" selected hidden><?= $IdSizeDefault ?></option>
+                                                        <?php
+                                                        foreach(getCSize() as $valueSizes){
+                                                            echo "
+                                                                <option value='{$valueSizes['IdSize']}'>{$valueSizes['IdSizeDefault']}</option>
+                                                            ";
+                                                        }
+                                                        ?>
+                                                        
+                                                    </select>
+                                                </td>                  
+                                            </tr>
+                                            <tr>
+                                                <td>Số lượng</td>
+                                                <td>
+                                                    <input value="<?= $Quantity ?>" type="number" name = "Quantity" id="">
+                                                </td>
                                                     
-                                                    <?php
-                                                    foreach(getAllSizeDefault() as $valueSizeDefault){
-                                                        extract($valueSizeDefault);
-                                                        echo "
-                                                            <option value='{$valueSizeDefault['IdSizeDefault']}'>{$valueSizeDefault['SizeDefault']}</option>
-                                                        ";
-                                                    }
-                                                    ?>                                                  
-                                                </select>
-                                                </td>
                                             </tr>
-                                            <h1></h1>
-                                              <tr>
-                                                <td>Id Product id</td>
+                                            <tr>
+                                                <td>Giá</td>
                                                 <td>
-                                                <select name="IdProduct" id="">
-                                                   
-                                                    <?php
-                                                    foreach(getProduct() as $valueSizeDefault){
-                                                        extract($valueSizeDefault);
-                                                        echo "
-                                                            <option value='{$valueSizeDefault['IdProduct']}'>{$valueSizeDefault['NameProducts']}</option>
-                                                        ";
-                                                    }
-                                                    ?>                                                  
-                                                </select>
+                                                    <input value="<?= $Price ?>" type="number" name = "Price" id="">
                                                 </td>
-                                                
+                                                    
                                             </tr>
-                                     
-                                            <input name = "submit" type="submit" value="thêm">
-                                            <td> <a href="AdminController.php?act=ListSize"><input  class="mr20" type="button" value="DANH SÁCH"></a></td>              
-                                            </form>
-                                            <td></td>  
-                                          
-                                   
+                              
+
+                                              <input type="text" hidden value="<?= $IdCart?>" name="IdCart">    
+                                            <td><input  name = "submit" type="submit" value="thêm"></td>    
+ 
+                                    </form>  
+                                
+                                       <?php 
+                                       }
+                                       ?>
+          
                                    </tbody>
-                               </table>
-                            </div>
+                            </table>
                         </div>
                     </div>
 

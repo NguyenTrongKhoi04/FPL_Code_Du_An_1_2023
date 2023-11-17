@@ -399,68 +399,58 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Thêm Danh Mục</h1>
-                    
+                    <h1 class="h3 mb-2 text-gray-800">Tables</h1>
+                    <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
+                        For more information about DataTables, please visit the <a target="_blank"
+                            href="https://datatables.net">official DataTables documentation</a>.</p>
+
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+                        </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                   
-                                   <tr>
-                                           <th></th>
-                                           <th>Thông tin</th>
-                                           <th></th>
-                                           <th></th>     
-                                   </tr>
-                
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                           <th>Khách hàng</th>
+                                            <th>Sản phẩm</th>
+                                            <th>Size</th>
+                                            <th>Số lượng</th>
+                                            <th>Giá</th>
+                                            
+                                    </thead>
+                                    <tbody> 
+                                        <?php 
+                                            foreach(getListCard() as $values){
+                    
 
-                                   <tbody>                
-                                   <form action="AdminController.php?act=AddSize" method="post" >
+                                                echo "
+                                                <tr>
+                                                    <td>{$values['IdAccount']}</td>
+                                                    <td>{$values['IdProduct']}</td>
+                                                    <td>{$values['IdSize']}</td>
+                                                    <td>{$values['Quantity']}</td>
+                                                    <td>{$values['Price']} VND</td>
+                                                            
+                                                    <td>
+                                                        <a href='AdminController.php?act=UpdateCard&IdCart={$values['IdCart']}'>
+                                                            <input type='button' value='Sửa'> 
+                                                        </a>
+                                                        <a href='AdminController.php?act=ListCard&delete={$values['IdCart']}'>
+                                                            <input type='button' value='Xóa'>
+                                                        </a>                                                                                                               
+                                                    </td>   
+                                            </tr>                                                
+                                                ";
+                                            }
+                                            // {$values['']}
+                                        ?> 
 
-                                            <tr>
-                                                <td>Id Size phụ</td>
-                                                <td>
-                                                <select name="IdSizeDefault" id="">
-                                                    
-                                                    <?php
-                                                    foreach(getAllSizeDefault() as $valueSizeDefault){
-                                                        extract($valueSizeDefault);
-                                                        echo "
-                                                            <option value='{$valueSizeDefault['IdSizeDefault']}'>{$valueSizeDefault['SizeDefault']}</option>
-                                                        ";
-                                                    }
-                                                    ?>                                                  
-                                                </select>
-                                                </td>
-                                            </tr>
-                                            <h1></h1>
-                                              <tr>
-                                                <td>Id Product id</td>
-                                                <td>
-                                                <select name="IdProduct" id="">
-                                                   
-                                                    <?php
-                                                    foreach(getProduct() as $valueSizeDefault){
-                                                        extract($valueSizeDefault);
-                                                        echo "
-                                                            <option value='{$valueSizeDefault['IdProduct']}'>{$valueSizeDefault['NameProducts']}</option>
-                                                        ";
-                                                    }
-                                                    ?>                                                  
-                                                </select>
-                                                </td>
-                                                
-                                            </tr>
-                                     
-                                            <input name = "submit" type="submit" value="thêm">
-                                            <td> <a href="AdminController.php?act=ListSize"><input  class="mr20" type="button" value="DANH SÁCH"></a></td>              
-                                            </form>
-                                            <td></td>  
-                                          
-                                   
-                                   </tbody>
-                               </table>
+        
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>

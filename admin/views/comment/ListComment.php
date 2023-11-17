@@ -399,68 +399,82 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Thêm Danh Mục</h1>
-                    
+                    <h1 class="h3 mb-2 text-gray-800">Tables</h1>
+                    <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
+                        For more information about DataTables, please visit the <a target="_blank"
+                            href="https://datatables.net">official DataTables documentation</a>.</p>
+
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+                        </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                   
-                                   <tr>
-                                           <th></th>
-                                           <th>Thông tin</th>
-                                           <th></th>
-                                           <th></th>     
-                                   </tr>
-                
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                           <th>khách hàng</th>
+                                            <th>Sản phẩm</th>
+                                            <th>Content</th>
+                                            <th>Trạng thái</th>
+                                            <th></th>
+                                                                    
+            
 
-                                   <tbody>                
-                                   <form action="AdminController.php?act=AddSize" method="post" >
+                                    </thead>
+                                    <tbody> 
+                                        <?php 
+                                            foreach(getListComment() as $values){
+                        
+                                                    $stauts = null;
+                                                    switch($values['StatusComment']){ 
+                                                        case 0:
+                                                            $stauts = "Đồ ăn rất tệ";
+                                                        break;
+                                                        case 1:
+                                                            $stauts = "Đồ ăn tệ";
+                                                        break;
+                                                        case 2:
+                                                            $stauts = "Đồ ăn ngon";
+                                                        break;
+                                                        case 3:
+                                                            $stauts = "Đồ ăn rất ngon";
+                                                        break;
+                                                        case 4:
+                                                            $stauts = "Đồ ăn tuyệt vời";
+                                                        break;
+                                                        default:
+                                                            $stauts = "Ok";
+                                                        break;
+    
+                                                    }
 
-                                            <tr>
-                                                <td>Id Size phụ</td>
-                                                <td>
-                                                <select name="IdSizeDefault" id="">
-                                                    
-                                                    <?php
-                                                    foreach(getAllSizeDefault() as $valueSizeDefault){
-                                                        extract($valueSizeDefault);
-                                                        echo "
-                                                            <option value='{$valueSizeDefault['IdSizeDefault']}'>{$valueSizeDefault['SizeDefault']}</option>
-                                                        ";
-                                                    }
-                                                    ?>                                                  
-                                                </select>
-                                                </td>
-                                            </tr>
-                                            <h1></h1>
-                                              <tr>
-                                                <td>Id Product id</td>
-                                                <td>
-                                                <select name="IdProduct" id="">
-                                                   
-                                                    <?php
-                                                    foreach(getProduct() as $valueSizeDefault){
-                                                        extract($valueSizeDefault);
-                                                        echo "
-                                                            <option value='{$valueSizeDefault['IdProduct']}'>{$valueSizeDefault['NameProducts']}</option>
-                                                        ";
-                                                    }
-                                                    ?>                                                  
-                                                </select>
-                                                </td>
-                                                
-                                            </tr>
-                                     
-                                            <input name = "submit" type="submit" value="thêm">
-                                            <td> <a href="AdminController.php?act=ListSize"><input  class="mr20" type="button" value="DANH SÁCH"></a></td>              
-                                            </form>
-                                            <td></td>  
-                                          
-                                   
-                                   </tbody>
-                               </table>
+
+                                                echo "
+                                                <tr>
+                                                    <td>{$values['IdAccount']}</td>
+                                                    <td>{$values['IdProduct']}</td>
+                                                    <td>{$values['Content']}</td>
+                                                    <td>{$stauts}</td>
+        
+                                                    <td>
+                                                        <a href='AdminController.php?act=UpdateComment&IdComment={$values['IdComment']}'>
+                                                            <input type='button' value='Sửa'> 
+                                                        </a>
+                                                        <a href='AdminController.php?act=ListComment&delete={$values['IdComment']}'>
+                                                            <input type='button' value='Xóa'>
+                                                        </a>                                                                                                               
+                                                    </td>   
+                                            </tr>                                                
+                                                ";
+                                            }
+                                            // {$values['']}
+                                        ?> 
+
+        
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
