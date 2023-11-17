@@ -46,14 +46,15 @@ if (isset($_GET['act']) && ($_GET['act'] != '')) {
             case 'LoadChiTietSanPham':
                 $id = $_GET['id'];
                 $pro = chiTietSanPham_LoadAll($id);
-                echo"<pre>";
-print_r($pro);
-echo"</pre>";
+               
                 // lấy danh mục và danh mục phụ của $pro để tìm ra được các sản phẩm Cùng loại
-                $pro_LienQuan=sanPhamCungLoai($pro['NameCategory'],$pro['SubCategories']);
-                echo"<pre>";
-                print_r($pro_LienQuan);
-                echo"</pre>";   
+                $pro_LienQuan = sanPhamCungLoai($pro['NameCategory'],$pro['SubCategories']);
+                            echo '<pre>';
+            print_r($_SESSION['user']);
+            echo '</pre>';
+                // lấy top 3 sản phẩm bán chạy
+                    //$top3_Pro = top3_SanPham() ;
+           
                 include_once 'views/ChiTietSanPham.php';
                 break;
 

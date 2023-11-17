@@ -4,6 +4,9 @@
             <div class="img"><img src="<?= $img_Path?><?=$pro['ImageProducts']?>" alt=""></div>
             <div class="form">
                 <form action="" method="POST">
+                    <input type="hidden" name="id_pro" value="">
+                    <input type="hidden" name="" value="">
+                    <input type="hidden" name="" value="">
                     <h2>Hambegur bò bít tết</h2>
                     <div class="hr"></div>
                     <ul>
@@ -27,7 +30,7 @@
             </div>
         </div>
         <div class="list">
-            <?php for($i=0;$i<10;$i++) :?>
+            <?php for($i=0;$i<10;$i+0) :?>
             <div class="pro">
                 <div class="img">
                     <img src="<?= $img_Path?>Rectangle 33.png" alt="">

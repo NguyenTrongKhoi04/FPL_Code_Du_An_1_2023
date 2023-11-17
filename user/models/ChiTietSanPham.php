@@ -29,3 +29,28 @@ function sanPhamCungLoai($danhmuc,$danhmucphu){
     var_dump($sql);
     return query_One($sql);
 }
+
+function top3_SanPham(){
+    // lấy số Id của 3 đối tượng xuất hiện nhiều nhất =>> cho ID 3 đối tượng vào 1 mảng
+    $sql = "SELECT IdProduct ,COUNT(IdProduct) AS 'dem' FROM bill GROUP BY IdProduct ORDER BY COUNT(IdProduct) DESC LIMIT 3";
+    $arrDem = query_All($sql);
+    $arr_ID_Top3 = [];
+    for($i=0;$i<3;$i++){
+        $pro_ID = $arrDem[$i]['IdProduct'];
+        array_push($arr_ID_Top3,$pro_ID);
+    } 
+
+    // Lấy thông tin 3 đối tượng đó thông qua ID
+    $arr_Top3 = [];
+    for($i=0;$i<3;$i++){
+        $arr_ID_Top3[$i];
+        $pro = select_One('product',null,"IdProduct = '$arr_ID_Top3[$i]'");
+        array_push($arr_Top3,$pro);
+    }
+
+    // echo"<pre>";
+    // print_r($arr_Top3);
+    // echo"</pre>";
+
+    return $arr_Top3;
+}
