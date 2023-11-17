@@ -483,10 +483,7 @@
                                                     <td>
                                                         <a href='AdminController.php?act=UpdateBill&IdBill={$values['IdBill']}'>
                                                             <input type='button' value='Sửa'> 
-                                                        </a>
-                                                        <a href='AdminController.php?act=ListBill&delete={$values['IdBill']}'>
-                                                            <input type='button' value='Xóa'>
-                                                        </a>                                                                                                               
+                                                        </a>                                                                                                              
                                                     </td>   
                                             </tr>                                                
                                                 ";
