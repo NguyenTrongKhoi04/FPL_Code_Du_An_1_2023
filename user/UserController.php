@@ -5,7 +5,7 @@ include_once '../app/Pdo.php';
 include_once '../assets/global/User.php';
 include_once '../assets/global/url_Path.php';
 include_once 'models/Login.php';
-include_once '../assets/global/Header.php';
+include_once '../assets/global/Header.php'; 
 include_once 'models/ChiTietSanPham.php';
 check_Login();
 if (isset($_GET['act']) && ($_GET['act'] != '')) {
