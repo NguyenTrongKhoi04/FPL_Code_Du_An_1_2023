@@ -26,8 +26,8 @@ function displayComment(dataComment, next, back,  classData, idIndex, idLengthDa
           <section class=\'persion\'>
               <img src=\'../assets/img/admin/${itemComment["ImageAccounts"]}\' alt=\'img\'>
               <article class=\'title\'>
-                  <h1>${itemComment["NameAccounts"]}</h1>
-                  <p>${itemComment["Type"]}</p>
+                  <h1>${itemComment["NameAccount"]}</h1>
+                  <p>${itemComment["Role"]}</p>
               </article>
           </section>
       </section>

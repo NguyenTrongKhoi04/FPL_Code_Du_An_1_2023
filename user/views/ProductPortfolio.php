@@ -1,6 +1,6 @@
 
 <section class="page">
-<link rel="stylesheet" href="../assets/css/user/ProductDetails.css">
+<link rel="stylesheet" href="../assets/css/user/ProductPortfolio.css">
     <section class="banner">
         <img src="<?= $img_Path?>banner.png" alt="banner">
     </section>
@@ -46,9 +46,9 @@
                         <article class='price'>
                             <h1>{$itemProductAsRequested['PriceProducts']}$</h1>
                         </article>
-                        <article class='AddToCart'>
-                            <button>Thêm vào giỏ hàng</button>
-                        </article>
+                        <button>
+                            <a href= '?act=ChiTietSanPham&id={$itemProductAsRequested['IdProduct']}'>Xem chi tiết sản</a>
+                        </button>
                     </section>
                     ";
                 }
@@ -72,7 +72,9 @@
                                 <h1>{$itemProductPortfolio['PriceProducts']}$</h1>
                             </article>
                             <article class='AddToCart'>
-                                <button>Thêm vào giỏ hàng</button>
+                                <button>
+                                    <a href= '?act=ChiTietSanPham&id={$itemProductPortfolio['IdProduct']}'>Xem chi tiết sản</a>
+                                </button>
                             </article>
                         </section>
                         ";

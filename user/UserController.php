@@ -7,6 +7,7 @@ include_once '../assets/global/url_Path.php';
 include_once 'models/Login.php';
 include_once 'models/Home.php';
 include_once 'models/ProductPortfolio.php';
+include_once 'models/Cart.php';
 include_once '../assets/global/Header.php';
 
 check_Login();
@@ -40,6 +41,12 @@ if(isset($_GET['act'])&&($_GET['act'] !='' )){
                 break; 
             case 'TaoTaiKhoan':
                 include_once 'views/CreateAccount.php' ;
+                break; 
+            case 'GioHang':
+                // $idAccount = $_SESSION['user']['IdAccount'];
+                $idAccount = 1;
+                $dataCart = cart_GetAllCartByIdAccount($idAccount);
+                include_once 'views/Cart.php' ;
                 break; 
             case 'DanhMucSanPham':
                 if(isset($_GET['idCategory'])&&!empty($_GET['idCategory'])){

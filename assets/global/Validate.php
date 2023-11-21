@@ -11,7 +11,6 @@ function validateImg($data){
     extract($data);
     $message = false;
 
-
     if(!empty($data['name'])) {
         $type = pathinfo($data['name'], PATHINFO_EXTENSION);
         /**
@@ -42,10 +41,6 @@ function validateImg($data){
  *  validateAll($type, $data)
  * $type: loại cần validate
  * */ 
-
- function validatePrice($data){
-
- }
 
 function validateAll($type, $data){
     $message = false;

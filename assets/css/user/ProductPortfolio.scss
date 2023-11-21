@@ -167,20 +167,28 @@ html {
                         height: 55%;
                         border-radius: 100px;
                         background-color: var(--color6);
-                        color: var(--color);
-                        font-family: Lato;
-                        font-size: 1rem;
-                        font-style: normal;
-                        font-weight: 400;
-                        line-height: 140%; /* 28px */
-                        letter-spacing: 0.4px;
+                        
+                        a{
+                            color: var(--color);
+                            font-family: Lato;
+                            font-size: 1rem;
+                            font-style: normal;
+                            font-weight: 400;
+                            line-height: 140%; /* 28px */
+                            letter-spacing: 0.4px;
+                            text-decoration: none;
+                        }
                     }
                     button:hover{
                         background-color: var(--color);
-                        color: var(--color6); 
                         transition: 1s linear;
                         border: none;
                     }
+                    button:hover a{
+                        color: var(--color6); 
+                        transition: 1s linear;
+                    }
+
                 }
             }
         }

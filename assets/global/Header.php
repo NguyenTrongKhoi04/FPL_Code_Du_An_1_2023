@@ -6,6 +6,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="../assets/css/user/Footer.css">
     <link rel="stylesheet" href="../assets/css/user/Header.css">
+    <link rel="stylesheet" href="../assets/themify-icons/themify-icons.css">
 </head>
 <body>
     <header>
