@@ -32,7 +32,7 @@ if (empty($_SESSION['user'])) {
                     $_POST['Date'] = strtotime($_POST['Date']);
                     updateBan($id, $NumberPeopleInTables, $NumberTables, $StatusTables, $Date);
                     $error = "Update Thành Công";
-                    header("location:" . $adminAction . "ListBan");
+                    // header("location:" . $adminAction . "ListBan");
                 }
                 include_once "views/ban/UpdateBan.php";
                 break;
