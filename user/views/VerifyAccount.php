@@ -5,10 +5,14 @@
                 <h1>Xác nhận Tài khoản</h1>
             </article>
 
-            <form action="UserController.php?act=TaoTaiKhoan" method="post" class="main">
+            <form action="UserController.php?act=VerifyAccount" method="post" class="main">
                 <label for="">Nhập mã xác nhận *</label>
                 <input title="Không được để trống" type="text" name="confirmCodeGmail">
-
+                <?php
+                if (isset($alert) && !empty($alert)) {
+                    echo "<h1 style='color: while'>$alert</h1>";
+                }
+                ?>
                 <input type="submit" value="Đăng nhập">
             </form>
             <section class="footerMain">

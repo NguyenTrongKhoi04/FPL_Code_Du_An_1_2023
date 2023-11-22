@@ -47,17 +47,19 @@ if (isset($_GET['act']) && ($_GET['act'] != '')) {
             case 'TaoTaiKhoan':
                 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $dataAccount = $_POST;
-                    // echo "<pre>";
-                    // print_r($dataAccount);
-                    // die();
                     $alert = CreateAccount_CreateAccount($dataAccount);
-                    if ($alert === "ok") {
-
-                        include_once 'views/VerifyAccount.php';
-                        die();
+                    if ($alert === "") {
+                        header("location: http://localhost:3000/user/UserController.php?act=VerifyAccount");
                     }
                 }
                 include_once 'views/CreateAccount.php';
+                break;
+            case "VerifyAccount":
+                if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                    $dataVerifyAccount = $_POST;
+                    $alert = CreateAccount_CreateAccount1($dataVerifyAccount);
+                }
+                include_once 'views/VerifyAccount.php';
                 break;
             case 'GioHang':
                 // $idAccount = $_SESSION['user']['IdAccount'];
