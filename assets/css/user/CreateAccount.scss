@@ -58,7 +58,7 @@ html{
 
         form{
             width: 100%;
-            height: 84%;
+            max-height: 84%;
             padding: 5%;
 
             .nameAge{
@@ -75,7 +75,7 @@ html{
                     height: 100%;
                     
 
-                    input{
+                    input, select{
                         width: 100%;
                         height: 68%;
                         border-radius: 100px;
@@ -88,9 +88,8 @@ html{
 
                     }
                     
-                    input:focus{
-                        outline:  none;
-                        
+                    input:focus, select:focus{
+                        outline:  none;                       
                     }
                     label{
                         color: var(--color6);

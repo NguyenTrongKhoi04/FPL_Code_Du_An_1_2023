@@ -111,13 +111,13 @@
                 </article>
                 <form action="http://localhost:3000/user/UserController.php?act=trangchu" method="post">
                     <section class="contentForm">
-                        <input required type="date" name="Date" id="">
-                        <select required name="IdTable" id="" class="time">
+                        <input required type="datetime-local" name="Date">
+                        <select required name="IdTable" class="time">
                             <option value=''>Chọn số bàn</option>
                             <?php
                             if (!empty(home_GetAllTable())) {
                                 foreach (home_GetAllTable() as $itemTable) {
-                                    echo "<option value='{$itemTable['IdTable']}'>
+                                    echo "<option value='{$itemTable['IdTables']}'>
                                         Bàn: {$itemTable['NumberTable']} _ 
                                         Số lượng người tối đa: 20
                                         </option>";
@@ -125,7 +125,7 @@
                             }
                             ?>
                         </select>
-                        <select required name="NumberPeopleInTables" id="" class="persion">
+                        <select required name="NumberPeopleInTables" class="persion">
                             <option value="">Chọn số lượng người</option>
                             <?php
                             if (!empty(home_GetAllTable())) {
@@ -193,16 +193,14 @@
                             // dieu_huong sang chi tiết sản phẩm
                             echo '
     <script>
-        let html = "<a href=\'?act=ChiTietSanPham&id=' . $itemProduct["IdProduct"] . '\' class=\'lisstBestProducts\'><img src=\'../assets/img/admin/' . $itemProduct["ImageProduct"] . '\' alt=\'img\'><article class=\'titile\'><h1>' . $itemProduct["NameProduct"] . '</h1></article><article class=\'description\'><p>' . $itemProduct["ProductDetails"] . '</p></article></a>";
-        onloadProduct(' . $products . ', "leftBestProducts", "rightBestProducts",  html,"contentLisstBestProducts", 2);
+    onloadProductBest(' . $products . ', "leftBestProducts", "rightBestProducts",  "contentLisstBestProducts", 2);
     </script>';
 
                             // dieu_huong sang chi tiết sản phẩm
                             echo '
-    <script>
-        let htmlProductCalorieBalance = "<a href=\'?act=ChiTietSanPham&id=' . $itemProduct["IdProduct"] . '\' class=\'contentProductCalorieBalance\'><img src=\'../assets/img/admin/' . $itemProduct["ImageProduct"] . '\' alt=\'img\'><h1>' . $itemProduct["NameProduct"] . '</h1></a>";
-        onloadProduct(' . $products . ', "leftContentCalorieBalance", "rightContentCalorieBalance", htmlProductCalorieBalance, "productCalorieBalance", 3);
-    </script>';
+                            <script>
+                                onloadProductCalorieBalance(' . $products . ', "leftContentCalorieBalance", "rightContentCalorieBalance",  "productCalorieBalance", 3);
+                            </script>';
 
                             echo '
     <script>

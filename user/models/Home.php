@@ -25,17 +25,8 @@ function home_GetAllTable()
  */
 function home_BookingTable($data)
 {
+    // chưa hoàn thành tại chưa thể đăng nhập 
     extract($data);
-    // kiểm tra dữ liệu người dùng nhập số số lượng người ngồi trên bàn có hợp lệ hay không.
-    $dataById = query_One("select NumberPeopleDefaultInTables from tables where IdTable = $IdTable")["NumberPeopleDefaultInTables"];
-    if ($NumberPeopleInTables >= $dataById) {
-        $sql = "update tables set  NumberPeopleInTables = $NumberPeopleInTables, Date = '$Date', StatusTables = 3 where IdTable = $IdTable";
-        pdo_Execute($sql);
-
-        return "Đã đặt bàn thành công";
-    } else {
-        return "Đã vượt quá số lượng người trên bàn đã chọn";
-    }
 }
 
 function home_GetComment()

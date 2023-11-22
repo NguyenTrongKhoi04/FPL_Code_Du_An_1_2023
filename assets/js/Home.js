@@ -59,7 +59,7 @@ function displayComment(dataComment, next, back,  classData, idIndex, idLengthDa
 
     });
 }
-function onloadProduct(products, next, back, html, classData, numberProductPage) {
+function onloadProductCalorieBalance(products, next, back,  classData, numberProductPage) {
     document.addEventListener("DOMContentLoaded", function() {
       const productSection = document.getElementById(classData);
       const prevBtn = document.getElementById(back);
@@ -77,7 +77,64 @@ function onloadProduct(products, next, back, html, classData, numberProductPage)
   
         for (let i = 0; i < productsToShow.length; i++) {
           const itemProduct = productsToShow[i];
-          productSection.innerHTML += html;
+          productSection.innerHTML += `
+          <a href='?act=ChiTietSanPham&id=${itemProduct["IdProduct"]} ' class='contentProductCalorieBalance'>
+            <img src='../assets/img/admin/${itemProduct["ImageProduct"]} ' alt='img'>
+            <h1> . ${itemProduct["NameProduct"]} . </h1>
+          </a>;
+              `
+        }
+      }
+  
+      // Hiển thị sản phẩm khi trạng thái ban đầu
+      displayProducts();
+  
+      // Xử lý sự kiện khi nhấn nút "prev" (sang trang trước)
+      nextBtn.addEventListener("click", function() {
+        if (currentPage > 0) {
+          currentPage--;
+          displayProducts();
+        }
+      });
+  
+      // Xử lý sự kiện khi nhấn nút "next" (sang trang tiếp theo)
+      prevBtn.addEventListener("click", function() {
+        if ((currentPage + 1) * productsPerPage < products.length) {
+          currentPage++;
+          displayProducts();
+        }
+      });
+
+    });
+}
+function onloadProductBest(products, next, back,  classData, numberProductPage) {
+    document.addEventListener("DOMContentLoaded", function() {
+      const productSection = document.getElementById(classData);
+      const prevBtn = document.getElementById(back);
+      const nextBtn = document.getElementById(next);
+  
+      const productsPerPage = numberProductPage; // Số lượng sản phẩm mỗi trang
+      let currentPage = 0; // Trang hiện tại
+  
+      function displayProducts() {
+        productSection.innerHTML = ""; // Xóa sản phẩm hiện tại trước khi hiển thị sản phẩm mới
+        
+        const startIndex = currentPage * productsPerPage;
+        const endIndex = (currentPage + 1) * productsPerPage;
+        const productsToShow = products.slice(startIndex, endIndex);
+  
+        for (let i = 0; i < productsToShow.length; i++) {
+          const itemProduct = productsToShow[i];
+          productSection.innerHTML += `
+            <a href='?act=ChiTietSanPham&id= ${itemProduct["IdProduct"]} ' class='lisstBestProducts'>
+                <img src='../assets/img/admin/${itemProduct["ImageProduct"]} ' alt='img'>
+                <article class='titile'>
+                  <h1> ${itemProduct["NameProduct"]} </h1>
+                </article>
+                <article class='description'>
+                  <p> ${itemProduct["ProductDetails"]} </p>
+                </article>
+              </a>`
         }
       }
   
