@@ -82,6 +82,7 @@ function CreateAccount_CreateAccount1($data)
             $sql = "insert into account values(null, '$name', '$email',  '$gender' ,'$password', null,0,'1', '$date' )";
             if (pdo_Execute($sql) === null) {
                 $message = "Tạo tài khoản thành công";
+                $_SESSION['code_SendGamilSuccess'] = "";
             } else {
                 $message = "505 Hệ thống đang bảo trì";
             }

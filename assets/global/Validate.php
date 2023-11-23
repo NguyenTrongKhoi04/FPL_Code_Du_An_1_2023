@@ -92,6 +92,22 @@ function validateAll($type, $data)
                     $message = true;
                 }
                 break;
+            case "dateBooking":
+                $dataTime = new DateTime();
+                $dataTime->setTimezone(new DateTimeZone("Asia/Ho_Chi_Minh"));
+                $dataReal = $dataTime->format('Y-m-d\TH:i');
+                $resultTime = strtotime($data) - strtotime($dataReal);
+                $oneHourBefore = date(strtotime($dataReal) + 3600);
+                // thời gian nhận vào không nhỏ hơn thời gian hiện tại
+                // Và thời phải lớn hơn 1h  thì  mới họp lệ
+                if ($resultTime <= 0) {
+                    $message = "Thời gian không hợp lệ";
+                } elseif (strtotime($data) < $oneHourBefore) {
+                    $message = "Thời gian để đặt bàn tối thiểu phải trước 1 giờ";
+                } else {
+                    $message = true;
+                }
+                break;
             default:
                 $message = true;
                 break;

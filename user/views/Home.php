@@ -187,6 +187,9 @@
 
 
 <?php
+if(isset($alert) && !empty($alert)){
+    echo "<script> alert('$alert') </script>";
+};
                             $products = json_encode(home_GetAllProduct());
                             $dataComment = json_encode(home_GetComment());
                             foreach (home_GetComment() as $itemComment);

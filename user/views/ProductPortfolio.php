@@ -1,8 +1,7 @@
-
 <section class="page">
-<link rel="stylesheet" href="../assets/css/user/ProductPortfolio.css">
+    <link rel="stylesheet" href="../assets/css/user/ProductPortfolio.css">
     <section class="banner">
-        <img src="<?= $img_Path?>banner.png" alt="banner">
+        <img src="<?= $img_Path ?>banner.png" alt="banner">
     </section>
     <main>
         <form action="?act=DanhMucSanPham&idCategory=<?= $_GET['idCategory'] ?>" method="post" class="nav">
@@ -15,13 +14,13 @@
             </select>
             <select name="product" id="priceSelect" onchange="this.form.submit()">
                 <option value="">Sản phẩm</option>
-                
+
                 <?php
-                if(!empty(productPortfolio_GetAllCateogry())){
-                    foreach(productPortfolio_GetAllCateogry() as $itemGetAllCateogry){
+                if (!empty(productPortfolio_GetAllCateogry())) {
+                    foreach (productPortfolio_GetAllCateogry() as $itemGetAllCateogry) {
                         echo "<option value='{$itemGetAllCateogry['IdCategory']}'>{$itemGetAllCateogry['NameCategory']}</option>";
                     }
-                }else{
+                } else {
                     echo "<option value=''>Không có danh mục</option>";
                 }
                 ?>
@@ -29,47 +28,49 @@
         </form>
 
         <section class="lisstProduct">
-            <?php 
-            if(isset($GetAllProductAsRequested) && !empty($GetAllProductAsRequested)){
-                foreach($GetAllProductAsRequested as $itemProductAsRequested){
+            <?php
+            if (isset($GetAllProductAsRequested) && !empty($GetAllProductAsRequested)) {
+                foreach ($GetAllProductAsRequested as $itemProductAsRequested) {
                     echo "
                     <section class='product'>
                         <article class='img'>
-                            <img src=' $imgPathAdmin{$itemProductAsRequested['ImageProducts']}' alt='Image'>
+                            <img src=' $imgPathAdmin{$itemProductAsRequested['ImageProduct']}' alt='Image'>
                         </article>
                         <article class='title'>
-                            <h1>{$itemProductAsRequested['NameProducts']}</h1>
+                            <h1>{$itemProductAsRequested['NameProduct']}</h1>
                         </article>
                         <article class='description'>
                             <p>{$itemProductAsRequested['ProductDetails']}</p>
                         </article>
                         <article class='price'>
-                            <h1>{$itemProductAsRequested['PriceProducts']}$</h1>
+                            <h1>{$itemProductAsRequested['PriceProduct']}$</h1>
                         </article>
-                        <button>
-                            <a href= '?act=ChiTietSanPham&id={$itemProductAsRequested['IdProduct']}'>Xem chi tiết sản</a>
-                        </button>
+                        <article class='AddToCart'>
+                            <button>
+                                <a href= '?act=ChiTietSanPham&id={$itemProductAsRequested['IdProduct']}'>Xem chi tiết sản</a>
+                            </button>
+                        </article>
                     </section>
                     ";
                 }
-            }else{
-                if(empty($dataProductPortfolio)){
+            } else {
+                if (empty($dataProductPortfolio)) {
                     echo "<h1 style='color: #FFFFFF; font-size: 40px;'>Không có sản phẩm </h1>";
-                }else{
-                    foreach($dataProductPortfolio as $itemProductPortfolio){
+                } else {
+                    foreach ($dataProductPortfolio as $itemProductPortfolio) {
                         echo "
                         <section class='product'>
                             <article class='img'>
-                                <img src=' $imgPathAdmin{$itemProductPortfolio['ImageProducts']}' alt='Image'>
+                                <img src=' $imgPathAdmin{$itemProductPortfolio['ImageProduct']}' alt='Image'>
                             </article>
                             <article class='title'>
-                                <h1>{$itemProductPortfolio['NameProducts']}</h1>
+                                <h1>{$itemProductPortfolio['NameProduct']}</h1>
                             </article>
                             <article class='description'>
                                 <p>{$itemProductPortfolio['ProductDetails']}</p>
                             </article>
                             <article class='price'>
-                                <h1>{$itemProductPortfolio['PriceProducts']}$</h1>
+                                <h1>{$itemProductPortfolio['PriceProduct']}$</h1>
                             </article>
                             <article class='AddToCart'>
                                 <button>
@@ -80,10 +81,9 @@
                         ";
                     }
                 }
-
             }
             ?>
-           
+
         </section>
 
         <section class="navigationBar">

@@ -13,4 +13,8 @@ document.getElementById('checkAll').addEventListener("click", () =>{
         checked = false
 
     }
+});
+
+document.getElementById("deleteAll").addEventListener("click", () =>{
+    document.getElementById("formCart").submit();
 })

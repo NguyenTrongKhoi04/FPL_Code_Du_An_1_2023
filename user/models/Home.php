@@ -25,8 +25,23 @@ function home_GetAllTable()
  */
 function home_BookingTable($data)
 {
-    // chưa hoàn thành tại chưa thể đăng nhập 
     extract($data);
+    $message = "";
+    if(isset($_SESSION['user']["IdAccount"]) && !empty($_SESSION['user']["IdAccount"])){
+        $idAccount = $_SESSION['user']["IdAccount"];
+        if (validateAll("dateBooking", "$Date") === true) {
+            $message = "Đặt bàn thành công";
+            $_SESSION['bookingTable'] = [
+                "idAccount" => $idAccount,
+                "data" => $data
+            ];
+        } else {
+            $message = validateAll("dateBooking", "$Date");
+        }
+    }else{
+        $message = "Vui lòng đăng nhập để sử dụng dịch vụ";
+    }
+    return $message;
 }
 
 function home_GetComment()
