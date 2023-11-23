@@ -60,7 +60,7 @@
     data-parent="#accordionSidebar">
     <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Product</h6>
-            <a class="collapse-item" href="<?=$adminAction?>AddAccount">Danh sách món ăn</a>
+            <a class="collapse-item" href="<?=$adminAction?>ListProduct">Danh sách món ăn</a>
             <a class="collapse-item" href="utilities-color.html">Thêm món ăn</a>
             <h6 class="collapse-header">Danh mục</h6>
             <a class="collapse-item" href="utilities-color.html">Danh mục chính</a>

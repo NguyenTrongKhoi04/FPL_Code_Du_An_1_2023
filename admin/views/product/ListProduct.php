@@ -231,41 +231,65 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Dánh Sách Bàn Ăn</h1>
-    
+                    <h1 class="h3 mb-2 text-gray-800">Danh Sách Sản Phẩm</h1>
+
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
-                         <?php if (isset($error)) : ?>
-                            <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary" style="color:red !important;"><?= $error ?></h6>
-                            </div>
-                        <?php endif ?>
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+                        </div>
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
+                                        <td><a href="?act=AddProduct"><input type="button" value="Thêm Sản Phẩm"></a></td>
                                         <tr>
-                                            <th>Số Bàn</th>
-                                            <th>Số Người Ngồi</th>
-                                            <th>Trạng Thái</th>
+                                            <th>ID</th>
+                                            <th>Tên Sản Phẩm</th>
+                                            <th>Số Lượng</th>
+                                            <th>Giá Tiền</th>
+                                            <th>Danh Mục Của Sản Phẩm</th>
+                                            <th>Ảnh Sản Phẩm</th>
+                                            <th>Mô Tả</th>
+                                            <th>Trạng Thái Sản Phẩm</th>
+                                            <th>Thời Gian Thêm - Chỉnh Sửa</th>
                                             <th>Thao Tác</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php foreach ($listBan as $i) : ?>
-
+                                        <?php foreach ($listPro as $i) : ?>
                                             <tr>
-                                                <td><?= $i['NumberTable'] ?></td>
-                                                <td><?= $i['NumberPeople'] ?></td>
+                                                <td><?= $i['IdProduct'] ?></td>
+                                                <td><?= $i['NameProduct'] ?></td>
+                                                <td><?= $i['QuantityProduct'] ?></td>
+                                                <td><?= $i['PriceProduct'] ?></td>
+
                                                 <td>
-                                                    <?php if ($i['StatusTable'] == 1) { ?>
-                                                        Đang sử dụng
-                                                    <?php } else { ?>
-                                                        Trống
+                                                    <?php foreach($listProCategory as $cate) {?>   
+                                                        <?php if($cate['IdCategory']==$i['IdCategory']){echo $cate['NameCategory'];} ?>
                                                     <?php } ?>
                                                 </td>
+                                                <td><img src="<?= $adminImg . $i['ImageProduct'] ?>" width="50%"></td>
+
                                                 <td>
-                                                    <a href="<?= $adminAction ?>UpdateBan&id=<?= $i['IdTables'] ?>"><input type="button" value="Sửa"></a>
+                                                    <?php foreach($listProDetails as $details) {?>   
+                                                        <?php if($details['IdDetails']==$i['IdDetails']){ ?>
+                                                            <a href=""><?= $details['ProductDetails'] ?></a>
+                                                            <?php } ?>
+                                                    <?php } ?>
+                                                </td>
+                                                
+                                                <td>
+                                                    <?php if ($i['StatusProduct'] == 1) { ?>
+                                                        Đã hết
+                                                    <?php } else { ?>
+                                                        Còn <?= $i['QuantityProduct'] ?> Sản Phẩm
+                                                    <?php } ?>
+                                                </td>
+                                                <td><?= $i['DateEditProduct'] ?></td>
+                                                <td>
+                                                    <a href="<?= $adminAction ?>"><input type="button" value="Sửa"></a>
+                                                    <a onclick="return confirm('Bạn Có Muốn Xóa Không')" href="<?= $adminAction ?>"><input type="button" value="Xóa"></a>
                                                 </td>
                                             </tr>
                                         <?php endforeach ?>

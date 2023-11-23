@@ -9,6 +9,7 @@ include_once '../assets/global/Header.php';
 include_once 'models/TaiKhoan.php';
 include_once 'models/ChiTietSanPham.php';
 check_Login();
+
 if (isset($_GET['act']) && ($_GET['act'] != '')) {
     if (empty($_SESSION['user'])) {
         include_once 'views/LoginThuong.php';
@@ -21,7 +22,7 @@ if (isset($_GET['act']) && ($_GET['act'] != '')) {
          * ====================================================================================
          */
             case 'dangnhap':
-                if ($_SESSION['user']['Type'] == 1) {
+                if ($_SESSION['user']['Role'] == 1) {
                     header('location: ../admin/AdminController.php');
                 } else {
                     $loadHeader = 0;
