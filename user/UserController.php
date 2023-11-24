@@ -25,26 +25,8 @@ $_SESSION['user'] = [
     "Role" => 0,
     "DateEditAccount" => "0000-00-00 00:00:00"
 ];
-// Tiến hành kiểm tra xem ngày tháng người dùng đã order bàn
-if (isset($_SESSION['bookingTable']) && !empty($_SESSION['bookingTable'])) {
-    $time = new DateTime();
-    $time->setTimezone(new DateTimeZone("Asia/Ho_Chi_Minh"));
-    $realTime = $time->format('Y-m-d\TH:i');
+home_checkOrderTable();
 
-    $Date = $_SESSION['bookingTable']["data"]["Date"];
-    $IdTable = $_SESSION['bookingTable']["data"]["IdTable"];
-    $NumberPeopleInTables = $_SESSION['bookingTable']["data"]["NumberPeopleInTables"];
-    $idAccountBooking = $_SESSION['bookingTable']["idAccount"];
-    $dataTimesBefore = (int)$_SESSION['bookingTable']["data"]["Date"] + 3600;
-
-    if (strtotime($realTime) === strtotime($dataTimesBefore)) {
-        $sqlOrder = "insert into order values(null, '$IdTable', '$idAccountBooking', null, 0,'$Date')";
-        $sqlTable = "update tables set StatusTable = 0, NumberPeople = '$NumberPeopleInTables 'where IdTable = $IdTable"; 
-        pdo_Execute($sqlTable);
-        pdo_Execute($sqlOrder);
-        $_SESSION['bookingTable'] = '';
-    }
-}
 
 if (isset($_GET['act']) && ($_GET['act'] != '')) {
     $idAccountUser = $_SESSION['user']["IdAccount"];
