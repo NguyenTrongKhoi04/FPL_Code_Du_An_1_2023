@@ -427,21 +427,37 @@
                                     <?php 
                                     
                                     if(isset($_GET["IdCart"]) && !empty($_GET["IdCart"])){
-                                        $dataCard = getCard($_GET['IdCart']);
-                                        extract($dataCard['0']);     
+                                        $dataCart = getCart($_GET['IdCart']);
+                                        extract($dataCart['0']);     
                         
                                       ?>
 
-                                        <form action="AdminController.php?act=UpdateCard&IdCart=<?= $IdCart?>" method="post">
+                                        <form action="AdminController.php?act=UpdateCart&IdCart=<?= $IdCart?>" method="post">
+                                              <tr>
+                                                <td>Tên Product</td>
+                                                <td>
+                                                    <select name="IdProduct" id="">
+                                                        <option value="<?= $IdProduct?>" selected hidden><?= $NameProduct ?></option>
+                                                        <?php
+                                                        foreach(getCProduct() as $valueProduct){
+                                                            echo "
+                                                                 <option value='{$valueProduct['IdProduct']}'>{$valueProduct['NameProduct']}</option>
+                                                            ";
+                                                        }
+                                                        ?>
+                                                        
+                                                    </select>
+                                                </td>                  
+                                            </tr> 
                                             <tr>
                                                 <td>Tên khách hàng</td>
                                                 <td>
                                                     <select name="IdAccount" id="">
-                                                        <option value="<?= $IdAccount?>" selected hidden><?= $NameAccounts ?></option>
+                                                        <option value="<?= $IdAccount?>" selected hidden><?= $NameAccount ?></option>
                                                         <?php
                                                         foreach(getCAccount() as $valueAccount){
                                                             echo "
-                                                                <option value='{$valueAccount['IdAccount']}'>{$valueAccount['NameAccounts']}</option>
+                                                                <option value='{$valueAccount['IdAccount']}'>{$valueAccount['NameAccount']}</option>
                                                             ";
                                                         }
                                                         ?>
@@ -449,37 +465,20 @@
                                                     </select>
                                                 </td>                  
                                             </tr>
-                                            <tr>
-                                                <td>Tên Product</td>
-                                                <td>
-                                                    <select name="IdProduct" id="">
-                                                        <option value="<?= $IdProduct?>" selected hidden><?= $NameProducts ?></option>
-                                                        <?php
-                                                        foreach(getCProduct() as $valueProduct){
-                                                            echo "
-                                                                <option value='{$valueProduct['IdProduct']}'>{$valueProduct['NameProducts']}</option>
-                                                            ";
-                                                        }
-                                                        ?>
-                                                        
-                                                    </select>
-                                                </td>                  
-                                            </tr>
+
                                             <tr>
                                                 <td>Size</td>
                                                 <td>
-                                                    <select name="IdSize" id="">
-                                                        <option value="<?= $IdSize?>" selected hidden><?= $IdSizeDefault ?></option>
-                                                        <?php
-                                                        foreach(getCSize() as $valueSizes){
-                                                            echo "
-                                                                <option value='{$valueSizes['IdSize']}'>{$valueSizes['IdSizeDefault']}</option>
-                                                            ";
-                                                        }
-                                                        ?>
-                                                        
-                                                    </select>
-                                                </td>                  
+                                                    <input value="<?= $Size ?>" type="text" name = "Size" id="">
+                                                </td>
+                                                    
+                                            </tr>
+                                          <tr>
+                                                <td>Giá</td>
+                                                <td>
+                                                    <input value="<?= $PriceCard ?>" type="number" name = "PriceCard" id="">
+                                                </td>
+                                                    
                                             </tr>
                                             <tr>
                                                 <td>Số lượng</td>
@@ -488,13 +487,7 @@
                                                 </td>
                                                     
                                             </tr>
-                                            <tr>
-                                                <td>Giá</td>
-                                                <td>
-                                                    <input value="<?= $Price ?>" type="number" name = "Price" id="">
-                                                </td>
-                                                    
-                                            </tr>
+
                               
 
                                               <input type="text" hidden value="<?= $IdCart?>" name="IdCart">    

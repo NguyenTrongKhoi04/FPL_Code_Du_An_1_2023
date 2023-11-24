@@ -10,10 +10,12 @@ include_once "../app/Pdo.php";
 // IdCategory
 // NameCategory
 // StatusCategory
-// DateEditCategory
+
+
+
 function pushCategory($data){
     extract($data);
-    $sql= "insert into category values ('','$NameCategory','','')";
+    $sql= "insert into category values ('','$NameCategory','')";
     return pdo_Execute($sql);
 }
 
@@ -36,5 +38,12 @@ function updateCategory($dataCategory, $IdCategory){
 function getCategory($IdCategory){
     $sql = "select * from category where IdCategory = $IdCategory";
     return query_All($sql);
+}
+
+function check_Category($NameCategory){
+
+    $sql = "SELECT * FROM category WHERE NameCategory = '$NameCategory'";
+    
+    return query_One($sql);
 }
 ?>

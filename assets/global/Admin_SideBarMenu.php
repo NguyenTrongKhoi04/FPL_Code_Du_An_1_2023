@@ -36,13 +36,13 @@
     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Quản Lý Tài Khoản</h6>
-            <a class="collapse-item" href="cards.html">Danh Sách Tài Khoản</a>
-            <a class="collapse-item" href="buttons.html">Thêm Tài Khoản</a>
+            <a class="collapse-item" href="<?=$adminAction?>ListAccount">Danh Sách Tài Khoản</a>
+            <a class="collapse-item" href="<?=$adminAction?>AddAccount">Thêm Tài Khoản</a>
 
             <h6 class="collapse-header">Giỏ hàng-Bill-Comment</h6>
             <a class="collapse-item" href="buttons.html">Danh Sách Giỏ Hàng</a>
             <a class="collapse-item" href="<?=$adminAction?>ListComment">Danh Sách Comment</a>
-            <a class="collapse-item" href="ListBill">Danh Sách Bill</a>
+            <a class="collapse-item" href="<?=$adminAction?>ListBill">Danh Sách Bill</a>
 
         </div>
     </div>
@@ -60,10 +60,10 @@
     data-parent="#accordionSidebar">
     <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Product</h6>
-            <a class="collapse-item" href="<?=$adminAction?>AddAccount">Danh sách món ăn</a>
+            <a class="collapse-item" href="<?=$adminAction?>AddProduct">Danh sách món ăn</a>
             <a class="collapse-item" href="utilities-color.html">Thêm món ăn</a>
             <h6 class="collapse-header">Danh mục</h6>
-            <a class="collapse-item" href="utilities-color.html">Danh mục chính</a>
+            <a class="collapse-item" href="<?=$adminAction?>ListCategory">Danh mục chính</a>
             <a class="collapse-item" href="<?=$adminAction?>AddCategory">Thêm danh mục chính </a>
             <a class="collapse-item" href="utilities-color.html">Danh mục phụ</a>
             <a class="collapse-item" href="<?=$adminAction?>AddSubCategories">Thêm danh mục phụ</a>

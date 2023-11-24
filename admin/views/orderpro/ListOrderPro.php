@@ -399,107 +399,81 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 style="color: red">
-                        <?php
-                            if(isset($alert)){
-                                echo $alert === true ? "Cập nhật sản phẩm thành công" : "Cập nhật sản phẩm thất bại";                                  
+                    <h1 class="h3 mb-2 text-gray-800">Tables</h1>
+                    <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
+                        For more information about DataTables, please visit the <a target="_blank"
+                            href="https://datatables.net">official DataTables documentation</a>.</p>
 
-                            }
-                        ?>
-                    </h1>
-                    
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+                        </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                   
-                                   <tr>
-                                           <th></th>
-                                           <th>Thông tin</th>
-                                           
-                                           <th></th>
-                                   </tr>
-                <!-- // IdAccompanyingFood	IdProduct	
-// NameAccompanyingFood	QuantityAccompanyingFood	
-// PriceAccompanyingFood	ImageAccompanyingFood	StatusAccompanyingFood	 -->
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                           <th>Order</th>
+                                            <th>Sản phẩm</th>
+                                            
+                                            <th>Trạng thái</th>
+                                          
+                                            <th>Thao tác</th>
 
-                                                        
-                                   <tbody> 
-                                    <?php 
-                                    if(isset($_GET["IdAccompanyingFood"]) && !empty($_GET["IdAccompanyingFood"])){
-                                        $dataAccompanyingfood = getAllAccompanyingfood($_GET['IdAccompanyingFood']);
-                                        extract($dataAccompanyingfood['0']);
-                                      ?>
-                                        <form action="AdminController.php?act=UpdateAccompanyingfood&IdAccompanyingFood=<?= $IdAccompanyingFood?>" method="post" enctype="multipart/form-data">
-                                            <tr>
-                                                <td>sản phẩm</td>
-                                                
-                                                <td>
-                                                <select name="IdProduct" id="">
-                                                        
-                                                        <?php
-                                                        foreach(getAllProduct() as $valueProduct){
-                                                            echo "
-                                                                <option value='{$valueProduct['IdProduct']}'>{$valueProduct['NameProducts']}</option>
-                                                            ";
-                                                        }
-                                                        ?>
-                                                        
-                                                    </select>
-                                                </td>
-                                                    
-                                            </tr>     
-                                            <tr>
-                                                <td>Tên sản phẩm</td>
-                                                <td><input value="<?= $NameAccompanyingFood ?>" name = "NameAccompanyingFood" type="text"></td>
-                                                    
-                                            </tr>
+                                    </thead>
+                                    <tbody> 
+                                        <?php 
+                                            foreach(getListOrderPro() as $values){
+                        
+                                                    $stauts = null;
+                                                    switch($values['StatusOrders']){ 
+                                                        case 0:
+                                                            $stauts = "Bếp đang làm";
+                                                        break;
+                                                        case 1:
+                                                            $stauts = "Bếp làm xong";
+                                                        break;
+                                                        case 2:
+                                                            $stauts = "Nhân viên phục vụ đã nhận đồ";
+                                                        break;
+                                                        case 3:
+                                                            $stauts = "Khách đã nhận được sản phẩm";
+                                                        break;
+                                                        case 4:
+                                                            $stauts = "Trả lại sản phẩm";
+                                                        break;
+                                                        default:
+                                                            $stauts = "Error";
+                                                        break;
+    
+                                                    }
 
-                                            <tr>
-                                                <td>Số lượng</td>
-                                                <td><input value="<?= $QuantityAccompanyingFood ?>" name = "QuantityAccompanyingFood" type="number"></td>
-                                                
-                                            </tr>
-                
-                                            <tr>
-                                                <td>Giá</td>
-                                                <td>
-                                                        <input value="<?= $PriceAccompanyingFood ?>" type="PriceAccompanyingFood" name = "Price" id="">
-                                                    </td>
-                                                    
-                                            </tr>
-                                            <tr>
-                                                <td>Ảnh</td>
-                                                <td>
-                                                        <input type="file" name = "ImageAccompanyingFood" value="<?= $ImageAccompanyingFood ?>">
-                                                </td>
-                                                    
-                                            </tr>
-                                                    
-                                            </tr>
-                                            <tr>
-                                                <td>Trạng thái sản phẩm</td>
-                                                <td>
-                                                    <select name="StatusAccompanyingFood" id="">
-                                                            <option value="<?= $StatusAccompanyingFood ?>" selected hidden><?= $StatusAccompanyingFood ?></option>
-                                                            <option value="0">Bình thường</option>
-                                                            <option value="1">Không bán</option>
-                                                        </select>
-                                                </td>
-                                                
-                                            </tr>
+                                            echo "
+                                                <tr>
+                                                    <td>{$values['IdOrder']}</td>
+                                                    <td>{$values['NameProduct']}</td>
+
+                                                             
+                                                    <td>{$stauts}</td>
+                                                    <td>
+                                                        <a href='AdminController.php?act=UpdateOrderPro&IdOrder_Pro={$values['IdOrder_Pro']}'>
+                                                            <input type='button' value='Sửa'> 
+                                                        </a>
+                                                        <a href='AdminController.php?act=ListOrderPro&delete={$values['IdOrder_Pro']}'>
+                                                            <input type='button' value='Xóa'>
+                                                        </a>                                                                                                               
+                                                    </td>   
+                                            </tr>                                                
+                                                ";
+                                            }
+                                            // {$values['']}
+                                        ?> 
+
         
-                                            <td><input  name = "submit" type="submit" value="thêm"></td>                              
-                                    </form>          
-                                      <?php  
-                                    }else{
-                                        echo "404 Not Fount";
-                                    }
-                                                              
-                                    ?>                          
-                                   </tbody>
-                               </table>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
 

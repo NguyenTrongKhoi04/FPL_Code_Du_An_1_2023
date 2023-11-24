@@ -411,8 +411,7 @@
                                         <tr>
                                             <th>Tên danh mục</th>
                                             <th>Trạng thái</th>
-                                            <th>Ngày cập nhật</th>
-                                            <th></th> 
+                                            <th>Thao tác</th> 
                                         </tr>
                                     </thead>
                                     <tbody>  
@@ -426,8 +425,7 @@
                                             <tr>
                                                 <td>{$values['NameCategory']}</td>       
                                                 <td>{$status}</td>
-                                                <td>{$values['DateEditCategory']}</td>
-
+                                
                                                 <td>
                                                     <a href='AdminController.php?act=UpdateCategory&IdCategory={$values['IdCategory']}'>
                                                         <input type='button' value='Sửa'> 

@@ -425,8 +425,8 @@
                          
                                    <tbody> 
                                     <?php 
-                                    if(isset($_GET["IdOder"]) && !empty($_GET["IdOder"])){
-                                        $dataOrder =getOrder($_GET['IdOder']);
+                                    if(isset($_GET["IdOrder"]) && !empty($_GET["IdOrder"])){
+                                        $dataOrder =getOrder($_GET['IdOrder']);
                                         extract($dataOrder['0']);
                                         $stauts = null;
                                         switch($StatusOrders){
@@ -448,48 +448,16 @@
 
                                         }          
                                       ?>
-                                        <form action="AdminController.php?act=UpdateOrders&IdOder=<?= $IdOder?>" method="post">
+                                        <form action="AdminController.php?act=UpdateOrders&IdOrder=<?= $IdOrder?>" method="post">
                                              <tr>
                                                 <td>Tên bàn</td>
                                                 <td>
-                                                    <select name="IdTable" id="">
-                                                        <option value="<?= $IdTable?>" selected hidden><?= $NumberTables ?></option>
+                                                    <select name="IdTables" id="">
+                                                        <option value="<?= $IdTables?>" selected hidden><?= $NumberTable ?></option>
                                                         <?php
                                                         foreach(getIdTable() as $valueTable){
                                                             echo "
-                                                                <option value='{$valueTable['IdTable']}'>{$valueTable['NumberTables']}</option>
-                                                            ";
-                                                        }
-                                                        ?>
-                                                        
-                                                    </select>
-                                                </td>                  
-                                            </tr>
-                                            <tr>
-                                                <td>Tên accompanyingfood</td>
-                                                <td>
-                                                    <select name="IdAccompanyingFood" id="">
-                                                        <option value="<?= $IdAccompanyingFood?>" selected hidden><?= $NameAccompanyingFood ?></option>
-                                                        <?php
-                                                        foreach(getIdAccompanyingfood() as $valueAccompanyingfood){
-                                                            echo "
-                                                                <option value='{$valueAccompanyingfood['IdAccompanyingFood']}'>{$valueAccompanyingfood['NameAccompanyingFood']}</option>
-                                                            ";
-                                                        }
-                                                        ?>
-                                                        
-                                                    </select>
-                                                </td>                  
-                                            </tr>
-                                            <tr>
-                                                <td>Tên Product</td>
-                                                <td>
-                                                    <select name="IdProduct" id="">
-                                                        <option value="<?= $IdProduct?>" selected hidden><?= $NameProducts ?></option>
-                                                        <?php
-                                                        foreach(getIdProduct() as $valueProduct){
-                                                            echo "
-                                                                <option value='{$valueProduct['IdProduct']}'>{$valueProduct['NameProducts']}</option>
+                                                                <option value='{$valueTable['IdTables']}'>{$valueTable['NumberTable']}</option>
                                                             ";
                                                         }
                                                         ?>
@@ -501,11 +469,11 @@
                                                 <td>Tên khách hàng</td>
                                                 <td>
                                                     <select name="IdAccount" id="">
-                                                        <option value="<?= $IdAccount?>" selected hidden><?= $NameAccounts ?></option>
+                                                        <option value="<?= $IdAccount?>" selected hidden><?= $NameAccount ?></option>
                                                         <?php
                                                         foreach(getIdAccount() as $valueAccount){
                                                             echo "
-                                                                <option value='{$valueAccount['IdAccount']}'>{$valueAccount['NameAccounts']}</option>
+                                                                <option value='{$valueAccount['IdAccount']}'>{$valueAccount['NameAccount']}</option>
                                                             ";
                                                         }
                                                         ?>
@@ -521,7 +489,7 @@
                                                     
                                             </tr>
                                             <tr>
-                                                <td>Trạng thái sản phẩm</td>
+                                                <td>Trạng thái Order</td>
                                                 <td>
                                                     <select name="StatusOrders" id="">
                                                             <option value="<?= $StatusOrders ?>" selected hidden><?= $stauts ?></option>
@@ -534,18 +502,10 @@
                                                 </td>
                                                 
                                             </tr>
-                                            <tr>
-                                                <td>Số lượng</td>
-                                                <td><input value="<?= $QuantityOrders ?>" name = "QuantityOrders" type="number"></td>        
-                                            </tr>
-                                             </tr>
-                                                <td>Note</td>
-                                                <td><input value="<?= $NoteOrders ?>" name = "NoteOrders" type="text"></td>
-                                                    
-                                            </tr>
+
                               
 
-                                              <input type="text" hidden value="<?= $IdOder?>" name="IdOder">    
+                                              <input type="text" hidden value="<?= $IdOrder ?>" name="IdOrder">    
                                             <td><input  name = "submit" type="submit" value="thêm"></td>    
  
                                     </form>  

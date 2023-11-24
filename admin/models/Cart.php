@@ -15,28 +15,32 @@ function getCProduct(){
     return query_All($sql);  
 }
 
-function getCSize(){
-    $sql= "select * from size";
-    return query_All($sql);  
-}
 
-function pushCard($data){
+
+// Toàn văn
+// IdCart	
+// IdProduct	
+// IdAccount	
+// Size	
+// PriceCard	
+// Quantity	
+// DateCart
+function pushCart($data){
     extract($data);
 
-    $sql= "insert into card values ('','$IdAccount','$IdProduct','$IdSize','$Quantity' ,'$Price')";
+    $sql= "insert into cart values ('','$IdProduct','$IdAccount','$Size','$PriceCard','$Quantity' ,'')";
 
     return pdo_Execute($sql);
 }
 	
 
-function getListCard(){
+function getListCart(){
     
     $sql ='
-    select cr.*,ac.*,pr.*,sz.* from card cr
+    select cr.*,ac.*,pr.* from cart cr
     
      join product pr on cr.IdProduct = pr.IdProduct
      join account ac on cr.IdAccount = ac.IdAccount
-     join size sz on cr.IdSize = sz.IdSize;
     ';
     return query_All($sql);
 }
@@ -45,28 +49,26 @@ function getListCard(){
  * $idProduct: Id của sản phẩm được truyền vào 
 *	IdCart	IdAccount	IdProduct	IdSize	Quantity	Price	
  * */ 
-function deleteCard($IdCart){
-    $sql = "delete from card where IdCart = $IdCart";
+function deleteCart($IdCart){
+    $sql = "delete from cart where IdCart = $IdCart";
     return pdo_Execute($sql);
 }
 
-function updateCard($dataCard, $IdCart){
-     extract($dataCard);
+function updateCart($dataCart, $IdCart){
+     extract($dataCart);
 
-    $sqlCard = "
-    update card set IdAccount = '$IdAccount', IdProduct = '$IdProduct' , IdSize = '$IdSize',
-    Quantity = '$Quantity', Price = '$Price' where IdCart = '$IdCart'
+    $sqlCart = "
+    update cart set IdAccount = '$IdAccount', IdProduct = '$IdProduct' , Size = '$Size',
+     PriceCard = '$PriceCard', Quantity = '$Quantity' where IdCart = '$IdCart'
     ";
     
-    return pdo_Execute($sqlCard);
+    return pdo_Execute($sqlCart);
 }
 
-function getCard($IdCart){
-    $sql = " select cr.*,ac.*,pr.*,sz.* from card cr 
+function getCart($IdCart){
+    $sql = " select cr.*,ac.*,pr.* from cart cr 
      join account ac on cr.IdAccount = ac.IdAccount  
     join product pr on cr.IdProduct = pr.IdProduct
-   
-    join size sz on cr.IdSize = sz.IdSize;
      where cr.IdCart = $IdCart
     ";
     

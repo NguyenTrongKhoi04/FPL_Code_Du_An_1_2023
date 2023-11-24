@@ -414,17 +414,13 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                           <th>Tên khách hàng</th>
-                                            <th>Sản phẩm</th>
-                                            <th>Bàn</th>
-                                            <th>AccompanyingFood</th>
-                                            <th>Số lượng</th>
-                                            <th>Giá</th>
-                                            <th>Trạng thái</th>
-                                            <th>Ngày cập nhật</th>
+                                           <th>Order</th>
                                             
-                                            <th>Note</th>
-                                            <th>Thanh toán</th>
+                                            <th>Thời gian</th>
+                                            <th>Giá</th>
+                                            <th>HÌnh thức thanh toán</th>
+                                            <th>Thao tác</th>
+ 
                             
             
 
@@ -435,11 +431,11 @@
                                                      $payment =null;
                                                     
                                                     // IdBill	IdAccount	IdProduct	IdTable	IdAccompanyingFood	QuantityBill	PriceBill	StatusBill	DateEditBill	NoteBill	PaymentsBill	
-                                                    switch($values['PaymentsBill']){ 
-                                                        case 'TM':
+                                                    switch($values['PaymentMethodBill']){ 
+                                                        case 0:
                                                             $payment = "Thanh toán tiền mặt";
                                                         break;
-                                                        case 'NH':
+                                                        case 1:
                                                             $payment = "Thanh toán qua ngân hàng";
                                                         break;
                                                         default:
@@ -447,43 +443,23 @@
                                                         break;
                                                     };
                                                     
-                                                    $stauts = null;
-                                                    switch($values['StatusBill']){ 
-                                                        case 0:
-                                                            $stauts = "Chưa thanh toán";
-                                                        break;
-                                                        case 1:
-                                                            $stauts = "Đã thanh toán";
-                                                        break;
-                                                        case 2:
-                                                            $stauts = "thanh toán trước đang đợi lấy hàng";
-                                                        break;
-                                                        case 3:
-                                                            $stauts = "Đã lấy hàng thành công";
-                                                        break;
-                                                        default:
-                                                            $stauts = "";
-                                                        break;
-    
-                                                    }
 
+                        
                                                 echo "
                                                 <tr>
                                                   
-                                                     <td>{$values['IdAccount']}</td>
-                                                     <td>{$values['IdProduct']}</td>
-                                                     <td>{$values['IdTable']}</td>
-                                                    <td>{$values['IdAccompanyingFood']}</td>
-                                                    <td>{$values['QuantityBill']}</td>
+                                                     <td>{$values['IdOrder']}</td>
+                                                
+                                                     <td>{$values['BillDate']}</td>  
+                                                   
                                                     <td>{$values['PriceBill']}</td>
-                                                    <td>{$stauts}</td>
-                                                    <td>{$values['DateEditBill']}</td>  
-                                                    <td>{$values['NoteBill']}</td>
+                                                   
                                                     <td>{$payment}</td>
                                                     <td>
-                                                        <a href='AdminController.php?act=UpdateBill&IdBill={$values['IdBill']}'>
-                                                            <input type='button' value='Sửa'> 
-                                                        </a>                                                                                                              
+                                                        <a href='AdminController.php?act=ListBill&delete={$values['IdBill']}'>
+                                                            <input type='button' value='Xóa'> 
+                                                        </a>   
+                                                                                                                                                             
                                                     </td>   
                                             </tr>                                                
                                                 ";

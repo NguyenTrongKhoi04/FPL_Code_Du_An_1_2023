@@ -399,92 +399,55 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Thêm Sản Phẩm</h1>
-                    
+                    <h1 class="h3 mb-2 text-gray-800">Tables</h1>
+                    <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
+                        For more information about DataTables, please visit the <a target="_blank"
+                            href="https://datatables.net">official DataTables documentation</a>.</p>
+
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+                        </div>
                         <div class="card-body">
-                            <h1 style="color: red">
-                                <?php
-                                    if(isset($alert)){
-                                        echo $alert === true ? "Thêm sản phẩm thành công" : $alert;                                  
-
-                                    }
-                                ?>
-                            </h1>
                             <div class="table-responsive">
-                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                   
-                                   <tr>
-                                           <th></th>
-                                           <th>Nhập Thông tin</th>
-                                           <th></th>     
-                                   </tr>
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                           
+                                            <th>Size</th>
+                                            <th>Sản phẩm</th>
+                                            <th>thao tác</th>
+                                           
 
+                                        </tr>
+                                    </thead>
+                                    <tbody> 
+                                        <?php 
+                                            foreach(getListSizePro() as $values){
 
+                                                echo "
+                                                <tr>
+                                                    <td>{$values['NameSize']}</td>
+                                                    <td>{$values['NameProduct']}</td>
 
-                                   <tbody>                
-                                       <form action="AdminController.php?act=AddAccompanyingfood" method="post" enctype="multipart/form-data">
-                                            <tr>
-                                               <td>id sản phẩm</td>
-                                               
-                                               <td>
-                                               <select name="IdProduct" id="">          
-                                                    <?php
-                                                    foreach(getAllProduct() as $valueProduct){
-                                                        echo "
-                                                            <option value='{$valueProduct['IdProduct']}'>{$valueProduct['NameProducts']}</option>
-                                                        ";
-                                                    }
-                                                    ?>
-                                                    
-                                                </select>
-                                               </td>
-                                                
-                                           </tr>  
-                                            <tr>
-                                               <td>Tên</td>
-                                                <td><input name = "NameAccompanyingFood" type="text"></td>
-                                                
-                                           </tr>
-                                           <tr>
-                                               <td>Số lượng</td>
-                                               <td><input name = "QuantityAccompanyingFood" type="number"></td>
-                                               
-                                           </tr>
-             
-                                           <tr>
-                                               <td>Giá</td>
-                                               <td>
-                                                    <input type="number" name = "PriceAccompanyingFood" id="">
-                                                </td>
-                                                
-                                           </tr>
-                                           <tr>
-                                               <td>Ảnh</td>
-                                               <td>
-                                                    <input type="file" name = "ImageAccompanyingFood" alt="">
-                                               </td>
-                                                
-                                           </tr>
+                                                    <td>
+                                                        <a href='AdminController.php?act=UpdateSizePro&IdSizePro={$values['IdSizePro']}'>
+                                                            <input type='button' value='Sửa'> 
+                                                        </a>
+                                                        <a href='AdminController.php?act=ListSizePro&delete={$values['IdSizePro']}'>
+                                                            <input type='button' value='Xóa'>
+                                                        </a>                                                                                                               
+                                                    </td>   
+                                            </tr>                                                
+                                                ";
+                                            }
+                                            // {$values['']}
+                                        ?> 
 
-                                           <tr>
-                                               <td>Trạng thái</td>
-                                               <td>
-                                                    <select name="StatusAccompanyingFood" id="">
-                                                        <option value="" selected hidden>Sản phẩm</option>
-                                                        <option value="0">Bình thường</option>
-                                                        <option value="1">Không bán</option>
-                                                    </select>
-                                               </td>
-                                               
-                                           </tr>
-       
-                                           <td><input name = "submit" type="submit" value="thêm"></td>                              
-                                        </form>
-
-                                   </tbody>
-                               </table>
+        
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>

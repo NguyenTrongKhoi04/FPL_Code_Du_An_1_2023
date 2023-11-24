@@ -414,60 +414,55 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>IdAccoun</th>
-                                            <th>Name</th>
+                                           
+                                            <th>Tên</th>
                                             <th>Gmail</th>
-                                            <th>Gender</th>
-                                            <th>Password</th>
-                                            <th>Status</th>
-                                            <th>Type</th>
-                                            <th>DateEdit</th>
-                                            <th>Thao Tác</th>
+                                            <th>Giới tính</th>
+                                            <th>Mật khẩu</th>
+                                            <th>Ảnh</th>
+                                            <th>Trạng thái</th>
+                                            <th>Role</th>
+                                            <th>Ngày cập nhật</th>
+                                            <th>Thao tác</th>
+
                                         </tr>
                                     </thead>
-                                    <tbody>  
-                                        <tr>
-                                            <td>1</td>
-                                            <td>Khôi</td>
-                                            <td>khoi@gmail.com</td>
-                                            <td>Nam</td>
-                                            <td>Khoi2004</td>
-                                            <td></td>
-                                            <td></td>
-                                            <td>8/11/2023</td>          
-                                            <td>
-                                                <input type="button" value="Sửa">  
-                                                <input type="button" value="Xóa">
-                                            </td>   
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>Điệp</td>
-                                            <td>diep@gmail.com</td>
-                                            <td>Nam</td>
-                                            <td>diep2004</td>
-                                            <td></td>
-                                            <td></td>
-                                            <td>8/11/2023</td>          
-                                            <td>
-                                                <input type="button" value="Sửa">  
-                                                <input type="button" value="Xóa">
-                                            </td> 
-                                        </tr>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>Khánh</td>
-                                            <td>khanh@gmail.com</td>
-                                            <td>Nam</td>
-                                            <td>khanh2004</td>
-                                            <td></td>
-                                            <td></td>
-                                            <td>8/11/2023</td>          
-                                            <td>
-                                                <input type="button" value="Sửa">  
-                                                <input type="button" value="Xóa">
-                                            </td> 
-                                        </tr>
+                                    <tbody> 
+                                        <?php 
+                                            foreach(getListAccount() as $values){
+
+                                                $Gender = $values["Gender"] === 0 ? "Nam" :"Nữ";
+                                                $status = $values["StatusAccount"] ===  0 ? "Hoạt động" : "Đã xóa";
+                                                $Role =  $values["Role"] === 0 ? "user" :"admin";
+
+                                                echo "
+                                                <tr>
+                                                    <td>{$values['NameAccount']}</td>
+                                                    <td>{$values['Gmail']}</td>
+                                                    <td>{$Gender}</td>
+                                                    <td>{$values['Password']}</td>
+                                                    <td style='max-width: 100px'>
+                                                        <img style='max-width: 100%' src='../assets/img/admin/{$values['ImageAccounts']}' alt='image' >
+                                                    </td>  
+                                                    
+                                                    <td>{$status}</td>
+                                                    <td>{$Role}</td>
+                                                    <td>{$values['DateEditAccount']}</td>
+                                                    <td>
+                                                        <a href='AdminController.php?act=UpdateAccount&IdAccount={$values['IdAccount']}'>
+                                                            <input type='button' value='Sửa'> 
+                                                        </a>
+                                                        <a href='AdminController.php?act=ListAccount&delete={$values['IdAccount']}'>
+                                                            <input type='button' value='Xóa'>
+                                                        </a>                                                                                                               
+                                                    </td>   
+                                            </tr>                                                
+                                                ";
+                                            }
+                                            // {$values['']}
+                                        ?> 
+
+        
                                     </tbody>
                                 </table>
                             </div>

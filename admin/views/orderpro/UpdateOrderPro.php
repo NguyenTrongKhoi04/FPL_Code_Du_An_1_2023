@@ -399,7 +399,14 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Thêm SizeDefault</h1>
+                    <h1 style="color: red">
+                        <?php
+                            if(isset($alert)){
+                                echo $alert === true ? "Cập nhật sản phẩm thành công" : "Cập nhật sản phẩm thất bại";                                  
+
+                            }
+                        ?>
+                    </h1>
                     
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
@@ -409,25 +416,101 @@
                                    
                                    <tr>
                                            <th></th>
-                                           <th>Nhập Thông tin</th>
-                                           <th></th>     
+                                           <th>Thông tin</th>
+                                           
+                                           <th></th>
                                    </tr>
                 
+              
+                         
+                                   <tbody> 
+                                    <?php 
+                                    if(isset($_GET["IdOrder_Pro"]) && !empty($_GET["IdOrder_Pro"])){
+                                        $dataOrderPro =getOrderPro($_GET['IdOrder_Pro']);
+                                        extract($dataOrderPro['0']);
+                                        $stauts = null;
+                                        switch($StatusOrders){
+                                            case 0:
+                                                $stauts = "Bếp đang làm";
+                                            break;
+                                            case 1:
+                                                $stauts = "Bếp làm xong";
+                                            break;
+                                            case 2:
+                                                $stauts = "Nhân viên phục vụ đã nhận đồ";
+                                            break;
+                                            case 3:
+                                                $stauts = "Khách đã nhận được sản phẩm";
+                                            break;
+                                            case 4:
+                                                $stauts = "Trả lại sản phẩm";
+                                            break;
 
-                                   <tbody>                
-                                       <form action="AdminController.php?act=AddSizeDefault" method="post">
+                                        }          
+                                      ?>
+                                        <form action="AdminController.php?act=UpdateOrderPro&IdOrder_Pro=<?= $IdOrder_Pro?>" method="post">
+                                             <tr>
+                                                <td>Order</td>
+                                                <td>
+                                                    <select name="IdOrder" id="">
+                                                        <option value="<?= $IdOrder?>" selected hidden><?= $IdOrder ?></option>
+                                                        <?php
+                                                    foreach(getIdOrderPro() as $valueOrderPro){
+                                                        echo "
+                                                            <option value='{$valueOrderPro['IdOrder']}'>{$valueOrderPro['IdOrder']}</option>
+                                                        ";
+                                                    }
+                                                        ?>
+                                                        
+                                                    </select>
+                                                </td>                  
+                                            </tr>
                                             <tr>
-                                               <td>IdSizeDefault</td>
-                                                <td><input name = "SizeDefault" type="text"></td>
-                                                
-                                           </tr>
-             
-                                           <td><input name = "submit" type="submit" value="thêm"></td>                              
-                                        </form>
+                                                <td>Tên Sản phẩm</td>
+                                                <td>
+                                                    <select name="IdProduct" id="">
+                                                        <option value="<?= $IdProduct?>" selected hidden><?= $NameProduct ?></option>
+                                                        <?php
+                                                    foreach(getOrProduct() as $valueProduct){
+                                                        echo "
+                                                            <option value='{$valueProduct['IdProduct']}'>{$valueProduct['NameProduct']}</option>
+                                                        ";
+                                                    }
+                                                        ?>
+                                                        
+                                                    </select>
+                                                </td>                  
+                                            </tr>
 
+                                            <tr>
+                                                <td>Trạng thái OrderPro</td>
+                                                <td>
+                                                    <select name="StatusOrders" id="">
+                                                            <option value="<?= $StatusOrders ?>" selected hidden><?= $stauts ?></option>
+                                                            <option value="0">Bếp đang làm</option>
+                                                            <option value="1">Bếp làm xong</option>
+                                                            <option value="2">Nhân viên phục vụ đã nhận đồ</option>
+                                                            <option value="3">Khách đã nhận được sản phẩm</option>
+                                                            <option value="4">Trả lại sản phẩm</option>
+                                                    </select>
+                                                </td>
+                                                
+                                            </tr>
+
+                              
+
+                                              <input type="text" hidden value="<?= $IdOrder_Pro?>" name="IdOrder_Pro">    
+                                            <td><input  name = "submit" type="submit" value="thêm"></td>    
+ 
+                                    </form>  
+                                
+                                       <?php 
+                                       }
+
+                                       ?>
+          
                                    </tbody>
-                               </table>
-                            </div>
+                            </table>
                         </div>
                     </div>
 

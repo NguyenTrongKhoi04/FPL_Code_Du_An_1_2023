@@ -399,20 +399,11 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Thêm Card</h1>
+                    <h1 class="h3 mb-2 text-gray-800">Thêm Sản Phẩm</h1>
                     
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
-                        <div class="card-body">
-                            <h1 style="color: red">
-                                <?php
-                                    if(isset($alert)){
-                                        echo $alert === true ? "Thêm sản phẩm thành công" : $alert;                                  
 
-                                    }
-                                ?>
-                            </h1>
-                            <div class="table-responsive">
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                    
                                    <tr>
@@ -420,75 +411,59 @@
                                            <th>Nhập Thông tin</th>
                                            <th></th>     
                                    </tr>
-                                  
+
+	
+                                   
                                    <tbody>                
-                                       <form action="AdminController.php?act=AddCard" method="post">
+                                       <form action="AdminController.php?act=AddOrderPro" method="post">
+                                            <tr>
+                                               <td>Order</td>                                              
+                                               <td>
+                                               <select name="IdOrder" id="">  
+                                                    <?php
+
+                                                    foreach(getIdOrderPro() as $valueOrderPro){
+                                                        echo "
+                                                            <option value='{$valueOrderPro['IdOrder']}'>{$valueOrderPro['IdOrder']}</option>
+                                                        ";
+                                                    }
+                                                    ?>                                                    
+                                                </select>
+                                               </td>
+                                                
+                                           </tr> 
                                             <tr>
                                                <td>Tên tài khoản</td>
                                                <td>
-                                               <select name="IdAccount" id="">                 
-                                                    <?php
-                                                    foreach(getCAccount() as $valueAccount){
-                                                        echo "
-                                                            <option value='{$valueAccount['IdAccount']}'>{$valueAccount['NameAccounts']}</option>
-                                                        ";
-                                                    }
-                                                    ?>
-                                                    
-                                                </select>
-                                               </td>
-                                            <tr>
-                                           <tr>
-                                               <td>id sản phẩm</td>
-                                               
-                                               <td>
                                                <select name="IdProduct" id="">
-                                                    
-                                                    <?php
-                                                    foreach(getCProduct() as $valueProduct){
-                                                        echo "
-                                                            <option value='{$valueProduct['IdProduct']}'>{$valueProduct['NameProducts']}</option>
-                                                        ";
-                                                    }
-                                                    ?>
-                                                    
-                                                </select>
-                                               </td>
-                                                
-                                           </tr> 
-
-                                           <tr>
-                                               <td>id sản phẩm</td>
-                                               
-                                               <td>
-                                               <select name="IdSize" id="">
-                                                    
-                                                    <?php
-                                                    foreach(getCSize() as $valueProduct){
-                                                        echo "
-                                                            <option value='{$valueProduct['IdSize']}'>{$valueProduct['IdSizeDefault']}</option>
-                                                        ";
-                                                    }
-                                                    ?>
-                                                    
-                                                </select>
-                                               </td>
-                                                
-                                           </tr> 
-
-                                            </tr>  
-                                               <td>Số lượng</td>
-                                               <td><input name = "Quantity" type="number"></td>
-                                               
-                                           </tr>   
                                             
-                                          
-                                            <tr>
-                                               <td>Giá</td>
-                                               <td>
-                                                    <input type="number" name = "Price" id="">
-                                                </td>
+                                                    <?php
+                                                    foreach(getOrProduct() as $valueProduct){
+                                                        echo "
+                                                            <option value='{$valueProduct['IdProduct']}'>{$valueProduct['NameProduct']}</option>
+                                                        ";
+                                                    }
+                                                    ?>
+                                                    
+                                                </select>
+                                               </td>
                                                 
+                                           </tr>   
+                       
+                                          <tr>
+                                               <td>Trạng thái</td>
+                                               <td>
+                                                    <select name="StatusOrders" id="">
+                                                        <option value="" selected hidden>Sản phẩm</option>
+                                                        <option value="0">Bếp đang làm</option>
+                                                        <option value="1">Bếp làm xong</option>
+                                                        <option value="2">Nhân viên phục vụ đã nhận đồ</option>
+                                                        <option value="3">Khách đã nhận được sản phẩm</option>
+                                                        <option value="4">Trả lại sản phẩm</option>
+                                                        
+                                                    </select>
+                                               </td>
+                                               
                                            </tr>
                                            <td><input name = "submit" type="submit" value="thêm"></td>                              
                                         </form>

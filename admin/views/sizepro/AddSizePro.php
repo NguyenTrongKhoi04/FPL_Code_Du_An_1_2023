@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -400,43 +399,71 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Danh sách SizeDefault</h1>
-
-
+                    <h1 class="h3 mb-2 text-gray-800">Thêm Danh Mục</h1>
+                    
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th>SizeDefault</th>
-                                            <th></th>
+                             <h1 style="color: red">
+                                <?php include_once $ThongBao ?>
+                            </h1>
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                   
+                                   <tr>
+                                           <th></th>
+                                           <th>Thông tin</th>
+                                           <th></th>
+                                           <th></th>     
+                                   </tr>
+                
 
-                                        </tr>
-                                    </thead>
-                                    <tbody>  
-                                    <?php 
-                                        foreach(getListSizeDefault() as $values){
-                                            
-                                            echo "
-                                            <tr>
-                                                <td>{$values['SizeDefault']}</td>
+                                   <tbody>                
+                                   <form action="AdminController.php?act=AddSizePro" method="post" >
+                                              <tr>
+                                                <td>Product</td>
                                                 <td>
-                                                    <a href='AdminController.php?act=UpdateSizeDefault&IdSizeDefault={$values['IdSizeDefault']}'>
-                                                        <input type='button' value='Sửa'> 
-                                                    </a>
-                                                    <a href='AdminController.php?act=ListSizeDefault&delete={$values['IdSizeDefault']}'>
-                                                        <input type='button' value='Xóa'>
-                                                    </a>                                                                                                               
-                                                </td>   
-                                        </tr>                                                
-                                            ";
-                                        }
-                                    
-                                    ?> 
-                                    </tbody>
-                                </table>
+                                                <select name="IdProduct" id="">
+                                                   
+                                                    <?php
+                                                    foreach(getSPProduct() as $value){
+                                                        extract($value);
+                                                        echo "
+                                                            <option value='{$value['IdProduct']}'>{$value['NameProduct']}</option>
+                                                        ";
+                                                    }
+                                                    ?>                                                  
+                                                </select>
+                                                </td>
+                                                
+                                            </tr>
+                                            <tr>
+                                                <td> Size </td>
+                                                <td>
+                                                <select name="IdSize" id="">
+                                                    
+                                                    <?php
+                                                    foreach(getAllSize() as $valueSize){
+                                                        extract($valueSize);
+                                                        echo "
+                                                            <option value='{$valueSize['IdSize']}'>{$valueSize['NameSize']}</option>
+                                                        ";
+                                                    }
+                                                    ?>                                                  
+                                                </select>
+                                                </td>
+                                            </tr>
+                                
+
+                                     
+                                            <input name = "submit" type="submit" value="thêm">
+                                            <td> <a href="AdminController.php?act=ListSizePro"><input  class="mr20" type="button" value="DANH SÁCH"></a></td>              
+                                            </form>
+                                            <td></td>  
+                                          
+                                   
+                                   </tbody>
+                               </table>
                             </div>
                         </div>
                     </div>

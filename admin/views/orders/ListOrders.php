@@ -415,17 +415,13 @@
                                     <thead>
                                         <tr>
                                            <th>Số bản</th>
-                                            <th>AccompanyingFood</th>
-                                            <th>Sản phẩm</th>
                                             <th>Tên khách hàng</th>
                                             <th>Giá</th>
                                             
                                             <th>Trạng thái</th>
-                                            <th>Số lượng</th>
-                                            <th>Note</th>
-                                            
-                            
-            
+                                          
+                                            <th>Ngày cập nhật</th>
+                                            <th>Thao tác</th>
 
                                     </thead>
                                     <tbody> 
@@ -455,22 +451,20 @@
     
                                                     }
 
-                                                echo "
+                                            echo "
+                                            
                                                 <tr>
-                                                    <td>{$values['IdTable']}</td>
-                                                    <td>{$values['IdAccompanyingFood']}</td>
-                                                    <td>{$values['IdProduct']}</td>
-                                                    <td>{$values['IdAccount']}</td>
+                                                    <td>{$values['NumberTable']}</td>
+                                                    <td>{$values['NameAccount']}</td>
                                                     <td>{$values['PriceOrders']} VND</td>
                                                              
                                                     <td>{$stauts}</td>
-                                                    <td>{$values['QuantityOrders']}</td>  
-                                                    <td>{$values['NoteOrders']}</td>  
+                                                    <td>{$values['OrderDate']}</td>  
                                                     <td>
-                                                        <a href='AdminController.php?act=UpdateOrders&IdOder={$values['IdOder']}'>
+                                                        <a href='AdminController.php?act=UpdateOrders&IdOrder={$values['IdOrder']}'>
                                                             <input type='button' value='Sửa'> 
                                                         </a>
-                                                        <a href='AdminController.php?act=ListOrders&delete={$values['IdOder']}'>
+                                                        <a href='AdminController.php?act=ListOrders&delete={$values['IdOrder']}'>
                                                             <input type='button' value='Xóa'>
                                                         </a>                                                                                                               
                                                     </td>   

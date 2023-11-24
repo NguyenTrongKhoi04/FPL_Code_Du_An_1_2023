@@ -5,52 +5,48 @@ include_once "../app/Pdo.php";
  * $data: dữ liệu từ form post
  * */ 
 function getIdTable(){
-    $sql= "select * from tables";
+    $sql= "select * from  tables";
     return query_All($sql);  
 }
 
-function getIdAccompanyingfood(){
-    $sql= "select * from accompanyingfood";
-    return query_All($sql);  
-}
 
-function getIdProduct(){
-    $sql= "select * from product";
-    return query_All($sql);  
-}
+// function getIdProduct(){
+//     $sql= "select * from product";
+//     return query_All($sql);  
+// }
 
 function getIdAccount(){
     $sql= "select * from account";
     return query_All($sql);  
 }
+
+// Toàn văn
+// IdOrder	
+// IdTable	
+// IdAccount	
+// PriceOrders	
+// StatusOrders	
+// OrderDate
 /**
  * $data: dữ liệu từ form post
  * $IdDetails: Lấy IdDetails mới được thêm vào
  * $dataImage: dữ liệu ảnh từ from file
  * */ 
-// IdOder	IdTable	IdAccompanyingFood	IdProduct	IdAccount	PriceOrders	StatusOrders	QuantityOrders	NoteOrders	
+
 
 function pushOrder($data){
     extract($data);
 
-    $sql= "insert into orders values ('','$IdTable','$IdAccompanyingFood','$IdProduct', '$IdAccount','$PriceOrders', '' ,'$QuantityOrders', '$NoteOrders')";
+    $sql= "insert into orders values ('','$IdTables', '$IdAccount' , '$PriceOrders', '' ,'')";
 
     return pdo_Execute($sql);
 }
 
-
 function getListOrder(){
-    // $sql = '
-    //     select size.* , sizedefault.* , product.* from size s
-    //     join  sizedefault d on s.IdSizeDefault = d.IdSizeDefault
-    //     join product p on s.IdProduct = p.IdProduct;
-    // ';
-    
+
     $sql ='
-    select od.*,tb.*,af.*,pr.*,ac.* from orders od 
-    join tables tb on od.IdTable = tb.IdTable
-    join accompanyingfood af on od.IdAccompanyingFood = af.IdAccompanyingFood
-     join product pr on od.IdProduct = pr.IdProduct
+    select od.*,tb.*,ac.* from orders od 
+    join tables tb on od.IdTable = tb.IdTables
      join account ac on od.IdAccount = ac.IdAccount;
     ';
     return query_All($sql);
@@ -60,33 +56,36 @@ function getListOrder(){
  * $idProduct: Id của sản phẩm được truyền vào 
 
  * */ 
-function deleteOrder($IdOder){
-    $sql = "delete from orders where IdOder = $IdOder";
+function deleteOrder($IdOrder){
+    $sql = "delete from orders where IdOrder = $IdOrder";
     return pdo_Execute($sql);
 }
  
-function updateOrder($dataOrder, $IdOder){
+function updateOrder($dataOrder, $IdOrder){
     extract($dataOrder);
 
     $sqlOrder = "
-    update orders set IdTable = '$IdTable',IdAccompanyingFood = '$IdAccompanyingFood',IdProduct = '$IdProduct',
-    IdAccount  = '$IdAccount',PriceOrders = '$PriceOrders',StatusOrders = '$StatusOrders' ,QuantityOrders = '$QuantityOrders',
-     NoteOrders= '$NoteOrders' where IdOder = '$IdOder'
+    update orders set IdTable = '$IdTables', IdAccount  = '$IdAccount',PriceOrders = '$PriceOrders',
+    StatusOrders = '$StatusOrders' where IdOrder = '$IdOrder' 
     ";
     
     return pdo_Execute($sqlOrder);
 }
 
-function getOrder($IdOder){
-    $sql = "select od.*,tb.*,af.*,pr.*,ac.* from orders od 
-    join tables tb on od.IdTable = tb.IdTable
-    join accompanyingfood af on od.IdAccompanyingFood = af.IdAccompanyingFood
-     join product pr on od.IdProduct = pr.IdProduct
+function getOrder($IdOrder){
+    $sql = "select od.*,tb.*,ac.* from orders od 
+    join tables tb on od.IdTable = tb.IdTables
      join account ac on od.IdAccount = ac.IdAccount ;
-     where od.IdOder = $IdOder
+     where od.IdOrder = $IdOrder
     ";
     
     return query_All($sql);
 }
 
+function check_Order($PriceOrders){
+
+    $sql = "SELECT * FROM orders WHERE PriceOrders = '$PriceOrders'";
+    
+    return query_One($sql);
+}
 ?>

@@ -399,67 +399,88 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Thêm tài khoản</h1>
+                    <h1 class="h3 mb-2 text-gray-800">Thêm Sản Phẩm</h1>
                     
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-body">
+                            <h1 style="color: red">
+                            <?php include_once $ThongBao ?>
+                            </h1>
                             <div class="table-responsive">
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                    
                                    <tr>
                                            <th></th>
-                                           <th>Thông tin</th>
+                                           <th>Nhập Thông tin</th>
                                            <th></th>     
                                    </tr>
-                
+
 
                                    <tbody>                
-                                       <form action="">
-                                           <tr>
-                                               <td>IdAccount</td>
-                                               <td><input type="text"></td>
-                                               
-                                           </tr>
-                                           <tr>
-                                               <td>Name</td>
-                                                <td><input type="text"></td>
+                                       <form action="AdminController.php?act=AddAccount" method="post" enctype="multipart/form-data"> 
+                                            <tr>
+                                               <td>Tên</td>
+                                                <td><input name = "NameAccount" type="text"></td>
                                                 
                                            </tr>
                                            <tr>
-                                               <td>Gmail </td>
-                                               <td><input type="text"></td>
+                                               <td>Gmail</td>
+                                                <td><input name = "Gmail" type="email"></td>
                                                 
                                            </tr>
-                                           <tr>
-                                               <td>Gender</td>
-                                               <td><input type="text"></td>
-                                                
-                                           </tr>
-                                           </tr>
-                                               <td>Password</td>
-                                               <td><input type="text"></td>
-                                                
-                                           </tr>
-                                           <tr>
-                                               <td>Status</td>
-                                               <td><input type="text"></td>
-                                                
-                                           </tr>
-                                           <tr>
-                                               <td>Type</td>
-                                               <td><input type="text"></td>
-                                                
-                                           </tr>
-                                           <tr>
-                                               <td>DateEdit</td>
-                                               <td><input type="text"></td>
-                                               
-                                           </tr>
-       
-                                       </form>
 
-                                       <td><input type="button" value="thêm"></td>                              
+                                           <tr>
+                                               <td>Giới tính</td>
+                                               <td>
+                                                    <select name="Gender" id="">
+                                                        <option value="" selected hidden>Giới tính</option>
+                                                        <option value="0">Nữ</option>
+                                                        <option value="1">Nam</option>
+                                                        
+                                                    </select>
+                                               </td>
+                                               
+                                           </tr>
+                                           <tr>
+                                               <td>Password</td>
+                                               <td><input name = "Password" type="password"></td>
+                                               
+                                           </tr>
+             
+
+                                           <tr>
+                                               <td>Ảnh</td>
+                                               <td>
+                                                    <input type="file" name = "ImageAccounts" alt="">
+                                               </td>
+                                                
+                                           </tr>
+                                           <tr>
+                                               <td>Trạng thái</td>
+                                               <td>
+                                                    <select name="StatusAccount" id="">
+                                                        <option value="0">Hoạt động</option>
+                                                        <option value="1">đã xóa</option>
+                                                    </select>
+                                               </td>
+                                               
+                                           </tr>
+                                           <tr>
+                                               <td>Role</td>
+                                               <td>
+                                                    <select name="Role" id="">
+                                                        <option value="" selected hidden>Role</option>
+                                                        <option value="0">user</option>
+                                                        <option value="1">admin</option>
+                                                    </select>
+                                               </td>
+                                               
+                                           </tr>
+
+                                           <td><input name = "submit" type="submit" value="thêm"></td>                              
+                                        </form>
+
                                    </tbody>
                                </table>
                             </div>

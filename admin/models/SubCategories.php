@@ -28,7 +28,7 @@ function pushSubCategories($data){
     extract($data);
     var_dump($data);
 
-    $sql= "insert into subcategories values('','$IdCategory','$SubCategories','')";
+    $sql= "insert into sub_categories values('','$IdCategory','$NameSubCategories','')";
     var_dump($sql);
     return pdo_Execute($sql);
 }
@@ -36,7 +36,7 @@ function pushSubCategories($data){
 
 function getSubCategories(){
     $sql = '
-        select sb.*,ct.* from subcategories sb
+        select sb.*,ct.* from sub_categories sb
         join category ct on sb.IdCategory = ct.IdCategory;
     ';
     return query_All($sql);
@@ -51,8 +51,14 @@ function getSubCategories(){
 // IdCategory	
 // SubCategories	
 // StatusSubCategories
+
+// Toàn văn
+// IdSubCategories	
+// IdCategory	
+// NameSubCategories	
+// StatusSubCategories
 function deleteSubCategories($idSubCategories){
-    $sql = "update subcategories set StatusSubCategories = 1 where IdSubCategories = $idSubCategories";
+    $sql = "update sub_categories set StatusSubCategories = 1 where IdSubCategories = $idSubCategories";
     return pdo_Execute($sql);
 }
 
@@ -62,7 +68,7 @@ function updateSubCategories($dataSubCategories, $IdCategory){
     // var_dump($dataSubCategories);
     // die;
     $sqlSubCategories = "
-    update subcategories set IdCategory = '$IdCategory' ,SubCategories = '$Name',
+    update sub_categories set IdCategory = '$IdCategory' ,NameSubCategories = '$Name',
     StatusSubCategories='$StatusSubCategories'  where IdSubCategories = '$IdSubCategories'
     ";
    
@@ -70,10 +76,17 @@ function updateSubCategories($dataSubCategories, $IdCategory){
 }
 
 function getAllSubCategories($IdSubCategories){
-    $sql = "select sb.*,ct.* from subcategories sb
+    $sql = "select sb.*,ct.* from sub_categories sb
     join category ct on sb.IdCategory = ct.IdCategory;
     where sb.IdSubCategories = $IdSubCategories
     ";
     return query_All($sql);
+}
+
+function check_subcategories($NameSubCategories){
+
+    $sql = "SELECT * FROM sub_categories WHERE NameSubCategories = '$NameSubCategories' ";
+
+    return query_One($sql);
 }
 ?>

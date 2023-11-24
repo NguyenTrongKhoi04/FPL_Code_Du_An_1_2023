@@ -418,6 +418,7 @@
                                             <th>Sản phẩm</th>
                                             <th>Content</th>
                                             <th>Trạng thái</th>
+                                            <th>Ngày cập nhật</th>
                                             <th></th>
                                                                     
             
@@ -430,19 +431,19 @@
                                                     $stauts = null;
                                                     switch($values['StatusComment']){ 
                                                         case 0:
-                                                            $stauts = "Đồ ăn rất tệ";
+                                                            $stauts = "Đồ ăn tuyệt vời";
                                                         break;
                                                         case 1:
-                                                            $stauts = "Đồ ăn tệ";
+                                                             $stauts = "Đồ ăn rất ngon";
                                                         break;
                                                         case 2:
                                                             $stauts = "Đồ ăn ngon";
                                                         break;
                                                         case 3:
-                                                            $stauts = "Đồ ăn rất ngon";
+                                                           $stauts = "Đồ ăn tệ";
                                                         break;
                                                         case 4:
-                                                            $stauts = "Đồ ăn tuyệt vời";
+                                                            $stauts = "Đồ ăn rất tệ";
                                                         break;
                                                         default:
                                                             $stauts = "Ok";
@@ -457,6 +458,7 @@
                                                     <td>{$values['IdProduct']}</td>
                                                     <td>{$values['Content']}</td>
                                                     <td>{$stauts}</td>
+                                                    <td>{$values['DateEditComment']}</td>
         
                                                     <td>
                                                         <a href='AdminController.php?act=UpdateComment&IdComment={$values['IdComment']}'>

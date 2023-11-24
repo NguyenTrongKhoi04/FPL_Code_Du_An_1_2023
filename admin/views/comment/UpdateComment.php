@@ -453,11 +453,11 @@
                                                 <td>Tên khách hàng</td>
                                                 <td>
                                                     <select name="IdAccount" id="">
-                                                        <option value="<?= $IdAccount?>" selected hidden><?= $NameAccounts ?></option>
+                                                        <option value="<?= $IdAccount?>" selected hidden><?= $NameAccount ?></option>
                                                         <?php
                                                         foreach(getCmAccount() as $valueAccount){
                                                             echo "
-                                                                <option value='{$valueAccount['IdAccount']}'>{$valueAccount['NameAccounts']}</option>
+                                                                <option value='{$valueAccount['IdAccount']}'>{$valueAccount['NameAccount']}</option>
                                                             ";
                                                         }
                                                         ?>
@@ -469,11 +469,11 @@
                                                 <td>Tên Product</td>
                                                 <td>
                                                     <select name="IdProduct" id="">
-                                                        <option value="<?= $IdProduct?>" selected hidden><?= $NameProducts ?></option>
+                                                        <option value="<?= $IdProduct?>" selected hidden><?= $NameProduct ?></option>
                                                         <?php
                                                         foreach(getCmProduct() as $valueProduct){
                                                             echo "
-                                                                <option value='{$valueProduct['IdProduct']}'>{$valueProduct['NameProducts']}</option>
+                                                                <option value='{$valueProduct['IdProduct']}'>{$valueProduct['NameProduct']}</option>
                                                             ";
                                                         }
                                                         ?>
@@ -485,7 +485,7 @@
                                             <tr>
                                                 <td>Content</td>
                                                 <td>
-                                                        <input value="<?= $Content ?>" type="number" name = "Content" id="">
+                                                        <input value="<?= $Content ?>" type="text" name = "Content" id="">
                                                 </td>
                                                     
                                             </tr>

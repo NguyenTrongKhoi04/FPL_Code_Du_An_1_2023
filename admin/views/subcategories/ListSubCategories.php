@@ -410,9 +410,10 @@
                                     <thead>
                                         <tr>
                                             <th>Tên danh mục</th>
+                                            <th>Tên danh mục phụ</th>
                                             <th>Trạng thái</th>
-                                            <th>Ngày cập nhật</th>
-                                            <th></th> 
+
+                                            <th>Thao tác</th> 
                                         </tr>
                                     </thead>
                                     <tbody>  
@@ -422,8 +423,8 @@
                                             $status = $values["StatusSubCategories"] ===  0 ? "Hoạt động " : "Đã xóa";                                           
                                             echo "
                                             <tr>
-                                            <td>{$values['IdCategory']}</td>
-                                            <td>{$values['SubCategories']}</td>       
+                                            <td>{$values['NameCategory']}</td>
+                                            <td>{$values['NameSubCategories']}</td>       
                                             <td>{$status}</td>
 
                                                 <td>

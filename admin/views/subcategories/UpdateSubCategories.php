@@ -443,7 +443,7 @@
                                            </tr>
                                            <tr>
                                                 <td>Tên SubCategories</td>
-                                                <td><input value="<?= $SubCategories ?>" name = "Name" type="text"></td>
+                                                <td><input value="<?= $NameSubCategories ?>" name = "Name" type="text"></td>
                                         
                                             </tr>
                                             <tr>

@@ -7,7 +7,7 @@
 $img_Path ="../assets/img/";
 $userAction= '../user/UserController.php?act=';
 $userStyle='../assets/css/user/';
-echo "khoi";
+
 /**
  * ================================================================================
  *                               ADMIN
@@ -16,3 +16,11 @@ echo "khoi";
 $adminStyle ='../../assets/css/admin/';
 $adminJavaScript = '../../assets/js/';
 $adminImg = '../assets/img/admin/';
+
+/**
+ * ================================================================================
+ *                               GLOBAL
+ * ================================================================================
+ */
+$ThongBao='../assets/global/ThongBao.php';
+$SideBarMenu='../assets/global/Admin_SideBarmenu.php';

@@ -399,65 +399,90 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Thêm tài khoản</h1>
+                    <h1 class="h3 mb-2 text-gray-800">Thêm Card</h1>
                     
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-body">
+                            <h1 style="color: red">
+                                <?php
+                                    if(isset($alert)){
+                                        echo $alert === true ? "Thêm sản phẩm thành công" : $alert;                                  
+
+                                    }
+                                ?>
+                            </h1>
                             <div class="table-responsive">
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                    
                                    <tr>
                                            <th></th>
-                                           <th>Thông tin</th>
-                                           
-                                           <th></th>
+                                           <th>Nhập Thông tin</th>
+                                           <th></th>     
                                    </tr>
-                
-                                                        
+                                  
                                    <tbody>                
-                                       <form action="">
-                                           <tr>
-                                               <td>IdAccount	</td>		
-                                               <td><input type="text"></td>  
-                                           </tr>
-                                           <tr>
-                                               <td>Name</td>
-                                               <td><input type="text"></td> 
+                                       <form action="AdminController.php?act=AddCart" method="post">
+                                            <tr>
+                                               <td> sản phẩm</td>
+                                               
+                                               <td>
+                                               <select name="IdProduct" id="">
+                                                    
+                                                    <?php
+                                                    foreach(getCProduct() as $valueProduct){
+                                                        echo "
+                                                            <option value='{$valueProduct['IdProduct']}'>{$valueProduct['NameProduct']}</option>
+                                                        ";
+                                                    }
+                                                    ?>
+                                                    
+                                                </select>
+                                               </td>
+                                                
+                                           </tr> 
+                                            <tr>
+                                               <td>Tên tài khoản</td>
+                                               <td>
+                                               <select name="IdAccount" id="">                 
+                                                    <?php
+                                                    foreach(getCAccount() as $valueAccount){
+                                                        echo "
+                                                            <option value='{$valueAccount['IdAccount']}'>{$valueAccount['NameAccount']}</option>
+                                                        ";
+                                                    }
+                                                    ?>
+                                                    
+                                                </select>
+                                               </td>
+                                            <tr>
+
+
+                                           </tr>  
+                                               <td>Size</td>
+                                               <td><input name = "Size" type="text"></td>
+                                               
+                                           </tr>   
+                                             <tr>
+                                               <td>Giá</td>
+                                               <td>
+                                                    <input type="number" name = "PriceCard" id="">
+                                                </td>
                                                 
                                            </tr>
-                                           <tr>
-                                               <td>Gmail</td>
-                                               <td><input type="text"></td>                                                  
-                                           </tr>
-                                           <tr>
-                                               <td>Gender</td>
-                                               <td><input type="text"></td>                                                 
-                                           </tr>                                               
-                                           </tr>
-                                               <td>Password</td>
-                                               <td><input type="text"></td>                                          
-                                           </tr>
-                                           <tr>
-                                               <td>Status</td>
-                                               <td><input type="text"></td> 
-                                           </tr>
-                                           <tr>
-                                               <td>Tyoe</td>
-                                               <td><input type="text"></td> 
-                                           </tr>
-                                           <tr>
-                                               <td>DateEdit</td>
-                                               <td><input type="text"></td> 
-                                           </tr>
-                                           <tr>
-                                               <td>
-                                                   <input type="button" value="Update Account">
-                                               </td>
-                                           </tr>
-                                       </form>                           
+                                            </tr>  
+                                               <td>Số lượng</td>
+                                               <td><input name = "Quantity" type="number"></td>
+                                    
+                                           </tr>   
+                                            
+                                                                             
+                                           <td><input name = "submit" type="submit" value="thêm"></td>                              
+                                        </form>
+
                                    </tbody>
                                </table>
+                            </div>
                         </div>
                     </div>
 

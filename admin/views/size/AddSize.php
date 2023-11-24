@@ -399,66 +399,35 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Thêm Danh Mục</h1>
+                    <h1 class="h3 mb-2 text-gray-800">Thêm Size</h1>
                     
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-body">
-                            <div class="table-responsive">
+                             <h1 style="color: red">
+                                <?php include_once $ThongBao ?>
+                            </h1>
+                        <div class="table-responsive">
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                    
                                    <tr>
                                            <th></th>
-                                           <th>Thông tin</th>
-                                           <th></th>
+                                           <th>Nhập Thông tin</th>
                                            <th></th>     
                                    </tr>
                 
 
                                    <tbody>                
-                                   <form action="AdminController.php?act=AddSize" method="post" >
-
+                                       <form action="AdminController.php?act=AddSize" method="post">
                                             <tr>
-                                                <td>Id Size phụ</td>
-                                                <td>
-                                                <select name="IdSizeDefault" id="">
-                                                    
-                                                    <?php
-                                                    foreach(getAllSizeDefault() as $valueSizeDefault){
-                                                        extract($valueSizeDefault);
-                                                        echo "
-                                                            <option value='{$valueSizeDefault['IdSizeDefault']}'>{$valueSizeDefault['SizeDefault']}</option>
-                                                        ";
-                                                    }
-                                                    ?>                                                  
-                                                </select>
-                                                </td>
-                                            </tr>
-                                            <h1></h1>
-                                              <tr>
-                                                <td>Id Product id</td>
-                                                <td>
-                                                <select name="IdProduct" id="">
-                                                   
-                                                    <?php
-                                                    foreach(getProduct() as $valueSizeDefault){
-                                                        extract($valueSizeDefault);
-                                                        echo "
-                                                            <option value='{$valueSizeDefault['IdProduct']}'>{$valueSizeDefault['NameProducts']}</option>
-                                                        ";
-                                                    }
-                                                    ?>                                                  
-                                                </select>
-                                                </td>
+                                               <td>Tên Size</td>
+                                                <td><input name = "NameSize" type="text"></td>
                                                 
-                                            </tr>
-                                     
-                                            <input name = "submit" type="submit" value="thêm">
-                                            <td> <a href="AdminController.php?act=ListSize"><input  class="mr20" type="button" value="DANH SÁCH"></a></td>              
-                                            </form>
-                                            <td></td>  
-                                          
-                                   
+                                           </tr>
+             
+                                           <td><input name = "submit" type="submit" value="thêm"></td>                              
+                                        </form>
+
                                    </tbody>
                                </table>
                             </div>

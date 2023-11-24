@@ -404,14 +404,11 @@
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-body">
+                            
                             <h1 style="color: red">
-                                <?php
-                                    if(isset($alert)){
-                                        echo $alert === true ? "Thêm sản phẩm thành công" : $alert;                                  
-
-                                    }
-                                ?>
+                                <?php include_once $ThongBao ?>
                             </h1>
+                            
                             <div class="table-responsive">
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                    
@@ -428,50 +425,15 @@
                                             <tr>
                                                <td>Bàn</td>                                              
                                                <td>
-                                               <select name="IdTable" id="">  
+                                               <select name="IdTables" id="">  
                                                     <?php
+
                                                     foreach(getIdTable() as $valueTable){
                                                         echo "
-                                                            <option value='{$valueTable['IdTable']}'>{$valueTable['NumberTables']}</option>
+                                                            <option value='{$valueTable['IdTables']}'>{$valueTable['NumberTable']}</option>
                                                         ";
                                                     }
                                                     ?>                                                    
-                                                </select>
-                                               </td>
-                                                
-                                           </tr> 
-                                           <tr>
-                                               <td>AccompanyingFood</td>
-                                               
-                                               <td>
-                                               <select name="IdAccompanyingFood" id="">
-                                                    
-                                                    <?php
-                                                    foreach(getIdAccompanyingfood() as $valueAccompanyingFood){
-                                                        echo "
-                                                            <option value='{$valueAccompanyingFood['IdAccompanyingFood']}'>{$valueAccompanyingFood['NameAccompanyingFood']}</option>
-                                                        ";
-                                                    }
-                                                    ?>
-                                                    
-                                                </select>
-                                               </td>
-                                                
-                                           </tr> 
-                                           <tr>
-                                               <td>id sản phẩm</td>
-                                               
-                                               <td>
-                                               <select name="IdProduct" id="">
-                                                    
-                                                    <?php
-                                                    foreach(getIdProduct() as $valueProduct){
-                                                        echo "
-                                                            <option value='{$valueProduct['IdProduct']}'>{$valueProduct['NameProducts']}</option>
-                                                        ";
-                                                    }
-                                                    ?>
-                                                    
                                                 </select>
                                                </td>
                                                 
@@ -484,7 +446,7 @@
                                                     <?php
                                                     foreach(getIdAccount() as $valueAccount){
                                                         echo "
-                                                            <option value='{$valueAccount['IdAccount']}'>{$valueAccount['NameAccounts']}</option>
+                                                            <option value='{$valueAccount['IdAccount']}'>{$valueAccount['NameAccount']}</option>
                                                         ";
                                                     }
                                                     ?>
@@ -516,16 +478,9 @@
                                                </td>
                                                
                                            </tr>
-                                           <tr>
-                                               <td>Số lượng</td>
-                                               <td><input name = "QuantityOrders" type="number"></td>
-                                               
-                                           </tr>
-                                            <tr>
-                                               <td>Note</td>
-                                                <td><input name = "NoteOrders" type="text"></td>
+ 
                                                 
-                                           </tr>
+
 
                                            <td><input name = "submit" type="submit" value="thêm"></td>                              
                                         </form>

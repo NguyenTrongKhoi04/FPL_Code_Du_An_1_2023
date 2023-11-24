@@ -11,6 +11,13 @@ function getCmAccount(){
 }
 
 
+// Toàn văn
+// IdComment	
+// IdAccount	
+// IdProduct	
+// Content	
+// StatusComment	
+// DateEditComment	
 //IdComment	IdAccount	IdProduct	Content	StatusComment	DateEditComment	
 
 function getListComment(){

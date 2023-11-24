@@ -404,7 +404,10 @@
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-body">
-                            <div class="table-responsive">
+                             <h1 style="color: red">
+                                <?php include_once $ThongBao ?>
+                            </h1>
+                        <div class="table-responsive">
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                    
                                    <tr>
@@ -418,7 +421,7 @@
                                        <form action="AdminController.php?act=AddSubCategories" method="post">
 
                                            <tr>
-                                               <td>Danh mục phụ</td>
+                                               <td>Danh mục</td>
                                                <td>
                                                 <select name="IdCategory" id="">
                 
@@ -435,7 +438,7 @@
                                            </tr>
                                            <tr>
                                                <td>SubCategory</td>
-                                                <td><input name = "SubCategories" type="text"></td>
+                                                <td><input name = "NameSubCategories" type="text"></td>
                                                 
                                            </tr>
 

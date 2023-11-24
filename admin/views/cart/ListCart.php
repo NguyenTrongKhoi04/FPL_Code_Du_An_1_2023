@@ -414,38 +414,34 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                           <th>sản phẩm</th>
-                                            <th>Tên</th>
+                                           <th>Khách hàng</th>
+                                            <th>Sản phẩm</th>
+                                            <th>Size</th>
                                             <th>Số lượng</th>
                                             <th>Giá</th>
-                                            <th>Ảnh</th>
-                                            <th>Trạng thái</th>
+                                            <th>Thời gian</th>
+                                            <th>Thao tác</th>
                                             
-                                           
-
-                                        </tr>
                                     </thead>
                                     <tbody> 
                                         <?php 
-                                            foreach(getAccompanyingfood() as $values){
-                                                $status = $values["StatusAccompanyingFood"] ===  0 ? "Bình thường " : "Không bán";
+                                            foreach(getListCart() as $values){
+                    
+
                                                 echo "
                                                 <tr>
                                                     <td>{$values['IdProduct']}</td>
-                                                    <td>{$values['NameAccompanyingFood']}</td>
-                                                    <td>{$values['QuantityAccompanyingFood']}</td>
-                                                    <td>{$values['PriceAccompanyingFood']} VND</td>
-                                                    <td style='max-width: 100px'>
-                                                        <img style='max-width: 100%' src='../assets/img/admin/{$values['ImageAccompanyingFood']}' alt='image' >
-                                                    </td>  
-                                                    
-                                                    <td>{$status}</td>
-
+                                                    <td>{$values['IdAccount']}</td>
+                                                    <td>{$values['Size']}</td>
+                                                    <td>{$values['PriceCard']}VND</td>
+                                                    <td>{$values['Quantity']}</td>
+                                                    <td>{$values['DateCart']}</td>
+                                                            
                                                     <td>
-                                                        <a href='AdminController.php?act=UpdateAccompanyingfood&IdAccompanyingFood={$values['IdAccompanyingFood']}'>
+                                                        <a href='AdminController.php?act=UpdateCart&IdCart={$values['IdCart']}'>
                                                             <input type='button' value='Sửa'> 
                                                         </a>
-                                                        <a href='AdminController.php?act=ListAccompanyingfood&delete={$values['IdAccompanyingFood']}'>
+                                                        <a href='AdminController.php?act=ListCart&delete={$values['IdCart']}'>
                                                             <input type='button' value='Xóa'>
                                                         </a>                                                                                                               
                                                     </td>   
