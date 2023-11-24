@@ -51,6 +51,9 @@ function home_BookingTable($data)
     return $message;
 }
 
+/**
+ * Lấy toàn bộ comment 
+*/
 function home_GetComment()
 {
     $sql = "select c.Content, ac.ImageAccounts, ac.NameAccount, ac.Role from comment c
@@ -64,21 +67,21 @@ function home_GetComment()
  */
 function home_checkOrderTable(){
     // Tiến hành kiểm tra xem ngày tháng người dùng đã order bàn
-$time = new DateTime();
-$time->setTimezone(new DateTimeZone("Asia/Ho_Chi_Minh"));
-$realTime = $time->format('Y-m-d\TH:i');
+    $time = new DateTime();
+    $time->setTimezone(new DateTimeZone("Asia/Ho_Chi_Minh"));
+    $realTime = $time->format('Y-m-d\TH:i');
 
-$dataCheckBooking = query_All('select * from waitingorder where StatusWaitingOrder = 0');
+    $dataCheckBooking = query_All('select * from waitingorder where StatusWaitingOrder = 0');
 
-foreach($dataCheckBooking as $valuesCheck){
-    $dataTimesBefore = (int)$valuesCheck["OrderDateWaitingOrder"] + 3600;
-    if($dataTimesBefore === $realTime){
-            $sqlOrder = "insert into orders values(null, '{$valuesCheck["IdTable"]}', '{$valuesCheck["IdAccount"]}', null, 0, '{$valuesCheck["OrderDateWaitingOrder"]}')";
+    foreach($dataCheckBooking as $valuesCheck){
+        $dataTimesBefore = (int)$valuesCheck["OrderDateWaitingOrder"] + 3600;
+        if($dataTimesBefore === $realTime){
+                $sqlOrder = "insert into orders values(null, '{$valuesCheck["IdTable"]}', '{$valuesCheck["IdAccount"]}', null, 0, '{$valuesCheck["OrderDateWaitingOrder"]}')";
 
-            $sqlTable = "update tables set StatusTable = 1, NumberPeople = '{$valuesCheck["QuantityWaitingOrder"]}' where IdTables = {$valuesCheck["IdTable"]}"; 
-            pdo_Execute($sqlTable);
-            pdo_Execute($sqlOrder);
+                $sqlTable = "update tables set StatusTable = 1, NumberPeople = '{$valuesCheck["QuantityWaitingOrder"]}' where IdTables = {$valuesCheck["IdTable"]}"; 
+                pdo_Execute($sqlTable);
+                pdo_Execute($sqlOrder);
+        }
     }
-}
 
 }
