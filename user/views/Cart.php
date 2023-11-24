@@ -3,14 +3,8 @@
     <main>
         <section class="containerMain">
             <section class="listProduct">
-                <section class="selectAllProducts">
-                    <input type="checkbox" name="" id="checkAll">
-                    <h5>Chọn tất cả (<?= cart_Totail($dataCart)["qualityProduct"] ?> sản phẩm)</h5>
-                    <i class="ti-trash" id="deleteAll"></i>
-                </section>
                 <table>
                     <tr>
-                        <th></th>
                         <th>Ảnh </th>
                         <th>Tên </th>
                         <th>Kích cỡ</th>
@@ -23,7 +17,6 @@
                     foreach($dataCart as $valuesCart){
                         echo "
                             <tr>
-                                <td><input  type='checkbox' name='selected[]' value='{$valuesCart['IdCart']}'></td>
                                 <td><img src='$imgPathAdmin{$valuesCart['ImageProduct']}' alt='img'></td>
                                 <td>{$valuesCart['NameProduct']}</td>
                                 <td>{$valuesCart['Size']}</td>
@@ -49,7 +42,7 @@
             </section>
             <section class="footerAside">
                 <h1>Tổng cộng: <?= cart_Totail($dataCart)["totail"] ?> $</h1>
-                <button type="submit">Thanh Toán</button>
+                <button type="submit" name="ThanhToan">Thanh Toán</button>
             </section>
         </aside>
     </main>

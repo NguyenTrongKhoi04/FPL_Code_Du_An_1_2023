@@ -94,8 +94,9 @@ if (isset($_GET['act']) && ($_GET['act'] != '')) {
             case 'GioHang':
                 $dataCart = cart_GetAllCartByIdAccount($idAccountUser);
                 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                    echo "<pre>";
-                    var_dump($_POST); die();
+                    cart_UpdateCart($_POST["quantity"]);
+                    $_SESSION['dataCarts'] = cart_GetAllCartByIdAccount($idAccountUser);
+                    // chuyển sang chọn bàn 
                 }
                 if (isset($_GET['Delete']) && ($_GET['Delete'] != '')) {
                     if(cart_Delete($_GET['Delete']) === null){
