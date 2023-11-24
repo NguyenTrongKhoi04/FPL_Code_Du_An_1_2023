@@ -132,7 +132,8 @@ if(!empty($_SESSION['user'])){
             break;
             case 'ListSizePro':
                 if(isset($_GET['delete'])&&($_GET['delete'] !='' )){
-                    deleteSize($_GET['delete']);
+                    
+                    deleteSizePro($_GET['delete']);
                 }
                 include_once "views/sizepro/ListSizePro.php";
                 break;
@@ -145,6 +146,7 @@ if(!empty($_SESSION['user'])){
                     }else{
                         $IdSizePro = $data['IdSizePro'];
                     }
+
                     updateSizePro($data, $IdSizePro);
                 } 
                 include_once "views/sizepro/UpdateSizePro.php";

@@ -57,7 +57,7 @@ function updateSizePro($dataSizePro, $IdSizePro){
     update size_pro set  IdProduct = '$IdProduct' , IdSize = '$IdSize' where IdSizePro = '$IdSizePro'
 
     ";
-    var_dump($sqlSizePro); 
+    
     return pdo_Execute($sqlSizePro);
     
 }
@@ -75,6 +75,7 @@ function getSizePro($IdSizePro){
 function check_SizePro($IdProduct,$IdSize){
 
     $sql = "SELECT * FROM  size_pro  WHERE IdProduct = '$IdProduct' AND IdSize ='$IdSize' ";
+    
     return query_One($sql);
 }
 
