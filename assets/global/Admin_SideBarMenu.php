@@ -13,9 +13,14 @@
 
 <!-- Nav Item - Dashboard -->
 <li class="nav-item">
-    <a class="nav-link" href="index.html">
+    <a class="nav-link" href="AdminController.php">
         <i class="fas fa-fw fa-tachometer-alt"></i>
-        <span>Trang chủ</span></a>
+        <span>Trang chủ</span>
+    </a>
+    <a class="nav-link" href="<?=$adminAction?>dangxuat">
+        <i class="fas fa-fw fa-tachometer-alt"></i>
+        <span>Đăng Xuất</span>
+    </a>
 </li>
 
 <!-- Divider -->
@@ -123,6 +128,7 @@
             <a class="collapse-item" href="blank.html">Blank Page</a>
         </div>
     </div>
+    
 </li>
 
 <!-- Nav Item - Charts -->

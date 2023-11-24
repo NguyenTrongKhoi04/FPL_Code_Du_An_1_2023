@@ -33,4 +33,5 @@
     </div>
 </footer>
 </body>
+<script src="../assets/js/DatBan.js"></script>
 </html>

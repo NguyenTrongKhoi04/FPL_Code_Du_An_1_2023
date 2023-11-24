@@ -105,3 +105,13 @@ html {
   text-align: center;
   font-size: 50px;
 }/*# sourceMappingURL=DatBan.css.map */
+.xac_nhan_cho_ngoi{
+  font-size: 40px;
+  margin-left: 40px;
+  border-radius: 10px;
+  
+}
+.xac_nhan_cho_ngoi:hover{
+  background-color: #F7C427;
+  transition: background-color 1s
+}

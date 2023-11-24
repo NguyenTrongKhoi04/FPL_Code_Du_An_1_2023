@@ -1,16 +1,16 @@
     <div class="ChiTietSanPham">
         <link rel="stylesheet" href="../assets/css/user/ChiTietSanPham.css">
         <div class="ProductDetail">
-            <div class="img"><img src="<?= $img_Path?><?=$pro['ImageProducts']?>" alt=""></div>
+            <div class="img"><img src="<?= $adminImg?><?=$pro['ImageProduct']?>"  height="100%"></div>
             <div class="form">
                 <form action="" method="POST">
-                    <input type="hidden" name="idProduct" value="<?=$pro['IdProduct']?>">
-                    <input type="hidden" name="priceProduct" value="<?=$pro['PriceProducts']?>">
-                    <h2><?=$pro['NameProducts']?></h2>
+                    <input type="hidden" name="IdProduct" value="<?=$pro['IdProduct']?>">
+                    <input type="hidden" name="PriceProduct" value="<?=$pro['PriceProduct']?>">
+                    <h2><?=$pro['NameProduct']?></h2>
                     <div class="hr"></div>
                     <ul>
                             <!-- <del>40.000</del> -->
-                        <li>Giá:<span><?= $pro['PriceProducts']?> VNĐ</span></li>
+                        <li>Giá:<span><?= $pro['PriceProduct']?> VNĐ</span></li>
                         <li><?= $pro['ProductDetails']?></li>
                         <li><?= $pro['ProductDescription']?></li>
                     </ul>
@@ -18,14 +18,14 @@
                         <div class="tanggiam">
                             <p>Số lượng mua&nbsp;&nbsp;</p>
                             <button type="button" id="increase">+</button>
-                            <input type="number" value="1" name="quantityProduct" id="quantity" value="0" min="1" max="10">
+                            <input type="number" value="1" name="Quantity" id="quantity" value="0" min="1" max="10">
                             <button type="button" id="decrease">-</button>     
                         </div>
                         <div class="tanggiam">
                             <p>Size&nbsp;&nbsp;</p>
-                            <select name="sizeProduct" style="font-size: 40px;">
+                            <select name="SizeProduct" style="font-size: 40px;">
                             <?php foreach($proSize as $i) :?>
-                                <option value="<?=$i['IdSizeDefault'] ?>"><?= $i['SizeDefault']?></option>
+                                <option value="<?=$i['NameSize'] ?>"><?= $i['NameSize']?></option>
                             <?php endforeach ?>
                             </select>
                         </div>
@@ -37,26 +37,29 @@
             </div>
         </div>
         <div class="list">
-            <?php for($i=0;$i<10;$i++) :?>
+            <?php foreach($pro_LienQuan as $i) :?>
             <div class="pro">
+                <a href="<?= $userAction?>LoadChiTietSanPham&id=<?=$i['IdProduct']?>">
                 <div class="img">
-                    <img src="<?= $img_Path?>Rectangle 33.png" alt="">
+                    <img src="<?= $adminImg.$i['ImageProduct']?>" alt="">
                 </div>
-                <p>Hambegur Thập cẩmdsdsadsadsdsadsa</p>
+                <p style="color: white;"><?= $i['NameProduct']?></p>
+                </a>
             </div>
-            <?php endfor?>
+            <?php endforeach?>
         </div>
         <div class="top">
             <h2>TOP MUA NHIỀU NHẤT</h2>
-            <div class="list_item">
+            <a href=""><div class="list_item">
                 <?php for($i=0;$i<3;$i++) : ?>
-                <div class="item">
-                    <img src="<?= $img_Path?>Rectangle 33.png" alt="">
-                    <p>Combo fast food 66k</p>
-                    <h3>100.000 Sẩn phẩm đã bán</h3>
+                    <div class="item">
+                        <img src="<?= $img_Path?>Rectangle 33.png" alt="">
+                        <p>Combo fast food 66k</p>
+                        <h3>100.000 Sẩn phẩm đã bán</h3>
+                    </div>
+                    <?php endfor ?>
                 </div>
-                <?php endfor ?>
-            </div>
+            </a>
         </div>
         <div class="comment">
             <div class="list_comment">

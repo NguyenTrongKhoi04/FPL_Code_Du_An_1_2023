@@ -29,7 +29,7 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <?php include_once '../assets/global/MenuSideBar.php'; ?>
+        <?php include_once $adminSideBarMenu ?>
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
@@ -231,54 +231,79 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Update Lịch Thi</h1>
+                    <h1 class="h3 mb-2 text-gray-800">Update Sản Phẩm</h1>
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-body">
                             <div class="table-responsive">
-                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                   
-                                   <tr>
-                                           <th></th>
-                                           <th>Thông tin</th>
-                                           <th></th>
-                                   </tr>
-                
-                                                        
-                                   <tbody>                
-                                   <form action="?act=UpdateLichThi" method="POST">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+
+                                    <tr>
+                                        <th><a href="<?=$adminAction?>ListProduct"><button>Danh Sách Sản Phẩm</button></a></th>
+                                        <th>Thông tin</th>
+
+                                    </tr>
+
+
+                                    <tbody>
+                                        <form action="?act=UpdateProduct&id=<?= $IdProduct?>" method="POST" enctype="multipart/form-data">
                                             <tr>
-                                                <th>Thời Gian Bắt Đầu</th>
-                                                      <input type="hidden" name="id" value="<?= $kq['id']?>">  
-                                                <td><input type="datetime-local" name="thoiGianBatDau" value="<?= $kq['thoiGianBatDau']?>"></td>
+                                                <th>Tên Sản Phẩm</th>
+
+                                                <td><input type="text" name="NameProduct" value="<?= $NameProduct ?>"></td>
 
                                             </tr>
                                             <tr>
-                                                <th>Thời Gian Kết Thúc</th>
+                                                <th>Số Lượng</th>
 
-                                                <td><input type="datetime-local" name="thoiGianKetThuc" value="<?= $kq['thoiGianKetThuc']?>"></td>
+                                                <td><input type="number" min="0" name="QuantityProduct"  value="<?= $QuantityProduct ?>"></td>
+
                                             </tr>
                                             <tr>
-                                                <th>Thời Gian Thi</th>
+                                                <th>Giá Sản Phẩm</th>
 
-                                                <td><input type="number" min="0" name="thoiGianThi" value="<?= $kq['thoiGianThi']?>"></td>
+                                                <td><input type="number" min="0" placeholder="Tính theo nghìn đông"  value="<?= $PriceProduct ?>" name="PriceProduct"></td>
                                             </tr>
                                             <tr>
-                                                <th>Số Lượng Đề Thi</th>
+                                                <th>Danh Mục Sản Phẩm</th>
 
-                                                <td><input type="number" min="0" name="soLuongDeThi" value="<?= $kq['soLuongDeThi']?>"></td>
+                                                <td>
+                                                    <select name="IdCategory" >
+                                                        <?php foreach(  $listProCategory as $i) { ?>
+                                                            <option <?php if($i['IdCategory']==$IdCategory){echo 'selected';} ?> value="<?= $i['IdCategory']?>"><?= $i['NameCategory']?></option>
+                                                        <?php }?>
+                                                    </select>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>Mô Tả</th>
+
+                                                <td>
+                                                    <textarea name="ProductDetails" id="" cols="100%"  value="<?= $ProductDetails ?>" rows="4" placeholder="Mô Tả Chính"><?= $ProductDetails ?></textarea>
+                                                            <hr>
+                                                    <textarea name="ProductDescription" id="" cols="100%" value="<?= $ProductDescription ?>" rows="4" placeholder="Mô Phụ"><?= $ProductDescription ?></textarea>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>Ảnh Sản Phẩm</th>
+
+                                                <td>
+                                                    <img src="<?= $adminImg.$ImageProduct?>" <?php if($ImageProduct !=''){echo 'width="200px"';}?> alt="">
+                                                    <br>
+                                                    <br>
+                                                    <input type="file" name="imgProduct" >
+                                                </td>
                                             </tr>
 
                                             <tr>
                                                 <td>
-                                                    <input type="submit"  name="UpdateLichThi" value="Cập nhập">
-                                                    <a href="?act=ListLichThi">Danh sách lịch</a>
+                                                    <input type="submit" name="UpdateProduct" value="Thêm">
                                                 </td>
                                             </tr>
-                                        </form>                    
-                                   </tbody>
-                               </table>
+                                        </form>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
 

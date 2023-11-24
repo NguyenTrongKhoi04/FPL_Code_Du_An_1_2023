@@ -254,13 +254,14 @@
                                             <th>Trạng Thái Sản Phẩm</th>
                                             <th>Thời Gian Thêm - Chỉnh Sửa</th>
                                             <th>Thao Tác</th>
+                                            <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php foreach ($listPro as $i) : ?>
                                             <tr>
                                                 <td><?= $i['IdProduct'] ?></td>
-                                                <td><?= $i['NameProduct'] ?></td>
+                                                <td <?php if( $i['QuantityProduct'] ==0){echo 'style="color: red;"';} ?>><?= $i['NameProduct'] ?></td>
                                                 <td><?= $i['QuantityProduct'] ?></td>
                                                 <td><?= $i['PriceProduct'] ?></td>
 
@@ -269,7 +270,12 @@
                                                         <?php if($cate['IdCategory']==$i['IdCategory']){echo $cate['NameCategory'];} ?>
                                                     <?php } ?>
                                                 </td>
-                                                <td><img src="<?= $adminImg . $i['ImageProduct'] ?>" width="50%"></td>
+                                                <td><?php if($i['ImageProduct']==''){?>
+                                                        <p style="color: red;">Không có ảnh </p>
+                                                    <?php }else{?>
+                                                        <img src="<?= $adminImg . $i['ImageProduct'] ?>" width="50%">
+                                                        <?php } ?>
+                                                </td>
 
                                                 <td>
                                                     <?php foreach($listProDetails as $details) {?>   
@@ -288,9 +294,10 @@
                                                 </td>
                                                 <td><?= $i['DateEditProduct'] ?></td>
                                                 <td>
-                                                    <a href="<?= $adminAction ?>"><input type="button" value="Sửa"></a>
-                                                    <a onclick="return confirm('Bạn Có Muốn Xóa Không')" href="<?= $adminAction ?>"><input type="button" value="Xóa"></a>
+                                                    <a href="<?= $adminAction ?>UpdateProduct&id=<?= $i['IdProduct'] ?>"><input type="button" value="Sửa"></a>
+                                                    <a onclick="return confirm('Bạn Có Muốn Xóa Không')" href="<?= $adminAction ?>DeleteProduct&id=<?= $i['IdProduct'] ?>"><input type="button" value="Xóa"></a>
                                                 </td>
+                                                <td><input type="checkbox" name="" value="<?= $i['IdProduct'] ?>"></td>
                                             </tr>
                                         <?php endforeach ?>
                                     </tbody>

@@ -14,9 +14,18 @@ if (empty($_SESSION['user'])) {
     if (isset($_GET['act']) && ($_GET['act'] != '')) {
         $act = $_GET['act'];
         switch ($act) {
-            /**
+        /**
+            * ====================================================================================
+            *                                 LOGIN - LOGOUT
+            * ====================================================================================
+            */
+            case 'dangxuat':
+                session_destroy();
+                header('location: AdminController.php');
+                break;
+        /**
              * ====================================================================================
-             *                                 TÀI KHOẢN
+             *                                 BAN
              * ====================================================================================
              */
             case 'ListBan':
@@ -36,7 +45,7 @@ if (empty($_SESSION['user'])) {
                 include_once "views/ban/UpdateBan.php";
                 break;
 
-            /**
+        /**
              * ====================================================================================
              *                                 PRODUCT
              * ====================================================================================
@@ -52,9 +61,6 @@ if (empty($_SESSION['user'])) {
                 if(isset($_POST['AddProduct'])){
                     extract($_POST);
                     extract($_FILES);
-echo"<pre>";
-print_r($_POST);
-echo"</pre>";
                     if($ImageProduct['name'] != ''){
                         $img=$ImageProduct['name'];
                         move_uploaded_file($ImageProduct['tmp_name'], $adminImg . $img);
@@ -64,6 +70,36 @@ echo"</pre>";
 
                 }
                 include_once 'views/product/AddProduct.php';
+                break;
+            case 'UpdateProduct':
+                $id = $_GET['id'];
+                $oneProduct= loadOne_Product($id);
+                $listProCategory = loadAll_Product_Category();
+                extract($oneProduct);
+                $oneProDetails = loadOne_Product_Details($IdDetails);
+                extract($oneProDetails);
+
+                if(isset($_POST['UpdateProduct'])){
+               
+                    extract($_POST);
+                    extract($_FILES);
+
+                    $imgNameProduct = ($imgProduct['size'] != 0) ? $imgProduct : $ImageProduct ;
+    
+                    if($imgProduct['size'] != ''){
+                        $img=$imgProduct['name'];
+                        move_uploaded_file($imgProduct['tmp_name'], $adminImg . $img);
+                    }
+
+                    update_Product($id,$NameProduct,$QuantityProduct,$PriceProduct,$imgNameProduct, $IdCategory,$ProductDetails, $ProductDescription);
+                }
+                include_once 'views/product/UpdateProduct.php';
+                break;
+
+            case 'DeleteProduct':
+                $id = $_GET['id'];
+                delete_Product($id);
+                header('location: AdminController.php?act=ListProduct');
                 break;
             default:
                 // include_once 'views/Home.php';
