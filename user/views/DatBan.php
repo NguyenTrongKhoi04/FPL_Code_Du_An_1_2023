@@ -1,7 +1,7 @@
 <div class="datban">
     <link rel="stylesheet" href="../assets/css/user/DatBan.css">
     <div class="sodo">
-        <h1>SƠ ĐỒ NHÀ HÀNG</h1>
+        <h1>Sơ Đồ Nhà Hàng</h1>
         <div class="door_kitchen">
             <div class="cua_ra_vao">
                 <p>của ra vào</p>
@@ -12,7 +12,7 @@
         </div>
         <?php $arr=[1,2,5,6,8,10,4]?>
         <div class="so_do_cho_ngoi">
-            <form action="">
+            <form action="<?= $userAction?>ListBan" method="POST">
                 <div>
                     <table>
                         <?php $dem=0; ?>
@@ -21,7 +21,7 @@
                                 <?php for($i=0;$i<5;$i++) { $dem++;?>
                             <td>
                                 <div class="ban">
-                                    <input type="checkbox" name="ban_<?=$dem?>" value="1" id="checkbox1" <?php echo (in_array($dem, $arr) ? "checked disabled" : ""); ?>>
+                                    <input type="checkbox" class="ban_check" name="so_Ban" value="<?=$dem ?>" <?php echo (in_array($dem, $arrBanFull) ? 'checked disabled allow="false"' : ''); ?>>
                                     <label for="checkbox1"><?=$dem ?></label>
                                 </div>
                             </td>
@@ -33,18 +33,23 @@
                                 <?php for($i=0;$i<4;$i++) { $dem_ban_to++;?>
                                     <td>
                                         <div class="ban_to">
-                                            <input type="checkbox" name="ban_<?=$dem_ban_to?>" value="1" id="checkbox1" <?php echo (in_array($dem_ban_to, $arr) ? "checked disabled" : ""); ?>>
+                                            <input type="checkbox" class="ban_check"  name="so_Ban" value="1" id="checkbox1" <?php echo (in_array($dem_ban_to, $arrBanFull) ? "checked disabled" : ""); ?>>
                                             <label for="checkbox1"><?= $dem_ban_to?></label>
                                         </div>
                                     </td>
                                     <?php }?>
                                 </tr>
                         <?php }?>
+                        <tr>
+                            <button class="xac_nhan_cho_ngoi" type="submit">Xác nhận vị trí ngồi</button>
+                            <!-- <p>bàn nhỏ: 4 Người Ngồi</p> -->
+                        </tr>
                     </table>
                 </div>
                 <div></div>
             </form>
             <div class="QuayLeTan">
+                
                 <div class="thanhtoan"><p>Quầy Thanh Toán</p></div>
             </div>
         </div>

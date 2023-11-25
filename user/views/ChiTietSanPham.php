@@ -1,51 +1,66 @@
     <div class="ChiTietSanPham">
         <link rel="stylesheet" href="../assets/css/user/ChiTietSanPham.css">
         <div class="ProductDetail">
-            <div class="img"><img src="<?= $img_Path?>Rectangle 33.png" alt=""></div>
+            <div class="img"><img src="<?= $adminImg?><?=$pro['ImageProduct']?>"  height="100%"></div>
             <div class="form">
-                <form>
-                    <h2>Hambegur bò bít tết</h2>
+                <form action="" method="POST">
+                    <input type="hidden" name="IdProduct" value="<?=$pro['IdProduct']?>">
+                    <input type="hidden" name="PriceProduct" value="<?=$pro['PriceProduct']?>">
+                    <h2><?=$pro['NameProduct']?></h2>
                     <div class="hr"></div>
                     <ul>
-                        <li>Giá: <del>40.000</del> <span>20.000VNĐ</span></li>
-                        <li>Top 10 fast food bán chạy</li>
-                        <li>Sản phẩm được khách hàng đánh giá cao</li>
+                            <!-- <del>40.000</del> -->
+                        <li>Giá:<span><?= $pro['PriceProduct']?> VNĐ</span></li>
+                        <li><?= $pro['ProductDetails']?></li>
+                        <li><?= $pro['ProductDescription']?></li>
                     </ul>
                     <div class="soluong">
                         <div class="tanggiam">
                             <p>Số lượng mua&nbsp;&nbsp;</p>
+                            <button type="button" id="decrease">-</button>   
+                            <input type="number" value="1" name="Quantity" id="quantity" value="0" min="1" max="10">
                             <button type="button" id="increase">+</button>
-                            <input type="number" value="1" id="quantity" value="0" min="1" max="10">
-                            <button type="button" id="decrease">-</button>     
+                          
                         </div>
-                        <span>20.000VNĐ</span>
+                        <div class="tanggiam">
+                            <p>Size&nbsp;&nbsp;</p>
+                            <select name="SizeProduct" style="font-size: 40px;">
+                            <?php foreach($proSize as $i) :?>
+                                <option value="<?=$i['NameSize'] ?>"><?= $i['NameSize']?></option>
+                            <?php endforeach ?>
+                            </select>
+                        </div>
+                        
                     </div>
-                    <button name="">THÊM VÀO GIỎ HÀNG</button>
-                    <button name="">THANH TOÁN LUÔN</button>
+                    <button name="add_to_cart">THÊM VÀO GIỎ HÀNG</button>
+                    <button name="add_to_bill">THANH TOÁN LUÔN</button>
                 </form>
             </div>
         </div>
         <div class="list">
-            <?php for($i=0;$i<10;$i++) :?>
+            <?php foreach($pro_LienQuan as $i) :?>
             <div class="pro">
+                <a href="<?= $userAction?>LoadChiTietSanPham&id=<?=$i['IdProduct']?>">
                 <div class="img">
-                    <img src="<?= $img_Path?>Rectangle 33.png" alt="">
+                    <img src="<?= $adminImg.$i['ImageProduct']?>" alt="">
                 </div>
-                <p>Hambegur Thập cẩmdsdsadsadsdsadsa</p>
+                <p style="color: white;"><?= $i['NameProduct']?></p>
+                </a>
             </div>
-            <?php endfor?>
+            <?php endforeach?>
         </div>
         <div class="top">
             <h2>TOP MUA NHIỀU NHẤT</h2>
-            <div class="list_item">
+            <a href=""><div class="list_item">
                 <?php for($i=0;$i<3;$i++) : ?>
-                <div class="item">
-                    <img src="<?= $img_Path?>Rectangle 33.png" alt="">
-                    <p>Combo fast food 66k</p>
-                    <h3>100.000 Sẩn phẩm đã bán</h3>
+                    <div class="item">
+                        <img src="<?= $img_Path?>Rectangle 33.png" alt="">
+                        <p>Combo fast food 66k</p>
+                        <h3>100.000 Sẩn phẩm đã bán</h3>
+                    </div>
+                    <?php endfor ?>
                 </div>
-                <?php endfor ?>
-            </div>
+            </a>
         </div>
         <div class="comment">
             <div class="list_comment">

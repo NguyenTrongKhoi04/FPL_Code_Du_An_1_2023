@@ -25,16 +25,16 @@
             <?php if(empty($_SESSION['user'])) {?>
                 <div class="login">
                     <button class="button_Login"><a href="<?= $userAction ?>dangnhap">Đăng nhập</a></button>
-                    <button class="button_Login"><a href="<?= $userAction ?>dangky">Đăng Ký</a></button>
+                    <button class="button_Login"><a href="<?= $userAction ?>TaoTaiKhoan">Đăng Ký</a></button>
                 </div>
             <?php }else{ ?>
                 <div class="login">
                     <a href="" class="login_success"><img src="<?= $img_Path ?>Glyph_ undefined.png" alt=""></a>
                     <a href="" class="login_success"><img src="<?= $img_Path ?>Vector.png" alt=""></a>
-                    <a href="" class="login_success"><img src="<?= $img_Path ?>out.png" alt=""></a>
-                    <a href="" class="img_avatar">
+                    <a href="<?= $userAction ?>dangxuat" class="login_success"><img src="<?= $img_Path ?>out.png" alt=""></a>
+            
                         <div class="avatar">
-                            <img src="<?= $img_Path ?>Rectangle 33.png" alt="">
+                            <img src="<?= $img_Path ?><?=$_SESSION['user']['ImageAccounts'] ?>" alt="">
                         </div>
                     </a>
                 </div>

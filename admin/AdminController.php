@@ -4,84 +4,108 @@ ob_start();
 include_once '../app/Pdo.php';
 include_once '../assets/global/User.php';
 include_once '../assets/global/url_Path.php';
-include_once './models/Product.php';
-include_once './models/Account.php';
 include_once 'models/TaiKhoan.php';
+include_once 'models/Ban.php';
+include_once 'models/Product.php';
 
-
-if(!empty($_SESSION['user'])){
-    // include_once 'views/LoginThuong.php';
-}else{
-        if(isset($_GET['act'])&&($_GET['act'] !='' )){
+if (empty($_SESSION['user'])) {
+    header('location: ../user/UserController.php');
+} else {
+    if (isset($_GET['act']) && ($_GET['act'] != '')) {
         $act = $_GET['act'];
-        switch($act){
-            /**
+        switch ($act) {
+        /**
+            * ====================================================================================
+            *                                 LOGIN - LOGOUT
+            * ====================================================================================
+            */
+            case 'dangxuat':
+                session_destroy();
+                header('location: AdminController.php');
+                break;
+        /**
              * ====================================================================================
-             *                                 product
+             *                                 BAN
              * ====================================================================================
              */
-            case 'AddProduct':
-                if($_SERVER['REQUEST_METHOD'] === "POST"){
-                    $data = $_POST;
-                    $imgData = $_FILES['Image'];
-                    $IdDetails = pushProductDetails($data);
-                    $alert= pushProduct($data, $imgData, $IdDetails);
-                    
-                }
-                include_once "views/sanpham/AddProduct.php";
+            case 'ListBan':
+                $listBan = select_All('tables');
+                include_once "views/ban/ListBan.php";
                 break;
-            case 'ListProduct':
-                if(isset($_GET['delete'])&&($_GET['delete'] !='' )){
-                    $alert = deleteProduct($_GET['delete']);
+
+            case 'UpdateBan':
+                $id = $_GET['id'];
+                $ban_One = select_One('tables', null, "IdTables = $id");
+                if (isset($_POST['update']) && ($_POST['update'] != '')) {
+                    var_dump($_FILES);
+                    extract($_POST);
+                    updateBan($id, $NumberPeople, $NumberTable, $StatusTable);
+                    header("location:" . $adminAction . "ListBan");
                 }
-                include_once "views/sanpham/ListProduct.php";
+                include_once "views/ban/UpdateBan.php";
+                break;
+
+        /**
+             * ====================================================================================
+             *                                 PRODUCT
+             * ====================================================================================
+             */
+            case 'ListProduct':
+                $listPro = loadAll_Product();
+                $listProCategory = loadAll_Product_Category();
+                $listProDetails = loadAll_Product_Details();
+                include_once 'views/product/ListProduct.php';
+                break;
+            case 'AddProduct':
+                $listProCategory = loadAll_Product_Category();
+                if(isset($_POST['AddProduct'])){
+                    extract($_POST);
+                    extract($_FILES);
+                    if($ImageProduct['name'] != ''){
+                        $img=$ImageProduct['name'];
+                        move_uploaded_file($ImageProduct['tmp_name'], $adminImg . $img);
+                    }
+
+                    add_Product($NameProduct,$QuantityProduct,$PriceProduct,$ImageProduct['name'], $IdCategory,$ProductDetails, $ProductDescription);
+
+                }
+                include_once 'views/product/AddProduct.php';
                 break;
             case 'UpdateProduct':
-                if($_SERVER['REQUEST_METHOD'] === 'POST' ){
-                    $data = $_POST;
-                    $dataImg = $_FILES['Image'];
-                    $IdProduct = $_GET["IdProduct"];
-                    $IdDetails = $_GET["IdDetails"];
-                    $alert= updateListProduct($data, $dataImg, $IdProduct, $IdDetails);
-                } 
-                include_once "views/sanpham/UpdateProduct.php";
-                break;
-            /**
-             * ====================================================================================
-             *                                 account
-             * ====================================================================================
-             */
-            case 'AddAccount':
-                if($_SERVER['REQUEST_METHOD'] === 'POST' ){
-                    $dataProduct = $_POST;
-                    $dataImg = $_FILES['Image'];
+                $id = $_GET['id'];
+                $oneProduct= loadOne_Product($id);
+                $listProCategory = loadAll_Product_Category();
+                extract($oneProduct);
+                $oneProDetails = loadOne_Product_Details($IdDetails);
+                extract($oneProDetails);
 
-                    pushAcount($dataProduct, $dataImg);
-                } 
-                include_once "views/taikhoan/AddAccount.php";
-                break;
+                if(isset($_POST['UpdateProduct'])){
+               
+                    extract($_POST);
+                    extract($_FILES);
 
-            case "ListAccount":
-                if(isset($_GET['delete'])&&($_GET['delete'] !='' )){
-                    deleteAccount($_GET['delete']);
-                }                
-                include_once "views/taikhoan/ListAccount.php";
+                    $imgNameProduct = ($imgProduct['size'] != 0) ? $imgProduct : $ImageProduct ;
+    
+                    if($imgProduct['size'] != ''){
+                        $img=$imgProduct['name'];
+                        move_uploaded_file($imgProduct['tmp_name'], $adminImg . $img);
+                    }
+
+                    update_Product($id,$NameProduct,$QuantityProduct,$PriceProduct,$imgNameProduct, $IdCategory,$ProductDetails, $ProductDescription);
+                }
+                include_once 'views/product/UpdateProduct.php';
                 break;
 
-            case "UpdateAccount":
-                if($_SERVER['REQUEST_METHOD'] === 'POST' ){
-                    $data = $_POST;
-                    $dataImg = $_FILES['Image'];
-                    $IdAccount = $_GET["IdAccount"];
-                    updateListAccount($data, $dataImg, $IdAccount);
-                } 
-                include_once "views/taikhoan/UpdateAccount.php";
-                break;            
+            case 'DeleteProduct':
+                $id = $_GET['id'];
+                delete_Product($id);
+                header('location: AdminController.php?act=ListProduct');
+                break;
             default:
-            // include_once 'views/Home.php';
+                // include_once 'views/Home.php';
                 break;
         }
-    }else{
-        // include_once 'views/Home.php';
-    }    
+    } else {
+        include_once 'views/taikhoan/ListAccount.php';
     }
+}
