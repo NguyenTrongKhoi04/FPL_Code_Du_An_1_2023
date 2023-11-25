@@ -20,7 +20,7 @@ check_Login();
 
 if(isset($_GET['act'])&&($_GET['act'] !='' )){
     if(empty($_SESSION['user'])){
-git st            include_once 'views/LoginThuong.php';
+    include_once 'views/LoginThuong.php';
         // }
     } else {
         $act = $_GET['act'];
