@@ -4,21 +4,20 @@
  * $id: Điều kiện Where 
  */
 function chiTietSanPham_LoadAll($id){
-    $sql = "SELECT details.*,product.*,category.*,subcategories.*
+    $sql = "SELECT details.*,product.*,category.*
         FROM details
         INNER JOIN product ON details.IdDetails = product.IdDetails
         INNER JOIN category ON product.IdCategory = category.IdCategory
-        INNER JOIN subcategories ON subcategories.IdCategory = category.IdCategory
         WHERE product.IdProduct = '$id'    
     ";   
     return query_One($sql);
 }
 
 function chiTietSanPham_LoadSizePro($id){
-    $sql = "SELECT size.IdProduct,size.IdSizeDefault,sizedefault.SizeDefault
+    $sql = "SELECT size.*,size_pro.*,product.*
         FROM product
-        INNER JOIN size ON size.IdProduct = product.IdProduct
-        INNER JOIN sizedefault ON size.IdSizeDefault = sizedefault.IdSizeDefault
+        INNER JOIN size_pro ON size_pro.IdProduct = product.IdProduct
+        INNER JOIN size ON size.IdSize = size_pro.IdSize
         WHERE product.IdProduct = '$id'
     ";
     return query_All($sql);
@@ -28,14 +27,13 @@ function chiTietSanPham_LoadSizePro($id){
  * return những sản phẩm cùng loại
  * Join 3 bảng (product + category + subcategories) 
  */
-function chiTietSanPham_ProCungLoai($danhmuc,$danhmucphu){
+function chiTietSanPham_ProCungLoai($idDanhMuc,$NameLoaiTru){
     $sql = "SELECT product.*
         FROM product 
         INNER JOIN category ON product.IdCategory = category.IdCategory
-        INNER JOIN subcategories ON subcategories.IdCategory = category.IdCategory
-        WHERE category.NameCategory ='$danhmuc' AND subcategories.SubCategories = '$danhmucphu'  
+        WHERE category.IdCategory ='$idDanhMuc' AND NOT product.NameProduct='$NameLoaiTru';  
     ";
-    return query_One($sql);
+    return query_All($sql);
 }
 
 /**
@@ -59,14 +57,15 @@ function chiTietSanPham_Top3_SanPham(){
         array_push($arr_Top3,$pro);
     }
 
-    // echo"<pre>";
-    // print_r($arr_Top3);
-    // echo"</pre>";
-
     return $arr_Top3;
 }
 
-function chiTietSanPham_Add_To_Cart($idAccount,$idProduct,$idSize,$quantityProduct,$priceProduct){
-    $sql = "INSERT INTO card(IdAccount,IdProduct,IdSize,Quantity,Price) VALUES ('$idAccount','$idProduct','$idSize','$quantityProduct','$priceProduct')";
+function chiTietSanPham_Add_To_Cart($idAccount,$idSize,$quantityProduct,$priceProduct){
+    $sql = "INSERT INTO cart(IdAccount,Size,Quantity,PriceCard) VALUES ('$idAccount','$idSize','$quantityProduct','$priceProduct')";
     return pdo_Execute($sql);
+}
+
+function chiTietSanPham_LoadDetails($id){
+    $sql ="SELECT * FROM details WHERE IdDetails = $id";
+    return query_One($sql);
 }

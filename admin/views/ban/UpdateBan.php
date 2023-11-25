@@ -250,23 +250,23 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <form action="<?= $adminAction ?>UpdateBan&id=<?=$ban_One['IdTable']?>" method="POST" >
+                                        <form action="<?= $adminAction ?>UpdateBan&id=<?=$ban_One['IdTables']?>" method="POST" >
                                             <tr>
-                                                <td>Số Người Ngồi</td>
-                                                <td><input type="number" value="<?= $ban_One['NumberPeopleInTables']?>" disabled name="NumberPeopleInTables"></td>
-                                                <input type="hidden" value="<?= $ban_One['NumberPeopleInTables']?>" name="NumberPeopleInTables">
+                                                <td>Số Bàn</td>
+                                                <td><input type="number"  value="<?= $ban_One['NumberTable']?>"  name="NumberTable"></td>
+                             
                                             </tr>
                                             <tr>
-                                                <td>Số bàn</td>
-                                                <td><input type="number"  value="<?= $ban_One['NumberTables']?>" disabled name="NumberTables"></td>
-                                                <input type="hidden" value="<?= $ban_One['NumberTables']?>" name="NumberTables">
+                                                <td>Số Người Ngồi</td>
+                                                <td><input type="number" value="<?= $ban_One['NumberPeople']?>" placeholder=""  name="NumberPeople"> - Nhỏ Hơn 10</td>
+          
                                             </tr>
                                             <tr>
                                                 <td>Trạng Thái</td>
                                                 <td>
-                                                    <select name="StatusTables">
+                                                    <select name="StatusTable">
                                                         <?php 
-                                                            if($ban_One['StatusTables']==0){
+                                                            if($ban_One['StatusTable']==0){
                                                                 $select_BanTrong = 'Selected';
                                                             }else {
                                                                 $select_BanDay = 'Selected';
@@ -276,11 +276,9 @@
                                                         <option value="1" <?= $select_BanDay ?? '' ?>>Đang Sử Dụng</option>
                                                     </select>
                                                 </td>
+                                                <input type="file">
                                             </tr>
-                                            <tr>
-                                                <td>Date</td>
-                                                <td><input type="datetime-local" value="<?= $ban_One['Date']?>" name="Date"></td>
-                                            </tr>
+
                                             <td><input type="submit" name="update" value="Update"></td>
                                         </form>
                                     </tbody>

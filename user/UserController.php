@@ -7,7 +7,9 @@ include_once '../assets/global/url_Path.php';
 include_once 'models/Login.php';
 include_once '../assets/global/Header.php'; 
 include_once 'models/ChiTietSanPham.php';
+include_once 'models/DatBan.php';
 check_Login();
+
 if (isset($_GET['act']) && ($_GET['act'] != '')) {
     if (empty($_SESSION['user'])) {
         include_once 'views/LoginThuong.php';
@@ -20,7 +22,7 @@ if (isset($_GET['act']) && ($_GET['act'] != '')) {
          * ====================================================================================
          */
             case 'dangnhap':
-                if ($_SESSION['user']['Type'] == 1) {
+                if ($_SESSION['user']['Role'] == 1) {
                     header('location: ../admin/AdminController.php');
                 } else {
                     $loadHeader = 0;
@@ -38,29 +40,51 @@ if (isset($_GET['act']) && ($_GET['act'] != '')) {
                 break;
                 
         /**
-         * ====================================================================================
-         *                                 CHI TIẾT SẢN PHẨM
-         * ====================================================================================
-         */
+            * ====================================================================================
+            *                                 CHI TIẾT SẢN PHẨM
+            * ====================================================================================
+            */
             case 'LoadChiTietSanPham':
                 $id = $_GET['id'];
                 $pro = chiTietSanPham_LoadAll($id);
                 $proSize = chiTietSanPham_LoadSizePro($id);
-
+                $proDetails = chiTietSanPham_LoadDetails($id);
                 // lấy danh mục và danh mục phụ của $pro để tìm ra được các sản phẩm Cùng loại
-                $pro_LienQuan = chiTietSanPham_ProCungLoai($pro['NameCategory'],$pro['SubCategories']);
-                
+                $pro_LienQuan = chiTietSanPham_ProCungLoai($pro['IdCategory'],$pro['NameProduct']);
+
                 // lấy top 3 sản phẩm bán chạy
-                    //$top3_Pro = top3_SanPham() ;
+                    // $top3_Pro = top3_SanPham() ;
 
                 // Thêm vào giỏ hàng user
                 if(isset($_POST['add_to_cart'])){
                     extract($_POST);
-                    chiTietSanPham_Add_To_Cart($_SESSION['user']['IdAccount'],$idProduct,0,$quantityProduct,$priceProduct);
+                    $priceQuantity = $pro['PriceProduct'] * $Quantity;
+                    chiTietSanPham_Add_To_Cart($_SESSION['user']['IdAccount'],$SizeProduct,$Quantity,$priceQuantity);
                 }
                 include_once 'views/ChiTietSanPham.php';
                 break;
-
+            
+        /**
+            * ====================================================================================
+            *                                 BAN
+            * ====================================================================================
+            */
+            case 'ListBan':
+               
+                $arrBanFull = list_BanCoNguoiNgoi();
+                If($_SERVER['REQUEST_METHOD']==='POST'){
+                    extract($_POST);
+                    if(!isset($ban_check)){
+                        echo "<script>alert('Vui lòng chọn bàn')</script>";
+                        header("loaction:UserController?act=ListBan");
+                    }else{
+                        echo"<pre>";
+                        print_r($_POST);
+                        echo"</pre>";   
+                    }
+                }
+                include_once 'views/DatBan.php';
+                break;
             default:
                 include_once 'views/Home.php';
                 break;

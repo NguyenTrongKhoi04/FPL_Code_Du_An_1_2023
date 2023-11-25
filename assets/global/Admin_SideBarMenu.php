@@ -13,9 +13,14 @@
 
 <!-- Nav Item - Dashboard -->
 <li class="nav-item">
-    <a class="nav-link" href="index.html">
+    <a class="nav-link" href="AdminController.php">
         <i class="fas fa-fw fa-tachometer-alt"></i>
-        <span>Trang chủ</span></a>
+        <span>Trang chủ</span>
+    </a>
+    <a class="nav-link" href="<?=$adminAction?>dangxuat">
+        <i class="fas fa-fw fa-tachometer-alt"></i>
+        <span>Đăng Xuất</span>
+    </a>
 </li>
 
 <!-- Divider -->
@@ -60,7 +65,7 @@
     data-parent="#accordionSidebar">
     <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Product</h6>
-            <a class="collapse-item" href="<?=$adminAction?>AddAccount">Danh sách món ăn</a>
+            <a class="collapse-item" href="<?=$adminAction?>ListProduct">Danh sách món ăn</a>
             <a class="collapse-item" href="utilities-color.html">Thêm món ăn</a>
             <h6 class="collapse-header">Danh mục</h6>
             <a class="collapse-item" href="utilities-color.html">Danh mục chính</a>
@@ -123,6 +128,7 @@
             <a class="collapse-item" href="blank.html">Blank Page</a>
         </div>
     </div>
+    
 </li>
 
 <!-- Nav Item - Charts -->

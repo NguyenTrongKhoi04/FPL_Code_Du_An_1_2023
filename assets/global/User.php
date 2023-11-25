@@ -113,7 +113,7 @@ function check_Login(){
     if(isset($tk)&&isset($mk)){
         $tk = $_POST['tk'];
         $mk = ($_POST['mk']);//md5
-        $arrCheck = select_One('account',null," NameAccounts = '$tk' AND Password = '$mk'");
+        $arrCheck = select_One('account',null," Gmail = '$tk' AND Password = '$mk'");
         
         if(is_array($arrCheck)){
             $_SESSION['user']=$arrCheck;

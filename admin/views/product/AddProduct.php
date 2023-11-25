@@ -231,112 +231,142 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Dánh Sách Bàn Ăn</h1>
-    
+                    <h1 class="h3 mb-2 text-gray-800">Thêm Sản Phẩm</h1>
+
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
-                         <?php if (isset($error)) : ?>
-                            <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary" style="color:red !important;"><?= $error ?></h6>
-                            </div>
-                        <?php endif ?>
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th>Số Bàn</th>
-                                            <th>Số Người Ngồi</th>
-                                            <th>Trạng Thái</th>
-                                            <th>Thao Tác</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php foreach ($listBan as $i) : ?>
 
+                                    <tr>
+                                        <th><a href="<?=$adminAction?>ListProduct"><button>Danh Sách Sản Phẩm</button></a></th>
+                                        <th>Thông tin</th>
+
+                                    </tr>
+
+
+                                    <tbody>
+                                        <form action="?act=AddProduct" method="POST" enctype="multipart/form-data">
                                             <tr>
-                                                <td><?= $i['NumberTable'] ?></td>
-                                                <td><?= $i['NumberPeople'] ?></td>
+                                                <th>Tên Sản Phẩm</th>
+
+                                                <td><input type="text" name="NameProduct"></td>
+
+                                            </tr>
+                                            <tr>
+                                                <th>Số Lượng</th>
+
+                                                <td><input type="number" min="0" name="QuantityProduct"></td>
+
+                                            </tr>
+                                            <tr>
+                                                <th>Giá Sản Phẩm</th>
+
+                                                <td><input type="number" min="0" placeholder="Tính theo nghìn đông" name="PriceProduct"></td>
+                                            </tr>
+                                            <tr>
+                                                <th>Danh Mục Sản Phẩm</th>
+
                                                 <td>
-                                                    <?php if ($i['StatusTable'] == 1) { ?>
-                                                        Đang sử dụng
-                                                    <?php } else { ?>
-                                                        Trống
-                                                    <?php } ?>
-                                                </td>
-                                                <td>
-                                                    <a href="<?= $adminAction ?>UpdateBan&id=<?= $i['IdTables'] ?>"><input type="button" value="Sửa"></a>
+                                                    <select name="IdCategory" >
+                                                        <?php foreach(  $listProCategory as $i) {?>
+                                                            <option value="<?= $i['IdCategory']?>"><?= $i['NameCategory']?></option>
+                                                        <?php }?>
+                                                    </select>
                                                 </td>
                                             </tr>
-                                        <?php endforeach ?>
+                                            <tr>
+                                                <th>Mô Tả</th>
+
+                                                <td>
+                                                    <textarea name="ProductDetails" id="" cols="100%" rows="4" placeholder="Mô Tả Chính"></textarea>
+                                                            <hr>
+                                                    <textarea name="ProductDescription" id="" cols="100%" rows="4" placeholder="Mô Phụ"></textarea>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>Ảnh Sản Phẩm</th>
+
+                                                <td>
+                                                    <input type="file" name="ImageProduct" >
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>
+                                                    <input type="submit" name="AddProduct" value="Thêm">
+                                                    <a href="?act=ListLichThi">Danh sách </a>
+                                                </td>
+                                            </tr>
+                                        </form>
                                     </tbody>
                                 </table>
                             </div>
                         </div>
+
                     </div>
+                    <!-- /.container-fluid -->
 
                 </div>
-                <!-- /.container-fluid -->
+                <!-- End of Main Content -->
+
+                <!-- Footer -->
+                <footer class="sticky-footer bg-white">
+                    <div class="container my-auto">
+                        <div class="copyright text-center my-auto">
+                            <span>Copyright &copy; Your Website 2020</span>
+                        </div>
+                    </div>
+                </footer>
+                <!-- End of Footer -->
 
             </div>
-            <!-- End of Main Content -->
-
-            <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2020</span>
-                    </div>
-                </div>
-            </footer>
-            <!-- End of Footer -->
+            <!-- End of Content Wrapper -->
 
         </div>
-        <!-- End of Content Wrapper -->
+        <!-- End of Page Wrapper -->
 
-    </div>
-    <!-- End of Page Wrapper -->
+        <!-- Scroll to Top Button-->
+        <a class="scroll-to-top rounded" href="#page-top">
+            <i class="fas fa-angle-up"></i>
+        </a>
 
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
-
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
+        <!-- Logout Modal-->
+        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                        <a class="btn btn-primary" href="login.html">Logout</a>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="../assets/js/jquery.min.js"></script>
-    <script src="../assets/js/bootstrap.bundle.min.js"></script>
+        <!-- Bootstrap core JavaScript-->
+        <script src="../assets/js/jquery.min.js"></script>
+        <script src="../assets/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Core plugin JavaScript-->
-    <script src="../assets/js/jquery.easing.min.js"></script>
-    <!-- Custom scripts for all pages-->
-    <script src="../assets/js/sb-admin-2.min.js"></script>
+        <!-- Core plugin JavaScript-->
+        <script src="../assets/js/jquery.easing.min.js"></script>
+        <!-- Custom scripts for all pages-->
+        <script src="../assets/js/sb-admin-2.min.js"></script>
 
-    <!-- Page level plugins -->
-    <script src="../assets/js/jquery.dataTables.min.js"></script>
-    <script src="../assets/js/dataTables.bootstrap4.min.js"></script>
+        <!-- Page level plugins -->
+        <script src="../assets/js/jquery.dataTables.min.js"></script>
+        <script src="../assets/js/dataTables.bootstrap4.min.js"></script>
 
-    <!-- Page level custom scripts -->
-    <script src="../assets/js/datatables-demo.js"></script>
+        <!-- Page level custom scripts -->
+        <script src="../assets/js/datatables-demo.js"></script>
 </body>
 
 </html>
