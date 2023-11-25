@@ -14,20 +14,6 @@ include_once 'models/Cart.php';
 include_once 'models/CreateAccount.php';
 
 check_Login();
-$_SESSION['user'] = [
-    "IdAccount" => 6,
-    "NameAccount" => "Vu Hong Diep",
-    "Gmail" => "diepvhph36272@fpt.edu.vn",
-    "Gender" => 0,
-    "Password" => "diepvhph36272@fpt.edu.vn",
-    "ImageAccounts" => "z4419639034081_72f3de1996280290798889601b1c9568.jpg",
-    "StatusAccount" => 0,
-    "Role" => 0,
-    "DateEditAccount" => "0000-00-00 00:00:00"
-];
-home_checkOrderTable();
-
-
 if (isset($_GET['act']) && ($_GET['act'] != '')) {
     $idAccountUser = $_SESSION['user']["IdAccount"];
     if (empty($_SESSION['user'])) {
@@ -35,26 +21,16 @@ if (isset($_GET['act']) && ($_GET['act'] != '')) {
     } else {
         $act = $_GET['act'];
         switch ($act) {
+             /**
+         * ====================================================================================
+         *                                 LOGIN - LOGOUT
+         * ====================================================================================
+         */
             case 'dangnhap':
                 if ($_SESSION['user']['Type'] == 1) {
                     header('location: ../admin/AdminController.php');
                 } else
                     include_once 'views/Home.php';
-                break;
-            case 'trangchu':
-                if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                    $dataBooking = $_POST;
-                    $alert = home_BookingTable($dataBooking);
-                }
-                include_once 'views/Home.php';
-                break;
-
-            case 'billthanhtoan':
-                include_once 'views/BillPayment.php';
-                break;
-
-            case 'ChiTietSanPham':
-                include_once 'views/ChiTietSanPham.php';
                 break;
             case 'TaoTaiKhoan':
                 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -66,12 +42,24 @@ if (isset($_GET['act']) && ($_GET['act'] != '')) {
                 }
                 include_once 'views/CreateAccount.php';
                 break;
+         /**
+            * ====================================================================================
+            *                                 bill
+            * ====================================================================================
+            */        
             case "VerifyAccount":
                 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $dataVerifyAccount = $_POST;
                     $alert = CreateAccount_CreateAccount1($dataVerifyAccount);
                 }
                 include_once 'views/VerifyAccount.php';
+                break;
+            case 'trangchu':
+                if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                    $dataBooking = $_POST;
+                    $alert = home_BookingTable($dataBooking);
+                }
+                include_once 'views/Home.php';
                 break;
             case 'GioHang':
                 $dataCart = cart_GetAllCartByIdAccount($idAccountUser);
