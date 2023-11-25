@@ -19,11 +19,8 @@ check_Login();
 
 
 if(isset($_GET['act'])&&($_GET['act'] !='' )){
-    // if(empty($_SESSION['user'])){
-    //     if($_GET['act']=='TaoTaiKhoan'){
-    //         include_once 'views/CreateAccount.php';
-    //     }else{ 
-            include_once 'views/LoginThuong.php';
+    if(empty($_SESSION['user'])){
+git st            include_once 'views/LoginThuong.php';
         // }
     } else {
         $act = $_GET['act'];
