@@ -56,7 +56,7 @@ html {
 }
 .page .main form {
   width: 100%;
-  height: 84%;
+  max-height: 84%;
   padding: 5%;
 }
 .page .main form .nameAge {
@@ -70,7 +70,7 @@ html {
   width: 45%;
   height: 100%;
 }
-.page .main form .nameAge .age input, .page .main form .nameAge .name input {
+.page .main form .nameAge .age input, .page .main form .nameAge .age select, .page .main form .nameAge .name input, .page .main form .nameAge .name select {
   width: 100%;
   height: 68%;
   border-radius: 100px;
@@ -81,7 +81,7 @@ html {
   margin: 2% 0;
   border: none;
 }
-.page .main form .nameAge .age input:focus, .page .main form .nameAge .name input:focus {
+.page .main form .nameAge .age input:focus, .page .main form .nameAge .age select:focus, .page .main form .nameAge .name input:focus, .page .main form .nameAge .name select:focus {
   outline: none;
 }
 .page .main form .nameAge .age label, .page .main form .nameAge .name label {

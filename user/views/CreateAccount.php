@@ -4,27 +4,34 @@
             <article class="headerMain">
                 <h1>Đăng ký </h1>
             </article>
-            
-            <form action="" method="post" class="main">
+
+            <form action="UserController.php?act=TaoTaiKhoan" method="post" class="main">
                 <article class="nameAge">
                     <article class="name">
                         <label for="">Tên *</label>
-                        <input required title= "Không được để trống" type="text"  name = "name">
+                        <input title="Không được để trống" type="text" name="name">
                     </article>
                     <article class="age">
-                        <label for="">Tuổi *</label>
-                        <input required title= "Không được để trống"  type = "number" name = "age" min="0" max = "100">
+                        <label for="">Giới tính *</label>
+                        <select title="Không được để trống" name="gender" id="">
+                            <option value="0" selected>Giới tính</option>
+                            <option value="0">Nam</option>
+                            <option value="1">Nữ</option>
+                            <option value="2">Khác</option>
+                        </select>
+
                     </article>
-                  </article>
+                </article>
                 <label for="">Địa chỉ *</label>
-                <input required title= "Không được để trống" type="text"  name = "address">
+                <input title="Không được để trống" type="text" name="address">
                 <label for="">Email *</label>
-                <input required title= "Không được để trống" type="email"  name = "email">
-                <label for="">Tài khoản  *</label>
-                <input required title= "Không được để trống"  type = "text" name = "account">
+                <input title="Không được để trống" type="text" name="email">
                 <label for="">Mật khẩu *</label>
-                <input required title= "Không được để trống"  type = "password" name = "password">
-                <input  type = "submit" name="submit" value="Đăng nhập">
+                <input title="Không được để trống" type="password" name="password">
+                <label for="">Nhập Lại Mật khẩu *</label>
+                <input title="Không được để trống" type="password" name="confirmPassword">
+
+                <input type="submit" value="Đăng nhập">
             </form>
             <section class="footerMain">
                 <section class="itemContent">
@@ -37,3 +44,10 @@
             <img src="<?= $img_Path ?>banner1.png" alt="banner1">
         </article>
     </section>
+    <?php
+    if (isset($alert)) {
+        echo "
+        <script> alert('$alert') </script>
+        ";
+    }
+    ?>

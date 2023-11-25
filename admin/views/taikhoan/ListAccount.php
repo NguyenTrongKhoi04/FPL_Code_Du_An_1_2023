@@ -250,75 +250,88 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Tables</h1>
-                    <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
-                        For more information about DataTables, please visit the <a target="_blank"
-                            href="https://datatables.net">official DataTables documentation</a>.</p>
+                    <h1 class="h3 mb-2 text-gray-800">Danh sách tài khoản</h1>
+
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
-                        </div>
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>IdAccoun</th>
-                                            <th>Name</th>
+                                            <th>Tên</th>
                                             <th>Gmail</th>
-                                            <th>Gender</th>
-                                            <th>Password</th>
-                                            <th>Status</th>
-                                            <th>Type</th>
-                                            <th>DateEdit</th>
-                                            <th>Thao Tác</th>
+                                            <th>Giới tính</th>
+                                            <th>Mật khẩu</th>
+                                            <th>Ảnh</th>
+                                            <th>Trạng thái</th>
+                                            <th>Chức vụ</th>
+                                            <th>Thời gian chỉnh sửa</th>
+                                            <th>Thao Tác</th>   
                                         </tr>
                                     </thead>
                                     <tbody>  
-                                        <tr>
-                                            <td>1</td>
-                                            <td>Khôi</td>
-                                            <td>khoi@gmail.com</td>
-                                            <td>Nam</td>
-                                            <td>Khoi2004</td>
-                                            <td></td>
-                                            <td></td>
-                                            <td>8/11/2023</td>          
-                                            <td>
-                                                <input type="button" value="Sửa">  
-                                                <input type="button" value="Xóa">
-                                            </td>   
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>Điệp</td>
-                                            <td>diep@gmail.com</td>
-                                            <td>Nam</td>
-                                            <td>diep2004</td>
-                                            <td></td>
-                                            <td></td>
-                                            <td>8/11/2023</td>          
-                                            <td>
-                                                <input type="button" value="Sửa">  
-                                                <input type="button" value="Xóa">
-                                            </td> 
-                                        </tr>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>Khánh</td>
-                                            <td>khanh@gmail.com</td>
-                                            <td>Nam</td>
-                                            <td>khanh2004</td>
-                                            <td></td>
-                                            <td></td>
-                                            <td>8/11/2023</td>          
-                                            <td>
-                                                <input type="button" value="Sửa">  
-                                                <input type="button" value="Xóa">
-                                            </td> 
-                                        </tr>
+                                    <?php 
+                                        foreach(getListAccount() as $values){
+                                            $types = null;
+                                            $gender = null;
+                                            $status = $values["StatusAccount"] ===  0 ? "Hoạt động " : "Đã xóa";
+                                            switch($values['Gender'] ){
+                                                case 0:
+                                                    $gender = "Nam";
+                                                break;
+                                                case 1:
+                                                    $gender = "Nữ";
+                                                break;
+                                                case 2:
+                                                    $gender = "Khác";
+                                                break;
+                                            }
+                                            switch($values['Type']){
+                                                case "NVTN":
+                                                    $types = "Nhân viên thu ngân";
+                                                break;
+                                                case "NVPVB":
+                                                    $types = "Nhân viên phục vụ bàn";
+                                                break;
+                                                case "QL":
+                                                    $types = "Quản lý";
+                                                break;
+                                                case "KH":
+                                                    $types = "Khách Hàng";
+                                                break;
+                                                case "Admin":
+                                                    $types = "Chủ Quán";
+                                                break;
+
+                                            }
+                                            
+                                            echo "
+                                            <tr>
+                                                <td>{$values['NameAccounts']}</td>
+                                                <td>{$values['Gmail']}</td>
+                                                <td>{$gender}</td>
+                                                <td>{$values['Password']}</td>
+                                                <td style='max-width: 100px'>
+                                                    <img style='max-width: 100%' src='../assets/img/admin/{$values['ImageAccounts']}' alt='image' >
+                                                </td>          
+                                                <td>{$status}</td>
+                                                <td>{$types}</td>
+                                                <td>{$values['DateEditAccount']}</td>
+
+                                                <td>
+                                                    <a href='AdminController.php?act=UpdateAccount&IdAccount={$values['IdAccount']}'>
+                                                        <input type='button' value='Sửa'> 
+                                                    </a>
+                                                    <a href='AdminController.php?act=ListAccount&delete={$values['IdAccount']}'>
+                                                        <input type='button' value='Xóa'>
+                                                    </a>                                                                                                               
+                                                </td>   
+                                        </tr>                                                
+                                            ";
+                                        }
+                                    ?> 
                                     </tbody>
                                 </table>
                             </div>

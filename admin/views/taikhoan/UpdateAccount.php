@@ -267,46 +267,120 @@
                 
                                                         
                                    <tbody>                
-                                       <form action="">
-                                           <tr>
-                                               <td>IdAccount	</td>		
-                                               <td><input type="text"></td>  
-                                           </tr>
-                                           <tr>
-                                               <td>Name</td>
-                                               <td><input type="text"></td> 
+                                   <?php 
+                                    if(isset($_GET["IdAccount"]) && !empty($_GET["IdAccount"])){
+                                        $data = getAccountById($_GET["IdAccount"])[0];
+                                        // echo "<pre>";
+                                        // print_r($data); die();
+                                            $types = null;
+                                            $gender = null;
+                                            $status = $data["StatusAccount"] ===  0 ? "Hoạt động " : "Đã xóa";
+                                            switch($data['Gender'] ){
+                                                case 0:
+                                                    $gender = "Nam";
+                                                break;
+                                                case 1:
+                                                    $gender = "Nữ";
+                                                break;
+                                                case 2:
+                                                    $gender = "Khác";
+                                                break;
+                                            }
+                                            switch($data['Type']){
+                                                case "NVTN":
+                                                    $types = "Nhân viên thu ngân";
+                                                break;
+                                                case "NVPVB":
+                                                    $types = "Nhân viên phục vụ bàn";
+                                                break;
+                                                case "QL":
+                                                    $types = "Quản lý";
+                                                break;
+                                                case "KH":
+                                                    $types = "Khách Hàng";
+                                                break;
+                                                case "Admin":
+                                                    $types = "Admin";
+                                                break;
+
+                                            }
+                                            extract($data);
+                                            ?>
+                                   <form action="AdminController.php?act=UpdateAccount&IdAccount=<?= $IdAccount?>" method="post" enctype="multipart/form-data">
+                                                <tr>
+                                                <td>Tên</td>
+                                                    <td><input value="<?= $NameAccounts ?>" name = "Name" type="text"></td>
+                                                    
+                                            </tr>
+                                            <tr>
+                                                <td>Gmail</td>
+                                                <td><input value="<?= $Gmail ?>" name = "Gmail" type="email"></td>
                                                 
-                                           </tr>
-                                           <tr>
-                                               <td>Gmail</td>
-                                               <td><input type="text"></td>                                                  
-                                           </tr>
-                                           <tr>
-                                               <td>Gender</td>
-                                               <td><input type="text"></td>                                                 
-                                           </tr>                                               
-                                           </tr>
-                                               <td>Password</td>
-                                               <td><input type="text"></td>                                          
-                                           </tr>
-                                           <tr>
-                                               <td>Status</td>
-                                               <td><input type="text"></td> 
-                                           </tr>
-                                           <tr>
-                                               <td>Tyoe</td>
-                                               <td><input type="text"></td> 
-                                           </tr>
-                                           <tr>
-                                               <td>DateEdit</td>
-                                               <td><input type="text"></td> 
-                                           </tr>
-                                           <tr>
-                                               <td>
-                                                   <input type="button" value="Update Account">
-                                               </td>
-                                           </tr>
-                                       </form>                           
+                                            </tr>
+                
+                                            <tr>
+                                                <td>Giới tính</td>
+                                                <td>
+                                                    <select name="Gender" id="">
+                                                        <option value="<?= $Gender?>" selected hidden><?= $gender ?></option>
+                                                        <option value="0">Nam</option>
+                                                        <option value="1">Nữ</option>
+                                                        <option value="2">Khác</option>
+                                                    </select>
+                                                </td>
+                                                    
+                                            </tr>
+                                            <tr>
+                                                <td>Mật khẩu</td>
+                                                <td>
+                                                    <input value="<?=$Password ?>" type="password" name = "Password" id="">
+                                                </td>
+                                                    
+                                            </tr>
+                                            <tr>
+                                                <td>Ảnh</td>
+                                                <td>
+                                                    <input type="file" name = "Image" value="<?= $ImageAccounts ?>">
+                                                </td>
+                                                    
+                                            </tr>
+                                            <tr>
+                                                <td>Trạng thái</td>
+                                                <td>
+                                                    <select name="Status" id="">
+                                                        <option value="<?= $Status?>" selected hidden><?= $status ?></option>
+                                                        <option value="0">Hoạt động</option>
+                                                        <option value="1">Đã xóa</option>                                                   
+
+                                                        
+                                                    </select>
+                                                </td>
+                                                    
+                                            </tr>
+                                            <tr>
+                                                <td>Chức vụ</td>
+                                                <td>
+                                                    <select name="Type" id="">
+                                                        <option value="<?= $Type ?>" selected hidden><?= $types ?></option>
+                                                        <option value="NVTN">Nhân viên thu ngân</option>
+                                                        <option value="NVPVB">Nhân viên phục vụ bàn</option>
+                                                        <option value="QL">Quản lý</option>
+                                                        <option value="KH">Khách Hàng</option>
+                                                        <option value="Admin">Admin</option>
+                                                    </select>
+                                                </td>
+                                                
+                                            </tr>
+        
+                                            <td><input  name = "submit" type="submit" value="thêm"></td>                              
+                                    </form>  
+                                            <?php
+
+                                    }else{
+                                        echo "404 Not Fount";
+                                    }
+                                        
+                                    ?>                          
                                    </tbody>
                                </table>
                         </div>

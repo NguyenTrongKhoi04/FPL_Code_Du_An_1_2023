@@ -5,45 +5,96 @@ include_once '../app/Pdo.php';
 include_once '../assets/global/User.php';
 include_once '../assets/global/url_Path.php';
 include_once 'models/Login.php';
-include_once '../assets/global/Header.php'; 
-include_once 'models/ChiTietSanPham.php';
+include_once '../assets/global/Header.php';
+include_once "../assets/global/Validate.php";
+include_once "../assets/global/SendGmail.php";
+include_once 'models/Login.php';
+include_once 'models/Home.php';
+include_once 'models/ProductPortfolio.php';
+include_once 'models/Cart.php';
+include_once 'models/CreateAccount.php';
 include_once 'models/DatBan.php';
 check_Login();
 
-if (isset($_GET['act']) && ($_GET['act'] != '')) {
-    if (empty($_SESSION['user'])) {
+if(isset($_GET['act'])&&($_GET['act'] !='' )){
+    if(empty($_SESSION['user'])){
         include_once 'views/LoginThuong.php';
     } else {
         $act = $_GET['act'];
-        switch ($act) {
+        switch($act){
         /**
-         * ====================================================================================
-         *                                 LOGIN - LOGOUT
-         * ====================================================================================
-         */
+            * ====================================================================================
+            *                                 LOGIN - LOGOUT
+            * ====================================================================================
+            */
             case 'dangnhap':
-                if ($_SESSION['user']['Role'] == 1) {
+                if($_SESSION['user']['Role']==1){
                     header('location: ../admin/AdminController.php');
-                } else {
-                    $loadHeader = 0;
-                    if ($loadHeader == 0) {
-                        header('location: UserController.php');
-                        include_once 'views/Home.php';
-                        $loadHeader = 1;
-                    }
-                }
+                }else
+                include_once 'views/Home.php';
                 break;
-
             case 'dangxuat':
                 session_destroy();
                 header('location: UserController.php');
                 break;
-                
         /**
             * ====================================================================================
-            *                                 CHI TIẾT SẢN PHẨM
+            *                                 DANG KY
             * ====================================================================================
             */
+            case 'TaoTaiKhoan':
+                if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                    $dataAccount = $_POST;
+                    $alert = CreateAccount_CreateAccount($dataAccount);
+                    if ($alert === "") {
+                        header("location: http://localhost:3000/user/UserController.php?act=VerifyAccount");
+                    }
+                }
+                include_once 'views/CreateAccount.php';
+                break;
+            case "VerifyAccount":
+                if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                    $dataVerifyAccount = $_POST;
+                    $alert = CreateAccount_CreateAccount1($dataVerifyAccount);
+                }
+                include_once 'views/VerifyAccount.php';
+                break;
+        /**
+            * ====================================================================================
+            *                                     HOME
+            * ====================================================================================
+            */     
+            case 'trangchu':
+                if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                    $dataBooking = $_POST;
+                    $alert = home_BookingTable($dataBooking);
+                }
+                include_once 'views/Home.php';
+
+        /**
+            * ====================================================================================
+            *                                PRODUCT PORTFOLIO
+            * ====================================================================================
+            */            
+            case 'DanhMucSanPham':
+                if (isset($_GET['idCategory']) && !empty($_GET['idCategory'])) {
+                    $idCategory = $_GET['idCategory'];
+                    $dataProductPortfolio = productPortfolio_GetAllProduct($idCategory);
+                    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                        extract($_POST);
+                        $GetAllProductAsRequested = productPortfolio_GetAllProductAsRequested($price, $product, $idCategory);
+                    }
+                    include_once 'views/ProductPortfolio.php';
+                } else {
+                    include_once 'views/Home.php';
+                }
+                break;
+
+        /**
+            * ====================================================================================
+            *                                CHI TIET SAN PHAM
+            * ====================================================================================
+            */     
             case 'LoadChiTietSanPham':
                 $id = $_GET['id'];
                 $pro = chiTietSanPham_LoadAll($id);
@@ -63,14 +114,41 @@ if (isset($_GET['act']) && ($_GET['act'] != '')) {
                 }
                 include_once 'views/ChiTietSanPham.php';
                 break;
-            
+        /**
+            * ====================================================================================
+            *                                     BILL
+            * ====================================================================================
+            */     
+                case 'GioHang':
+                    $dataCart = cart_GetAllCartByIdAccount($idAccountUser);
+                    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                        cart_UpdateCart($_POST["quantity"]);
+                        $_SESSION['dataCarts'] = cart_GetAllCartByIdAccount($idAccountUser);
+                        // chuyển sang chọn bàn 
+                    }
+                    if (isset($_GET['Delete']) && ($_GET['Delete'] != '')) {
+                        if(cart_Delete($_GET['Delete']) === null){
+                            $alert = "Xóa sản phẩm thành công";
+                            header("loaclhost: UserController.php?act=GioHang");
+                        }
+                    }
+                    include_once 'views/Cart.php';
+                    break;
+        /**
+            * ====================================================================================
+            *                                     BILL
+            * ====================================================================================
+            */        
+            case 'billthanhtoan':
+                include_once 'views/BillPayment.php' ;
+                break; 
+           
         /**
             * ====================================================================================
             *                                 BAN
             * ====================================================================================
             */
             case 'ListBan':
-               
                 $arrBanFull = list_BanCoNguoiNgoi();
                 If($_SERVER['REQUEST_METHOD']==='POST'){
                     extract($_POST);
@@ -83,8 +161,11 @@ if (isset($_GET['act']) && ($_GET['act'] != '')) {
                         echo"</pre>";   
                     }
                 }
-                include_once 'views/DatBan.php';
-                break;
+                include_once 'views/DatBan.php';    
+
+
+
+
             default:
                 include_once 'views/Home.php';
                 break;

@@ -266,51 +266,60 @@
                 
 
                                    <tbody>                
-                                       <form action="">
+                                       <form action="AdminController.php?act=AddAccount" method="post" enctype="multipart/form-data">
                                            <tr>
-                                               <td>IdAccount</td>
-                                               <td><input type="text"></td>
+                                               <td>Tên</td>
+                                                <td><input name="Name" required type="text"></td>
+                                                
+                                           </tr>
+                                           <tr>
+                                               <td>Gmail
+                                               <td><input name="Gmail" required type="email"></td>
+                                                
+                                           </tr>
+                                           <tr>
+                                               <td>Gới tính</td>
+                                               <td>
+                                                    <select  name="Gender" required id="">
+                                                        <option selected hidden value="">Gới tính</option>
+                                                        <option value="0">Nam</option>
+                                                        <option value="1">Nữ</option>
+                                                        <option value="2">Khác</option>
+                                                    </select>
+                                               </td>
+                                                
+                                           </tr>
+                                           </tr>
+                                               <td>Mật khẩu</td>
+                                               <td><input name="Password" required type="password"></td>
+                                                
+                                           </tr>
+                                           <tr>
+                                               <td>Ảnh</td>
+                                               <td>
+                                                    <input type="file" name = "Image" alt="">
+                                               </td>
+                                                                                         
+                                           <tr>
+                                               <td>Chức vụ</td>
+                                               <td>
+                                                    <select name="Type"  required id="">
+                                                        <option selected hidden value="">Chức vụ</option>
+                                                        <option value="NVTN">Nhân viên thu ngân</option>
+                                                        <option value="NVPVB">Nhân viên phục vụ bàn</option>
+                                                        <option value="QL">Quản lý</option>
+                                                        <option value="KH">Khách Hàng</option>
+                                                        <option value="Admin">Admin</option>
+                                                    </select>
+                                               </td>
+                                                
+                                           </tr>
+                                           <tr>
+                                               <td><input name="submit" required type="submit" value="thêm"></td>
                                                
                                            </tr>
-                                           <tr>
-                                               <td>Name</td>
-                                                <td><input type="text"></td>
-                                                
-                                           </tr>
-                                           <tr>
-                                               <td>Gmail </td>
-                                               <td><input type="text"></td>
-                                                
-                                           </tr>
-                                           <tr>
-                                               <td>Gender</td>
-                                               <td><input type="text"></td>
-                                                
-                                           </tr>
-                                           </tr>
-                                               <td>Password</td>
-                                               <td><input type="text"></td>
-                                                
-                                           </tr>
-                                           <tr>
-                                               <td>Status</td>
-                                               <td><input type="text"></td>
-                                                
-                                           </tr>
-                                           <tr>
-                                               <td>Type</td>
-                                               <td><input type="text"></td>
-                                                
-                                           </tr>
-                                           <tr>
-                                               <td>DateEdit</td>
-                                               <td><input type="text"></td>
-                                               
-                                           </tr>
-       
-                                       </form>
-
-                                       <td><input type="button" value="thêm"></td>                              
+                    
+                                   
                                    </tbody>
                                </table>
                             </div>

@@ -6,6 +6,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="../assets/css/user/Footer.css">
     <link rel="stylesheet" href="../assets/css/user/Header.css">
+    <link rel="stylesheet" href="../assets/themify-icons/themify-icons.css">
 </head>
 <body>
     <header>
@@ -24,7 +25,7 @@
             <?php if(empty($_SESSION['user'])) {?>
                 <div class="login">
                     <button class="button_Login"><a href="<?= $userAction ?>dangnhap">Đăng nhập</a></button>
-                    <button class="button_Login"><a href="<?= $userAction ?>dangky">Đăng Ký</a></button>
+                    <button class="button_Login"><a href="<?= $userAction ?>TaoTaiKhoan">Đăng Ký</a></button>
                 </div>
             <?php }else{ ?>
                 <div class="login">

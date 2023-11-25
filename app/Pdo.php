@@ -13,7 +13,6 @@ function pdo_Execute($sql){
      * func_get_args(): gộp các tham số được truyền thành mảng 
      */
     $sql_Args = array_slice(func_get_args(), 1);
-
     try{
         $conn = pdo_Get_Connection();
         $stmt = $conn->prepare($sql);

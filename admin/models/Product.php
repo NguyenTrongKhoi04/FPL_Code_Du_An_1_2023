@@ -1,4 +1,5 @@
 <?php
+
 function loadAll_Product(){
     $sql = "SELECT * FROM product";
     return query_All($sql);
@@ -48,3 +49,4 @@ function delete_Product($id){
     $sql ="DELETE FROM product WHERE IdProduct = '$id'";
     return pdo_Execute($sql);
 }
+
