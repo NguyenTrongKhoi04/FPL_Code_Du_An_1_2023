@@ -14,11 +14,17 @@ include_once 'models/ProductPortfolio.php';
 include_once 'models/Cart.php';
 include_once 'models/CreateAccount.php';
 include_once 'models/DatBan.php';
+
 check_Login();
 
+
 if(isset($_GET['act'])&&($_GET['act'] !='' )){
-    if(empty($_SESSION['user'])){
-        include_once 'views/LoginThuong.php';
+    // if(empty($_SESSION['user'])){
+    //     if($_GET['act']=='TaoTaiKhoan'){
+    //         include_once 'views/CreateAccount.php';
+    //     }else{ 
+            include_once 'views/LoginThuong.php';
+        // }
     } else {
         $act = $_GET['act'];
         switch($act){
@@ -28,10 +34,16 @@ if(isset($_GET['act'])&&($_GET['act'] !='' )){
             * ====================================================================================
             */
             case 'dangnhap':
-                if($_SESSION['user']['Role']==1){
+                if ($_SESSION['user']['Role'] == 1) {
                     header('location: ../admin/AdminController.php');
-                }else
-                include_once 'views/Home.php';
+                } else {
+                    $loadHeader = 0;
+                    if ($loadHeader == 0) {
+                        header('location: UserController.php');
+                        include_once 'views/Home.php';
+                        $loadHeader = 1;
+                    }
+                }
                 break;
             case 'dangxuat':
                 session_destroy();
