@@ -176,6 +176,11 @@ if(isset($_GET['act'])&&($_GET['act'] !='' )){
                 include_once 'views/DatBan.php';    
 
                 break;
+                case "CashViSa":
+                    include_once 'views/CashViSa.php' ;
+                    break;
+                case "CashPayment":
+                    break;
 
 
             default:

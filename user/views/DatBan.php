@@ -33,7 +33,7 @@
         <a href="UserController.php?act=CashPayment">
             <button type="submit">Thanh toán Tiền mặt</button>
         </a>
-        <a href="CashViSa">
+        <a href="UserController.php?act=CashViSa">
             <button type="submit">Thanh toán ViSa</button>
         </a>
     </article>
