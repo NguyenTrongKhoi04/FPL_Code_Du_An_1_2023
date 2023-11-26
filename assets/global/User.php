@@ -124,3 +124,18 @@ function check_Login(){
         }
     }
 }
+
+function check_LoginNhanh(){
+    $tk_nhanh = $_POST['tk_nhanh'] ?? null;
+    if(isset($tk_nhanh)){
+        $arrCheck = select_One('account',null," Gmail = '$tk_nhanh'");
+
+        if(is_array($arrCheck)){
+            $_SESSION['user']=$arrCheck;
+            unset($tk_nhanh);
+        }else{
+                tao_TaiKhoan_LoginNhanh($tk_nhanh);
+                // header('location: UserController.php');
+        }   
+    }
+}

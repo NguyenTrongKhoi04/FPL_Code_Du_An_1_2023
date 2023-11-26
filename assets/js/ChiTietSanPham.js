@@ -11,7 +11,7 @@ increaseButton.addEventListener("click", function () {
 
 decreaseButton.addEventListener("click", function () {
     const currentValue = parseInt(input.value);
-    if (currentValue > 0) {
+    if (currentValue > 1) {
         input.value = currentValue - 1;
     }
 });

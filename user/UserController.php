@@ -13,15 +13,21 @@ include_once 'models/Home.php';
 include_once 'models/ProductPortfolio.php';
 include_once 'models/Cart.php';
 include_once 'models/CreateAccount.php';
+include_once 'models/ChiTietSanPham.php';
 include_once 'models/DatBan.php';
+include_once 'models/LoginNhanh.php';
 
+
+check_LoginNhanh();
 check_Login();
-
 
 if(isset($_GET['act'])&&($_GET['act'] !='' )){
     if(empty($_SESSION['user'])){
-    include_once 'views/LoginThuong.php';
-        // }
+        if($_GET['act']=='dangnhap_AnTaiQuan'){
+            include_once 'views/LoginNhanh.php';
+        }else{
+            include_once 'views/LoginThuong.php';
+        }
     } else {
         $act = $_GET['act'];
         switch($act){
@@ -42,6 +48,11 @@ if(isset($_GET['act'])&&($_GET['act'] !='' )){
                     }
                 }
                 break;
+            
+            case 'dangnhap_AnTaiQuan':
+                header('location: UserController.php');
+                include_once 'views/LoginNhanh.php';
+                break;
             case 'dangxuat':
                 session_destroy();
                 header('location: UserController.php');
@@ -56,7 +67,7 @@ if(isset($_GET['act'])&&($_GET['act'] !='' )){
                     $dataAccount = $_POST;
                     $alert = CreateAccount_CreateAccount($dataAccount);
                     if ($alert === "") {
-                        header("location: http://localhost:3000/user/UserController.php?act=VerifyAccount");
+                        header("location: UserController.php?act=VerifyAccount");
                     }
                 }
                 include_once 'views/CreateAccount.php';

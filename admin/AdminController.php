@@ -4,7 +4,7 @@ ob_start();
 include_once '../app/Pdo.php';
 include_once '../assets/global/User.php';
 include_once '../assets/global/url_Path.php';
-include_once 'models/TaiKhoan.php';
+include_once 'models/Account.php';
 include_once 'models/Ban.php';
 include_once 'models/Product.php';
 
@@ -84,9 +84,9 @@ if (empty($_SESSION['user'])) {
                     extract($_POST);
                     extract($_FILES);
 
-                    $imgNameProduct = ($imgProduct['size'] != 0) ? $imgProduct : $ImageProduct ;
+                    $imgNameProduct = ($imgProduct['size'] != 0) ? $imgProduct['name'] : $ImageProduct ;
     
-                    if($imgProduct['size'] != ''){
+                    if($imgProduct['size'] ==0){
                         $img=$imgProduct['name'];
                         move_uploaded_file($imgProduct['tmp_name'], $adminImg . $img);
                     }
