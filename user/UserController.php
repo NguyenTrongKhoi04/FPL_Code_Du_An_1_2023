@@ -4,10 +4,10 @@ ob_start();
 include_once '../app/Pdo.php';
 include_once '../assets/global/User.php';
 include_once '../assets/global/url_Path.php';
-include_once 'models/Login.php';
 include_once '../assets/global/Header.php';
 include_once "../assets/global/Validate.php";
 include_once "../assets/global/SendGmail.php";
+include_once 'models/ChiTietSanPham.php';
 include_once 'models/Login.php';
 include_once 'models/Home.php';
 include_once 'models/ProductPortfolio.php';
@@ -20,7 +20,7 @@ check_Login();
 
 if(isset($_GET['act'])&&($_GET['act'] !='' )){
     if(empty($_SESSION['user'])){
-git st            include_once 'views/LoginThuong.php';
+        include_once 'views/LoginThuong.php';
         // }
     } else {
         $act = $_GET['act'];
@@ -56,7 +56,7 @@ git st            include_once 'views/LoginThuong.php';
                     $dataAccount = $_POST;
                     $alert = CreateAccount_CreateAccount($dataAccount);
                     if ($alert === "") {
-                        header("location: http://localhost:3000/user/UserController.php?act=VerifyAccount");
+                        header("Location: UserController.php?act=VerifyAccount");
                     }
                 }
                 include_once 'views/CreateAccount.php';
@@ -119,26 +119,28 @@ git st            include_once 'views/LoginThuong.php';
                 if(isset($_POST['add_to_cart'])){
                     extract($_POST);
                     $priceQuantity = $pro['PriceProduct'] * $Quantity;
-                    chiTietSanPham_Add_To_Cart($_SESSION['user']['IdAccount'],$SizeProduct,$Quantity,$priceQuantity);
+                    $alert = chiTietSanPham_Add_To_Cart($IdProduct, $_SESSION['user']['IdAccount'],$SizeProduct,$Quantity,$priceQuantity);
                 }
                 include_once 'views/ChiTietSanPham.php';
                 break;
         /**
             * ====================================================================================
-            *                                     BILL
+            *                                     Gio Hang
             * ====================================================================================
             */     
                 case 'GioHang':
+                    $idAccountUser = $_SESSION['user']["IdAccount"];
                     $dataCart = cart_GetAllCartByIdAccount($idAccountUser);
                     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         cart_UpdateCart($_POST["quantity"]);
-                        $_SESSION['dataCarts'] = cart_GetAllCartByIdAccount($idAccountUser);
-                        // chuyển sang chọn bàn 
+                        $_SESSION['dataOrderCart'] = cart_GetAllCartByIdAccount($idAccountUser);
+                        header("Location: UserController.php?act=ListBan");
+ 
                     }
                     if (isset($_GET['Delete']) && ($_GET['Delete'] != '')) {
                         if(cart_Delete($_GET['Delete']) === null){
                             $alert = "Xóa sản phẩm thành công";
-                            header("loaclhost: UserController.php?act=GioHang");
+                            header("Location: UserController.php?act=GioHang");
                         }
                     }
                     include_once 'views/Cart.php';
@@ -158,21 +160,22 @@ git st            include_once 'views/LoginThuong.php';
             * ====================================================================================
             */
             case 'ListBan':
-                $arrBanFull = list_BanCoNguoiNgoi();
-                If($_SERVER['REQUEST_METHOD']==='POST'){
+                If($_SERVER['REQUEST_METHOD']==='POST'){ 
                     extract($_POST);
-                    if(!isset($ban_check)){
-                        echo "<script>alert('Vui lòng chọn bàn')</script>";
-                        header("loaction:UserController?act=ListBan");
+                    if(!isset($contentTable)){
+                        echo "<script>alert('Vui lòng chọn bàn...')</script>";
                     }else{
-                        echo"<pre>";
-                        print_r($_POST);
-                        echo"</pre>";   
+                        $alert = datBan_CheckBookingTables($_POST);
+                        if($alert === true){
+                            header("Location: UserController.php?act=billthanhtoan");
+                        }else{
+                            echo "<script>alert($alert)</script>";
+                        }
                     }
                 }
                 include_once 'views/DatBan.php';    
 
-
+                break;
 
 
             default:

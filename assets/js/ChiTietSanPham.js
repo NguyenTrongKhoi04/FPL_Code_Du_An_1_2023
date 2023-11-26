@@ -4,14 +4,16 @@ const decreaseButton = document.getElementById("decrease");
 
 increaseButton.addEventListener("click", function () {
     const currentValue = parseInt(input.value);
-    if (currentValue < 10) {
+    var maxAttributeQuality = input.getAttribute('max');
+
+    if (currentValue < parseInt(maxAttributeQuality)) {
         input.value = currentValue + 1;
     }
 });
 
 decreaseButton.addEventListener("click", function () {
     const currentValue = parseInt(input.value);
-    if (currentValue > 0) {
+    if (currentValue > 1) {
         input.value = currentValue - 1;
     }
 });

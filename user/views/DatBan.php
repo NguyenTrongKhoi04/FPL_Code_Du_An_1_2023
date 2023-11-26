@@ -1,58 +1,41 @@
-<div class="datban">
-    <link rel="stylesheet" href="../assets/css/user/DatBan.css">
-    <div class="sodo">
-        <h1>Sơ Đồ Nhà Hàng</h1>
-        <div class="door_kitchen">
-            <div class="cua_ra_vao">
-                <p>của ra vào</p>
-            </div>
-            <div class="kitchen">
-                <p>Bếp</p>
-            </div>
-        </div>
-        <?php $arr=[1,2,5,6,8,10,4]?>
-        <div class="so_do_cho_ngoi">
-            <form action="<?= $userAction?>ListBan" method="POST">
-                <div>
-                    <table>
-                        <?php $dem=0; ?>
-                        <?php for($n=0;$n<4;$n++) {?>
-                        <tr>
-                                <?php for($i=0;$i<5;$i++) { $dem++;?>
-                            <td>
-                                <div class="ban">
-                                    <input type="checkbox" class="ban_check" name="so_Ban" value="<?=$dem ?>" <?php echo (in_array($dem, $arrBanFull) ? 'checked disabled allow="false"' : ''); ?>>
-                                    <label for="checkbox1"><?=$dem ?></label>
-                                </div>
-                            </td>
-                                <?php }?>
-                        </tr>
-                        <?php } ?>
-                        <?php $dem_ban_to=20; for($n=0;$n<2;$n++) {?>
-                            <tr>
-                                <?php for($i=0;$i<4;$i++) { $dem_ban_to++;?>
-                                    <td>
-                                        <div class="ban_to">
-                                            <input type="checkbox" class="ban_check"  name="so_Ban" value="1" id="checkbox1" <?php echo (in_array($dem_ban_to, $arrBanFull) ? "checked disabled" : ""); ?>>
-                                            <label for="checkbox1"><?= $dem_ban_to?></label>
-                                        </div>
-                                    </td>
-                                    <?php }?>
-                                </tr>
-                        <?php }?>
-                        <tr>
-                            <button class="xac_nhan_cho_ngoi" type="submit">Xác nhận vị trí ngồi</button>
-                            <!-- <p>bàn nhỏ: 4 Người Ngồi</p> -->
-                        </tr>
-                    </table>
-                </div>
-                <div></div>
-            </form>
-            <div class="QuayLeTan">
-                
-                <div class="thanhtoan"><p>Quầy Thanh Toán</p></div>
-            </div>
-        </div>
-        
-    </div>
-</div>
+<link rel="stylesheet" href="../assets/css/user/DatBan.css">
+<form action="" method="post" class="datban">
+    <article class="header">
+        <h1>Chọn bàn mà bạn muốn</h1>
+    </article>
+    <section class="containerTable">
+    <section class="listTable">
+        <?php
+        foreach(datBan_ListTables() as $valuesListTables){
+            if($valuesListTables["StatusTable"] === 1){
+                echo "
+                <label class='contentTable ' style='background-color: #CA0910;'>
+                    <span>{$valuesListTables['NumberTable']}</span>
+                </label>                
+                ";
+            }else{
+                echo "
+                <label class='contentTable'>
+                    <input type='radio' name='contentTable' value='{$valuesListTables['IdTables']}' hidden>
+                    <span>{$valuesListTables['NumberTable']}</span>
+                </label>                
+                ";
+            }
+        }
+        ?>
+
+    </section>
+    <article class="timeBooking">
+        <input type="datetime-local" name="timeBooking" id="">
+    </article>
+    </section>
+    <article class="footer">
+        <a href="UserController.php?act=CashPayment">
+            <button type="submit">Thanh toán Tiền mặt</button>
+        </a>
+        <a href="CashViSa">
+            <button type="submit">Thanh toán ViSa</button>
+        </a>
+    </article>
+</form>
+<script src="../assets/js/DatBan.js"></script>

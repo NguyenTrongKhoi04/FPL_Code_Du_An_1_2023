@@ -60,9 +60,17 @@ function chiTietSanPham_Top3_SanPham(){
     return $arr_Top3;
 }
 
-function chiTietSanPham_Add_To_Cart($idAccount,$idSize,$quantityProduct,$priceProduct){
-    $sql = "INSERT INTO cart(IdAccount,Size,Quantity,PriceCard) VALUES ('$idAccount','$idSize','$quantityProduct','$priceProduct')";
-    return pdo_Execute($sql);
+function chiTietSanPham_Add_To_Cart($idProduct,$idAccount,$idSize,$quantityProduct,$priceProduct){
+    $sql = "";
+    $sqlCheckProductInCart = query_All("select Quantity from cart where IdProduct = '$idProduct' and IdAccount = '$idAccount' " );
+    if(empty($sqlCheckProductInCart)){
+        $sql = "INSERT INTO cart(IdProduct,IdAccount,Size,Quantity,PriceCard) VALUES ('$idProduct','$idAccount','$idSize','$quantityProduct','$priceProduct')";
+    }else{
+        $totailQuantity = (int)$sqlCheckProductInCart[0]["Quantity"] + (int)$quantityProduct;
+        $sql = "update cart set Quantity = '$totailQuantity' where IdProduct = '$idProduct' and IdAccount = '$idAccount' ";
+    }
+    pdo_Execute($sql);
+    return "Sản phẩm đã được thêm vào giỏ hàng";
 }
 
 function chiTietSanPham_LoadDetails($id){

@@ -1,117 +1,126 @@
 * {
-    margin: 0px;
-    padding: 0px;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+  }
+  
+:root {
+    --color: #131313;
+    --color1: #282828;
+    --color2: #393939;
+    --color3: #585353;
+    --color4: #CA0910;
+    --color5: #F7C427;
+    --color6: #FFFFFF;
+    --color7: #2E2C2C;
+    --color8: #30CA73;
 }
-
-html{
-    font-size: 20px;
-}
-
 .datban{
     width: 1920px;
     margin: 0 auto;
     background: #131313;
     padding: 50px 0;
-    .sodo{
-        padding-top: 30px;
-        width: 90%;
-        margin: 0 auto;
-        border-radius: 30px;
-        background: #2E2C2C;
+    height: 1000px;
+    padding: 2% 5%;
+    
+    .header{
+        width: 100%;
+        height: 10%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        h1{
+            color: var(--color6);
+            font-size: 2.2rem;
+        }
+    }
+    .containerTable{
+        width: 100%;
+        height: 80%;
+        display: flex;
+        justify-content: space-between;
         
-        >h1{
-            color: white;
-            text-align: center;
-            font-size: 60px;
-        }
-        .door_kitchen{
+        .listTable{
+            width: 100%;
+            height: 100%;
             display: flex;
-            justify-content: space-between;
-            .cua_ra_vao{
-                height: 100px;
-                color: white;
-                padding-left: 10px;
-                border-left: 5px solid white;
-                
-                p{
-                    font-size: 50px;
-                }
-            }
-            .kitchen{
-                padding: 40px;
-                background: #D9D9D9;
-                font-size: 60px;
-            }
-        }
+            align-items: start;
+            flex-wrap: wrap;
+            overflow-x: auto;
+            
 
-        .so_do_cho_ngoi{
-            display: flex;
-            justify-content: space-between;
-            form{
+            .contentTable{
+                width: 7%;
+                height: 10%;
                 display: flex;
+                justify-content: space-around;
+                align-items: center;
+                color: var(--color6);
+                background-color:  var(--color8);
+                margin: 2% 6%;
                 
-                tr{
-                    display: flex;
+                input{
+                    width: 100%;
+                    height: 100%;
+                    appearance: none;
+                    background-color: transparent;
+
+                }
                 
-                    td{
-                        margin: 40px;
-                       
-                        .ban {
-                            width: 150px;
-                            background: #F7C427;
-                            font-size: 50px;
-                            color: white;
-                            
-                            input {
-                                transform: scale(4);
-                                margin: 20px;
-                                margin-bottom: 30px;    
-                                margin-left: 50px;
-                            }
-                        }
-                        
-                        .ban_to {
-                            display: flex;
-                            width: 150px;
-                            border-radius: 15px;
-                            background: #F7C427;
-                            font-size: 70px;
-                            color: white;
-                            padding: 40px;
-                            input {
-                                transform: scale(4);
-                                margin: 20px;
-                                margin-bottom: 30px;    
-                                margin-left: 50px;
-                            }
-                        }
-                    }
+                span{
+                    font-size: 2.5rem;
                 }
             }
 
-            .QuayLeTan{
+        }
+
+        .timeBooking{
+            width: 45%;
+            height: 50%;
+            
+            padding: 0 5%;
+
+            input{
                 width: 100%;
-                height: 1000px;
-                display: flex;                
-                justify-content: center;
-                align-items: center;
+                height: 20%;
+                text-align: center;
+                font-size: 1rem;
+                background-color: var(--color8);
+                color: var(--color6);
+            }
+            input:focus{
+                outline: none;
+            } 
 
-                .thanhtoan{
-                    color: white;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    width: 50%;
-                    height: 900px;
-                    background-color: gray;
-                    float: right;    
-                    font-size: 50px;
+        }
+    }
+    .footer{
+        width: 100%;
+        height: 10%;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
 
-                    p{
-                        text-align: center;
-                        font-size: 50px;
-                    }
-                }
+        a{
+            width: 25%;
+            height: 70%;  
+
+            button{
+                width: 100%;
+                height: 100%;
+                font-size: 1.5rem;
+                background-color: var(--color2);
+                color: var(--color6);
+                border: none;
+    
+            }
+    
+            button:hover{
+                background-color: var(--color6);
+                color: var(--color);
+                transition: 1s linear;
             }
         }
     }

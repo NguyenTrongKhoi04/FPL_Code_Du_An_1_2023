@@ -30,7 +30,7 @@
             <?php }else{ ?>
                 <div class="login">
                     <a href="" class="login_success"><img src="<?= $img_Path ?>Glyph_ undefined.png" alt=""></a>
-                    <a href="" class="login_success"><img src="<?= $img_Path ?>Vector.png" alt=""></a>
+                    <a href="UserController.php?act=GioHang" class="login_success"><img src="<?= $img_Path ?>Vector.png" alt=""></a>
                     <a href="<?= $userAction ?>dangxuat" class="login_success"><img src="<?= $img_Path ?>out.png" alt=""></a>
             
                         <div class="avatar">

@@ -35,14 +35,14 @@
             <section class="mainAside">
                 <h1>Thông tin đơn hàng</h1>
                 <ul>
-                    <li>Tổng tiền <?= cart_Totail($dataCart)["qualityProduct"] ?> sản phẩm: <?= cart_Totail($dataCart)["totailPrice"] ?> $</li>
-                    <li>Phí dịch vụ 1% : <?= cart_Totail($dataCart)["ServiceCharge"] ?>     $</li>
-                    <li>Thuế VAT 10% : <?= cart_Totail($dataCart)["vat"] ?> $</li>
+                    <li>Tổng tiền <?= cart_Totail($dataCart)["qualityProduct"] ?> sản phẩm: <?= cart_Totail($dataCart)["totailPrice"] ?> VND</li>
+                    <li>Phí dịch vụ 1% : <?= cart_Totail($dataCart)["ServiceCharge"] ?>     VND</li>
+                    <li>Thuế VAT 10% : <?= cart_Totail($dataCart)["vat"] ?> VND</li>
                 </ul>
             </section>
             <section class="footerAside">
-                <h1>Tổng cộng: <?= cart_Totail($dataCart)["totail"] ?> $</h1>
-                <button type="submit" name="ThanhToan">Thanh Toán</button>
+                <h1>Tổng cộng: <?= cart_Totail($dataCart)["totail"] ?> VND</h1>
+                <button type="submit" name="ThanhToan">Chọn Bàn</button>
             </section>
         </aside>
     </main>
@@ -52,4 +52,4 @@
         echo "<script> alert('$alert') </script>";
     }
     ?>
-    <script src="../assets/js/Cart.js"></script>
+    <!-- <script src="../assets/js/Cart.js"></script> -->

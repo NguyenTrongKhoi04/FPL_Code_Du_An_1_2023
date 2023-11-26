@@ -1,9 +1,9 @@
     <div class="ChiTietSanPham">
         <link rel="stylesheet" href="../assets/css/user/ChiTietSanPham.css">
         <div class="ProductDetail">
-            <div class="img"><img src="<?= $adminImg?><?=$pro['ImageProduct']?>"  height="100%"></div>
+            <div class="img"><img src="<?= $imgPathAdmin?><?=$pro['ImageProduct']?>"  height="100%"></div>
             <div class="form">
-                <form action="" method="POST">
+                <form action="UserController.php?act=LoadChiTietSanPham&id=<?= $_GET['id']?>" method="POST">
                     <input type="hidden" name="IdProduct" value="<?=$pro['IdProduct']?>">
                     <input type="hidden" name="PriceProduct" value="<?=$pro['PriceProduct']?>">
                     <h2><?=$pro['NameProduct']?></h2>
@@ -18,8 +18,8 @@
                         <div class="tanggiam">
                             <p>Số lượng mua&nbsp;&nbsp;</p>
                             <button type="button" id="decrease">-</button>   
-                            <input type="number" value="1" name="Quantity" id="quantity" value="0" min="1" max="10">
-                            <button type="button" id="increase">+</button>
+                            <input required type="number" value="1"  name="Quantity" id="quantity"  min="1" max="<?= $proSize[0]["QuantityProduct"] ?>">
+                            <button type="button" id="increase" value="<?= $proSize[0]["QuantityProduct"] ?>" >+</button>
                           
                         </div>
                         <div class="tanggiam">
@@ -81,4 +81,9 @@
             </div>
         </div>
     </div>
+    <?php 
+    if(isset($alert) && !empty($alert)){
+        echo "<script> alert('$alert') </script>";
+    }
+    ?>
     <script src="../assets/js/ChiTietSanPham.js"></script>

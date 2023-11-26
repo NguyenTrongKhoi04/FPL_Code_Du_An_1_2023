@@ -78,7 +78,7 @@ function onloadProductCalorieBalance(products, next, back,  classData, numberPro
         for (let i = 0; i < productsToShow.length; i++) {
           const itemProduct = productsToShow[i];
           productSection.innerHTML += `
-          <a href='?act=ChiTietSanPham&id=${itemProduct["IdProduct"]} ' class='contentProductCalorieBalance'>
+          <a href='?act=LoadChiTietSanPham&id=${itemProduct["IdProduct"]} ' class='contentProductCalorieBalance'>
             <img src='../assets/img/admin/${itemProduct["ImageProduct"]} ' alt='img'>
             <h1> . ${itemProduct["NameProduct"]} . </h1>
           </a>;
@@ -126,7 +126,7 @@ function onloadProductBest(products, next, back,  classData, numberProductPage) 
         for (let i = 0; i < productsToShow.length; i++) {
           const itemProduct = productsToShow[i];
           productSection.innerHTML += `
-            <a href='?act=ChiTietSanPham&id= ${itemProduct["IdProduct"]} ' class='lisstBestProducts'>
+            <a href='?act=LoadChiTietSanPham&id= ${itemProduct["IdProduct"]} ' class='lisstBestProducts'>
                 <img src='../assets/img/admin/${itemProduct["ImageProduct"]} ' alt='img'>
                 <article class='titile'>
                   <h1> ${itemProduct["NameProduct"]} </h1>

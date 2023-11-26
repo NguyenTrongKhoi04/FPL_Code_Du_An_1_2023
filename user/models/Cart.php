@@ -5,8 +5,7 @@
     function cart_GetAllCartByIdAccount($idAccount){
         $sql = "select car.*, p.NameProduct,p.ImageProduct, p.PriceProduct, p.QuantityProduct
         from cart car
-        join cart_pro as car_p on car.IdCart  = car_p.IdCart 
-        join product AS p on p.IdProduct = car_p.IdProduct
+        join product AS p on p.IdProduct = car.IdProduct
         where car.IdAccount = $idAccount";
 
         return query_All($sql);
@@ -42,9 +41,7 @@
      * IdCard: Xóa sản phẩm cụ thể
      */
     function cart_Delete($IdCard){
-        $sqlCart_pro = "delete from cart_pro where IdCart  = $IdCard ";
         $sqlCart = "delete from cart where IdCart  = $IdCard ";
-        pdo_Execute($sqlCart_pro);
         return pdo_Execute($sqlCart);
 
     }
