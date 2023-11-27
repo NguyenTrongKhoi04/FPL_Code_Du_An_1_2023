@@ -51,7 +51,6 @@ if(isset($_GET['act'])&&($_GET['act'] !='' )){
             
             case 'dangnhap_AnTaiQuan':
                 header('location: UserController.php?act=ListBan');
-                include_once 'views/LoginNhanh.php';
                 break;
             case 'dangxuat':
                 session_destroy();
@@ -108,9 +107,38 @@ if(isset($_GET['act'])&&($_GET['act'] !='' )){
                 } else {
                     if($_SESSION['user']['Role']==3){
                         include_once 'views/ProductPortfolio.php';
-                    }else{include_once 'views/Home.php';}
+                    }else{
+                        include_once 'views/ProductPortfolio.php';
+                    }
                 }
                 break;
+         /**
+            * ====================================================================================
+            *                                 ORDER
+            * ====================================================================================
+            */
+
+            // thêm vào cả cart và order
+            case 'LoginNhanh_Add_To_CartAndOrder':
+                extract($_POST);
+                echo'<pre>';
+                print_r($_POST);
+                echo'</pre>';
+                $priceQuantity = $Quantity * $PriceProduct;
+                // Add to Cart
+                $checkCart = loginNhanh_Check_Cart($_SESSION['user']['IdAccount'],$IdProduct);
+
+                if(is_array($checkCart)){
+                    loginNhanh_Cart_Update_Price_The_SameAs($checkCart['IdCart'],$SizeProduct,$Quantity,$PriceProduct);
+                }else{
+                    chiTietSanPham_Add_To_Cart($_SESSION['user']['IdAccount'],$IdProduct,$SizeProduct,$Quantity,$priceQuantity);
+                }
+                $checkOrder = loginNhanh_Check_Order($_SESSION['user']['IdAccount']);
+                if(is_array($checkOrder)){
+                    loginNhanh_Update_Order($_SESSION['user']['IdAccount']);
+                }else loginNhanh_Add_To_Order($_SESSION['user']['IdAccount']);
+                break;
+
         /**
             * ====================================================================================
             *                                CHI TIET SAN PHAM
@@ -131,13 +159,14 @@ if(isset($_GET['act'])&&($_GET['act'] !='' )){
                 if(isset($_POST['add_to_cart'])){
                     extract($_POST);
                     $priceQuantity = $pro['PriceProduct'] * $Quantity;
-                    chiTietSanPham_Add_To_Cart($_SESSION['user']['IdAccount'],$SizeProduct,$Quantity,$priceQuantity);
+                    chiTietSanPham_Add_To_Cart($_SESSION['user']['IdAccount'],$IdProduct,$SizeProduct,$Quantity,$priceQuantity);
                 }
+
                 include_once 'views/ChiTietSanPham.php';
                 break;
         /**
             * ====================================================================================
-            *                                     BILL
+            *                                     CART
             * ====================================================================================
             */     
                 case 'GioHang':
@@ -155,19 +184,9 @@ if(isset($_GET['act'])&&($_GET['act'] !='' )){
                     }
                     include_once 'views/Cart.php';
                     break;
+
                 case 'LoginNhanh_GioHang':
-                    $dataCart = cart_GetAllCartByIdAccount($_SESSION['user']['IdAccount']);
-                    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                        cart_UpdateCart($_POST["quantity"]);
-                        $_SESSION['dataCarts'] = cart_GetAllCartByIdAccount($idAccountUser);
-                        // chuyển sang chọn bàn 
-                    }
-                    if (isset($_GET['Delete']) && ($_GET['Delete'] != '')) {
-                        if(cart_Delete($_GET['Delete']) === null){
-                            $alert = "Xóa sản phẩm thành công";
-                            header("location: UserController.php?act=LoginNhanh_GioHang");
-                        }
-                    }
+                    
                     include_once 'views/LoginNhanh_Cart.php';
                     break;
         /**
@@ -188,16 +207,20 @@ if(isset($_GET['act'])&&($_GET['act'] !='' )){
                 $arrBanFull = list_BanCoNguoiNgoi();
                 If($_SERVER['REQUEST_METHOD']==='POST'){
                     extract($_POST);
-                    if(!isset($ban_check)){
+                    if(!isset($so_Ban)){
                         echo "<script>alert('Vui lòng chọn bàn')</script>";
                         header("loaction:UserController?act=ListBan");
                     }else{
-                        echo"<pre>";
-                        print_r($_POST);
-                        echo"</pre>";   
+                        if($_SESSION['user']['Role']==3){
+                            $_SESSION['ban']=$so_Ban;
+                            loginNhanh_DatBan($so_Ban,$_SESSION['user']['IdAccount']);
+                            update_Status_Ban($so_Ban);
+                            header('location: UserController.php?act=DanhMucSanPham');
+                        }
                     }
                 }
-                include_once 'views/DatBan.php';    
+                include_once 'views/DatBan.php'; 
+                break;     
 
             default:
                 include_once 'views/Home.php';

@@ -60,8 +60,8 @@ function chiTietSanPham_Top3_SanPham(){
     return $arr_Top3;
 }
 
-function chiTietSanPham_Add_To_Cart($idAccount,$idSize,$quantityProduct,$priceProduct){
-    $sql = "INSERT INTO cart(IdAccount,Size,Quantity,PriceCard) VALUES ('$idAccount','$idSize','$quantityProduct','$priceProduct')";
+function chiTietSanPham_Add_To_Cart($idAccount,$IdProduct,$idSize,$quantityProduct,$priceProduct){
+    $sql = "INSERT INTO cart(IdAccount,IdProduct,Size,Quantity,PriceCard) VALUES ('$idAccount','$IdProduct','$idSize','$quantityProduct','$priceProduct')";
     return pdo_Execute($sql);
 }
 

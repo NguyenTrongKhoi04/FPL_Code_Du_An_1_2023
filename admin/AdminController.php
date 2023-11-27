@@ -86,7 +86,7 @@ if (empty($_SESSION['user'])) {
 
                     $imgNameProduct = ($imgProduct['size'] != 0) ? $imgProduct['name'] : $ImageProduct ;
     
-                    if($imgProduct['size'] ==0){
+                    if($imgProduct['size'] != 0){
                         $img=$imgProduct['name'];
                         move_uploaded_file($imgProduct['tmp_name'], $adminImg . $img);
                     }

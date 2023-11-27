@@ -60,4 +60,67 @@
         return null;
         
     }
-?>
+
+    function loginNhanh_Check_Cart($idAccount,$idProduct){
+        $sql="SELECT * FROM `cart` WHERE IdAccount ='$idAccount' AND IdProduct = '$idProduct' ";
+        return query_One($sql);
+    }
+    /**
+     * Dành cho Đặt trực tiếp tại quán
+     * update lại số lượng, giá, tên size khi sản phẩm đã có trong giỏ hàng
+     *    => ví dụ người dùng mua có và giờ người dùng tiếp tục mua cá 
+     * check qua 2 trường IdAccount và IdProduct. ko cần check time vì khi thanh toán xong thì giỏ hàng sẽ bị xóa
+     * 
+     */
+    function loginNhanh_Cart_Update_Price_The_SameAs($IdCart,$SizeProduct,$Quantity,$PriceProduct){
+        $sql = "SELECT * FROM cart WHERE IdCart = $IdCart";
+        $arrOneCart = query_One($sql);
+        $New_Quantity = $arrOneCart['Quantity'] + $Quantity ;
+        $New_PriceProduct= $arrOneCart['PriceCard'] + $PriceProduct;
+        // xem Name của size có ch, nếu chưa thì nối chuỗi vào Size (VARCHAR) =>> vào kiểu dữ liệu Size trong bảng Cart
+        if(strstr($arrOneCart['Size'],$SizeProduct)== false){
+            $New_Size = $arrOneCart['Size'].','.$SizeProduct;
+        }else{
+            $New_Size =$arrOneCart['Size'];
+        }
+        
+        $sql = "UPDATE cart SET Size = '$New_Size', PriceCard ='$New_PriceProduct', Quantity = '$New_Quantity' WHERE IdCart = $IdCart";
+        var_dump($sql);
+        return pdo_Execute($sql);
+    }
+
+    function loginNhanh_Add_To_Order($idAccount){
+        $sql = " SELECT * FROM cart WHERE IdAccount = '$idAccount'";
+        $arrOrder_IdAccount = query_All($sql) ;
+
+        $orderPrice = 0;
+        foreach($arrOrder_IdAccount as $i){
+            $orderPrice += $i['PriceCard'];
+        }
+
+        $sql = "INSERT INTO orders(PriceOrders) VALUE ($orderPrice) ";
+        return pdo_Execute($sql);
+    }
+
+    function loginNhanh_Update_Order($idAccount){
+        $sql = " SELECT * FROM cart WHERE IdAccount = '$idAccount'";
+        $arrOrder_IdAccount = query_All($sql) ;
+
+        $orderPrice = 0;
+        foreach($arrOrder_IdAccount as $i){
+            $orderPrice += $i['PriceCard'];
+        }
+
+        $sql = "UPDATE orders SET PriceOrders = '$orderPrice' WHERE IdAccount = $idAccount ";
+        return pdo_Execute($sql);
+    }
+
+    function loginNhanh_Check_Order($idAccount){
+        $sql = " SELECT * FROM orders WHERE IdAccount = '$idAccount'";
+        return query_One($sql);
+    }
+
+    function loginNhanh_Cart_GetAllCartByIdAccount($idAccount){
+        $sql ="SELECT * FROM cart WHERE IdAccount = $idAccount ";
+        return query_One($sql);
+    }

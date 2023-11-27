@@ -135,6 +135,7 @@ function check_LoginNhanh(){
             unset($tk_nhanh);
         }else{
                 tao_TaiKhoan_LoginNhanh($tk_nhanh);
+                $_SESSION['user']= select_One('account',null," Gmail = '$tk_nhanh'");
                 // header('location: UserController.php');
         }   
     }

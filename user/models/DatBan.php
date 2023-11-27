@@ -13,3 +13,13 @@ function list_BanCoNguoiNgoi(){
     }
     return $arrFull_Id;
 }
+
+function loginNhanh_DatBan($Id_Ban,$Id_Account){
+    $sql = "INSERT INTO orders(IdTable,IdAccount) VALUE ('$Id_Ban','$Id_Account')";
+    return pdo_Execute($sql);
+}
+
+function update_Status_Ban($so_Ban){
+    $sql="UPDATE `tables` SET `StatusTable`=1 WHERE `IdTables`= $so_Ban";
+    return pdo_Execute($sql);
+}

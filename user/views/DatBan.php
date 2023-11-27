@@ -1,7 +1,7 @@
 <div class="datban">
     <link rel="stylesheet" href="../assets/css/user/DatBan.css">
     <div class="sodo">
-        <h1>Sơ Đồ Nhà Hàng</h1>
+        <h1>Chọn Chỗ</h1>
         <div class="door_kitchen">
             <div class="cua_ra_vao">
                 <p>của ra vào</p>
@@ -20,7 +20,7 @@
                         <tr>
                                 <?php for($i=0;$i<5;$i++) { $dem++;?>
                             <td>
-                                <div class="ban">
+                                <div class="ban" <?php echo (in_array($dem, $arrBanFull) ? 'style="opacity: 50%;"' : ''); ?>>
                                     <input type="checkbox" class="ban_check" name="so_Ban" value="<?=$dem ?>" <?php echo (in_array($dem, $arrBanFull) ? 'checked disabled allow="false"' : ''); ?>>
                                     <label for="checkbox1"><?=$dem ?></label>
                                 </div>
@@ -32,7 +32,7 @@
                             <tr>
                                 <?php for($i=0;$i<4;$i++) { $dem_ban_to++;?>
                                     <td>
-                                        <div class="ban_to">
+                                        <div class="ban_to"  <?php echo (in_array($dem, $arrBanFull) ? 'style="opacity: 50%;"' : ''); ?>>
                                             <input type="checkbox" class="ban_check"  name="so_Ban" value="1" id="checkbox1" <?php echo (in_array($dem_ban_to, $arrBanFull) ? "checked disabled" : ""); ?>>
                                             <label for="checkbox1"><?= $dem_ban_to?></label>
                                         </div>

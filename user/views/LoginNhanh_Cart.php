@@ -36,12 +36,11 @@
                 <h1>Thông tin đơn hàng</h1>
                 <ul>
                     <li>Tổng tiền <?= cart_Totail($dataCart)["qualityProduct"] ?> sản phẩm: <?= cart_Totail($dataCart)["totailPrice"] ?> $</li>
-                    <li>Phí dịch vụ 1% : <?= cart_Totail($dataCart)["ServiceCharge"] ?>     $</li>
-                    <li>Thuế VAT 10% : <?= cart_Totail($dataCart)["vat"] ?> $</li>
+                 
                 </ul>
             </section>
             <section class="footerAside">
-                <h1>Tổng cộng: <?= cart_Totail($dataCart)["totail"] ?> $</h1>
+                <h1>Tổng cộng: <?=  ?> $</h1>
                 <button type="submit" name="ThanhToan">Thanh Toán</button>
             </section>
         </aside>

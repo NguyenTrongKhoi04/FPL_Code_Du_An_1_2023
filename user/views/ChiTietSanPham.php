@@ -3,14 +3,18 @@
         <div class="ProductDetail">
             <div class="img"><img src="<?= $adminImg ?><?= $pro['ImageProduct'] ?>" height="100%"></div>
             <div class="form">
-                <form action="" method="POST">
+                <?php if ($_SESSION['user']['Role'] == 3) { ?>
+                        <form action="<?= $userAction ?>LoginNhanh_Add_To_CartAndOrder" method="POST">
+                    <?php } else { ?>
+                        <form action="" method="POST">
+                    <?php } ?>
                     <input type="hidden" name="IdProduct" value="<?= $pro['IdProduct'] ?>">
                     <input type="hidden" name="PriceProduct" value="<?= $pro['PriceProduct'] ?>">
                     <h2><?= $pro['NameProduct'] ?></h2>
                     <div class="hr"></div>
                     <ul>
                         <!-- <del>40.000</del> -->
-                        <li>Giá:<span><?= $pro['PriceProduct'] ?> VNĐ</span></li>
+                        <li>Giá: <span><?= $pro['PriceProduct'] ?> VNĐ</span></li>
                         <li><?= $pro['ProductDetails'] ?></li>
                         <li><?= $pro['ProductDescription'] ?></li>
                     </ul>
@@ -32,13 +36,13 @@
                         </div>
 
                     </div>
-                    <?php if ($_SESSION['user']['Role']) { ?>
-                        <button name="add_to_bill">Thêm vào danh sách Order</button>
+                    <?php if ($_SESSION['user']['Role'] == 3) { ?>
+                        <button name="loginNhanh_add_to_cart_bill">Order</button>
                     <?php } else { ?>
                         <button name="add_to_cart">THÊM VÀO GIỎ HÀNG</button>
                         <button name="add_to_bill">THANH TOÁN LUÔN</button>
                     <?php } ?>
-                </form>
+                    </form>
             </div>
         </div>
         <div class="list">
