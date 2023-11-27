@@ -32,8 +32,16 @@
                 </div>
             <?php } else { ?>
                 <div class="login">
+                    <?php if ($_SESSION['user']['Role'] == 3) { ?>
+                        <button class="button_Login"><a href="<?= $userAction ?>LoginNhanh_GioHang">Danh Sách Order</a></button>
+                    <?php }  ?>
+                        
                     <a href="" class="login_success"><img src="<?= $img_Path ?>Glyph_ undefined.png" alt=""></a>
-                    <a href="" class="login_success"><img src="<?= $img_Path ?>Vector.png" alt=""></a>
+                    <?php if ($_SESSION['user']['Role'] == 3) { ?>
+
+                    <?php } else { ?>
+                        <a href="" class="login_success"><img src="<?= $img_Path ?>Vector.png" alt=""></a>
+                    <?php } ?>
                     <a href="<?= $userAction ?>dangxuat" class="login_success"><img src="<?= $img_Path ?>out.png" alt=""></a>
 
                     <div class="avatar">

@@ -50,7 +50,7 @@ if(isset($_GET['act'])&&($_GET['act'] !='' )){
                 break;
             
             case 'dangnhap_AnTaiQuan':
-                header('location: UserController.php');
+                header('location: UserController.php?act=ListBan');
                 include_once 'views/LoginNhanh.php';
                 break;
             case 'dangxuat':
@@ -106,10 +106,11 @@ if(isset($_GET['act'])&&($_GET['act'] !='' )){
                     }
                     include_once 'views/ProductPortfolio.php';
                 } else {
-                    include_once 'views/Home.php';
+                    if($_SESSION['user']['Role']==3){
+                        include_once 'views/ProductPortfolio.php';
+                    }else{include_once 'views/Home.php';}
                 }
                 break;
-
         /**
             * ====================================================================================
             *                                CHI TIET SAN PHAM
@@ -149,10 +150,25 @@ if(isset($_GET['act'])&&($_GET['act'] !='' )){
                     if (isset($_GET['Delete']) && ($_GET['Delete'] != '')) {
                         if(cart_Delete($_GET['Delete']) === null){
                             $alert = "Xóa sản phẩm thành công";
-                            header("loaclhost: UserController.php?act=GioHang");
+                            header("location: UserController.php?act=GioHang");
                         }
                     }
                     include_once 'views/Cart.php';
+                    break;
+                case 'LoginNhanh_GioHang':
+                    $dataCart = cart_GetAllCartByIdAccount($_SESSION['user']['IdAccount']);
+                    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                        cart_UpdateCart($_POST["quantity"]);
+                        $_SESSION['dataCarts'] = cart_GetAllCartByIdAccount($idAccountUser);
+                        // chuyển sang chọn bàn 
+                    }
+                    if (isset($_GET['Delete']) && ($_GET['Delete'] != '')) {
+                        if(cart_Delete($_GET['Delete']) === null){
+                            $alert = "Xóa sản phẩm thành công";
+                            header("location: UserController.php?act=LoginNhanh_GioHang");
+                        }
+                    }
+                    include_once 'views/LoginNhanh_Cart.php';
                     break;
         /**
             * ====================================================================================
@@ -182,9 +198,6 @@ if(isset($_GET['act'])&&($_GET['act'] !='' )){
                     }
                 }
                 include_once 'views/DatBan.php';    
-
-
-
 
             default:
                 include_once 'views/Home.php';

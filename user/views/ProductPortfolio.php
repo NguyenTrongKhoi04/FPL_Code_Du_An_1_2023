@@ -4,7 +4,7 @@
         <img src="<?= $img_Path ?>banner.png" alt="banner">
     </section>
     <main>
-        <form action="?act=DanhMucSanPham&idCategory=<?= $_GET['idCategory'] ?>" method="post" class="nav">
+        <form action="?act=DanhMucSanPham&idCategory=<?= $_GET['idCategory'] ??'' ?>" method="post" class="nav">
             <select name="price" id="priceSelect" onchange="this.form.submit()">
                 <option value="">Giá</option>
                 <option value="10-30">10$ - 30$</option>
