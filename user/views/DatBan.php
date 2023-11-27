@@ -27,15 +27,11 @@
     </section>
     <article class="timeBooking">
         <input type="datetime-local" name="timeBooking" id="">
+        <article class="footer">
+            <button type="submit">Thanh toán</button>
+        </article>
     </article>
     </section>
-    <article class="footer">
-        <a href="UserController.php?act=CashPayment">
-            <button type="submit">Thanh toán Tiền mặt</button>
-        </a>
-        <a href="UserController.php?act=CashViSa">
-            <button type="submit">Thanh toán ViSa</button>
-        </a>
-    </article>
+
 </form>
 <script src="../assets/js/DatBan.js"></script>

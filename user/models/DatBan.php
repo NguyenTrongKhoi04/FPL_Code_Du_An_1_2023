@@ -26,7 +26,8 @@ function datBan_CheckBookingTables($data){
 
             if(query_All($sqlCheckOrder)[0]["count(*)"] == 0 && 
                 query_All($sqlCheckWatingOrder)[0]["count(*)"] == 0){
-                if(isset($_SESSION['dataOrderUser'])){
+
+                if(isset($_SESSION['dataOrderCart'])){
                     $_SESSION['dataOrderTables'] = [
                         "IdTable" => $contentTable,
                         "TimeOrder" => $timeBooking

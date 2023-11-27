@@ -14,6 +14,7 @@ include_once 'models/ProductPortfolio.php';
 include_once 'models/Cart.php';
 include_once 'models/CreateAccount.php';
 include_once 'models/DatBan.php';
+include_once 'models/CashViSa.php';
 
 check_Login();
 
@@ -160,27 +161,34 @@ if(isset($_GET['act'])&&($_GET['act'] !='' )){
             * ====================================================================================
             */
             case 'ListBan':
-                If($_SERVER['REQUEST_METHOD']==='POST'){ 
+                if($_SERVER['REQUEST_METHOD']==='POST'){ 
                     extract($_POST);
                     if(!isset($contentTable)){
                         echo "<script>alert('Vui lòng chọn bàn...')</script>";
                     }else{
                         $alert = datBan_CheckBookingTables($_POST);
                         if($alert === true){
-                            header("Location: UserController.php?act=billthanhtoan");
+                            header("Location: UserController.php?act=CashViSa");
                         }else{
                             echo "<script>alert($alert)</script>";
                         }
                     }
                 }
                 include_once 'views/DatBan.php';    
+                    break;
 
+            case "CashViSa":
+                $listOrderUser = CashViSa_GetAllOrderUser();
+                if($_SERVER['REQUEST_METHOD']==='POST'){ 
+                    $alert = CashViSa_PushOrderUser();
+                    echo "<script> alert($alert) </script>"; 
+                    header("Location: UserController.php?act=billthanhtoan");
+
+                }
+                include_once 'views/CashViSa.php' ;
                 break;
-                case "CashViSa":
-                    include_once 'views/CashViSa.php' ;
-                    break;
-                case "CashPayment":
-                    break;
+            case "CashPayment":
+                break;
 
 
             default:

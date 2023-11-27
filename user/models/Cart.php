@@ -16,15 +16,20 @@
      * Data: Dữ liệu được lấy trên database 
      */
     function cart_Totail($data){
+        // echo "<pre>";
+        // var_dump($data); die();
         $qualityProduct = count($data);
-        $totailPrice = 0;
+        $totailPrices = 0;
+        $totailQuality = 0;
 
         foreach($data as $values){
-            $totailPrice += $values['PriceProduct'];
+            $totailPrices += $values['PriceProduct'];
+            $totailQuality += $values['Quantity'];
         }
+        $totailPrice = $totailPrices * $totailQuality;
 
         $vat = $totailPrice * 0.1;
-        $ServiceCharge = $totailPrice * 0.01;
+        $ServiceCharge = $vat * 0.01;
         $totail = $totailPrice + $vat + $ServiceCharge;
 
         return([

@@ -87,18 +87,15 @@
 .datban .containerTable .timeBooking input:focus {
   outline: none;
 }
-.datban .footer {
+.datban .containerTable .timeBooking .footer {
   width: 100%;
-  height: 10%;
+  height: 20%;
   display: flex;
   justify-content: space-around;
   align-items: center;
+  margin-top: 5%;
 }
-.datban .footer a {
-  width: 25%;
-  height: 70%;
-}
-.datban .footer a button {
+.datban .containerTable .timeBooking .footer button {
   width: 100%;
   height: 100%;
   font-size: 1.5rem;
@@ -106,7 +103,7 @@
   color: var(--color6);
   border: none;
 }
-.datban .footer a button:hover {
+.datban .containerTable .timeBooking .footer button:hover {
   background-color: var(--color6);
   color: var(--color);
   transition: 1s linear;
