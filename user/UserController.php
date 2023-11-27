@@ -122,6 +122,11 @@ if(isset($_GET['act'])&&($_GET['act'] !='' )){
                     $priceQuantity = $pro['PriceProduct'] * $Quantity;
                     $alert = chiTietSanPham_Add_To_Cart($IdProduct, $_SESSION['user']['IdAccount'],$SizeProduct,$Quantity,$priceQuantity);
                 }
+                if(isset($_POST['pay_now'])){
+                    $_SESSION['payNowDetails'] = $_POST;
+                    header("Location: UserController.php?act=ListBan");
+
+                }
                 include_once 'views/ChiTietSanPham.php';
                 break;
         /**
@@ -181,7 +186,7 @@ if(isset($_GET['act'])&&($_GET['act'] !='' )){
                 $listOrderUser = CashViSa_GetAllOrderUser();
                 if($_SERVER['REQUEST_METHOD']==='POST'){ 
                     $alert = CashViSa_PushOrderUser();
-                    echo "<script> alert($alert) </script>"; 
+                    echo "<script> alert('$alert') </script>";
                     header("Location: UserController.php?act=billthanhtoan");
 
                 }

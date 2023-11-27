@@ -27,12 +27,14 @@ function datBan_CheckBookingTables($data){
             if(query_All($sqlCheckOrder)[0]["count(*)"] == 0 && 
                 query_All($sqlCheckWatingOrder)[0]["count(*)"] == 0){
 
-                if(isset($_SESSION['dataOrderCart'])){
+                if(isset($_SESSION['dataOrderCart']) || isset($_SESSION['payNowDetails']) ){
                     $_SESSION['dataOrderTables'] = [
                         "IdTable" => $contentTable,
                         "TimeOrder" => $timeBooking
                     ];
                     $message = true;
+                }else{
+                    $message = "404 Not fout";
                 }
             }else{
                 $message = "Bàn và thời gian bạn đã chọn hiện tại đã có người đặt vui lòng chọn bàn và khung thời gian khác";

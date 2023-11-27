@@ -7,7 +7,7 @@
             <p>Tài Khoản</p>
             <input type="text" placeholder="" name="tk">
             <p>Mật Khẩu</p>
-            <input type="text" placeholder="" name="mk">
+            <input type="password" placeholder="" name="mk">
             <button type="submit">Đăng nhập</button>
             <div class="option">
                 <a href="">Quên mật khẩu</a>

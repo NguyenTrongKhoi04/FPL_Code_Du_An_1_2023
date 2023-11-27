@@ -33,7 +33,7 @@
                         
                     </div>
                     <button name="add_to_cart">THÊM VÀO GIỎ HÀNG</button>
-                    <button name="add_to_bill">THANH TOÁN LUÔN</button>
+                    <button name="pay_now">THANH TOÁN LUÔN</button>
                 </form>
             </div>
         </div>
