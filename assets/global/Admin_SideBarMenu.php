@@ -1,3 +1,4 @@
+
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
 <!-- Sidebar - Brand -->
@@ -59,19 +60,20 @@
     <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
     data-parent="#accordionSidebar">
     <div class="bg-white py-2 collapse-inner rounded">
+
             <h6 class="collapse-header">Product</h6>
-            <a class="collapse-item" href="<?=$adminAction?>AddProduct">Danh sách món ăn</a>
+            <a class="collapse-item" href="<?= $adminAction ?>ListProduct">Danh sách món ăn</a>
             <a class="collapse-item" href="utilities-color.html">Thêm món ăn</a>
             <h6 class="collapse-header">Danh mục</h6>
-            <a class="collapse-item" href="<?=$adminAction?>ListCategory">Danh mục chính</a>
+            <a class="collapse-item" href="<?= $adminAction ?>ListCategory">Danh mục chính</a>
             <a class="collapse-item" href="<?=$adminAction?>AddCategory">Thêm danh mục chính </a>
-            <a class="collapse-item" href="utilities-color.html">Danh mục phụ</a>
+            <a class="collapse-item" href="<?=$adminAction?>ListSubCategories">Danh mục phụ</a>
             <a class="collapse-item" href="<?=$adminAction?>AddSubCategories">Thêm danh mục phụ</a>
             <h6 class="collapse-header">Size</h6>
             <a class="collapse-item" href="utilities-border.html">Size</a>
             <a class="collapse-item" href="<?=$adminAction?>AddSize">Thêm size</a>
-            <a class="collapse-item" href="utilities-border.html">Size default</a>
-            <a class="collapse-item" href="<?=$adminAction?>AddSizeDefault">Thêm size default</a>
+            <a class="collapse-item" href="utilities-border.html">Size Phụ</a>
+            <a class="collapse-item" href="<?=$adminAction?>AddSizePro">Thêm size Phụ</a>
             <h6 class="collapse-header">Pro-Details</h6>
             <a class="collapse-item" href="utilities-animation.html">Details</a>
             <a class="collapse-item" href="utilities-other.html">Thêm Details</a>
@@ -90,7 +92,7 @@
         <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Orders</h6>
             <a class="collapse-item" href="<?=$adminAction?>ListOrders">Danh sách Order</a>
-            <a class="collapse-item" href="<?=$adminAction?>">Danh Sách Order phụ</a>
+            <a class="collapse-item" href="<?=$adminAction?>ListOrderPro">Danh Sách Order Pro</a>
             </div>
     </div>
 </li>

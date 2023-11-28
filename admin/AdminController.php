@@ -432,7 +432,6 @@ if(!empty($_SESSION['user'])){
                 break;
         }
     }else{
-        include_once 'views/sizedefault/addSizeDefault.php';
+        include_once 'views/size/AddSize.php';
     }    
     }
-  // IdOder	IdTable	IdAccompanyingFood	IdProduct	IdAccount	PriceOrders	StatusOrders	QuantityOrders	NoteOrders	

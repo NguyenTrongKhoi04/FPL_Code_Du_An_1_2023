@@ -16,11 +16,11 @@ $userStyle='../assets/css/user/';
 $adminStyle ='../../assets/css/admin/';
 $adminJavaScript = '../../assets/js/';
 $adminImg = '../assets/img/admin/';
-
+$adminAction='AdminController.php?act=';
 /**
  * ================================================================================
  *                               GLOBAL
  * ================================================================================
  */
 $ThongBao='../assets/global/ThongBao.php';
-$SideBarMenu='../assets/global/Admin_SideBarmenu.php';
+$SideBarMenu='../assets/global/Admin_SideBarMenu.php';
