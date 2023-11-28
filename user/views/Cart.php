@@ -19,9 +19,9 @@
                             <tr>
                                 <td><img src='$imgPathAdmin{$valuesCart['ImageProduct']}' alt='img'></td>
                                 <td>{$valuesCart['NameProduct']}</td>
-                                <td>{$valuesCart['Size']}</td>
+                                <td>{$valuesCart['NameSize']}</td>
                                 <td>{$valuesCart['PriceProduct']}</td>
-                                <td><input type='number' name='quantity[{$valuesCart['IdCart']}]'   min=1 max={$valuesCart['QuantityProduct']} value='{$valuesCart['Quantity']}'></td>
+                                <td><input type='number' name='quantity[{$valuesCart['IdCart']}]'   min=1 max={$valuesCart['QuantityProduct']} value='{$valuesCart['QuantityCard']}'></td>
         
                                 <td> <a href='UserController.php?act=GioHang&Delete={$valuesCart['IdCart']}'><i class='ti-trash'></i></a> </td>
                             </tr>

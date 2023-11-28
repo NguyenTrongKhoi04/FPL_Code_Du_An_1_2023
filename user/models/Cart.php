@@ -24,7 +24,7 @@
 
         foreach($data as $values){
             $totailPrices += $values['PriceProduct'];
-            $totailQuality += $values['Quantity'];
+            $totailQuality += $values['QuantityCard'];
         }
         $totailPrice = $totailPrices * $totailQuality;
 
@@ -56,7 +56,7 @@
      */
     function cart_UpdateCart($data){
         foreach($data as $key => $values){
-            pdo_Execute("update cart set Quantity = $values where IdCart  = $key ");
+            pdo_Execute("update cart set QuantityCard = $values where IdCart  = $key ");
            
         }
         return null;

@@ -30,17 +30,18 @@ function CashViSa_PushOrderUser(){
     if(isset($_SESSION['dataOrderCart']) && isset($_SESSION['dataOrderTables'])){
         $dataOrderCart = $_SESSION['dataOrderCart'];
         $dataOrderTables = $_SESSION['dataOrderTables'];
+        $totailPriceOrders = $_SESSION['totailPrice'];
         extract($dataOrderTables);
 
         foreach($dataOrderCart as $valueDataOrder){
-            $sqlWaytingOrder = "insert into waytingorder values(null, '$IdTable', '$valueDataOrder[IdProduct]', '$valueDataOrder[IdAccount]', '$valueDataOrder[Quantity]', '1', '$TimeOrder')";
+            $sqlWaytingOrder = "insert into orders values(null, '$IdTable',  '$valueDataOrder[IdAccount]', 0, '$totailPriceOrders' '1', '$TimeOrder')";
             // xóa sản phẩm khỏi giỏ hàng
             $sqlCart = "delete from cart where IdAccount = '$valueDataOrder[IdAccount]'"; 
             pdo_Execute($sqlWaytingOrder);
             pdo_Execute($sqlCart);
         }
-        $_SESSION['dataOrderCart'] = "";
-        $_SESSION['dataOrderTables'] = "";
+        // $_SESSION['dataOrderCart'] = "";
+        // $_SESSION['dataOrderTables'] = "";
         $message = "Đơn hàng đã được thanh toán";
 
     }elseif(isset($_SESSION['payNowDetails']) && isset($_SESSION['dataOrderTables'])){
@@ -50,11 +51,11 @@ function CashViSa_PushOrderUser(){
         extract($dataOrderTables);
 
         foreach($payNowDetails as $valueDataOrder){
-            $sqlWaytingOrder = "insert into waytingorder values(null, '$IdTable', '$valueDataOrder[IdProduct]', '$idAccountUser', '$valueDataOrder[Quantity]', '1', '$TimeOrder')";
+            $sqlWaytingOrder = "insert into orders values(null, '$IdTable', '$valueDataOrder[IdProduct]', '$idAccountUser', '$valueDataOrder[Quantity]', '1', '$TimeOrder')";
             pdo_Execute($sqlWaytingOrder);
         }
-        $_SESSION['payNowDetails'] = "";
-        $_SESSION['dataOrderTables'] = "";
+        // $_SESSION['payNowDetails'] = "";
+        // $_SESSION['dataOrderTables'] = "";
         $message = "Đơn hàng đã được thanh toán";
     }
 

@@ -96,7 +96,6 @@ html{
                     list-style-type: none;
                     width: 100%;
                     height: 9%;
-
                     color: var(--color6);
                     font-feature-settings: 'clig' off, 'liga' off;
                     font-family: Bitter;
@@ -104,7 +103,19 @@ html{
                     font-style: normal;
                     font-weight: 700;
                     line-height: 150%;
+                    display: flex;
+                    justify-content: space-between;
 
+                    a{
+                        color: var(--color6);
+                        font-feature-settings: 'clig' off, 'liga' off;
+                        font-family: Bitter;
+                        font-size: 1.5rem;
+                        font-style: normal;
+                        font-weight: 700;
+                        line-height: 150%;
+                        text-decoration: none;
+                    }
                 }
              }
                 
@@ -120,7 +131,7 @@ html{
 
             .headerMain{
                 width: 100%;
-                height: 12%;
+                height: 5%;
 
                 .titleMain{
                     width: 93%;
@@ -175,7 +186,7 @@ html{
             .contentMain{
                 background-color: var(--color7);
                 width: 100%;
-                height: 80%;
+                height: 95%;
                 margin-top: 5%;
                 overflow: auto;
 

@@ -32,6 +32,7 @@
             <section class="contentMyProduct">
                 <h1>Sản phẩm của chúng tôi</h1>
             </section>
+        
             <section class="listProduct">
                 <?php if (empty(home_GetAllProduct())) {
                     echo "<h1>Không có sản phẩm </h1>";
@@ -98,7 +99,7 @@
             <section class="contentLisstBestProducts" id="contentLisstBestProducts">
                 <?php
                 if (empty(home_GetAllProduct())) {
-                    echo "<h1 style='color: while;'>Không có sản phẩm </h1>";
+                    echo "<h1 style='color: 'while';'>Không có sản phẩm </h1>";
                 } else {
                 ?>
             </section>
@@ -109,17 +110,18 @@
                     <h1>Đặt bàn</h1>
                     <p>Liên hệ với nhà hàng</p>
                 </article>
-                <form action="http://localhost:3000/user/UserController.php?act=trangchu" method="post">
+                <form action="UserController.php?act=trangchu" method="post">
                     <section class="contentForm">
                         <input required type="datetime-local" name="Date">
                         <select required name="IdTable" class="time">
                             <option value=''>Chọn số bàn</option>
                             <?php
-                            if (!empty(home_GetAllTable())) {
-                                foreach (home_GetAllTable() as $itemTable) {
+                            
+                            if (!empty(home_GetAllTable()["Tables"])) {
+                                foreach (home_GetAllTable()["Tables"] as $itemTable) {
                                     echo "<option value='{$itemTable['IdTables']}'>
                                         Bàn: {$itemTable['NumberTable']} _ 
-                                        Số lượng người tối đa: 20
+                                        Số lượng người tối đa: {$itemTable['DefaultNumberPeople']}
                                         </option>";
                                 }
                             }
@@ -128,8 +130,9 @@
                         <select required name="NumberPeopleInTables" class="persion">
                             <option value="">Chọn số lượng người</option>
                             <?php
-                            if (!empty(home_GetAllTable())) {
-                                for ($i = 1; $i <= 20; $i++) {
+                                $maxTable = home_GetAllTable()["TableMax"]["max(DefaultNumberPeople)"];
+                            if (!empty(home_GetAllTable()["TableMax"])) {
+                                for ($i = 1; $i <= $maxTable ; $i++) {
                                     echo "<option value='{$i}'>{$i} Người </option>";
                                 }
                             }

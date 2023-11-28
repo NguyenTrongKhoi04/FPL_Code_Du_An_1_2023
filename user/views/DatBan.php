@@ -7,7 +7,7 @@
     <section class="listTable">
         <?php
         foreach(datBan_ListTables() as $valuesListTables){
-            if($valuesListTables["StatusTable"] === 1){
+            if($valuesListTables["StatusTable"] === 2){
                 echo "
                 <label class='contentTable ' style='background-color: #CA0910;'>
                     <span>{$valuesListTables['NumberTable']}</span>

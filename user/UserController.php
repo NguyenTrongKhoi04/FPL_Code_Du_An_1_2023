@@ -17,12 +17,11 @@ include_once 'models/DatBan.php';
 include_once 'models/CashViSa.php';
 
 check_Login();
-
+home_checkAndOrderTableAuto();
 
 if(isset($_GET['act'])&&($_GET['act'] !='' )){
     if(empty($_SESSION['user'])){
         include_once 'views/LoginThuong.php';
-        // }
     } else {
         $act = $_GET['act'];
         switch($act){
@@ -182,6 +181,11 @@ if(isset($_GET['act'])&&($_GET['act'] !='' )){
                 include_once 'views/DatBan.php';    
                     break;
 
+        /**
+            * ====================================================================================
+            *                                 CashViSa
+            * ====================================================================================
+            */            
             case "CashViSa":
                 $listOrderUser = CashViSa_GetAllOrderUser();
                 if($_SERVER['REQUEST_METHOD']==='POST'){ 
@@ -192,6 +196,11 @@ if(isset($_GET['act'])&&($_GET['act'] !='' )){
                 }
                 include_once 'views/CashViSa.php' ;
                 break;
+        /**
+            * ====================================================================================
+            *                                 CashPayment
+            * ====================================================================================
+            */  
             case "CashPayment":
                 break;
 

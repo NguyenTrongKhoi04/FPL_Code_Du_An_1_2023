@@ -22,14 +22,13 @@
             <section class="containerMain">
                 <section class="headerMain">
                     <section class="titleMain">
-                        <h1>LỊCH SỬ  THANH TOÁN</h1>
+                        <h1>Viết đánh giá</h1>
                     </section>
-                    
                 </section>
                 <section class="contentMain">
                     <table>
                         <tr>
-                            <th>Tên khách hàng</th>
+                            <th>Tên sản phẩm</th>
                             <th>Tên sản phẩm</th>
                             <th>Giá</th>
                             <th>Thanh toán</th>

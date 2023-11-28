@@ -64,7 +64,7 @@
                                     <img src='../assets/img/admin/{$dataListOrderUser['ImageProduct']}' alt=''>    
                                     {$dataListOrderUser['NameProduct']}
                                 </td>
-                                <td>{$dataListOrderUser['Quantity']}</td>
+                                <td>{$dataListOrderUser['QuantityCard']}</td>
                                 <td>{$dataListOrderUser['PriceProduct']}VND</td>
                             </tr>
                             
@@ -80,6 +80,7 @@
             <article class="footerBill">
                 <?php 
                     if(isset($listOrderUser) && !empty($listOrderUser)){
+                        $_SESSION['totailPrice'] = cart_Totail($listOrderUser)['totail'];
                 ?>
                 <article class="itemFooterBill">
                     <h3>Phí dịch vụ 1%: </h3>

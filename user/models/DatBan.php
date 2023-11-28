@@ -4,7 +4,7 @@
  * Trả về 1 mảng gồm các ID của bàn có người ngồi
  */
 function datBan_ListTables(){
-    $sql = "SELECT * FROM tables ";
+    $sql = "SELECT * FROM tables where StatusTable != 0";
     $arrFull =query_All($sql); 
     return $arrFull;
 }
@@ -22,7 +22,7 @@ function datBan_CheckBookingTables($data){
             $checkDate = date('Y-m-d\TH:i', (strtotime($timeBooking)-7200));
 
             $sqlCheckOrder = "select count(*) from orders where IdTable = '$contentTable' and (OrderDate = '$timeBooking' or OrderDate = '$checkDate')";
-            $sqlCheckWatingOrder = "select count(*) from waytingorder where IdTables = '$contentTable' and(DateWaytingOrder = '$timeBooking' or DateWaytingOrder = '$checkDate')";
+            $sqlCheckWatingOrder = "select count(*) from orders where IdTable = '$contentTable' and(OrderDate = '$timeBooking' or OrderDate = '$checkDate')";
 
             if(query_All($sqlCheckOrder)[0]["count(*)"] == 0 && 
                 query_All($sqlCheckWatingOrder)[0]["count(*)"] == 0){
