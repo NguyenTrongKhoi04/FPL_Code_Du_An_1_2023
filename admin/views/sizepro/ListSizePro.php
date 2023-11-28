@@ -265,9 +265,9 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                           
+                                           <th>Sản phẩm</th>
                                             <th>Size</th>
-                                            <th>Sản phẩm</th>
+                                            
                                             <th>thao tác</th>
                                            
 
@@ -279,8 +279,9 @@
 
                                                 echo "
                                                 <tr>
+                                                <td>{$values['NameProduct']}</td>
                                                     <td>{$values['NameSize']}</td>
-                                                    <td>{$values['NameProduct']}</td>
+                                                    
 
                                                     <td>
                                                         <a href='AdminController.php?act=UpdateSizePro&IdSizePro={$values['IdSizePro']}'>

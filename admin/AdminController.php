@@ -12,8 +12,7 @@ include_once './models/SubCategories.php';
 include_once './models/Account.php';
 include_once './models/Order.php';
 include_once './models/OrderPro.php';
-include_once './models/Bill.php';
-include_once './models/Cart.php';
+
 include_once './models/Comment.php';
 
 // include_once 'models/TaiKhoan.php';
