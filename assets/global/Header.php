@@ -57,7 +57,7 @@
                     <?php } else { ?>
                         <?php if ($_SESSION['user']['Role'] == 3) { ?>
                             <?php if (isset($_SESSION['ban'])) { ?>
-                                <button class="button_Login"><a href="<?= $userAction ?>LoginNhanh_GioHang">Danh Sách Order</a></button>
+                                <button class="button_Login"><a href="<?= $userAction ?>LoginNhanh_ListOrder">Danh Sách Order</a></button>
                             <?php } ?>
                         <?php } else { ?>
                         

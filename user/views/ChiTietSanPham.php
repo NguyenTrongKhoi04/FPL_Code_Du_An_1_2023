@@ -4,7 +4,7 @@
             <div class="img"><img src="<?= $adminImg ?><?= $pro['ImageProduct'] ?>" height="100%"></div>
             <div class="form">
                 <?php if ($_SESSION['user']['Role'] == 3) { ?>
-                        <form action="<?= $userAction ?>LoginNhanh_Add_To_CartAndOrder" method="POST">
+                        <form action="<?= $userAction ?>LoginNhanh_Add_To_CartAndOrder&id=<?= $pro['IdProduct'] ?>" method="POST">
                     <?php } else { ?>
                         <form action="" method="POST">
                     <?php } ?>

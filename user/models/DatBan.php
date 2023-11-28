@@ -16,6 +16,7 @@ function list_BanCoNguoiNgoi(){
 
 function loginNhanh_DatBan($Id_Ban,$Id_Account){
     $sql = "INSERT INTO orders(IdTable,IdAccount) VALUE ('$Id_Ban','$Id_Account')";
+    var_dump($sql);
     return pdo_Execute($sql);
 }
 

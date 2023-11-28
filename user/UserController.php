@@ -16,7 +16,7 @@ include_once 'models/CreateAccount.php';
 include_once 'models/ChiTietSanPham.php';
 include_once 'models/DatBan.php';
 include_once 'models/LoginNhanh.php';
-
+include_once 'models/LoginNhanh_Bill.php';
 
 check_LoginNhanh();
 check_Login();
@@ -121,22 +121,21 @@ if(isset($_GET['act'])&&($_GET['act'] !='' )){
             // thêm vào cả cart và order
             case 'LoginNhanh_Add_To_CartAndOrder':
                 extract($_POST);
-                echo'<pre>';
-                print_r($_POST);
-                echo'</pre>';
+                // echo'<pre>';
+                // print_r($_POST);
+                // echo'</pre>';
                 $priceQuantity = $Quantity * $PriceProduct;
                 // Add to Cart
-                $checkCart = loginNhanh_Check_Cart($_SESSION['user']['IdAccount'],$IdProduct);
+                $check_Order_Pro = loginNhanh_Check_Order_Pro($_SESSION['user']['IdAccount'],$IdProduct,$SizeProduct);
 
-                if(is_array($checkCart)){
-                    loginNhanh_Cart_Update_Price_The_SameAs($checkCart['IdCart'],$SizeProduct,$Quantity,$PriceProduct);
+                if(is_array($check_Order_Pro)){
+                    loginNhanh_Cart_Update_Price_The_SameAs($check_Order_Pro['IdOrder_Pro'],$SizeProduct,$Quantity,$PriceProduct);
                 }else{
-                    chiTietSanPham_Add_To_Cart($_SESSION['user']['IdAccount'],$IdProduct,$SizeProduct,$Quantity,$priceQuantity);
+                    chiTietSanPham_Add_To_Order_Pro($_SESSION['user']['IdAccount'],$IdProduct,$SizeProduct,$Quantity,$priceQuantity);
                 }
-                $checkOrder = loginNhanh_Check_Order($_SESSION['user']['IdAccount']);
-                if(is_array($checkOrder)){
-                    loginNhanh_Update_Order($_SESSION['user']['IdAccount']);
-                }else loginNhanh_Add_To_Order($_SESSION['user']['IdAccount']);
+                
+                $mes ='Order Thành Công';
+                header('location: UserController.php?act=LoadChiTietSanPham&id='.$_GET['id'].'&mes='.$mes);
                 break;
 
         /**
@@ -145,6 +144,9 @@ if(isset($_GET['act'])&&($_GET['act'] !='' )){
             * ====================================================================================
             */     
             case 'LoadChiTietSanPham':
+                if(isset($_GET['mes'])){
+                    $mes = $_GET['mes'];
+                    echo"<script>alert('$mes')</script>";};
                 $id = $_GET['id'];
                 $pro = chiTietSanPham_LoadAll($id);
                 $proSize = chiTietSanPham_LoadSizePro($id);
@@ -156,11 +158,7 @@ if(isset($_GET['act'])&&($_GET['act'] !='' )){
                     // $top3_Pro = top3_SanPham() ;
 
                 // Thêm vào giỏ hàng user
-                if(isset($_POST['add_to_cart'])){
-                    extract($_POST);
-                    $priceQuantity = $pro['PriceProduct'] * $Quantity;
-                    chiTietSanPham_Add_To_Cart($_SESSION['user']['IdAccount'],$IdProduct,$SizeProduct,$Quantity,$priceQuantity);
-                }
+      
 
                 include_once 'views/ChiTietSanPham.php';
                 break;
@@ -185,19 +183,20 @@ if(isset($_GET['act'])&&($_GET['act'] !='' )){
                     include_once 'views/Cart.php';
                     break;
 
-                case 'LoginNhanh_GioHang':
-                    
+                case 'LoginNhanh_ListOrder':
+                    $arrOrder = loginNhanh_ChuaThanhToan_GetAll_Order_ByIdAccount($_SESSION['user']['IdAccount']);
+                    var_dump($arrOrder[0]['IdOrder']);
+                    echo '<pre>';
+                    print_r($arrOrder);
+                    echo '</pre>';
+                    $tienTong = 0;
+                    foreach($arrOrder as $i){
+                       $one_In_Order = $i['QuantityOrderPro']*$i['PriceProduct'];
+                        $tienTong +=$one_In_Order;
+                    }
                     include_once 'views/LoginNhanh_Cart.php';
                     break;
-        /**
-            * ====================================================================================
-            *                                     BILL
-            * ====================================================================================
-            */        
-            case 'billthanhtoan':
-                include_once 'views/BillPayment.php' ;
-                break; 
-           
+
         /**
             * ====================================================================================
             *                                 BAN
@@ -221,7 +220,21 @@ if(isset($_GET['act'])&&($_GET['act'] !='' )){
                 }
                 include_once 'views/DatBan.php'; 
                 break;     
-
+        /**
+            * ====================================================================================
+            *                                 BILL
+            * ====================================================================================
+            */
+            case 'LoginNhanh_MethodPay':
+                if(isset($_POST['Pay_Truc_Tiep'])){
+                    extract($_POST);
+                    echo"<pre>";
+                    print_r($_POST);
+                    echo"</pre>";
+                    LoginNhanh_update_MethodPay_PricePay($IdOrder,$PriceOrders,5);
+                }
+                include_once 'views/BillPayment.php';
+                break;
             default:
                 include_once 'views/Home.php';
                 break;

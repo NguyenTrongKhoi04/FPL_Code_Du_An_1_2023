@@ -1,29 +1,31 @@
 <link rel="stylesheet" href="<?=$userStyle?>/Cart.css">
-<form action="UserController.php?act=GioHang" method="post" class="page" id="formCart" >
+<form action="<?= $userAction ?>LoginNhanh_MethodPay" method="post" class="page" id="formCart" >
     <main>
         <section class="containerMain">
             <section class="listProduct">
                 <table>
                     <tr>
-                        <th>Ảnh </th>
                         <th>Tên </th>
-                        <th>Kích cỡ</th>
+                        <th>Ảnh </th>
+                        <th>Size</th>
                         <th>Giá</th>
                         <th>Số lượng </th>
-                        <th>Chức năng</th>
+                        <th>Tính Tiền </th>
+
                     </tr>
                     
                     <?php
-                    foreach($dataCart as $valuesCart){
+                    foreach($arrOrder as $i){
+                            $priceOneCart= $i['PriceProduct'] * $i['QuantityOrderPro'] ;
                         echo "
                             <tr>
-                                <td><img src='$imgPathAdmin{$valuesCart['ImageProduct']}' alt='img'></td>
-                                <td>{$valuesCart['NameProduct']}</td>
-                                <td>{$valuesCart['Size']}</td>
-                                <td>{$valuesCart['PriceProduct']}</td>
-                                <td><input type='number' name='quantity[{$valuesCart['IdCart']}]'   min=1 max={$valuesCart['QuantityProduct']} value='{$valuesCart['Quantity']}'></td>
-        
-                                <td> <a href='UserController.php?act=GioHang&Delete={$valuesCart['IdCart']}'><i class='ti-trash'></i></a> </td>
+                                <td><img src='$imgPathAdmin{$i['ImageProduct']}' alt='img'></td>
+                                <td>{$i['NameProduct']}</td>
+                                <td>{$i['NameSize']}</td>
+                                <td>{$i['PriceProduct']}</td>
+                                <td>{$i['QuantityOrderPro']}</td>
+                                <td>{$priceOneCart}</td>
+                                
                             </tr>
                         ";
                     }
@@ -35,20 +37,27 @@
             <section class="mainAside">
                 <h1>Thông tin đơn hàng</h1>
                 <ul>
-                    <li>Tổng tiền <?= cart_Totail($dataCart)["qualityProduct"] ?> sản phẩm: <?= cart_Totail($dataCart)["totailPrice"] ?> $</li>
-                 
+                    <!-- <li>Tổng tiền  $</li> -->
+
                 </ul>
             </section>
             <section class="footerAside">
-                <h1>Tổng cộng: <?=  ?> $</h1>
-                <button type="submit" name="ThanhToan">Thanh Toán</button>
+                <!-- vì các order_pro có cùng 1 orders =>> lấy phần tử đàu tiền -->
+                <input type="hidden" name="IdOrder" value="<?= $arrOrder[0]['IdOrder'] ?>">
+                <input type="hidden" name="PriceOrders" value="<?= $tienTong ?>">
+                <h1>Tổng cộng: <?= $tienTong ?> $</h1>
+                <button type="submit" name="Pay_Truc_Tiep">Thanh Toán Trực Tiếp </button>
+                <button type="submit" name="Pay_VNPAY">Thanh toán Bằng VN Pay</button>
+
             </section>
         </aside>
     </main>
     </section>
     <?php 
+
     if(isset($alert)){
         echo "<script> alert('$alert') </script>";
     }
     ?>
     <script src="../assets/js/Cart.js"></script>
+</form>
