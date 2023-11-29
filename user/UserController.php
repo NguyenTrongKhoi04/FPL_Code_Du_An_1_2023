@@ -15,6 +15,7 @@ include_once 'models/Cart.php';
 include_once 'models/CreateAccount.php';
 include_once 'models/DatBan.php';
 include_once 'models/CashViSa.php';
+include_once 'models/BillPayment.php';
 
 check_Login();
 home_checkAndOrderTableAuto();
@@ -24,6 +25,7 @@ if(isset($_GET['act'])&&($_GET['act'] !='' )){
         include_once 'views/LoginThuong.php';
     } else {
         $act = $_GET['act'];
+        $idAccountUser = $_SESSION['user']["IdAccount"];
         switch($act){
         /**
             * ====================================================================================
@@ -134,7 +136,6 @@ if(isset($_GET['act'])&&($_GET['act'] !='' )){
             * ====================================================================================
             */     
             case 'GioHang':
-                    $idAccountUser = $_SESSION['user']["IdAccount"];
                     $dataCart = cart_GetAllCartByIdAccount($idAccountUser);
                     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         cart_UpdateCart($_POST["quantity"]);
@@ -156,6 +157,7 @@ if(isset($_GET['act'])&&($_GET['act'] !='' )){
             * ====================================================================================
             */        
             case 'billthanhtoan':
+                $listOrderPayMent = BillPayment_GetOrderPayment($idAccountUser);
                 include_once 'views/BillPayment.php' ;
                 break; 
            
@@ -191,6 +193,7 @@ if(isset($_GET['act'])&&($_GET['act'] !='' )){
                 if($_SERVER['REQUEST_METHOD']==='POST'){ 
                     $alert = CashViSa_PushOrderUser();
                     echo "<script> alert('$alert') </script>";
+                    // header("Location: UserController.php?act=BillPayment");
                 }
                 include_once 'views/CashViSa.php' ;
                 break;

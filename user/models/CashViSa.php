@@ -5,15 +5,13 @@ function CashViSa_GetAllOrderUser(){
     if(isset($_SESSION['dataOrderCart']) && isset($_SESSION['dataOrderTables'])){
         $message = $_SESSION['dataOrderCart'];
     }
-    if(isset($_SESSION['payNowDetails']) && isset($_SESSION['dataOrderTables'])){
+    if(isset($_SESSION['payNowDetails']) && !empty($_SESSION['payNowDetails']) &&isset($_SESSION['dataOrderTables'])){
         $idProductUser = $_SESSION['payNowDetails']["IdProduct"];
         $sql = "select NameProduct, ImageProduct from product where IdProduct = $idProductUser";
 
         $dataProducts = query_One($sql);
         $dataProductsDetails = $_SESSION['payNowDetails'];
         $idAccountUser = $_SESSION['user']["IdAccount"];
-    //         echo "<pre>"; 
-    // var_dump($dataProductsDetails); die();
         // Gộp các mảng lại thành một mảng duy nhất
         $result = [
             "IdAccount" => $idAccountUser,
@@ -32,13 +30,13 @@ function CashViSa_GetAllOrderUser(){
 function CashViSa_PushOrderUser(){
     $message = "";
     $IdAccount = $_SESSION['user']["IdAccount"];
+    $totailPriceOrders = $_SESSION['totailPrice'];
     if(isset($_SESSION['dataOrderCart']) && isset($_SESSION['dataOrderTables'])){
         $dataOrderCart = $_SESSION['dataOrderCart'];
         $dataOrderTables = $_SESSION['dataOrderTables'];
-        $totailPriceOrders = $_SESSION['totailPrice'];
         extract($dataOrderTables);
         // thêm dữ liệu vào bảng order
-        $IdOrder = pdo_Execute_Return_LastinsertID("insert into orders values(null, '$IdTable',  '$IdAccount', 0, '$totailPriceOrders', '$NumberInPeople','2', '$TimeOrder')") ;
+        $IdOrder = pdo_Execute_Return_LastinsertID("insert into orders values(null, '$IdTable',  '$IdAccount', 2, '$totailPriceOrders', '$NumberInPeople','3', '$TimeOrder')") ;
         foreach($dataOrderCart as $valueDataOrder){
             // thêm dữ liệu vào bảng order_pro
             pdo_Execute("insert into order_pro values(null, '$IdOrder', '$valueDataOrder[IdProduct]','$valueDataOrder[NameSize]','$valueDataOrder[QuantityCard]',0)");
@@ -66,11 +64,11 @@ function CashViSa_PushOrderUser(){
         $dataOrderTables = $_SESSION['dataOrderTables'];
         extract($dataOrderTables);
         // thêm dữ liệu vào bảng order
-        $IdOrder = pdo_Execute_Return_LastinsertID("insert into orders values(null, '$IdTable',  '$IdAccount', 0, '$totailPriceOrders', '$NumberInPeople','2', '$TimeOrder')") ;
+        $IdOrder = pdo_Execute_Return_LastinsertID("insert into orders values(null, '$IdTable',  '$IdAccount', 2, '$totailPriceOrders', '$NumberInPeople','3', '$TimeOrder')") ;
 
         foreach($payNowDetails as $valueDataOrder){
             // thêm dữ liệu vào bảng order_pro
-            pdo_Execute("insert into order_pro values(null, '$IdOrder', '$valueDataOrder[IdProduct]','$valueDataOrder[NameSize]','$valueDataOrder[QuantityCard]',0)");     
+            pdo_Execute("insert into order_pro values(null, '$IdOrder', '$valueDataOrder[IdProduct]','$valueDataOrder[SizeProduct]','$valueDataOrder[Quantity]',0)");     
         }
         $recipientGmail = $_SESSION['user']["Gmail"];
         $nameRecipientGmail = $_SESSION['user']["NameAccount"];

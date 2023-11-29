@@ -4,18 +4,24 @@
             <aside class="aside">
                 <section class="headerAside">
                     <article class="img">
-                        <img src="<?= $img_Path?>Image.png" alt="">
+                        <img src="<?= $img_Path;$_SESSION['user']["ImageAccounts"] ?>Image.png" alt="">
                     </article>
                     <article class="content">
-                        <h1>Nguyễn Trọng Khôi</h1>
+                        <h1><?= $_SESSION['user']["NameAccount"] ?></h1>
                     </article>
                 </section>
                 <section class="mainAside">
+                    <?php 
+                    $totailPrice = 0;
+                    foreach ($listOrderPayMent as $key =>  $valueListOrderPayMent) {
+                        $totailPrice += (int)$valueListOrderPayMent['PriceOrders'];
+                    }
+                    ?>
                     <ul>
-                        <li>  Tổng tiền: 10$ </li>
+                        <li>  Tổng tiền: <?= $totailPrice ?> VND </li>
                         <li> <a href="">Bình luận sản phẩm</a> <i class="ti-angle-down"></i> </li>
                         <li> <a href="">Sản phẩm đã bình luận</a> <i class="ti-angle-down"></i> </li>
-                        <li>  Tổng số lượng sản phẩm đã sử dụng: 10 </li>
+                        <li>  Tổng số lượng sản phẩm đã sử dụng: <?= count($listOrderPayMent) ?> </li>
                     </ul>
                 </section>
             </aside>
@@ -35,17 +41,24 @@
                             <th>Thanh toán</th>
                             <th>Bàn</th>
                             <th>Loại order</th>
+                            <th>Thời gian</th>
                         </tr>
-                        <?php for($i=0;$i<5;$i++) : ?>
-                        <tr>
-                            <td>Nguyễn Trọng Khôi</td>
-                            <td>Chickend</td>
-                            <td>245$</td>
-                            <td>Bank pay</td>
-                            <td>16</td>
-                            <td>Online</td>
-                        </tr>
-                        <?php endfor ?>
+                        <?php 
+                        foreach ($listOrderPayMent as  $valueListOrderPayMent) {
+                            $PayMentMethod = $valueListOrderPayMent['PaymentMethod'] === 2 ? "Online" : "Trực tiếp";
+                            echo "
+                                <tr>
+                                    <td>{$valueListOrderPayMent['NameAccount']}</td>
+                                    <td>{$valueListOrderPayMent['NameProduct']}</td>
+                                    <td>{$valueListOrderPayMent['PriceProduct']} VND</td>
+                                    <td>{$PayMentMethod}</td>
+                                    <td>{$valueListOrderPayMent['NumberTable']}</td>
+                                    <td>{$PayMentMethod}</td>
+                                    <td>{$valueListOrderPayMent['OrderDate']}</td>
+                                </tr>                            
+                            ";
+                        } ?>
+               
                        
                     </table>
                 </section>

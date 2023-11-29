@@ -85,13 +85,13 @@ function home_checkAndOrderTableAuto()
     $time->setTimezone(new DateTimeZone("Asia/Ho_Chi_Minh"));
     $realTime = $time->format('Y-m-d\TH:i');
 
-    $dataCheckBooking = query_All('select * from orders where StatusOrders = 0');
+    $dataCheckBooking = query_All('select * from orders where StatusOrders = 3');
 
     foreach($dataCheckBooking as $valuesCheck){
         $dataTimesBefore = (int)$valuesCheck["OrderDate"] + 3600;
         if($dataTimesBefore === $realTime){
-                $sqlOrder = "update orders set StatusOrders = 3 where IdOrder = {$valuesCheck['IdOrder']}"; 
-                $sqlTables = "update tables set StatusTable where IdTables = {$valuesCheck['IdTable']}"; 
+                $sqlOrder = "update orders set StatusOrders = 0 where IdOrder = {$valuesCheck['IdOrder']}"; 
+                $sqlTables = "update tables set StatusTable = 2 where IdTables = {$valuesCheck['IdTable']}"; 
                 pdo_Execute($sqlTables);
                 pdo_Execute($sqlOrder);
         }
