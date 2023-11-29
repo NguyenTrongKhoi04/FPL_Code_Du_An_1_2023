@@ -7,6 +7,7 @@ include_once '../assets/global/url_Path.php';
 include_once 'models/Account.php';
 include_once 'models/Ban.php';
 include_once 'models/Product.php';
+include_once 'models/QuanLyOrder.php';
 
 if (empty($_SESSION['user'])) {
     header('location: ../user/UserController.php');
@@ -37,7 +38,6 @@ if (empty($_SESSION['user'])) {
                 $id = $_GET['id'];
                 $ban_One = select_One('tables', null, "IdTables = $id");
                 if (isset($_POST['update']) && ($_POST['update'] != '')) {
-                    var_dump($_FILES);
                     extract($_POST);
                     updateBan($id, $NumberPeople, $NumberTable, $StatusTable);
                     header("location:" . $adminAction . "ListBan");
@@ -100,6 +100,21 @@ if (empty($_SESSION['user'])) {
                 $id = $_GET['id'];
                 delete_Product($id);
                 header('location: AdminController.php?act=ListProduct');
+                break;
+
+        /**
+             * ====================================================================================
+             *                                 NHAN VIEN ORDER
+             * ====================================================================================
+             */
+            case 'QuanLyOrder_Order':
+                $list_CanXacNhan = list_OrderChuaXacNhan();
+                include_once 'views/QuanLyOrder/QuanLyOrder_List_XacNhan.php';
+                break;
+            case  'QuanLyOrder_Order_Xac_Nhan':
+                $idOrder= $_GET['id'];
+                xacNhanOrder($idOrder);
+                header('location: AdminController.php?act=QuanLyOrder_Order');
                 break;
             default:
                 // include_once 'views/Home.php';

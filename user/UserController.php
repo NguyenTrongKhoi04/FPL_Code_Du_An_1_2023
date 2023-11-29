@@ -39,7 +39,9 @@ if(isset($_GET['act'])&&($_GET['act'] !='' )){
             case 'dangnhap':
                 if ($_SESSION['user']['Role'] == 1) {
                     header('location: ../admin/AdminController.php');
-                } else {
+                }elseif($_SESSION['user']['Role'] == 2) {
+                     header('location: ../admin/AdminController.php?act=QuanLyOrder_Order');
+                }else {
                     $loadHeader = 0;
                     if ($loadHeader == 0) {
                         header('location: UserController.php');
@@ -185,10 +187,10 @@ if(isset($_GET['act'])&&($_GET['act'] !='' )){
 
                 case 'LoginNhanh_ListOrder':
                     $arrOrder = loginNhanh_ChuaThanhToan_GetAll_Order_ByIdAccount($_SESSION['user']['IdAccount']);
-                    var_dump($arrOrder[0]['IdOrder']);
-                    echo '<pre>';
-                    print_r($arrOrder);
-                    echo '</pre>';
+                    // var_dump($arrOrder[0]['IdOrder']);
+                    // echo '<pre>';
+                    // print_r($arrOrder);
+                    // echo '</pre>';
                     $tienTong = 0;
                     foreach($arrOrder as $i){
                        $one_In_Order = $i['QuantityOrderPro']*$i['PriceProduct'];
@@ -228,9 +230,9 @@ if(isset($_GET['act'])&&($_GET['act'] !='' )){
             case 'LoginNhanh_MethodPay':
                 if(isset($_POST['Pay_Truc_Tiep'])){
                     extract($_POST);
-                    echo"<pre>";
-                    print_r($_POST);
-                    echo"</pre>";
+                    // echo"<pre>";
+                    // print_r($_POST);
+                    // echo"</pre>";
                     LoginNhanh_update_MethodPay_PricePay($IdOrder,$PriceOrders,5);
                 }
                 include_once 'views/BillPayment.php';

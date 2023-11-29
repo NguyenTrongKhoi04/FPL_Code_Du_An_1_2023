@@ -242,65 +242,36 @@
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
-                                        <td><a href="?act=AddProduct"><input type="button" value="Thêm Sản Phẩm"></a></td>
                                         <tr>
-                                            <th>ID</th>
-                                            <th>Tên Sản Phẩm</th>
-                                            <th>Số Lượng</th>
-                                            <th>Giá Tiền</th>
-                                            <th>Danh Mục Của Sản Phẩm</th>
-                                            <th>Ảnh Sản Phẩm</th>
-                                            <th>Mô Tả</th>
-                                            <th>Trạng Thái Sản Phẩm</th>
-                                            <th>Thời Gian Thêm - Chỉnh Sửa</th>
-                                            <th>Thao Tác</th>
                                             <th></th>
+                                            <th>ID Order</th>
+                                            <th>Name Account</th>
+                                            <th>ID Bàn</th>
+                                            <th>Số Món Order</th>
+                                            <th>Giá Tiền</th>
+                                            <th>OrderDate</th>
+                                            <th>Thao Tác</th>
                                         </tr>
                                     </thead>
+                                    <form action="" method="POST">
                                     <tbody>
-                                        <?php foreach ($listPro as $i) : ?>
+                                        <?php foreach ($list_CanXacNhan as $i) {
+                                            $timestamp = strtotime($i['OrderDate']);
+                                            $formattedTime = date('H:i:s d/m/Y', $timestamp) ?>
                                             <tr>
-                                                <td><?= $i['IdProduct'] ?></td>
-                                                <td <?php if( $i['QuantityProduct'] ==0){echo 'style="color: red;"';} ?>><?= $i['NameProduct'] ?></td>
-                                                <td><?= $i['QuantityProduct'] ?></td>
-                                                <td><?= $i['PriceProduct'] ?></td>
-
-                                                <td>
-                                                    <?php foreach($listProCategory as $cate) {?>   
-                                                        <?php if($cate['IdCategory']==$i['IdCategory']){echo $cate['NameCategory'];} ?>
-                                                    <?php } ?>
-                                                </td>
-                                                <td><?php if($i['ImageProduct']==''){?>
-                                                        <p style="color: red;">Không có ảnh </p>
-                                                    <?php }else{?>
-                                                        <img src="<?= $adminImg . $i['ImageProduct'] ?>" width="50%">
-                                                        <?php } ?>
-                                                </td>
-
-                                                <td>
-                                                    <?php foreach($listProDetails as $details) {?>   
-                                                        <?php if($details['IdDetails']==$i['IdDetails']){ ?>
-                                                            <a href=""><?= $details['ProductDetails'] ?></a>
-                                                            <?php } ?>
-                                                    <?php } ?>
-                                                </td>
+                                                <td><input type="checkbox" name="" value="<?= $i['IdOrder'] ?>"></td>
+                                                <td><?= $i['IdOrder'] ?></td>
+                                                <td><?= $i['NameAccount'] ?></td>
+                                                <td><?= $i['IdTable'] ?></td>
+                                                <td><?= $i['SoMonGoi'] ?></td>
+                                                <td><?= $i['PriceOrders'] ?></td>
+                                                <td><?= $formattedTime ?></td>
                                                 
-                                                <td>
-                                                    <?php if ($i['StatusProduct'] == 1) { ?>
-                                                        Đã hết
-                                                    <?php } else { ?>
-                                                        Còn <?= $i['QuantityProduct'] ?> Sản Phẩm
-                                                    <?php } ?>
-                                                </td>
-                                                <td><?= $i['DateEditProduct'] ?></td>
-                                                <td>
-                                                    <a href="<?= $adminAction ?>UpdateProduct&id=<?= $i['IdProduct'] ?>"><input type="button" value="Sửa"></a>
-                                                    <a onclick="return confirm('Bạn Có Muốn Xóa Không')" href="<?= $adminAction ?>DeleteProduct&id=<?= $i['IdProduct'] ?>"><input type="button" value="Xóa"></a>
-                                                </td>
-                                                <td><input type="checkbox" name="" value="<?= $i['IdProduct'] ?>"></td>
+                                                <td><a href="<?= $adminAction?>QuanLyOrder_Order_Xac_Nhan&id=<?= $i['IdOrder'] ?>">Xác Nhận</a></td>
                                             </tr>
-                                        <?php endforeach ?>
+                                        <?php } ?>
                                     </tbody>
+                                    </form>
                                 </table>
                             </div>
                         </div>
