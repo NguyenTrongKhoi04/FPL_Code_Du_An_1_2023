@@ -49,16 +49,18 @@
   align-items: start;
   flex-wrap: wrap;
   overflow-x: auto;
+  justify-content: space-around;
+  align-content: flex-start;
 }
 .datban .containerTable .listTable .contentTable {
-  width: 7%;
+  width: 38%;
   height: 10%;
   display: flex;
   justify-content: space-around;
   align-items: center;
   color: var(--color6);
   background-color: var(--color8);
-  margin: 2% 6%;
+  margin: 2% 0;
 }
 .datban .containerTable .listTable .contentTable input {
   width: 100%;
@@ -69,22 +71,23 @@
   background-color: transparent;
 }
 .datban .containerTable .listTable .contentTable span {
-  font-size: 2.5rem;
+  font-size: 1.2rem;
 }
 .datban .containerTable .timeBooking {
   width: 45%;
   height: 50%;
   padding: 0 5%;
 }
-.datban .containerTable .timeBooking input {
+.datban .containerTable .timeBooking input, .datban .containerTable .timeBooking select {
   width: 100%;
   height: 20%;
   text-align: center;
   font-size: 1rem;
   background-color: var(--color8);
   color: var(--color6);
+  margin: 5% 0;
 }
-.datban .containerTable .timeBooking input:focus {
+.datban .containerTable .timeBooking input:focus, .datban .containerTable .timeBooking select:focus {
   outline: none;
 }
 .datban .containerTable .timeBooking .footer {

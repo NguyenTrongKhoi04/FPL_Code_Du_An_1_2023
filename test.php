@@ -6,9 +6,6 @@
   <title>Document</title>
 </head>
 <body>
-  <form action="" method="post">
-    <input type="checkbox" name="" id="">
-    
-  </form>
+
 </body>
 </html>

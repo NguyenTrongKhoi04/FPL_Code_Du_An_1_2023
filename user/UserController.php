@@ -133,7 +133,7 @@ if(isset($_GET['act'])&&($_GET['act'] !='' )){
             *                                     Gio Hang
             * ====================================================================================
             */     
-                case 'GioHang':
+            case 'GioHang':
                     $idAccountUser = $_SESSION['user']["IdAccount"];
                     $dataCart = cart_GetAllCartByIdAccount($idAccountUser);
                     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -174,7 +174,7 @@ if(isset($_GET['act'])&&($_GET['act'] !='' )){
                         if($alert === true){
                             header("Location: UserController.php?act=CashViSa");
                         }else{
-                            echo "<script>alert($alert)</script>";
+                            echo "<script>alert('$alert')</script>";
                         }
                     }
                 }
@@ -191,8 +191,6 @@ if(isset($_GET['act'])&&($_GET['act'] !='' )){
                 if($_SERVER['REQUEST_METHOD']==='POST'){ 
                     $alert = CashViSa_PushOrderUser();
                     echo "<script> alert('$alert') </script>";
-                    header("Location: UserController.php?act=billthanhtoan");
-
                 }
                 include_once 'views/CashViSa.php' ;
                 break;

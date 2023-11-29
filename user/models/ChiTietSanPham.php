@@ -64,7 +64,7 @@ function chiTietSanPham_Add_To_Cart($idProduct,$idAccount,$idSize,$quantityProdu
     $sql = "";
     $sqlCheckProductInCart = query_All("select QuantityCard from cart where IdProduct = '$idProduct' and IdAccount = '$idAccount' " );
     if(empty($sqlCheckProductInCart)){
-        $sql = "INSERT INTO cart(IdProduct,IdAccount,Size,QuantityCard,PriceCard) VALUES ('$idProduct','$idAccount','$idSize','$quantityProduct','$priceProduct')";
+        $sql = "INSERT INTO cart(IdProduct,IdAccount,NameSize,QuantityCard,PriceCard) VALUES ('$idProduct','$idAccount','$idSize','$quantityProduct','$priceProduct')";
     }else{
         $totailQuantity = (int)$sqlCheckProductInCart[0]["QuantityCard"] + (int)$quantityProduct;
         $sql = "update cart set QuantityCard = '$totailQuantity' where IdProduct = '$idProduct' and IdAccount = '$idAccount' ";

@@ -2,7 +2,8 @@
     /**
      *Hàm nhận  về $idAccount và trả ra những sản phẩm tương ứng với trong giỏ hàng của họ
      */
-    function cart_GetAllCartByIdAccount($idAccount){
+    function cart_GetAllCartByIdAccount($idAccount)
+    {
         $sql = "select car.*, p.NameProduct,p.ImageProduct, p.PriceProduct, p.QuantityProduct
         from cart car
         join product AS p on p.IdProduct = car.IdProduct
@@ -15,7 +16,8 @@
      * Hàm tính toán số tiền khách hàng phải trả 
      * Data: Dữ liệu được lấy trên database 
      */
-    function cart_Totail($data){
+    function cart_Totail($data)
+    {
         // echo "<pre>";
         // var_dump($data); die();
         $qualityProduct = count($data);
@@ -45,10 +47,10 @@
      * Hàm có tác dụng xóa từng sản phẩm trong giỏ hàng
      * IdCard: Xóa sản phẩm cụ thể
      */
-    function cart_Delete($IdCard){
+    function cart_Delete($IdCard)
+    {
         $sqlCart = "delete from cart where IdCart  = $IdCard ";
         return pdo_Execute($sqlCart);
-
     }
     /**
      * Hàm có tác dụng cập nhật lại số lượng do người dùng muốn thêm
