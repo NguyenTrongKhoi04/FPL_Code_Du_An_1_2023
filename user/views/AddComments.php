@@ -1,21 +1,27 @@
-<link rel="stylesheet" href="../assets/css/user/BillPayment.css">
+<link rel="stylesheet" href="../assets/css/user/AddComments.css">
 <section class="page">
         <main>
             <aside class="aside">
-                <section class="headerAside">
+            <section class="headerAside">
                     <article class="img">
-                        <img src="<?= $img_Path?>Image.png" alt="">
+                        <img src="<?= $imgPathAdmin.$_SESSION['user']['ImageAccounts']?>" alt="">
                     </article>
                     <article class="content">
-                        <h1>Nguyễn Trọng Khôi</h1>
+                        <h1><?= $_SESSION['user']["NameAccount"] ?></h1>
                     </article>
                 </section>
                 <section class="mainAside">
+                    <?php 
+                    $totailPrice = 0;
+                    foreach ($listOrderPayMent as $key =>  $valueListOrderPayMent) {
+                        $totailPrice += (int)$valueListOrderPayMent['PriceOrders'];
+                    }
+                    ?>
                     <ul>
-                        <li>  Tổng tiền: 10$ </li>
-                        <li> <a href="">Bình luận sản phẩm</a> <i class="ti-angle-down"></i> </li>
-                        <li> <a href="">Sản phẩm đã bình luận</a> <i class="ti-angle-down"></i> </li>
-                        <li>  Tổng số lượng sản phẩm đã sử dụng: 10 </li>
+                        <li>  Tổng tiền: <?= $totailPrice ?> VND </li>
+                        <li> <a href="UserController.php?act=AddComment">Bình luận sản phẩm</a> <i class="ti-angle-down"></i> </li>
+                        <li> <a href="UserController.php?act=ListComment">Sản phẩm đã bình luận</a> <i class="ti-angle-down"></i> </li>
+                        <li>  Tổng số lượng sản phẩm đã sử dụng: <?= count($listOrderPayMent) ?> </li>
                     </ul>
                 </section>
             </aside>
@@ -26,27 +32,24 @@
                     </section>
                 </section>
                 <section class="contentMain">
-                    <table>
-                        <tr>
-                            <th>Tên sản phẩm</th>
-                            <th>Tên sản phẩm</th>
-                            <th>Giá</th>
-                            <th>Thanh toán</th>
-                            <th>Bàn</th>
-                            <th>Loại order</th>
-                        </tr>
-                        <?php for($i=0;$i<5;$i++) : ?>
-                        <tr>
-                            <td>Nguyễn Trọng Khôi</td>
-                            <td>Chickend</td>
-                            <td>245$</td>
-                            <td>Bank pay</td>
-                            <td>16</td>
-                            <td>Online</td>
-                        </tr>
-                        <?php endfor ?>
-                       
-                    </table>
+                    <?php 
+                    foreach ($listComment as  $valueListOrderComment) {
+                        echo "
+                        <form action='UserController.php?act=AddComment&idProduct={$valueListOrderComment['IdProduct']}&IdOrder={$valueListOrderComment['IdOrder_Pro']}' method='post' class='contentComment'>
+                            <article class='product'>
+                                <img src='$imgPathAdmin{$valueListOrderComment['ImageProduct']}' alt='img'>
+                                <h1>{$valueListOrderComment['NameProduct']}</h1>
+                            </article>
+                            <article class='content'>
+                                <input type='text' name='content' autofocus>
+                            </article>
+                            <article class='sendContent'>
+                                <input type='submit' value='Gửi'>
+                            </article>
+                        </form>
+                        ";
+                    }
+                    ?>
                 </section>
             </section>
         </main>

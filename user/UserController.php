@@ -16,6 +16,8 @@ include_once 'models/CreateAccount.php';
 include_once 'models/DatBan.php';
 include_once 'models/CashViSa.php';
 include_once 'models/BillPayment.php';
+include_once 'models/AddComments.php';
+include_once 'models/ListComment.php';
 
 check_Login();
 home_checkAndOrderTableAuto();
@@ -204,7 +206,41 @@ if(isset($_GET['act'])&&($_GET['act'] !='' )){
             */  
             case "CashPayment":
                 break;
+            case "AddComment":
+                $listOrderPayMent = BillPayment_GetOrderPayment($idAccountUser);
+                $listComment = AddComments_GetComment($idAccountUser);
+                if($_SERVER['REQUEST_METHOD']==='POST'){ 
+                    if(isset($_GET['idProduct']) && isset($_GET['IdOrder'])){
+                        $IdProduct = $_GET['idProduct'];
+                        $IdOrder = $_GET['IdOrder'];
+                        $alert = AddComments_AddComment($IdProduct, $idAccountUser, $_POST, $IdOrder);
+                        if($alert === null){
+                            echo " <script> alert('$alert') </script> ";
+                        }else{
+                            echo " <script> alert('Hệ thống đang bảo trì') </script> ";
 
+                        }
+                    }
+                }
+                include_once 'views/AddComments.php';
+                break;
+            case "ListComment":
+                $listOrderPayMent = BillPayment_GetOrderPayment($idAccountUser);
+                $listComment = ListComment_GetAllComment($idAccountUser);
+                if($_SERVER['REQUEST_METHOD']==='POST' && isset($_GET['IdComment'])){ 
+                    $IdComment = $_GET['IdComment'];
+                    if(isset($_POST["delete"])){
+                        ListComment_DeleteComment($IdComment);
+                        echo "<script> alert('Xóa sản phẩm thành công') </script>";
+                    }else{
+                        extract($_POST);
+                        echo "<script> alert('Cập nhật sản phẩm thành công') </script>";
+                        ListComment_UpdateComment($IdComment, $Content);
+                        
+                    }
+                }
+                include_once 'views/ListComment.php';
+                break;
 
             default:
                 include_once 'views/Home.php';

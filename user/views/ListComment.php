@@ -1,8 +1,8 @@
-<link rel="stylesheet" href="../assets/css/user/BillPayment.css">
+<link rel="stylesheet" href="../assets/css/user/ListComment.css">
 <section class="page">
         <main>
             <aside class="aside">
-                <section class="headerAside">
+            <section class="headerAside">
                     <article class="img">
                         <img src="<?= $imgPathAdmin.$_SESSION['user']['ImageAccounts']?>" alt="">
                     </article>
@@ -28,37 +28,30 @@
             <section class="containerMain">
                 <section class="headerMain">
                     <section class="titleMain">
-                        <h1>LỊCH SỬ  THANH TOÁN</h1>
+                        <h1>Viết đánh giá</h1>
                     </section>
-                    
                 </section>
                 <section class="contentMain">
-                    <table>
-                        <tr>
-                            <th>Tên sản phẩm</th>
-                            <th>Giá</th>
-                            <th>Thanh toán</th>
-                            <th>Bàn</th>
-                            <th>Loại order</th>
-                            <th>Thời gian</th>
-                        </tr>
-                        <?php 
-                        foreach ($listOrderPayMent as  $valueListOrderPayMent) {
-                            $PayMentMethod = $valueListOrderPayMent['PaymentMethod'] === 2 ? "Online" : "Trực tiếp";
-                            echo "
-                                <tr>
-                                    <td>{$valueListOrderPayMent['NameProduct']}</td>
-                                    <td>{$valueListOrderPayMent['PriceProduct']} VND</td>
-                                    <td>{$PayMentMethod}</td>
-                                    <td>{$valueListOrderPayMent['NumberTable']}</td>
-                                    <td>{$PayMentMethod}</td>
-                                    <td>{$valueListOrderPayMent['OrderDate']}</td>
-                                </tr>                            
-                            ";
-                        } ?>
-               
-                       
-                    </table>
+                    <?php 
+                    foreach ($listComment as  $valueListOrderComment) {
+                        echo "
+                        <form action='UserController.php?act=ListComment&IdComment={$valueListOrderComment['IdComment']}' method='post' class='contentComment'>
+                            <article class='product'>
+                                <img src='$imgPathAdmin{$valueListOrderComment['ImageProduct']}' alt='img'>
+                                <h1>{$valueListOrderComment['NameProduct']}</h1>
+                            </article>
+                            <article class='content'>
+                                <input type='text' name='content' value='{$valueListOrderComment['Content']}' autofocus>
+                            </article>
+                            <article class='sendContent'>
+                                <input type='submit'  value='Gửi'>
+                                <input type='submit' name = 'delete' value='Xóa'>
+
+                            </article>
+                        </form>
+                        ";
+                    }
+                    ?>
                 </section>
             </section>
         </main>
