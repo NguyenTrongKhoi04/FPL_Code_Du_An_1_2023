@@ -290,8 +290,8 @@
                                                 <td>
                                                     <select name="Status" id="">
                                                         <option value="<?= $StatusCategory?>" selected hidden><?= $StatusCategory ?></option>
-                                                        <option value="0">Hoạt động</option>
-                                                        <option value="1">Đã xóa</option>                                                                                         
+                                                        <option value="0">Hoạt động bình thường</option>
+                                                        <option value="1">Ngừng hoạt dộng</option>                                                                                         
                                                     </select>
                                                 </td>
                                                     

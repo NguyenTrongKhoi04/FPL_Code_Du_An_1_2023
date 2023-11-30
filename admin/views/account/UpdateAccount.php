@@ -289,9 +289,11 @@
                                                 <td>
                                                     <select name="Gender" id="">
                                                           
-                                                            <option value="0">Nữ</option>
-                                                            <option value="1">Nam</option>
-                                                        </select>
+                                                        <option value="0">Giới tính Nam</option>
+                                                        <option value="1">Giới tính Nữ</option>
+                                                        <option value="2">Giới tính Khác</option>
+
+                                                    </select>
                                                 </td>
                                                 
                                             </tr>
@@ -305,18 +307,16 @@
                                             <tr>
                                                 <td>Ảnh</td>
                                                 <td>
-                                                        <input type="file" name = "ImageAccounts" value="<?= $ImageAccounts ?>">
-                                                </td>
-                                                    
+                                                    <input type="file" name = "ImageAccounts" value="<?= $ImageAccounts ?>">
+                                                </td>                                
                                             </tr>
                                                     
                                             
                                             <tr>
                                                 <td>Trạng thái tài khoản</td>
                                                 <td>
-                                                    <select name="StatusAccount" id="">
-                                                            
-                                                            <option value="0">Hoạt động</option>
+                                                    <select name="StatusAccount" id="">                                                          
+                                                            <option value="0">Hoạt động bình thường</option>
                                                             <option value="1">Đã xóa</option>
                                                     </select>
                                                 </td>
@@ -327,9 +327,12 @@
                                                 <td>
                                                     <select name="Role" id="">
                                                             
-                                                            <option value="0">user</option>
-                                                            <option value="1">admin</option>
-                                                        </select>
+                                                        <option value="0">Khách Hàng</option>
+                                                        <option value="1">Chủ quán</option>
+                                                        <option value="2">Quản lý</option>
+                                                        <option value="3">Nhân viên phục vụ bàn</option>
+                                                        <option value="4">Nhân viên thu ngân</option>
+                                                    </select>
                                                 </td>
                                                 
                                             </tr>

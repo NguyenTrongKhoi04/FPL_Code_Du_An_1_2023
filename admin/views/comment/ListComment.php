@@ -282,19 +282,10 @@
                                                     $stauts = null;
                                                     switch($values['StatusComment']){ 
                                                         case 0:
-                                                            $stauts = "Đồ ăn tuyệt vời";
+                                                            $stauts = "Hiển thị";
                                                         break;
                                                         case 1:
-                                                             $stauts = "Đồ ăn rất ngon";
-                                                        break;
-                                                        case 2:
-                                                            $stauts = "Đồ ăn ngon";
-                                                        break;
-                                                        case 3:
-                                                           $stauts = "Đồ ăn tệ";
-                                                        break;
-                                                        case 4:
-                                                            $stauts = "Đồ ăn rất tệ";
+                                                             $stauts = "Ẩn";
                                                         break;
                                                         default:
                                                             $stauts = "Ok";

@@ -272,39 +272,51 @@
                                            <th></th>
                                    </tr>
                 
-              
-                         
                                    <tbody> 
                                     <?php 
                                     if(isset($_GET["IdOrder"]) && !empty($_GET["IdOrder"])){
                                         $dataOrder =getOrder($_GET['IdOrder']);
                                         extract($dataOrder['0']);
-                                        $stauts = null;
+                                        $stauts = null;$payment = null;
                                         switch($StatusOrders){
                                             case 0:
-                                                $stauts = "Bếp đang làm";
+                                                $stauts = "Chưa thanh toán";
                                             break;
                                             case 1:
-                                                $stauts = "Bếp làm xong";
+                                                $stauts = "Đã thanh toán rồi";
                                             break;
                                             case 2:
-                                                $stauts = "Nhân viên phục vụ đã nhận đồ";
+                                                $stauts = "Đặt bàn trước";
                                             break;
                                             case 3:
-                                                $stauts = "Khách đã nhận được sản phẩm";
+                                                $stauts = "Đã đặt bàn, sản phẩm và thanh toán rồi nhưng chưa sử dụng";
                                             break;
                                             case 4:
-                                                $stauts = "Trả lại sản phẩm";
+                                                $stauts = "Đang đợi hết thời gian để được order";
+                                            break;
+                                            case 5:
+                                                $stauts = "Chờ xác minh";
+                                            break;
+                                        }   
+                                        switch($PaymentMethod){
+                                            case 0:
+                                                $payment = "Chưa thanh toán";
+                                            break;
+                                            case 1:
+                                                $payment = "Tiền mặt";
+                                            break;
+                                            case 2:
+                                                $payment = "Tài khoản";
                                             break;
 
-                                        }          
+                                        }      
                                       ?>
                                         <form action="AdminController.php?act=UpdateOrders&IdOrder=<?= $IdOrder?>" method="post">
                                              <tr>
                                                 <td>Tên bàn</td>
                                                 <td>
-                                                    <select name="IdTables" id="">
-                                                        <option value="<?= $IdTables?>" selected hidden><?= $NumberTable ?></option>
+                                                    <select name="IdTable" id="">
+                                                        <option value="<?= $IdTable ?>" selected hidden><?= $NumberTable ?></option>
                                                         <?php
                                                         foreach(getIdTable() as $valueTable){
                                                             echo "
@@ -333,22 +345,47 @@
                                                 </td>                  
                                             </tr>
                                             <tr>
+                                               <td>Kiểu thanh toán</td>
+                                               <td>
+                                                    <select name="PaymentMethod" id="">
+                                                         <option value="<?= $PaymentMethod ?>" selected hidden><?= $payment ?></option>
+                                                        
+                                                        <option value="0">chưa thanh toán</option>
+                                                        <option value="1">Tiền mặt</option>
+                                                        <option value="2">Chuyển khoản</option>
+                                        
+                                                    </select>
+                                               </td>
+                                               
+                                           </tr>
+                                            <tr>
                                                 <td>Giá</td>
                                                 <td>
-                                                        <input value="<?= $PriceOrders ?>" type="number" name = "PriceOrders" id="">
+                                                        <input value="<?= $PriceOrders ?>" type="number" name = "PriceOrders" id="" min="0">
                                                 </td>
                                                     
                                             </tr>
+
+             
+                                           <tr>
+                                               <td>Số lượng người</td>
+                                               <td>
+                                                    <input value="<?= $NumberInPeople ?>" type="number" name = "NumberInPeople" id="" min="0">
+                                                </td>
+                                                
+                                           </tr>
+    
                                             <tr>
                                                 <td>Trạng thái Order</td>
                                                 <td>
                                                     <select name="StatusOrders" id="">
                                                             <option value="<?= $StatusOrders ?>" selected hidden><?= $stauts ?></option>
-                                                            <option value="0">Bếp đang làm</option>
-                                                            <option value="1">Bếp làm xong</option>
-                                                            <option value="2">Nhân viên phục vụ đã nhận đồ</option>
-                                                            <option value="3">Khách đã nhận được sản phẩm</option>
-                                                            <option value="4">Trả lại sản phẩm</option>
+                                                            <option value="0">Chưa thanh toán</option>
+                                                            <option value="1">Đã thanh toán rồi</option>
+                                                            <option value="2">Đặt bàn trước</option>
+                                                            <option value="3">Đã đặt bàn, sản phẩm và thanh toán rồi nhưng chưa sử dụng</option>
+                                                            <option value="4">Đang đợi hết thời gian để được order</option>
+                                                            <option value="5">Chờ xác minh</option>
                                                     </select>
                                                 </td>
                                                 

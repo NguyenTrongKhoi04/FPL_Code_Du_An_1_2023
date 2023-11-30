@@ -283,7 +283,7 @@
                                             foreach(getListAccount() as $values){
 
                                                 $Gender = $values["Gender"] === 0 ? "Nam" :"Nữ";
-                                                $status = $values["StatusAccount"] ===  0 ? "Hoạt động" : "Đã xóa";
+                                                $status = $values["StatusAccount"] ===  0 ? "Hoạt động bình thường" : "Đã xóa";
                                                 $Role =  $values["Role"] === 0 ? "user" :"admin";
 
                                                 echo "

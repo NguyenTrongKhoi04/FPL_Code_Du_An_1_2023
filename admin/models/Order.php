@@ -10,34 +10,36 @@ function getIdTable(){
 }
 
 
-// function getIdProduct(){
-//     $sql= "select * from product";
-//     return query_All($sql);  
-// }
+
 
 function getIdAccount(){
     $sql= "select * from account";
     return query_All($sql);  
 }
 
-// Toàn văn
-// IdOrder	
-// IdTable	
-// IdAccount	
-// PriceOrders	
-// StatusOrders	
-// OrderDate
+
+
+
 /**
  * $data: dữ liệu từ form post
  * $IdDetails: Lấy IdDetails mới được thêm vào
  * $dataImage: dữ liệu ảnh từ from file
  * */ 
 
+//  Toàn văn
+//  IdOrder	
+//  IdTable	
+//  IdAccount	
+//  PaymentMethod	
+//  PriceOrders	
+//  NumberInPeople	
+//  StatusOrders	
+//  OrderDate
 
 function pushOrder($data){
     extract($data);
 
-    $sql= "insert into orders values ('','$IdTables', '$IdAccount' , '$PriceOrders', '' ,'')";
+    $sql= "insert into orders values ('','$IdTable', '$IdAccount','', '$PriceOrders','$NumberInPeople','' ,'')";
 
     return pdo_Execute($sql);
 }
@@ -55,7 +57,15 @@ function getListOrder(){
 /**
  * $idProduct: Id của sản phẩm được truyền vào 
 
- * */ 
+ * */ // Toàn văn
+// IdOrder
+// IdTable
+// IdAccount
+// PaymentMethod
+// PriceOrders
+// NumberInPeople
+// StatusOrders
+// OrderDate
 function deleteOrder($IdOrder){
     $sql = "delete from orders where IdOrder = $IdOrder";
     return pdo_Execute($sql);
@@ -65,7 +75,7 @@ function updateOrder($dataOrder, $IdOrder){
     extract($dataOrder);
 
     $sqlOrder = "
-    update orders set IdTable = '$IdTables', IdAccount  = '$IdAccount',PriceOrders = '$PriceOrders',
+    update orders set IdTable = '$IdTable', IdAccount  = '$IdAccount',PaymentMethod = '$PaymentMethod',PriceOrders = '$PriceOrders',NumberInPeople= '$NumberInPeople',
     StatusOrders = '$StatusOrders' where IdOrder = '$IdOrder' 
     ";
     
@@ -82,10 +92,12 @@ function getOrder($IdOrder){
     return query_All($sql);
 }
 
-function check_Order($PriceOrders){
+function check_Order($IdTable,$IdAccount){
 
-    $sql = "SELECT * FROM orders WHERE PriceOrders = '$PriceOrders'";
+
+        $sql = "SELECT * FROM  orders  WHERE IdTable = '$IdTable' AND IdAccount ='$IdAccount' ";
+  
+        return query_One($sql);
     
-    return query_One($sql);
 }
 ?>

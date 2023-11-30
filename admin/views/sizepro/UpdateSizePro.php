@@ -309,7 +309,13 @@
                                                </td>
                                                 
                                            </tr>
-                                           
+                                           <tr>
+                                               <td>Giá</td>
+                                               <td>
+                                                    <input value="<?php $Price ?>" type="number" name = "Price" id="" min="0">
+                                                </td>
+                                                
+                                           </tr>
 
                                            <input type="text" hidden value="<?= $IdSizePro ?>" name="IdSizePro">
                                            <a href="AdminController.php?act=ListSizePro"><input  class="mr20" type="button" value="DANH SÁCH"></a> 

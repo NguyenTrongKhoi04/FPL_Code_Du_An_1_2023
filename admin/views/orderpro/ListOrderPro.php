@@ -267,7 +267,8 @@
                                         <tr>
                                            <th>Order</th>
                                             <th>Sản phẩm</th>
-                                            
+                                            <th>Tên kích thước</th>
+                                            <th>Số lượng đặt</th>
                                             <th>Trạng thái</th>
                                           
                                             <th>Thao tác</th>
@@ -276,23 +277,14 @@
                                     <tbody> 
                                         <?php 
                                             foreach(getListOrderPro() as $values){
-                        
+                    
                                                     $stauts = null;
                                                     switch($values['StatusOrders']){ 
                                                         case 0:
-                                                            $stauts = "Bếp đang làm";
+                                                            $stauts = "Chưa comment";
                                                         break;
                                                         case 1:
-                                                            $stauts = "Bếp làm xong";
-                                                        break;
-                                                        case 2:
-                                                            $stauts = "Nhân viên phục vụ đã nhận đồ";
-                                                        break;
-                                                        case 3:
-                                                            $stauts = "Khách đã nhận được sản phẩm";
-                                                        break;
-                                                        case 4:
-                                                            $stauts = "Trả lại sản phẩm";
+                                                            $stauts = "Đã commnet";
                                                         break;
                                                         default:
                                                             $stauts = "Error";
@@ -304,8 +296,8 @@
                                                 <tr>
                                                     <td>{$values['IdOrder']}</td>
                                                     <td>{$values['NameProduct']}</td>
-
-                                                             
+                                                    <td>{$values['NameSize']}</td>
+                                                    <td>{$values['QuantityOrderPro']}</td>     
                                                     <td>{$stauts}</td>
                                                     <td>
                                                         <a href='AdminController.php?act=UpdateOrderPro&IdOrder_Pro={$values['IdOrder_Pro']}'>

@@ -304,7 +304,13 @@
                                                 </select>
                                                 </td>
                                             </tr>
-                                
+                                            <tr>
+                                               <td>Giá</td>
+                                               <td>
+                                                    <input type="number" name = "Price" id="" min="0">
+                                                </td>
+                                                
+                                           </tr>
 
                                      
                                             <input name = "submit" type="submit" value="thêm">

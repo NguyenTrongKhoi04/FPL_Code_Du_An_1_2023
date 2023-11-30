@@ -267,7 +267,7 @@
                                         <tr>
                                            <th>Sản phẩm</th>
                                             <th>Size</th>
-                                            
+                                            <th>Giá </th>
                                             <th>thao tác</th>
                                            
 
@@ -279,9 +279,9 @@
 
                                                 echo "
                                                 <tr>
-                                                <td>{$values['NameProduct']}</td>
+                                                    <td>{$values['NameProduct']}</td>
                                                     <td>{$values['NameSize']}</td>
-                                                    
+                                                    <td>{$values['Price']}</td>
 
                                                     <td>
                                                         <a href='AdminController.php?act=UpdateSizePro&IdSizePro={$values['IdSizePro']}'>

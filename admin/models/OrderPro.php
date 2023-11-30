@@ -10,6 +10,17 @@ include_once "../app/Pdo.php";
  * $data: dữ liệu từ form post
  * */ 
 
+//  Toàn văn
+
+// Toàn văn
+// IdOrder
+// IdOrder_Pro
+// IdProduct
+// NameSize
+// QuantityOrderPro
+// StatusOrders
+
+ 
 function getIdOrderPro(){
     $sql= "select * from orders";
     return query_All($sql);  
@@ -23,7 +34,7 @@ function getOrProduct(){
 function pushOrderPro($data){
     extract($data);
 
-    $sql= "insert into order_pro values ('','$IdOrder', '$IdProduct' , '' )";
+    $sql= "insert into order_pro values ('','$IdOrder', '$IdProduct' ,'$NameSize', '$QuantityOrderPro' ,'' )";
 
     return pdo_Execute($sql);
 }
@@ -51,7 +62,7 @@ function updateOrderPro($dataOrderPro, $IdOrder_Pro){
     extract($dataOrderPro);
 
     $sqlOrderPro = "
-    update order_pro set IdOrder = '$IdOrder', IdProduct  = '$IdProduct',
+    update order_pro set IdOrder = '$IdOrder', IdProduct  = '$IdProduct',NameSize='$NameSize',QuantityOrderPro = '$QuantityOrderPro',
     StatusOrders = '$StatusOrders' where IdOrder_Pro = '$IdOrder_Pro'
     ";
     

@@ -24,3 +24,7 @@ $adminAction='AdminController.php?act=';
  */
 $ThongBao='../assets/global/ThongBao.php';
 $SideBarMenu='../assets/global/Admin_SideBarMenu.php';
+
+// echo '<pre>';
+// print_r();
+// echo '</pre>';

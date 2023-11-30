@@ -282,20 +282,12 @@
                                         $stauts = null;
                                         switch($StatusOrders){
                                             case 0:
-                                                $stauts = "Bếp đang làm";
+                                                $stauts = "Chưa commnet";
                                             break;
                                             case 1:
-                                                $stauts = "Bếp làm xong";
+                                                $stauts = "Đã comment";
                                             break;
-                                            case 2:
-                                                $stauts = "Nhân viên phục vụ đã nhận đồ";
-                                            break;
-                                            case 3:
-                                                $stauts = "Khách đã nhận được sản phẩm";
-                                            break;
-                                            case 4:
-                                                $stauts = "Trả lại sản phẩm";
-                                            break;
+
 
                                         }          
                                       ?>
@@ -332,17 +324,31 @@
                                                     </select>
                                                 </td>                  
                                             </tr>
+             
 
+                                            <tr>
+                                               <td>Tên kích thước</td>
+                                               <td>
+                                                    <input value="<?= $NameSize ?>" type="text" name = "NameSize" id="">
+                                                </td>
+                                                
+                                           </tr>
+                                                        
+                                           <tr>
+                                               <td>Số lượng đặt</td>
+                                               <td>
+                                                    <input value="<?= $QuantityOrderPro ?>" type="number" name = "QuantityOrderPro" id="" min="0">
+                                                </td>
+                                                
+                                           </tr>
                                             <tr>
                                                 <td>Trạng thái OrderPro</td>
                                                 <td>
                                                     <select name="StatusOrders" id="">
                                                             <option value="<?= $StatusOrders ?>" selected hidden><?= $stauts ?></option>
-                                                            <option value="0">Bếp đang làm</option>
-                                                            <option value="1">Bếp làm xong</option>
-                                                            <option value="2">Nhân viên phục vụ đã nhận đồ</option>
-                                                            <option value="3">Khách đã nhận được sản phẩm</option>
-                                                            <option value="4">Trả lại sản phẩm</option>
+                                                            <option value="0">Chưa commnet</option>
+                                                            <option value="1">Đã comment</option>
+                                                  
                                                     </select>
                                                 </td>
                                                 

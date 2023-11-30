@@ -35,7 +35,7 @@ function getListComment(){
 
  * */ 
 function deleteComment($IdComment){
-    $sql = "delete from comment where IdComment = $IdComment";
+    $sql = "update comment set StatusComment = 1 where IdComment = $IdComment";
     return pdo_Execute($sql);
 }
 

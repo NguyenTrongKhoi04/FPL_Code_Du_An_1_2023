@@ -267,8 +267,9 @@
                                         <tr>
                                            <th>Số bản</th>
                                             <th>Tên khách hàng</th>
+                                            <th>Thanh toán</th>
                                             <th>Giá</th>
-                                            
+                                            <th>Số lượng người</th>
                                             <th>Trạng thái</th>
                                           
                                             <th>Ngày cập nhật</th>
@@ -278,23 +279,43 @@
                                     <tbody> 
                                         <?php 
                                             foreach(getListOrder() as $values){
-                        
+                                                
+                                                $payment = null;
+
+                                                switch($values['PaymentMethod']){
+                                                    case 0:
+                                                        $payment = "Chưa thanh toán";
+                                                    break;
+                                                    case 1:
+                                                        $payment = "Tiền mặt";
+                                                    break;
+                                                    case 2:
+                                                        $payment = "Chuyển khoản";
+                                                    break;
+                                                    default:
+                                                    $payment = "Error";
+                                                     break;
+                                                }
+                
                                                     $stauts = null;
                                                     switch($values['StatusOrders']){ 
                                                         case 0:
-                                                            $stauts = "Bếp đang làm";
+                                                            $stauts = "Chưa thanh toán";
                                                         break;
                                                         case 1:
-                                                            $stauts = "Bếp làm xong";
+                                                            $stauts = "Đã thanh toán rồi";
                                                         break;
                                                         case 2:
-                                                            $stauts = "Nhân viên phục vụ đã nhận đồ";
+                                                            $stauts = "Đặt bàn trước";
                                                         break;
                                                         case 3:
-                                                            $stauts = "Khách đã nhận được sản phẩm";
+                                                            $stauts = "Đã đặt bàn, sản phẩm và thanh toán rồi nhưng chưa sử dụng";
                                                         break;
                                                         case 4:
-                                                            $stauts = "Trả lại sản phẩm";
+                                                            $stauts = "Đang đợi hết thời gian để được order";
+                                                        break;
+                                                        case 5:
+                                                            $stauts = "Chờ xác minh";
                                                         break;
                                                         default:
                                                             $stauts = "Error";
@@ -307,8 +328,10 @@
                                                 <tr>
                                                     <td>{$values['NumberTable']}</td>
                                                     <td>{$values['NameAccount']}</td>
+                                                    <td>{$payment}</td>
                                                     <td>{$values['PriceOrders']} VND</td>
-                                                             
+                                                    <td>{$values['NumberInPeople']}</td>
+                                                    
                                                     <td>{$stauts}</td>
                                                     <td>{$values['OrderDate']}</td>  
                                                     <td>

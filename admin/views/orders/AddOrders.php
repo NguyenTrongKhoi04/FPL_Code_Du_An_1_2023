@@ -276,8 +276,10 @@
                                             <tr>
                                                <td>Bàn</td>                                              
                                                <td>
-                                               <select name="IdTables" id="">  
+                                               <select name="IdTable" id="">  
                                                     <?php
+
+
 
                                                     foreach(getIdTable() as $valueTable){
                                                         echo "
@@ -306,11 +308,30 @@
                                                </td>
                                                 
                                            </tr>   
-                       
+                                           <tr>
+                                               <td>Kiểu thanh toán</td>
+                                               <td>
+                                                    <select name="PaymentMethod" id="">0 - 
+                                                        <option value="" selected hidden>Sản phẩm</option>
+                                                        <option value="0">chưa thanh toán</option>
+                                                        <option value="1">Tiền mặt</option>
+                                                        <option value="2">Chuyển khoản</option>
+                                        
+                                                    </select>
+                                               </td>
+                                               
+                                           </tr>
                                             <tr>
                                                <td>Giá</td>
                                                <td>
-                                                    <input type="number" name = "PriceOrders" id="">
+                                                    <input type="number" name = "PriceOrders" id="" min="0">
+                                                </td>
+                                                
+                                           </tr>
+                                           <tr>
+                                               <td>Số lượng người</td>
+                                               <td>
+                                                    <input type="number" name = "NumberInPeople" id="" min="0">
                                                 </td>
                                                 
                                            </tr>
@@ -319,12 +340,12 @@
                                                <td>
                                                     <select name="StatusOrders" id="">
                                                         <option value="" selected hidden>Sản phẩm</option>
-                                                        <option value="0">Bếp đang làm</option>
-                                                        <option value="1">Bếp làm xong</option>
-                                                        <option value="2">Nhân viên phục vụ đã nhận đồ</option>
-                                                        <option value="3">Khách đã nhận được sản phẩm</option>
-                                                        <option value="4">Trả lại sản phẩm</option>
-                                                        
+                                                        <option value="0">Chưa thanh toán</option>
+                                                        <option value="1">Đã thanh toán rồi</option>
+                                                        <option value="2">Đặt bàn trước</option>
+                                                        <option value="3">Đã đặt bàn, sản phẩm và thanh toán rồi nhưng chưa sử dụng</option>
+                                                        <option value="4">Đang đợi hết thời gian để được order</option>
+                                                        <option value="5">Chờ xác minh</option>
                                                     </select>
                                                </td>
                                                

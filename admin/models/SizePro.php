@@ -23,7 +23,7 @@ function getSPProduct(){
 function pushSizePro($data){
     extract($data);
 
-    $sql= "insert into size_pro values ('','$IdProduct','$IdSize')";
+    $sql= "insert into size_pro values ('','$IdProduct','$IdSize','$Price')";
 
     return pdo_Execute($sql);
 }
@@ -54,7 +54,7 @@ function updateSizePro($dataSizePro, $IdSizePro){
 
     $sqlSizePro = "
 
-    update size_pro set  IdProduct = '$IdProduct' , IdSize = '$IdSize' where IdSizePro = '$IdSizePro'
+    update size_pro set  IdProduct = '$IdProduct' , IdSize = '$IdSize' ,Price = '$Price'where IdSizePro = '$IdSizePro'
 
     ";
     
@@ -72,9 +72,9 @@ function getSizePro($IdSizePro){
     return query_All($sql);
 }
 
-function check_SizePro($IdProduct,$IdSize){
+function check_SizePro($IdProduct,$IdSize,$Price){
 
-    $sql = "SELECT * FROM  size_pro  WHERE IdProduct = '$IdProduct' AND IdSize ='$IdSize' ";
+    $sql = "SELECT * FROM  size_pro  WHERE IdProduct = '$IdProduct' AND IdSize ='$IdSize' AND Price = '$Price' ";
     
     return query_One($sql);
 }

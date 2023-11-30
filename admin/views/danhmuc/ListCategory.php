@@ -269,7 +269,7 @@
                                     <?php 
                                         foreach(getListCategory() as $values){
 
-                                            $status = $values["StatusCategory"] ===  0 ? "Hoạt động " : "Đã xóa";
+                                            $status = $values["StatusCategory"] ===  0 ? "Hoạt động bình thường" : "Ngừng hoạt động";
 
                                             
                                             echo "

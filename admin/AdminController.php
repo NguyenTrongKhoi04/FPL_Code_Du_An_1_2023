@@ -8,11 +8,9 @@ include_once '../assets/global/url_Path.php';
 include_once './models/Size.php';
 include_once './models/Category.php';
 include_once './models/SizePro.php';
-include_once './models/SubCategories.php';
 include_once './models/Account.php';
 include_once './models/Order.php';
 include_once './models/OrderPro.php';
-
 include_once './models/Comment.php';
 
 // include_once 'models/TaiKhoan.php';
@@ -113,10 +111,10 @@ if(!empty($_SESSION['user'])){
                     $data = $_POST;
                     extract($data);
                     
-                    $checkSizePro = check_SizePro($IdProduct,$IdSize);
+                    $checkSizePro = check_SizePro($IdProduct,$IdSize,$Price);
 
                     if(is_array($checkSizePro)){
-                        $mes = 'Size này đã tồn tại mời chọn lại ';
+                        $mes = 'Dữ liệu này đã tồn tại mời chọn lại ';
                     }
                     else{
                             pushSizePro($data);
@@ -217,7 +215,7 @@ if(!empty($_SESSION['user'])){
                                     }else{
                                          move_uploaded_file($ImageAccounts['tmp_name'], $adminImg . $imgName);
                                         pushAccount($NameAccount, $Gmail, $Password,  $imgName);
-                                        $mes = 'Thêm ảnh thành công';
+                                        $mes = 'Thêm tài khoản thành công';
                                     }   
                                }else{
                                 pushAccount($NameAccount, $Gmail, $Password,  $imgName);
@@ -263,14 +261,23 @@ if(!empty($_SESSION['user'])){
              */ 
             case 'AddOrders':
                 if($_SERVER['REQUEST_METHOD'] === "POST"){
-
                     $data = $_POST;    
                     extract($data);
-                
-                    // if(1>0){
-                    //     $mes
-                    // }
-                    pushOrder($data);
+
+
+                    $checkOrder = check_Order($IdTable,$IdAccount);
+                    
+                    if(is_array($checkOrder)){
+                           
+                            $mes = 'Bàn đã được đặt trước ';
+                        }
+                        else{
+                             pushOrder($data);  
+                            
+                            $mes = 'Đặt bàn thành công';
+                        }
+                      
+                        
                 }
                 include_once "views/orders/AddOrders.php";
                 break;

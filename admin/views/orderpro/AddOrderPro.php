@@ -300,17 +300,28 @@
                                                </td>
                                                 
                                            </tr>   
-                       
-                                          <tr>
+                                           <tr>
+                                               <td>Tên kích cỡ</td>
+                                               <td>
+                                                    <input type="text" name = "NameSize" id="" >
+                                                </td>
+                                                
+                                            </tr>
+                                            <tr>
+                                               <td>Số lượng đặt </td>
+                                               <td>
+                                                    <input type="number" name = "QuantityOrderPro" id="" min="0">
+                                                </td>
+                                                
+                                            </tr>
+                                            <tr>
                                                <td>Trạng thái</td>
                                                <td>
                                                     <select name="StatusOrders" id="">
                                                         <option value="" selected hidden>Sản phẩm</option>
-                                                        <option value="0">Bếp đang làm</option>
-                                                        <option value="1">Bếp làm xong</option>
-                                                        <option value="2">Nhân viên phục vụ đã nhận đồ</option>
-                                                        <option value="3">Khách đã nhận được sản phẩm</option>
-                                                        <option value="4">Trả lại sản phẩm</option>
+                                                        <option value="0">Chưa comment</option>
+                                                        <option value="1">Đã comment</option>
+                                                        
                                                         
                                                     </select>
                                                </td>
