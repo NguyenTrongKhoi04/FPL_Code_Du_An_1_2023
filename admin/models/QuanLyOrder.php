@@ -14,3 +14,18 @@ function xacNhanOrder($IdOrder){
     $sql ="UPDATE orders SET StatusOrders = 1 WHERE IdOrder = $IdOrder";
     return pdo_Execute($sql);
 }
+
+function list_product(){
+    $sql = "SELECT * FROM product ";
+    return query_All($sql);
+}
+
+function list_Size_Pro(){
+    $sql = "SELECT * FROM size_pro";
+    return query_All($sql);
+}
+
+function list_Size(){
+    $sql = "SELECT * FROM size";
+    return query_All($sql);
+}

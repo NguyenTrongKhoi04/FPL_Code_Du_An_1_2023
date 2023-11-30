@@ -14,13 +14,39 @@
     <!-- Custom fonts for this template -->
     <link href="../assets/css/admin/all.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <!-- Custom styles for this template -->
     <link href="../assets/css/admin/sb-admin-2.min.css" rel="stylesheet">
-
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <!-- Custom styles for this page -->
     <link href="../assets/css/admin/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <script>
+        // In your Javascript (external .js resource or <script> tag)
+        $(document).ready(function() {
+            $('.js-example-basic-single').select2();
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            // Ẩn tất cả các tùy chọn Size khi trang được tải
+            $("select[name='Size']").children().hide();
 
+            // Xử lý sự kiện khi thay đổi giá trị của select Món
+            $("select[name='Product']").change(function() {
+                // Lấy giá trị được chọn
+                var selectedProduct = $(this).val();
+
+                // Ẩn tất cả các tùy chọn Size
+                $("select[name='Size']").children().hide();
+
+                // Hiển thị chỉ các tùy chọn Size tương ứng với Món được chọn
+                $("select[name='Size'] option[data-product='" + selectedProduct + "']:first").show();
+
+                  // Đặt giá trị mặc định của Size là phần tử đầu tiên
+                  $("select[name='Size']").val($("select[name='Size'] option[data-product='" + selectedProduct + "']:first").val());
+            });
+        });
+    </script>
 </head>
 
 <body id="page-top">
@@ -252,41 +278,43 @@
                                                 <th>Bàn</th>
 
                                                 <td><select name="" id="">
-                                                    <option value=""></option>
-                                                </select></td>
+                                                        <option value="" style="background-color: red;">1</option>
+                                                        <option value="">1</option>
+                                                        <option value="">1</option>
+                                                        <option value="">1</option>
+                                                        <option value="">1</option>
+                                                    </select></td>
 
                                             </tr>
                                             <tr>
                                                 <th>Tên Khách Hàng</th>
 
-                                                <td><input type="number" min="0" name="QuantityProduct"></td>
-
+                                                <td><input type="text" min="0" name="QuantityProduct" placeholder="Nhập nếu chưa có tài khoản" size="20"></td>
                                             </tr>
                                             <tr>
                                                 <th>Gmail Khách Hàng</th>
 
-                                                <td><input type="number" min="0" placeholder="Tính theo nghìn đông" name="PriceProduct"></td>
+                                                <td><input type="text" min="0" name="PriceProduct"></td>
                                             </tr>
                                             <tr>
-                                                <th>Món </th>
-
-                                                <td><input type="number" min="0" placeholder="Tính theo nghìn đông" name="PriceProduct"></td>
-                                            </tr>
-                                            <tr>
-                                                <th>Ảnh Sản Phẩm</th>
-
+                                                <td>Món </td>
                                                 <td>
-                                                    <img src="" alt="">
+                                                    <select class="js-example-basic-single" name="Product">
+                                                        <?php foreach ($list_Product as $pro) { ?>
+                                                            <option value="<?= $pro['IdProduct'] ?>"><?= $pro['NameProduct'] ?></option>
+                                                        <?php } ?>
+                                                    </select>
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <th>Size</th>
-
+                                                <td>Size</td>
                                                 <td>
-                                                    <select name="IdCategory" >
-                                                        <?php foreach(  $listProCategory as $i) {?>
-                                                            <option value="<?= $i['IdCategory']?>"><?= $i['NameCategory']?></option>
-                                                        <?php }?>
+                                                    <select name="Size">
+                                                        <?php foreach ($list_Size_Pro as $sizePro) { ?>
+                                                            <option value="<?= $sizePro['IdSize'] ?>" data-product="<?= $sizePro['IdProduct'] ?>">
+                                                                <?php foreach($list_Size as $size){if($sizePro['IdSize']==$size['IdSize']){echo $size['NameSize'];}} ?>
+                                                            </option>
+                                                        <?php } ?>
                                                     </select>
                                                 </td>
                                             </tr>
@@ -298,9 +326,11 @@
                                             <tr>
                                                 <th>Giá</th>
 
-                                                <td></td>
+                                                <td>
+                                                    <p>ấ</p>
+                                                </td>
                                             </tr>
-                                           
+
                                             <tr>
                                                 <td>
                                                     <input type="submit" name="AddProduct" value="Thêm">
@@ -375,6 +405,8 @@
 
         <!-- Page level custom scripts -->
         <script src="../assets/js/datatables-demo.js"></script>
+
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 </body>
 
 </html>

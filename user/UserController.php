@@ -129,14 +129,19 @@ if(isset($_GET['act'])&&($_GET['act'] !='' )){
                 $priceQuantity = $Quantity * $PriceProduct;
                 // Add to Cart
                 $check_Order_Pro = loginNhanh_Check_Order_Pro($_SESSION['user']['IdAccount'],$IdProduct,$SizeProduct);
-
-                if(is_array($check_Order_Pro)){
-                    loginNhanh_Cart_Update_Price_The_SameAs($check_Order_Pro['IdOrder_Pro'],$SizeProduct,$Quantity,$PriceProduct);
+                $check_Order_DangXacNhan =loginNhanh_DangXacNhan_Account($_SESSION['user']['IdAccount']);
+                if(is_array($check_Order_DangXacNhan)){
+                    $mes= 'Không Thể Order Được Tiếp. Đang Trong Quá Trình Xác Nhận Thanh Toán ';
                 }else{
-                    chiTietSanPham_Add_To_Order_Pro($_SESSION['user']['IdAccount'],$IdProduct,$SizeProduct,$Quantity,$priceQuantity);
+                    if(is_array($check_Order_Pro)){
+                        loginNhanh_Cart_Update_Price_The_SameAs($check_Order_Pro['IdOrder_Pro'],$SizeProduct,$Quantity,$PriceProduct);
+                        $mes ='Cập nhật Số Lượng Món Trong Order Thành công';
+                    }else{
+                        chiTietSanPham_Add_To_Order_Pro($_SESSION['user']['IdAccount'],$IdProduct,$SizeProduct,$Quantity,$priceQuantity);
+                        $mes ='Order Thành Công';
+                    }
                 }
-                
-                $mes ='Order Thành Công';
+                    
                 header('location: UserController.php?act=LoadChiTietSanPham&id='.$_GET['id'].'&mes='.$mes);
                 break;
 
@@ -148,10 +153,12 @@ if(isset($_GET['act'])&&($_GET['act'] !='' )){
             case 'LoadChiTietSanPham':
                 if(isset($_GET['mes'])){
                     $mes = $_GET['mes'];
-                    echo"<script>alert('$mes')</script>";};
+                    echo"<script>alert('$mes')</script>";
+                };
                 $id = $_GET['id'];
                 $pro = chiTietSanPham_LoadAll($id);
                 $proSize = chiTietSanPham_LoadSizePro($id);
+
                 $proDetails = chiTietSanPham_LoadDetails($id);
                 // lấy danh mục và danh mục phụ của $pro để tìm ra được các sản phẩm Cùng loại
                 $pro_LienQuan = chiTietSanPham_ProCungLoai($pro['IdCategory'],$pro['NameProduct']);
@@ -186,7 +193,12 @@ if(isset($_GET['act'])&&($_GET['act'] !='' )){
                     break;
 
                 case 'LoginNhanh_ListOrder':
+  
                     $arrOrder = loginNhanh_ChuaThanhToan_GetAll_Order_ByIdAccount($_SESSION['user']['IdAccount']);
+                    if(empty($arrOrder)){
+                        $arrOrder = loginNhanh_Order_DangXacNhan($_SESSION['user']['IdAccount']);
+                        $mes_ChoXacNhan = 'Đơn Hàng Đang Chờ Được Xác Nhận. Danh Sách Các Món Đã Order Sẽ Được Xóa Khi Xác Nhận Xong';
+                    }
                     // var_dump($arrOrder[0]['IdOrder']);
                     // echo '<pre>';
                     // print_r($arrOrder);
@@ -205,6 +217,7 @@ if(isset($_GET['act'])&&($_GET['act'] !='' )){
             * ====================================================================================
             */
             case 'ListBan':
+                // name = so_Ban
                 $arrBanFull = list_BanCoNguoiNgoi();
                 If($_SERVER['REQUEST_METHOD']==='POST'){
                     extract($_POST);

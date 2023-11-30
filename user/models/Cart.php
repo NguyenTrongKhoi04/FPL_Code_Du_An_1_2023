@@ -61,6 +61,8 @@
         
     }
 
+
+
     function loginNhanh_ListCart($idAccount){
         $sql = "SELECT product.NameProduct,product.ImageProduct,product.QuantityProduct,product.PriceProduct, cart.*
                 FROM cart
@@ -79,5 +81,16 @@
                 AND orders.StatusOrders = 0  
             ";
         return query_All($sql);
+    }
+
+    function loginNhanh_Order_DangXacNhan($idAccount){
+        $sql ="SELECT  orders.*,order_pro.*,product.*
+        FROM orders 
+        INNER JOIN order_pro ON orders.IdOrder= order_pro.IdOrder
+        INNER JOIN product ON product.IdProduct= order_pro.IdProduct
+        WHERE IdAccount = $idAccount 
+            AND orders.StatusOrders = 5  
+        ";
+    return query_All($sql);
     }
     

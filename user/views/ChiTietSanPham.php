@@ -14,7 +14,7 @@
                     <div class="hr"></div>
                     <ul>
                         <!-- <del>40.000</del> -->
-                        <li>Giá: <span><?= $pro['PriceProduct'] ?> VNĐ</span></li>
+                        <li>Giá: <span id="displayPrice"></span> VNĐ</li>
                         <li><?= $pro['ProductDetails'] ?></li>
                         <li><?= $pro['ProductDescription'] ?></li>
                     </ul>
@@ -28,9 +28,9 @@
                         </div>
                         <div class="tanggiam">
                             <p>Size&nbsp;&nbsp;</p>
-                            <select name="SizeProduct" style="font-size: 40px;">
+                            <select name="SizeProduct" style="font-size: 40px;" id="selectSize">
                                 <?php foreach ($proSize as $i) : ?>
-                                    <option value="<?= $i['NameSize'] ?>"><?= $i['NameSize'] ?></option>
+                                    <option value="<?= $i['NameSize'] ?>" data-price="<?= $i['Price']?>" ><?= $i['NameSize'] ?></option>
                                 <?php endforeach ?>
                             </select>
                         </div>
@@ -92,3 +92,15 @@
         </div>
     </div>
     <script src="../assets/js/ChiTietSanPham.js"></script>
+    <script>
+        // Chọn giá trị mặc định là giá trị của option đầu tiên
+        var defaultPrice = <?= reset($proSize)['Price'] ?>;
+        document.getElementById('displayPrice').innerText = defaultPrice;
+
+        // Xử lý sự kiện khi thay đổi option
+        document.getElementById('selectSize').addEventListener('change', function() {
+            var selectedOption = this.options[this.selectedIndex];
+            var price = selectedOption.getAttribute('data-price');
+            document.getElementById('displayPrice').innerText = price;
+        });
+    </script>

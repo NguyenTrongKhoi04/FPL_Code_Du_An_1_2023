@@ -35,9 +35,9 @@
         </section>
         <aside>
             <section class="mainAside">
-                <h1>Thông tin đơn hàng</h1>
+                <h1>Thanh toán đơn hàng</h1>
                 <ul>
-                    <!-- <li>Tổng tiền  $</li> -->
+                    <li style="color: red;"><?= isset($mes_ChoXacNhan) ? $mes_ChoXacNhan : '' ?></li>
 
                 </ul>
             </section>
