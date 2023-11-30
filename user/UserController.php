@@ -20,7 +20,7 @@ include_once 'models/AddComments.php';
 include_once 'models/ListComment.php';
 
 check_Login();
-home_checkAndOrderTableAuto();
+home_checkAndOrderAuto();
 
 if(isset($_GET['act'])&&($_GET['act'] !='' )){
     if(empty($_SESSION['user'])){
@@ -92,11 +92,14 @@ if(isset($_GET['act'])&&($_GET['act'] !='' )){
             case 'DanhMucSanPham':
                 if (isset($_GET['idCategory']) && !empty($_GET['idCategory'])) {
                     $idCategory = $_GET['idCategory'];
-                    $dataProductPortfolio = productPortfolio_GetAllProduct($idCategory);
                     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         extract($_POST);
                         $GetAllProductAsRequested = productPortfolio_GetAllProductAsRequested($price, $product, $idCategory);
+                    } else {
+                        $dataProductPortfolio = productPortfolio_GetAllProduct($idCategory);
                     }
+                                    
+
                     include_once 'views/ProductPortfolio.php';
                 } else {
                     include_once 'views/Home.php';
@@ -109,26 +112,32 @@ if(isset($_GET['act'])&&($_GET['act'] !='' )){
             * ====================================================================================
             */     
             case 'LoadChiTietSanPham':
-                $id = $_GET['id'];
-                $pro = chiTietSanPham_LoadAll($id);
-                $proSize = chiTietSanPham_LoadSizePro($id);
-                $proDetails = chiTietSanPham_LoadDetails($id);
-                // lấy danh mục và danh mục phụ của $pro để tìm ra được các sản phẩm Cùng loại
-                $pro_LienQuan = chiTietSanPham_ProCungLoai($pro['IdCategory'],$pro['NameProduct']);
+                if(isset($_GET['index']) && isset($_GET['id'])){
+                    $id = $_GET['id'];
+                    $pro = chiTietSanPham_LoadAll($id);
+                    $proSize = chiTietSanPham_LoadSizePro($id);
+                    $proDetails = chiTietSanPham_LoadDetails($id);
+                    $dataComment = chiTietSanPham_GetComment($_GET['index']);
+                    // lấy danh mục và danh mục phụ của $pro để tìm ra được các sản phẩm Cùng loại
+                    $pro_LienQuan = chiTietSanPham_ProCungLoai($pro['IdCategory'],$pro['NameProduct']);
+    
+                    // lấy top 3 sản phẩm bán chạy
+                        // $top3_Pro = top3_SanPham() ;
+    
+                    // Thêm vào giỏ hàng user
+                    if(isset($_POST['add_to_cart'])){
+                        extract($_POST);
+                        $priceQuantity = $pro['PriceProduct'] * $Quantity;
+                        $alert = chiTietSanPham_Add_To_Cart($IdProduct, $_SESSION['user']['IdAccount'],$SizeProduct,$Quantity,$priceQuantity);
+                    }
+                    if(isset($_POST['pay_now'])){
+                        $_SESSION['payNowDetails'] = $_POST;
+                        header("Location: UserController.php?act=ListBan");
+    
+                    }
 
-                // lấy top 3 sản phẩm bán chạy
-                    // $top3_Pro = top3_SanPham() ;
-
-                // Thêm vào giỏ hàng user
-                if(isset($_POST['add_to_cart'])){
-                    extract($_POST);
-                    $priceQuantity = $pro['PriceProduct'] * $Quantity;
-                    $alert = chiTietSanPham_Add_To_Cart($IdProduct, $_SESSION['user']['IdAccount'],$SizeProduct,$Quantity,$priceQuantity);
-                }
-                if(isset($_POST['pay_now'])){
-                    $_SESSION['payNowDetails'] = $_POST;
-                    header("Location: UserController.php?act=ListBan");
-
+                }else{
+                    header("Location: UserController.php");
                 }
                 include_once 'views/ChiTietSanPham.php';
                 break;
@@ -231,11 +240,11 @@ if(isset($_GET['act'])&&($_GET['act'] !='' )){
                     $IdComment = $_GET['IdComment'];
                     if(isset($_POST["delete"])){
                         ListComment_DeleteComment($IdComment);
-                        echo "<script> alert('Xóa sản phẩm thành công') </script>";
+                        header("Location: UserController.php?act=ListComment");
                     }else{
                         extract($_POST);
-                        echo "<script> alert('Cập nhật sản phẩm thành công') </script>";
-                        ListComment_UpdateComment($IdComment, $Content);
+                        ListComment_UpdateComment($IdComment, $content);
+                        header("Location: UserController.php?act=ListComment");
                         
                     }
                 }
@@ -252,3 +261,9 @@ if(isset($_GET['act'])&&($_GET['act'] !='' )){
 }
 
 include_once '../assets/global/Footer.php';
+echo "<script>
+setTimeout(function(){
+    location.reload();
+  }, 60000); 
+</script>"
+?>

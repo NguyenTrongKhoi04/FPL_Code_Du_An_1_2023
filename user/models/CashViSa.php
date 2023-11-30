@@ -42,7 +42,8 @@ function CashViSa_PushOrderUser(){
             pdo_Execute("insert into order_pro values(null, '$IdOrder', '$valueDataOrder[IdProduct]','$valueDataOrder[NameSize]','$valueDataOrder[QuantityCard]',0)");
             // xóa sản phẩm khỏi giỏ hàng
             pdo_Execute("delete from cart where IdAccount = '$valueDataOrder[IdAccount]'");
-
+            // update lại  lượng product 
+            pdo_Execute("update product set QuantityProduct = QuantityProduct - $valueDataOrder[QuantityCard] where IdProduct = $valueDataOrder[IdProduct] ");
         }
         $recipientGmail = $_SESSION['user']["Gmail"];
         $nameRecipientGmail = $_SESSION['user']["NameAccount"];
@@ -65,10 +66,11 @@ function CashViSa_PushOrderUser(){
         extract($dataOrderTables);
         // thêm dữ liệu vào bảng order
         $IdOrder = pdo_Execute_Return_LastinsertID("insert into orders values(null, '$IdTable',  '$IdAccount', 2, '$totailPriceOrders', '$NumberInPeople','3', '$TimeOrder')") ;
-
         foreach($payNowDetails as $valueDataOrder){
             // thêm dữ liệu vào bảng order_pro
-            pdo_Execute("insert into order_pro values(null, '$IdOrder', '$valueDataOrder[IdProduct]','$valueDataOrder[SizeProduct]','$valueDataOrder[Quantity]',0)");     
+            pdo_Execute("insert into order_pro values(null, '$IdOrder', '$valueDataOrder[IdProduct]','$valueDataOrder[SizeProduct]','$valueDataOrder[Quantity]',0)"); 
+            // update lại  lượng product 
+            pdo_Execute("update product set QuantityProduct = QuantityProduct - $valueDataOrder[Quantity] where IdProduct = $valueDataOrder[IdProduct] ");                
         }
         $recipientGmail = $_SESSION['user']["Gmail"];
         $nameRecipientGmail = $_SESSION['user']["NameAccount"];
@@ -90,4 +92,5 @@ function CashViSa_PushOrderUser(){
     return $message;
 
 }
+
 ?>

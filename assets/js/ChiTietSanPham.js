@@ -18,47 +18,37 @@ decreaseButton.addEventListener("click", function () {
     }
 });
 
-
-
-/**
- * Xử lý hiển thị số khi nhấn tăng giảm
- * 
- */
-document.addEventListener("DOMContentLoaded", function() {
-    const contents = document.querySelectorAll(".content");
-    let currentIndex = 0;
-    const totalContents = contents.length;
-    const positionDisplay = document.querySelector(".position-display");
-
-    function showContent(index) {
-        contents.forEach((content, i) => {
-            if (i === index) {
-                content.style.display = "flex";
-            } else {
-                content.style.display = "none";
-            }
-        });
+var maxQualityComment = document.getElementById('list_comment').getAttribute("data-value");
+document.getElementById('tang').addEventListener('click', function() {
+    var url = new URL(window.location.href);
+    var indexValue = url.searchParams.get('index');
+    if(indexValue < maxQualityComment){
+        indexValue++; 
+    }else{
+        indexValue = 1;
     }
-
-    function updatePosition() {
-        positionDisplay.textContent = (currentIndex + 1) + "/" + totalContents;
+    
+    // Cập nhật URL với giá trị index mới
+    var newUrl = window.location.href.replace(/(\?|&)index=\d+/, '$1index=' + indexValue);
+    window.history.replaceState({}, '', newUrl);
+    window.location.reload();
+  });
+document.getElementById('giam').addEventListener('click', function() {
+    var url = new URL(window.location.href);
+    var indexValue = url.searchParams.get('index');
+    console.log(indexValue);
+    if(indexValue <= maxQualityComment ){
+        indexValue --; 
     }
+    if(indexValue === 0){
+        indexValue = maxQualityComment;
+    }
+    
+    // Cập nhật URL với giá trị index mới
+    var newUrl = window.location.href.replace(/(\?|&)index=\d+/, '$1index=' + indexValue);
+    window.history.replaceState({}, '', newUrl);
+    window.location.reload();
+  });
+  
 
-    const buttonTang = document.querySelector("button[name='tang']");
-    buttonTang.addEventListener("click", function() {
-        currentIndex = (currentIndex + 1) % totalContents;
-        showContent(currentIndex);
-        updatePosition();
-    });
 
-    const buttonGiam = document.querySelector("button[name='giam']");
-    buttonGiam.addEventListener("click", function() {
-        currentIndex = (currentIndex - 1 + totalContents) % totalContents;
-        showContent(currentIndex);
-        updatePosition();
-    });
-
-    // Hiển thị phần tử đầu tiên ban đầu
-    showContent(currentIndex);
-    updatePosition();
-});

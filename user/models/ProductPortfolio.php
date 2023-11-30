@@ -56,12 +56,14 @@ function productPortfolio_GetAllProductAsRequested($dataPrice, $dataProduct, $id
         p.IdProduct,p.NameProduct,p.ImageProduct, p.PriceProduct, d.ProductDetails 
         from product p
         join details d on p.IdDetails = d.IdDetails 
-        where p.StatusProduct = 0 and p.IdCategory = $dataProduct 
+        where p.StatusProduct = 0 and p.IdCategory = $dataProduct and 
         PriceProduct between $priceStart and $priceEnd
         limit 12 ";
     } else {
         return 505;
     }
+    // echo $sql; die();
+
     return query_All($sql);
 }
 /**

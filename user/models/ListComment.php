@@ -10,9 +10,9 @@ function ListComment_GetAllComment($idAccountUser){
 }
 
 function ListComment_DeleteComment($IdComment){
-    return query_One("update comment set StatusComment = 1 where IdComment = $IdComment");
+    return query_One("update comment set StatusComment = 1 where IdComment = '$IdComment'");
 }
 function ListComment_UpdateComment($IdComment, $Content){
-    return query_One("update comment set Content = $Content where IdComment = $IdComment");
+    return query_One("update comment set Content = '$Content' where IdComment = '$IdComment'");
 }
 ?>

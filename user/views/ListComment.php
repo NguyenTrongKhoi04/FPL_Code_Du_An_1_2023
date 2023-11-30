@@ -28,7 +28,7 @@
             <section class="containerMain">
                 <section class="headerMain">
                     <section class="titleMain">
-                        <h1>Viết đánh giá</h1>
+                        <h1>Đánh giá của bạn</h1>
                     </section>
                 </section>
                 <section class="contentMain">

@@ -7,10 +7,10 @@
         <form action="?act=DanhMucSanPham&idCategory=<?= $_GET['idCategory'] ?>" method="post" class="nav">
             <select name="price" id="priceSelect" onchange="this.form.submit()">
                 <option value="">Giá</option>
-                <option value="10-30">10$ - 30$</option>
-                <option value="30-60">30$ - 60$</option>
-                <option value="60-100">60$ - 100$</option>
-                <option value="150-1000">150$ - 1000$</option>
+                <option value="1000-3000">1000$ - 3000$</option>
+                <option value="3000-6000">3000$ - 6000$</option>
+                <option value="6000-1000000">6000$ - 1000000$</option>
+                <option value="15000-1000000000">15000$ - 1000000000$</option>
             </select>
             <select name="product" id="priceSelect" onchange="this.form.submit()">
                 <option value="">Sản phẩm</option>

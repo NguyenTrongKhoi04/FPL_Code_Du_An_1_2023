@@ -1,4 +1,5 @@
-    <div class="ChiTietSanPham">
+
+   <div class="ChiTietSanPham">
         <link rel="stylesheet" href="../assets/css/user/ChiTietSanPham.css">
         <div class="ProductDetail">
             <div class="img"><img src="<?= $imgPathAdmin?><?=$pro['ImageProduct']?>"  height="100%"></div>
@@ -63,21 +64,22 @@
             </a>
         </div>
         <div class="comment">
-            <div class="list_comment">
-                <?php for ($i = 0; $i < 10; $i++) : ?>
-                    <div class="content" style="display: <?= $i === 0 ? 'flex' : 'none'; ?>">
+            <div class="list_comment" id="list_comment" data-value = "<?= $dataComment["TotalRecords"] ?>">
+                    <div class="content">
                         <div class="img">
-                            <img src="<?= $img_Path?>Rectangle 33.png" alt="">
+                            <img src="<?= $imgPathAdmin.$dataComment["ImageAccounts"]?>" alt="">
                             </div>
-                        <?= $i ?>
-                        <p>dfasfdafdsafsafdsfsdafsafdsafsadfsdafsdfsdafdsafdsfdsfsadfsdfdsfdsfdsffs</p>
+                        
+                        <p><?= $dataComment["Content"] ?></p>
                     </div>
-                <?php endfor ?>
+                
             </div>
             <div class="tang_giam">
-                <button name="tang"><</button>
-                <div class="position-display"><?= $totalContents ?> / <?= $totalContents ?></div>
-                <button name="giam">></button>
+                <button id="giam"><</button>
+                <div class="position-display" id="displaComment">
+                    <?= $_GET["index"] ?> / <?= $dataComment["TotalRecords"] ?>
+                </div>
+                <button id="tang">></button>
             </div>
         </div>
     </div>

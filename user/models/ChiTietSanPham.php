@@ -77,3 +77,26 @@ function chiTietSanPham_LoadDetails($id){
     $sql ="SELECT * FROM details WHERE IdDetails = $id";
     return query_One($sql);
 }
+/**
+ * Lấy tất cả comment
+ */
+function chiTietSanPham_GetComment($pages){
+    $row = 1; 
+    $from = ($pages - 1) * $row;
+    return query_One("SELECT co.IdComment , co.Content, ac.ImageAccounts, 
+    (SELECT COUNT(*) FROM comment WHERE StatusComment = 0) AS TotalRecords
+    FROM comment co
+    JOIN account ac ON ac.IdAccount = co.IdAccount 
+    WHERE co.StatusComment = 0 
+    ORDER BY RAND() 
+    LIMIT $from ,$row;");
+}
+
+/**
+ * hàm có tác dụng lấy ra top các sản phẩm
+ */
+function chiTietSanPham_GetTopProduct(){
+    return query_All(
+        ""
+    );
+}

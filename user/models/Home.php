@@ -50,7 +50,7 @@ function home_BookingTable($data)
                     $sqlOrderPro = "insert into order_pro values(null, '$IdOrder',null ,null ,null, 0)";
                     pdo_Execute($sqlOrderPro);
                 }else{
-                    $message = "Bạn đã đặt bàn...";
+                    $message = "Bàn đã được đặt vui lòng chọn khung giờ hoặc bàn khác...";
                 }   
             } else {
                 $message = validateAll("dateBooking", "$Date");
@@ -78,7 +78,7 @@ function home_GetComment()
  * Hàm có tác dụng kiểm tra  và order bàn tự động
  * 
  */
-function home_checkAndOrderTableAuto()
+function home_checkAndOrderAuto()
 {
     // Tiến hành kiểm tra xem ngày tháng người dùng đã order bàn
     $time = new DateTime();
