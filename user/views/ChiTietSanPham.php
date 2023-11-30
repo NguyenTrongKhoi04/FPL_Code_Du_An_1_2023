@@ -4,7 +4,7 @@
         <div class="ProductDetail">
             <div class="img"><img src="<?= $imgPathAdmin?><?=$pro['ImageProduct']?>"  height="100%"></div>
             <div class="form">
-                <form action="UserController.php?act=LoadChiTietSanPham&id=<?= $_GET['id']?>" method="POST">
+                <form action="UserController.php?act=LoadChiTietSanPham&id=<?= $_GET['id']?>&index=1" method="POST">
                     <input type="hidden" name="IdProduct" value="<?=$pro['IdProduct']?>">
                     <input type="hidden" name="PriceProduct" value="<?=$pro['PriceProduct']?>">
                     <h2><?=$pro['NameProduct']?></h2>

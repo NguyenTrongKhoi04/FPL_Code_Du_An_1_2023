@@ -40,7 +40,7 @@
                     foreach (home_GetAllProduct() as $itemProduct) {
                         // dieu_huong sang chi tiết sản phẩm
                         echo "
-                                <a href= '?act=LoadChiTietSanPham&id={$itemProduct['IdProduct']}' class='contentListProduct'>
+                                <a href= 'UserController.php?act=LoadChiTietSanPham&id={$itemProduct['IdProduct']}&index=1' class='contentListProduct'>
                                     <article class='image'>
                                     <img src='{$imgPathAdmin}{$itemProduct['ImageProduct']}' alt='img'>
                                     </article>

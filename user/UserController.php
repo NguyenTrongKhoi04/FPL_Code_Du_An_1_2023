@@ -121,7 +121,6 @@ if(isset($_GET['act'])&&($_GET['act'] !='' )){
                     // lấy danh mục và danh mục phụ của $pro để tìm ra được các sản phẩm Cùng loại
                     $pro_LienQuan = chiTietSanPham_ProCungLoai($pro['IdCategory'],$pro['NameProduct']);
     
-                    // lấy top 3 sản phẩm bán chạy
                         // $top3_Pro = top3_SanPham() ;
     
                     // Thêm vào giỏ hàng user
@@ -213,8 +212,6 @@ if(isset($_GET['act'])&&($_GET['act'] !='' )){
             *                                 CashPayment
             * ====================================================================================
             */  
-            case "CashPayment":
-                break;
             case "AddComment":
                 $listOrderPayMent = BillPayment_GetOrderPayment($idAccountUser);
                 $listComment = AddComments_GetComment($idAccountUser);
@@ -265,5 +262,4 @@ echo "<script>
 setTimeout(function(){
     location.reload();
   }, 60000); 
-</script>"
-?>
+</script>";
