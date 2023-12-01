@@ -124,3 +124,20 @@ function check_Login(){
         }
     }
 }
+
+function check_LoginNhanh(){
+    $NameAccount_tk_nhanh = $_POST['NameAccount_tk_nhanh'] ?? null;
+    $Gmail_tk_nhanh = $_POST['Gmail_tk_nhanh'] ?? null;
+    if(isset($Gmail_tk_nhanh)){
+        $arrCheck = select_One('account',null," Gmail = '$Gmail_tk_nhanh'");
+        var_dump($arrCheck);
+        if(is_array($arrCheck)){
+            $_SESSION['user']=$arrCheck;
+            unset($tk_nhanh);
+        }else{
+                tao_TaiKhoan_LoginNhanh($NameAccount_tk_nhanh,$Gmail_tk_nhanh);
+                $_SESSION['user']= select_One('account',null," Gmail = '$Gmail_tk_nhanh'");
+                // header('location: UserController.php');
+        }   
+    }
+}

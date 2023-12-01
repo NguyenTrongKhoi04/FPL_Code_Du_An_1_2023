@@ -5,7 +5,10 @@ ob_start();
 include_once '../app/Pdo.php';
 include_once '../assets/global/User.php';
 include_once '../assets/global/url_Path.php';
-
+include_once 'models/Account.php';
+include_once 'models/Ban.php';
+include_once 'models/Product.php';
+include_once 'models/QuanLyOrder.php';
 include_once './models/Size.php';
 include_once './models/Category.php';
 include_once './models/SizePro.php';
@@ -31,6 +34,7 @@ if(!empty($_SESSION['user'])){
             case 'AddSize':
                 if($_SERVER['REQUEST_METHOD'] === "POST"){
 
+
                     $data = $_POST;
                     extract($data);
                     $checkSize = check_Size($NameSize);
@@ -40,6 +44,40 @@ if(!empty($_SESSION['user'])){
                     else{
                         pushSize($data);
                         $mes = 'Thêm size thành công' ;
+                    }}
+                    include_once "views/size/addSize.php";
+                    break;
+
+            case 'UpdateBan':
+                $id = $_GET['id'];
+                $ban_One = select_One('tables', null, "IdTables = $id");
+                if (isset($_POST['update']) && ($_POST['update'] != '')) {
+                    extract($_POST);
+                    updateBan($id, $NumberPeople, $NumberTable, $StatusTable);
+                    header("location:" . $adminAction . "ListBan");
+                }
+                include_once "views/ban/UpdateBan.php";
+                break;
+
+        /**
+             * ====================================================================================
+             *                                 PRODUCT
+             * ====================================================================================
+             */
+            case 'ListProduct':
+                $listPro = loadAll_Product();
+                $listProCategory = loadAll_Product_Category();
+                $listProDetails = loadAll_Product_Details();
+                include_once 'views/product/ListProduct.php';
+                break;
+            case 'AddProduct':
+                $listProCategory = loadAll_Product_Category();
+                if(isset($_POST['AddProduct'])){
+                    extract($_POST);
+                    extract($_FILES);
+                    if($ImageProduct['name'] != ''){
+                        $img=$ImageProduct['name'];
+                        move_uploaded_file($ImageProduct['tmp_name'], $adminImg . $img);
                     }
 
                     
@@ -200,16 +238,16 @@ if(!empty($_SESSION['user'])){
                 if($_SERVER['REQUEST_METHOD'] === "POST"){
                     extract($_POST);
                     extract($_FILES);
-               
-                    $imgName = $ImageAccounts['name'];
-               
-                    if(isset($_GET["IdAccount"])) {
-                        $IdAccount = $_GET["IdAccount"];   
-                    }//else{
-                    //     $IdAccompanyingFood = 'IdAccompanyingFood';
-                    // } 
-                     move_uploaded_file($ImageAccounts['tmp_name'],$adminImg.$imgName);
-                     updateAccount($IdAccount, $NameAccount, $Gmail, $Gender , $Password, $imgName, $StatusAccount,$Role);         
+
+                    $imgNameProduct = ($imgProduct['size'] != 0) ? $imgProduct['name'] : $ImageProduct ;
+    
+                    if($imgProduct['size'] != 0){
+                        $img=$imgProduct['name'];
+                        move_uploaded_file($imgProduct['tmp_name'], $adminImg . $img);
+                    }
+
+                    update_Product($id,$NameProduct,$QuantityProduct,$PriceProduct,$imgNameProduct, $IdCategory,$ProductDetails, $ProductDescription);
+
                 }
                 include_once "views/account/UpdateAccount.php";
                 break;
@@ -313,6 +351,47 @@ if(!empty($_SESSION['user'])){
                    updateComment($data, $IdComment);
                     }
                  include_once "views/comment/UpdateComment.php";
+
+
+
+        /**
+             * ====================================================================================
+             *                                 NHAN VIEN ORDER
+             * ====================================================================================
+             */
+            case 'QuanLyOrder_Order':
+                $list_CanXacNhan = list_OrderChuaXacNhan();
+
+                include_once 'views/QuanLyOrder/QuanLyOrder_List_XacNhan.php';
+                break;
+            case  'QuanLyOrder_Order_Xac_Nhan':
+ 
+                $idOrder= isset($_GET['id']) ? $_GET['id'] : ''  ;
+                if(isset($_POST['XacNhan_CheckBox_DuocChon'])){
+                    extract($_POST);
+                    var_dump($arr_XacNhan);
+                    foreach($arr_XacNhan as $i){
+                        xacNhanOrder($i);
+                    }
+                }
+
+                if($idOrder !=''){
+
+                    xacNhanOrder($idOrder);
+                }
+                header('location: AdminController.php?act=QuanLyOrder_Order');
+                break;
+            case 'QuanLyOrder_Order_Add':
+                    $list_Product = list_product();            
+                    $list_Size_Pro = list_Size_Pro();
+                    $list_Size = list_Size();
+                if($_SERVER['REQUEST_METHOD']=='POST'){
+                    echo"<pre>";
+                    print_r($_POST);
+                    echo"</pre>";
+                }
+                include_once 'views/QuanLyOrder/QuanLyOrder_Add_Order.php';
+                break;
 
             default:
                 // include_once 'views/Home.php';

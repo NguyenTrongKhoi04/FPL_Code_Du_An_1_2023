@@ -64,4 +64,42 @@
         return null;
         
     }
-?>
+
+
+
+    function loginNhanh_ListCart($idAccount){
+        $sql = "SELECT product.NameProduct,product.ImageProduct,product.QuantityProduct,product.PriceProduct, cart.*
+                FROM cart
+                INNER JOIN product ON cart.IdProduct = product.IdProduct
+                WHERE cart.IdAccount = $idAccount 
+                ";
+        return query_All($sql);
+    }
+
+    function loginNhanh_ChuaThanhToan_GetAll_Order_ByIdAccount($idAccount){
+        $sql ="SELECT  orders.*,order_pro.*,product.*
+            FROM orders 
+            INNER JOIN order_pro ON orders.IdOrder= order_pro.IdOrder
+            INNER JOIN product ON product.IdProduct= order_pro.IdProduct
+            WHERE IdAccount = $idAccount 
+                AND orders.StatusOrders = 0  
+            ";
+        return query_All($sql);
+    }
+
+    function loginNhanh_Update_TrangThai_ThanhToan_Orders($id_User){
+        $sql = "UPDATE orders SET StatusOrders = 5 WHERE IdAccount = $id_User ";
+        return pdo_Execute($sql);
+    }
+
+    function loginNhanh_Order_DangXacNhan($idAccount){
+        $sql ="SELECT  orders.*,order_pro.*,product.*
+        FROM orders 
+        INNER JOIN order_pro ON orders.IdOrder= order_pro.IdOrder
+        INNER JOIN product ON product.IdProduct= order_pro.IdProduct
+        WHERE IdAccount = $idAccount 
+            AND orders.StatusOrders = 5  
+        ";
+    return query_All($sql);
+    }
+    

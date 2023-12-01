@@ -17,7 +17,7 @@ $imgPathAdmin = "../assets/img/admin/";
  */
 $adminStyle ='../../assets/css/admin/';
 $adminJavaScript = '../../assets/js/';
-
+$adminImg = '../assets/img/admin/';
 $adminSideBarMenu='../assets/global/Admin_SideBarmenu.php';
 $adminAction='AdminController.php?act=';
 
