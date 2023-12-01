@@ -133,15 +133,15 @@ if (empty($_SESSION['user'])) {
                     $list_Product = list_product();            
                     $list_Size_Pro = list_Size_Pro();
                     $list_Size = list_Size();
-                    echo"<pre>";
-print_r($list_Product);
-echo"</pre>";
-                    echo"<pre>";
-print_r($list_Size_Pro);
-echo"</pre>";
-                    echo"<pre>";
-print_r($list_Size);
-echo"</pre>";
+//                     echo"<pre>";
+// print_r($list_Product);
+// echo"</pre>";
+//                     echo"<pre>";
+// print_r($list_Size_Pro);
+// echo"</pre>";
+//                     echo"<pre>";
+// print_r($list_Size);
+// echo"</pre>";
                 if($_SERVER['REQUEST_METHOD']=='POST'){
                     echo"<pre>";
                     print_r($_POST);
