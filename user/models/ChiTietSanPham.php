@@ -68,10 +68,10 @@ function chiTietSanPham_Top3_SanPham()
 function chiTietSanPham_Add_To_Order_Pro($idAccount, $IdProduct, $NameSize, $quantityProduct, $priceProduct)
 {
     $sql = "SELECT * FROM orders WHERE IdAccount = '$idAccount' AND StatusOrders =0";
+    var_dump($sql);
     $oneOrder = query_One($sql);
     $oneOrder_IdOrder = $oneOrder['IdOrder'];
     $sql = "INSERT INTO order_pro(IdOrder,IdProduct,NameSize,QuantityOrderPro) VALUES ('$oneOrder_IdOrder','$IdProduct','$NameSize','$quantityProduct')";
-    var_dump($sql);
     return pdo_Execute($sql);
 }
 

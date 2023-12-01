@@ -109,7 +109,7 @@ if (empty($_SESSION['user'])) {
              */
             case 'QuanLyOrder_Order':
                 $list_CanXacNhan = list_OrderChuaXacNhan();
- 
+
                 include_once 'views/QuanLyOrder/QuanLyOrder_List_XacNhan.php';
                 break;
             case  'QuanLyOrder_Order_Xac_Nhan':

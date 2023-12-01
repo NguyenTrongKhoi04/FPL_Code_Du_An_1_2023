@@ -127,16 +127,21 @@ if(isset($_GET['act'])&&($_GET['act'] !='' )){
                 // print_r($_POST);
                 // echo'</pre>';
                 $priceQuantity = $Quantity * $PriceProduct;
-                // Add to Cart
+                
+                // Check xem order này có trong giỏ hàng hay chưa
                 $check_Order_Pro = loginNhanh_Check_Order_Pro($_SESSION['user']['IdAccount'],$IdProduct,$SizeProduct);
+
+                //xem tài khaorn có đang xác nhạn không
                 $check_Order_DangXacNhan =loginNhanh_DangXacNhan_Account($_SESSION['user']['IdAccount']);
+                var_dump($check_Order_DangXacNhan);
                 if(is_array($check_Order_DangXacNhan)){
                     $mes= 'Không Thể Order Được Tiếp. Đang Trong Quá Trình Xác Nhận Thanh Toán ';
                 }else{
                     if(is_array($check_Order_Pro)){
                         loginNhanh_Cart_Update_Price_The_SameAs($check_Order_Pro['IdOrder_Pro'],$SizeProduct,$Quantity,$PriceProduct);
-                        $mes ='Cập nhật Số Lượng Món Trong Order Thành công';
+                        $mes ='Order Thành công';
                     }else{
+                        echo 'khoi';
                         chiTietSanPham_Add_To_Order_Pro($_SESSION['user']['IdAccount'],$IdProduct,$SizeProduct,$Quantity,$priceQuantity);
                         $mes ='Order Thành Công';
                     }
@@ -166,9 +171,6 @@ if(isset($_GET['act'])&&($_GET['act'] !='' )){
                 // lấy top 3 sản phẩm bán chạy
                     // $top3_Pro = top3_SanPham() ;
 
-                // Thêm vào giỏ hàng user
-      
-
                 include_once 'views/ChiTietSanPham.php';
                 break;
         /**
@@ -193,22 +195,52 @@ if(isset($_GET['act'])&&($_GET['act'] !='' )){
                     break;
 
                 case 'LoginNhanh_ListOrder':
-  
+
+                    if(empty( loginNhanh_ChuaThanhToan_GetAll_Order_ByIdAccount($_SESSION['user']['IdAccount'])) 
+                        && empty(loginNhanh_Order_DangXacNhan($_SESSION['user']['IdAccount']))){
+                           
+                            $arrOrder = loginNhanh_ChuaThanhToan_GetAll_Order_ByIdAccount($_SESSION['user']['IdAccount']);
+                            $tienTong = 0;
+                            foreach($arrOrder as $i){
+                               $one_In_Order = $i['QuantityOrderPro']*$i['PriceProduct'];
+                                $tienTong +=$one_In_Order;
+                            }
+                            include_once 'views/LoginNhanh_Cart.php';
+                    }else{
+                    // Các Đơn hàng chưa được xác nhận
                     $arrOrder = loginNhanh_ChuaThanhToan_GetAll_Order_ByIdAccount($_SESSION['user']['IdAccount']);
+
                     if(empty($arrOrder)){
+                        // Các đơn hàng đã được xác nhận rồi
                         $arrOrder = loginNhanh_Order_DangXacNhan($_SESSION['user']['IdAccount']);
-                        $mes_ChoXacNhan = 'Đơn Hàng Đang Chờ Được Xác Nhận. Danh Sách Các Món Đã Order Sẽ Được Xóa Khi Xác Nhận Xong';
+                        if(empty($arrOrder)){
+                            unset($_SESSION['user']);
+                            
+                        }else{
+                            $mes_ChoXacNhan = 'Đơn Hàng Đang Chờ Được Xác Nhận. Danh Sách Các Món Đã Order Sẽ Được Xóa Khi Xác Nhận Xong. 
+                                Sau khi được xác nhận, vui lòng đăng nhập lại để đặt tiếp';
+                            
+                        }
+                    }else{
+                        $mes_ChoXacNhan ='' ;
                     }
                     // var_dump($arrOrder[0]['IdOrder']);
                     // echo '<pre>';
                     // print_r($arrOrder);
                     // echo '</pre>';
+
+                    if(isset($_POST['Pay_Truc_Tiep'])&&$_POST['Pay_Truc_Tiep'] !=''){
+                        loginNhanh_Update_TrangThai_ThanhToan_Orders($_SESSION['user']['IdAccount']);
+                        header('location: UserController.php?act=LoginNhanh_ListOrder');
+                    }
+
                     $tienTong = 0;
                     foreach($arrOrder as $i){
                        $one_In_Order = $i['QuantityOrderPro']*$i['PriceProduct'];
                         $tienTong +=$one_In_Order;
                     }
-                    include_once 'views/LoginNhanh_Cart.php';
+                    
+                    include_once 'views/LoginNhanh_Cart.php';}
                     break;
 
         /**
@@ -218,6 +250,7 @@ if(isset($_GET['act'])&&($_GET['act'] !='' )){
             */
             case 'ListBan':
                 // name = so_Ban
+                
                 $arrBanFull = list_BanCoNguoiNgoi();
                 If($_SERVER['REQUEST_METHOD']==='POST'){
                     extract($_POST);
@@ -240,16 +273,7 @@ if(isset($_GET['act'])&&($_GET['act'] !='' )){
             *                                 BILL
             * ====================================================================================
             */
-            case 'LoginNhanh_MethodPay':
-                if(isset($_POST['Pay_Truc_Tiep'])){
-                    extract($_POST);
-                    // echo"<pre>";
-                    // print_r($_POST);
-                    // echo"</pre>";
-                    LoginNhanh_update_MethodPay_PricePay($IdOrder,$PriceOrders,5);
-                }
-                include_once 'views/BillPayment.php';
-                break;
+           
             default:
                 include_once 'views/Home.php';
                 break;

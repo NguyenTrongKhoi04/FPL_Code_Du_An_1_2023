@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="<?=$userStyle?>/Cart.css">
-<form action="<?= $userAction ?>LoginNhanh_MethodPay" method="post" class="page" id="formCart" >
+<form action="<?= $userAction ?>LoginNhanh_ListOrder" method="post" class="page" id="formCart" >
     <main>
         <section class="containerMain">
             <section class="listProduct">
@@ -46,7 +46,7 @@
                 <input type="hidden" name="IdOrder" value="<?= $arrOrder[0]['IdOrder'] ?>">
                 <input type="hidden" name="PriceOrders" value="<?= $tienTong ?>">
                 <h1>Tổng cộng: <?= $tienTong ?> $</h1>
-                <button type="submit" name="Pay_Truc_Tiep">Thanh Toán Trực Tiếp </button>
+                <button type="submit" name="Pay_Truc_Tiep" <?= (empty($arrOrder)) ? 'disabled' : '' ?> value="thanhtoan"  >Thanh Toán Trực Tiếp </button>
                 <button type="submit" name="Pay_VNPAY">Thanh toán Bằng VN Pay</button>
 
             </section>

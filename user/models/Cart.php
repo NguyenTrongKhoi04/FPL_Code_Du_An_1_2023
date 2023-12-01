@@ -83,6 +83,11 @@
         return query_All($sql);
     }
 
+    function loginNhanh_Update_TrangThai_ThanhToan_Orders($id_User){
+        $sql = "UPDATE orders SET StatusOrders = 5 WHERE IdAccount = $id_User ";
+        return pdo_Execute($sql);
+    }
+
     function loginNhanh_Order_DangXacNhan($idAccount){
         $sql ="SELECT  orders.*,order_pro.*,product.*
         FROM orders 
