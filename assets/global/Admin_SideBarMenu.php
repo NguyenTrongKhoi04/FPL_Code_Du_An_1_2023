@@ -1,3 +1,4 @@
+
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
 <!-- Sidebar - Brand -->
@@ -13,7 +14,7 @@
 
 <!-- Nav Item - Dashboard -->
 <li class="nav-item">
-    <a class="nav-link" href="AdminController.php">
+       <a class="nav-link" href="AdminController.php">
         <i class="fas fa-fw fa-tachometer-alt"></i>
         <span>Trang chủ</span>
     </a>
@@ -21,6 +22,7 @@
         <i class="fas fa-fw fa-tachometer-alt"></i>
         <span>Đăng Xuất</span>
     </a>
+
 </li>
 
 <!-- Divider -->
@@ -41,14 +43,13 @@
     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Quản Lý Tài Khoản</h6>
-            <a class="collapse-item" href="cards.html">Danh Sách Tài Khoản</a>
-            <a class="collapse-item" href="buttons.html">Thêm Tài Khoản</a>
+            <a class="collapse-item" href="<?=$adminAction?>ListAccount">Danh Sách Tài Khoản</a>
+            <a class="collapse-item" href="<?=$adminAction?>AddAccount">Thêm Tài Khoản</a>
 
             <h6 class="collapse-header">Giỏ hàng-Bill-Comment</h6>
             <a class="collapse-item" href="buttons.html">Danh Sách Giỏ Hàng</a>
-            <a class="collapse-item" href="buttons.html">Danh Sách Comment</a>
-            <a class="collapse-item" href="buttons.html">Danh Sách Bill</a>
-
+            <a class="collapse-item" href="<?=$adminAction?>ListComment">Danh Sách Comment</a>
+            <a class="collapse-item" href="<?=$adminAction?>ListBill">Danh Sách Bill</a>
         </div>
     </div>
     
@@ -65,18 +66,18 @@
     data-parent="#accordionSidebar">
     <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Product</h6>
-            <a class="collapse-item" href="<?=$adminAction?>ListProduct">Danh sách món ăn</a>
+            <a class="collapse-item" href="<?= $adminAction ?>ListProduct">Danh sách món ăn</a>
             <a class="collapse-item" href="utilities-color.html">Thêm món ăn</a>
             <h6 class="collapse-header">Danh mục</h6>
-            <a class="collapse-item" href="utilities-color.html">Danh mục chính</a>
-            <a class="collapse-item" href="utilities-color.html">Thêm danh mục chính </a>
-            <a class="collapse-item" href="utilities-color.html">Danh mục phụ</a>
-            <a class="collapse-item" href="utilities-color.html">Thêm danh mục phụ</a>
+            <a class="collapse-item" href="<?= $adminAction ?>ListCategory">Danh mục chính</a>
+            <a class="collapse-item" href="<?=$adminAction?>AddCategory">Thêm danh mục chính </a>
+            <a class="collapse-item" href="<?=$adminAction?>ListSubCategories">Danh mục phụ</a>
+            <a class="collapse-item" href="<?=$adminAction?>AddSubCategories">Thêm danh mục phụ</a>
             <h6 class="collapse-header">Size</h6>
             <a class="collapse-item" href="utilities-border.html">Size</a>
-            <a class="collapse-item" href="utilities-border.html">Thêm size</a>
-            <a class="collapse-item" href="utilities-border.html">Size default</a>
-            <a class="collapse-item" href="utilities-border.html">Thêm size default</a>
+            <a class="collapse-item" href="<?=$adminAction?>AddSize">Thêm size</a>
+            <a class="collapse-item" href="utilities-border.html">Size Phụ</a>
+            <a class="collapse-item" href="<?=$adminAction?>AddSizePro">Thêm size Phụ</a>
             <h6 class="collapse-header">Pro-Details</h6>
             <a class="collapse-item" href="utilities-animation.html">Details</a>
             <a class="collapse-item" href="utilities-other.html">Thêm Details</a>
@@ -94,8 +95,8 @@
         data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Orders</h6>
-            <a class="collapse-item" href="utilities-animation.html">Danh sách Order</a>
-            <a class="collapse-item" href="utilities-other.html">Danh Sách Order phụ</a>
+            <a class="collapse-item" href="<?=$adminAction?>ListOrders">Danh sách Order</a>
+            <a class="collapse-item" href="<?=$adminAction?>ListOrderPro">Danh Sách Order Pro</a>
             </div>
     </div>
 </li>
@@ -128,7 +129,6 @@
             <a class="collapse-item" href="blank.html">Blank Page</a>
         </div>
     </div>
-    
 </li>
 
 <!-- Nav Item - Charts -->

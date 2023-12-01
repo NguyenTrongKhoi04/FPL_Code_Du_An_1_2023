@@ -1,111 +1,326 @@
 <?php
 session_start();
 ob_start();
+
 include_once '../app/Pdo.php';
 include_once '../assets/global/User.php';
 include_once '../assets/global/url_Path.php';
-include_once 'models/TaiKhoan.php';
-include_once 'models/Ban.php';
-include_once 'models/Product.php';
 
-if (empty($_SESSION['user'])) {
-    header('location: ../user/UserController.php');
-} else {
-    if (isset($_GET['act']) && ($_GET['act'] != '')) {
+include_once './models/Size.php';
+include_once './models/Category.php';
+include_once './models/SizePro.php';
+include_once './models/Account.php';
+include_once './models/Order.php';
+include_once './models/OrderPro.php';
+include_once './models/Comment.php';
+
+// include_once 'models/TaiKhoan.php';
+
+
+if(!empty($_SESSION['user'])){
+    // include_once 'views/LoginThuong.php';
+}else{
+        if(isset($_GET['act'])&&($_GET['act'] !='' )){
         $act = $_GET['act'];
-        switch ($act) {
-        /**
-            * ====================================================================================
-            *                                 LOGIN - LOGOUT
-            * ====================================================================================
-            */
-            case 'dangxuat':
-                session_destroy();
-                header('location: AdminController.php');
-                break;
-        /**
+        switch($act){
+            /**
              * ====================================================================================
-             *                                 BAN
+             *                                     SIZE 
              * ====================================================================================
              */
-            case 'ListBan':
-                $listBan = select_All('tables');
-                include_once "views/ban/ListBan.php";
-                break;
+            case 'AddSize':
+                if($_SERVER['REQUEST_METHOD'] === "POST"){
 
-            case 'UpdateBan':
-                $id = $_GET['id'];
-                $ban_One = select_One('tables', null, "IdTables = $id");
-                if (isset($_POST['update']) && ($_POST['update'] != '')) {
-                    var_dump($_FILES);
-                    extract($_POST);
-                    updateBan($id, $NumberPeople, $NumberTable, $StatusTable);
-                    header("location:" . $adminAction . "ListBan");
-                }
-                include_once "views/ban/UpdateBan.php";
-                break;
-
-        /**
-             * ====================================================================================
-             *                                 PRODUCT
-             * ====================================================================================
-             */
-            case 'ListProduct':
-                $listPro = loadAll_Product();
-                $listProCategory = loadAll_Product_Category();
-                $listProDetails = loadAll_Product_Details();
-                include_once 'views/product/ListProduct.php';
-                break;
-            case 'AddProduct':
-                $listProCategory = loadAll_Product_Category();
-                if(isset($_POST['AddProduct'])){
-                    extract($_POST);
-                    extract($_FILES);
-                    if($ImageProduct['name'] != ''){
-                        $img=$ImageProduct['name'];
-                        move_uploaded_file($ImageProduct['tmp_name'], $adminImg . $img);
+                    $data = $_POST;
+                    extract($data);
+                    $checkSize = check_Size($NameSize);
+                    if(is_array($checkSize)){
+                        $mes = 'Size đã tồn tại ';
+                    }
+                    else{
+                        pushSize($data);
+                        $mes = 'Thêm size thành công' ;
                     }
 
-                    add_Product($NameProduct,$QuantityProduct,$PriceProduct,$ImageProduct['name'], $IdCategory,$ProductDetails, $ProductDescription);
-
+                    
                 }
-                include_once 'views/product/AddProduct.php';
-                break;
-            case 'UpdateProduct':
-                $id = $_GET['id'];
-                $oneProduct= loadOne_Product($id);
-                $listProCategory = loadAll_Product_Category();
-                extract($oneProduct);
-                $oneProDetails = loadOne_Product_Details($IdDetails);
-                extract($oneProDetails);
+                include_once "views/size/addSize.php";
 
-                if(isset($_POST['UpdateProduct'])){
+                break;
+            case 'ListSize':
+                if(isset($_GET['delete'])&&($_GET['delete'] !='' )){
+                    deleteSize($_GET['delete']);
+                } 
+                include_once "views/size/listSize.php";
+                break;
+            case 'UpdateSize':
+                if($_SERVER['REQUEST_METHOD'] === 'POST' ){
+                    $data = $_POST;
+                    
+                    $IdSize = $_GET["IdSize"];  
+                                   
+                    updateSize($data, $IdSize);
+                } 
+                include_once "views/size/updateSize.php";
+                break;
+            /**
+             * ====================================================================================
+             *                                   CATEGORY
+             * ====================================================================================
+             */
+            case 'AddCategory':
+                if($_SERVER['REQUEST_METHOD'] === "POST"){
+
+                    $data = $_POST;
+                    extract($data);
+
+                    $CheckCategory = check_Category($NameCategory);
+                        if(is_array($CheckCategory)){
+                            $mes = 'Danh mục đã tồn tại';
+                        }else{
+                            pushCategory($data);
+                            $mes = 'Thêm thành công danh mục ';
+                        }
+                    
+                }
+                include_once "views/danhmuc/AddCategory.php";
+                break;
+            case 'ListCategory':
+                if(isset($_GET['delete'])&&($_GET['delete'] !='' )){
+                    deleteCategory($_GET['delete']);
+                } 
+                include_once "views/danhmuc/ListCategory.php";
+                break;
+            case 'UpdateCategory':
+                if($_SERVER['REQUEST_METHOD'] === 'POST' ){
+                    $data = $_POST;
+                    var_dump($data);
+                    $IdCategory = $_GET["IdCategory"];
+                    var_export($IdCategory);              
+                    updateCategory($data, $IdCategory);
+                } 
+                include_once "views/danhmuc/UpdateCategory.php";
+                break;
+             /**
+             * ====================================================================================
+             *                                   SIZEPRO
+             * ====================================================================================
+             */
+            case 'AddSizePro':
+                if($_SERVER['REQUEST_METHOD'] === "POST"){
+
+                    $data = $_POST;
+                    extract($data);
+                    
+                    $checkSizePro = check_SizePro($IdProduct,$IdSize,$Price);
+
+                    if(is_array($checkSizePro)){
+                        $mes = 'Dữ liệu này đã tồn tại mời chọn lại ';
+                    }
+                    else{
+                            pushSizePro($data);
+                            $mes = 'Thêm thành công ';
+                    }
+
+
+                    
+                }
+                include_once "views/sizepro/AddSizePro.php";
+                break;
+            break;
+            case 'ListSizePro':
+                if(isset($_GET['delete'])&&($_GET['delete'] !='' )){
+                    
+                    deleteSizePro($_GET['delete']);
+                }
+                include_once "views/sizepro/ListSizePro.php";
+                break;
+            case 'UpdateSizePro':
+                if($_SERVER['REQUEST_METHOD'] === 'POST' ){
+                    $data = $_POST;
+                    
+                    if(isset($_GET["IdSizePro"])) {
+                        $IdSizePro = $_GET["IdSizePro"];   
+                    }else{
+                        $IdSizePro = $data['IdSizePro'];
+                    }
+
+                    updateSizePro($data, $IdSizePro);
+                } 
+                include_once "views/sizepro/UpdateSizePro.php";
+                break;
+            /**
+             * ====================================================================================
+             *                                           ACCOUNT	
+             * ====================================================================================
+             */  
+            case 'AddAccount':
+                if($_SERVER['REQUEST_METHOD'] === "POST"){
+                    extract($_POST);
+                    extract($_FILES);
+                    $check_Gmail = check_Gmail_Account($Gmail);// nếu tồn tại => chứa dữ liệu (mảng)
+                    $imgName = isset($ImageAccounts['name']) ? $ImageAccounts['name'] :'';
+                    if (is_array($check_Gmail)) {
+                        $mes = "Tài khoản này đã tồn tại";
+                    } else {
+                            if(!preg_match("/^(?=.*[A-Z-a-z])(?=.*[0-9])(?=.*[a-z].*)(?=.*[a-z].*)(?=.*[!@#\$%\^\*\(\)-\+]).{8,}$/", $Password) ){
+                                 $mes = 'Sai định dạng mật khẩu (có ít nhất 1 số, 1 chữ cái viết thường và hoa, 1 ký tự đặc biệt)';
+                            }else{
+                               if($imgName != ''){//nếu nộp ảnh
+                            
+                                $duoianh = pathinfo($imgName, PATHINFO_EXTENSION);
+                                    if (($duoianh != 'png') && ($duoianh != 'jpg') && ($duoianh != 'jpeg')) {
+                                        $mes = 'Chọn đúng định dạng file ảnh';
+                                    }else{
+                                         move_uploaded_file($ImageAccounts['tmp_name'], $adminImg . $imgName);
+                                        pushAccount($NameAccount, $Gmail, $Password,  $imgName);
+                                        $mes = 'Thêm tài khoản thành công';
+                                    }   
+                               }else{
+                                pushAccount($NameAccount, $Gmail, $Password,  $imgName);
+                                $mes = 'Thêm tài khoản thành công';
+                               } 
+                            }
+                         
+                        // header (location : acmincontroller?act=....&mes=''.$mes)
+                           
+                        
+                    }
+                }
+                include_once "views/account/AddAccount.php";
+                break;
+            case 'ListAccount':
+                if(isset($_GET['delete'])&&($_GET['delete'] !='')){
+
+                    deleteAccount($_GET['delete']);
+                }
+                include_once "views/account/ListAccount.php";
+                break;
+            case 'UpdateAccount':
+                if($_SERVER['REQUEST_METHOD'] === "POST"){
+                    extract($_POST);
+                    extract($_FILES);
                
-                    extract($_POST);
-                    extract($_FILES);
-
-                    $imgNameProduct = ($imgProduct['size'] != 0) ? $imgProduct : $ImageProduct ;
-    
-                    if($imgProduct['size'] != ''){
-                        $img=$imgProduct['name'];
-                        move_uploaded_file($imgProduct['tmp_name'], $adminImg . $img);
-                    }
-
-                    update_Product($id,$NameProduct,$QuantityProduct,$PriceProduct,$imgNameProduct, $IdCategory,$ProductDetails, $ProductDescription);
+                    $imgName = $ImageAccounts['name'];
+               
+                    if(isset($_GET["IdAccount"])) {
+                        $IdAccount = $_GET["IdAccount"];   
+                    }//else{
+                    //     $IdAccompanyingFood = 'IdAccompanyingFood';
+                    // } 
+                     move_uploaded_file($ImageAccounts['tmp_name'],$adminImg.$imgName);
+                     updateAccount($IdAccount, $NameAccount, $Gmail, $Gender , $Password, $imgName, $StatusAccount,$Role);         
                 }
-                include_once 'views/product/UpdateProduct.php';
+                include_once "views/account/UpdateAccount.php";
+                break;
+            /**
+             * ====================================================================================
+             *                                    ORDERS
+             * ====================================================================================
+             */ 
+            case 'AddOrders':
+                if($_SERVER['REQUEST_METHOD'] === "POST"){
+                    $data = $_POST;    
+                    extract($data);
+
+
+                    $checkOrder = check_Order($IdTable,$IdAccount);
+                    
+                    if(is_array($checkOrder)){
+                           
+                            $mes = 'Bàn đã được đặt trước ';
+                        }
+                        else{
+                             pushOrder($data);  
+                            
+                            $mes = 'Đặt bàn thành công';
+                        }
+                      
+                        
+                }
+                include_once "views/orders/AddOrders.php";
+                break;
+            case 'ListOrders':
+                if(isset($_GET['delete'])&&($_GET['delete'] !='')){
+                    deleteOrder($_GET['delete']);
+                 }
+                include_once "views/orders/ListOrders.php";
+                break;
+            case 'UpdateOrders':
+                if($_SERVER['REQUEST_METHOD'] === 'POST' ){
+                    $data = $_POST;
+              
+                    if(isset($_GET["IdOrder"])) {
+                        $IdOrder = $_GET["IdOrder"];   
+                    }else{
+                        $IdOrder = $data['IdOrder'];
+                    }
+                    updateOrder($data, $IdOrder);
+                }
+                include_once "views/orders/UpdateOrders.php";
                 break;
 
-            case 'DeleteProduct':
-                $id = $_GET['id'];
-                delete_Product($id);
-                header('location: AdminController.php?act=ListProduct');
+             /**
+             * ====================================================================================
+             *                                    ORDERPRO
+             * ====================================================================================
+             */ 
+            case 'AddOrderPro':
+                if($_SERVER['REQUEST_METHOD'] === "POST"){
+                    $data = $_POST;    
+                    extract($data);
+
+                    pushOrderPro($data);
+                }
+                include_once "views/orderpro/AddOrderPro.php";
                 break;
+            case 'ListOrderPro':
+                if(isset($_GET['delete'])&&($_GET['delete'] !='')){
+                    deleteOrderPro($_GET['delete']);
+                 }
+                include_once "views/orderpro/ListOrderPro.php";
+                break;
+            case 'UpdateOrderPro':
+                if($_SERVER['REQUEST_METHOD'] === 'POST' ){
+                      $data = $_POST;
+                
+                      if(isset($_GET["IdOrder_Pro"])) {
+                        $IdOrder_Pro = $_GET["IdOrder_Pro"];   
+                     }else{
+                         $IdOrder_Pro = $data['IdOrder_Pro'];
+                    }
+                    updateOrderPro($data, $IdOrder_Pro);
+                    }
+                    include_once "views/orderpro/UpdateOrderPro.php";
+                    break;
+ 
+
+            case 'ListComment':
+                if(isset($_GET['delete'])&&($_GET['delete'] !='')){
+                    deleteComment($_GET['delete']);
+                 }
+                include_once "views/comment/ListComment.php";
+                break;
+             case 'UpdateComment':
+                if($_SERVER['REQUEST_METHOD'] === 'POST' ){
+                   $data = $_POST;
+                          
+                    if(isset($_GET["IdComment"])) {
+                         $IdComment = $_GET["IdComment"];   
+                   }else{
+                        $IdComment = $data['IdComment'];
+                   }
+                   updateComment($data, $IdComment);
+                    }
+                 include_once "views/comment/UpdateComment.php";
+
             default:
                 // include_once 'views/Home.php';
                 break;
         }
-    } else {
-        include_once 'views/taikhoan/ListAccount.php';
+
+    }else{
+        include_once 'views/size/AddSize.php';
+    
     }
 }

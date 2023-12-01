@@ -1,52 +1,59 @@
 <?php
 include_once "../app/Pdo.php";
+include_once '../assets/global/url_Path.php';
 
-/**
- * $data: dữ liệu từ form post
- * $dataImage: dữ liệu ảnh từ from file
- * */ 
-function pushAcount($data, $dataImage){
-    extract($data);
-    extract($dataImage);
+// IdAccompanyingFood	IdProduct	
+// Gmail	QuantityAccompanyingFood	
+// PriceAccompanyingFood	ImageAccompanyingFood	StatusAccompanyingFood	
+// Toàn văn
 
-    $sql= "insert into account values ('', '$Name','$Gmail', '$Gender','$Password','$name', '','$Type', '')";
-    move_uploaded_file($tmp_name, "../assets/img/admin/".$name);
+                                                   
+function pushAccount($NameAccount, $Gmail, $Password, $ImageAccounts){
+    
+    $sql= "insert into account values ('', '$NameAccount', '$Gmail', '' , '$Password','$ImageAccounts', '' , '' ,'')";
     return pdo_Execute($sql);
 }
 
 function getListAccount(){
-    $sql = 'select * from account';
+    $sql ='select * from account';
     return query_All($sql);
 }
 
 /**
- * $idAccount: Id của sản phẩm được truyền vào 
+ * $idProduct: Id của sản phẩm được truyền vào 
 
- * */ 
-function deleteAccount($idAccount){
-    $sql = "update account set StatusAccount = 1 where IdAccount = $idAccount";
+ * */ // IdAccount	
+// NameAccount	
+// Gmail	
+// Gender	
+// Password	
+// ImageAccounts	
+// StatusAccount	
+// Role	
+// DateEditAccount
+function deleteAccount($IdAccount){
+    $sql = "update account set StatusAccount = 1 where IdAccount = $IdAccount";
     return pdo_Execute($sql);
 }
 
- /**
- * $idAccount: Id của sản phẩm được truyền vào 
- * dataImage: Dữ liệu ảnh sản phẩm cần update
- * $dataAccount: Dữ liệu sản phẩm cần update
+function updateAccount($IdAccount, $NameAccount, $Gmail, $Gender , $Password, $ImageAccounts, $StatusAccount,$Role){
 
- * */ 
-function updateListAccount($dataAccount, $dataImage, $IdAccount){
-    extract($dataAccount);
-    extract($dataImage);
     $sqlAccount = "
-    update account set  NameAccounts = '$Name',  Gmail = '$Gmail', Gender = '$Gender', 	Password = '$Password',	ImageAccounts = '$name', StatusAccount = '$Status', Type = '$Type' where IdAccount = '$IdAccount'";
-    
-    move_uploaded_file($tmp_name, "../assets/img/admin/".$name);
-    return query_All($sqlAccount);
+    update account set NameAccount = '$NameAccount' ,Gmail = '$Gmail', Gender = '$Gender', Password = '$Password',
+    ImageAccounts = '$ImageAccounts',StatusAccount = '$StatusAccount' ,Role = '$Role'  where IdAccount = '$IdAccount'
+    ";
+
+    return pdo_Execute($sqlAccount);
 }
 
-function getAccountById($IdAccount){
+function getUAcount($IdAccount){
     $sql = "select * from account where IdAccount = $IdAccount";
     return query_All($sql);
 }
 
-?>
+
+function check_Gmail_Account($gmail){
+    $sql = "SELECT * FROM account WHERE Gmail = '$gmail'";
+    return query_One($sql);
+    
+}

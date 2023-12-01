@@ -17,10 +17,17 @@ $imgPathAdmin = "../assets/img/admin/";
  */
 $adminStyle ='../../assets/css/admin/';
 $adminJavaScript = '../../assets/js/';
-$adminImg = '../assets/img/';
+
 $adminSideBarMenu='../assets/global/Admin_SideBarmenu.php';
 $adminAction='AdminController.php?act=';
 
-// echo"<pre>";
-// print_r($pro);
-// echo"</pre>";
+$adminImg = '../assets/img/admin/';
+
+/**
+ * ================================================================================
+ *                               GLOBAL
+ * ================================================================================
+ */
+$ThongBao='../assets/global/ThongBao.php';
+$SideBarMenu='../assets/global/Admin_SideBarMenu.php';
+

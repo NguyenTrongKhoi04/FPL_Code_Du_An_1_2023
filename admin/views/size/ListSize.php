@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -31,7 +32,7 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <?php include_once $adminSideBarMenu ?>
+        <?php include_once $SideBarMenu ?>
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
@@ -250,78 +251,43 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Thêm tài khoản</h1>
-                    
+                    <h1 class="h3 mb-2 text-gray-800">Danh sách Size</h1>
+
+
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-body">
                             <div class="table-responsive">
-                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                   
-                                   <tr>
-                                           <th></th>
-                                           <th>Thông tin</th>
-                                           <th></th>     
-                                   </tr>
-                
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>Tên Size</th>
+                                            <th></th>
 
-                                   <tbody>                
-                                       <form action="AdminController.php?act=AddAccount" method="post" enctype="multipart/form-data">
-                                           <tr>
-                                               <td>Tên</td>
-                                                <td><input name="Name" required type="text"></td>
-                                                
-                                           </tr>
-                                           <tr>
-                                               <td>Gmail
-                                               <td><input name="Gmail" required type="email"></td>
-                                                
-                                           </tr>
-                                           <tr>
-                                               <td>Gới tính</td>
-                                               <td>
-                                                    <select  name="Gender" required id="">
-                                                        <option selected hidden value="">Gới tính</option>
-                                                        <option value="0">Nam</option>
-                                                        <option value="1">Nữ</option>
-                                                        <option value="2">Khác</option>
-                                                    </select>
-                                               </td>
-                                                
-                                           </tr>
-                                           </tr>
-                                               <td>Mật khẩu</td>
-                                               <td><input name="Password" required type="password"></td>
-                                                
-                                           </tr>
-                                           <tr>
-                                               <td>Ảnh</td>
-                                               <td>
-                                                    <input type="file" name = "Image" alt="">
-                                               </td>
-                                                                                         
-                                           <tr>
-                                               <td>Chức vụ</td>
-                                               <td>
-                                                    <select name="Type"  required id="">
-                                                        <option selected hidden value="">Chức vụ</option>
-                                                        <option value="NVTN">Nhân viên thu ngân</option>
-                                                        <option value="NVPVB">Nhân viên phục vụ bàn</option>
-                                                        <option value="QL">Quản lý</option>
-                                                        <option value="KH">Khách Hàng</option>
-                                                        <option value="Admin">Admin</option>
-                                                    </select>
-                                               </td>
-                                                
-                                           </tr>
-                                           <tr>
-                                               <td><input name="submit" required type="submit" value="thêm"></td>
-                                               
-                                           </tr>
-                    
-                                   
-                                   </tbody>
-                               </table>
+                                        </tr>
+                                    </thead>
+                                    <tbody>  
+                                    <?php 
+                                        foreach(getListSize() as $values){
+                                            
+                                            echo "
+                                            <tr>
+                                                <td>{$values['NameSize']}</td>
+                                                <td>
+                                                    <a href='AdminController.php?act=UpdateSize&IdSize={$values['IdSize']}'>
+                                                        <input type='button' value='Sửa'> 
+                                                    </a>
+                                                    <a href='AdminController.php?act=ListSize&delete={$values['IdSize']}'>
+                                                        <input type='button' value='Xóa'>
+                                                    </a>                                                                                                               
+                                                </td>   
+                                        </tr>                                                
+                                            ";
+                                        }
+                                    
+                                    ?> 
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>

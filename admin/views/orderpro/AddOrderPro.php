@@ -31,7 +31,7 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <?php include_once '../assets/global/SideBarMenu.php'; ?>
+        <?php include_once $SideBarMenu ?>
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
@@ -250,139 +250,89 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Thêm tài khoản</h1>
+                    <h1 class="h3 mb-2 text-gray-800">Thêm Sản Phẩm</h1>
                     
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
-                        <div class="card-body">
-                            <div class="table-responsive">
+
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                    
                                    <tr>
                                            <th></th>
-                                           <th>Thông tin</th>
-                                           
-                                           <th></th>
+                                           <th>Nhập Thông tin</th>
+                                           <th></th>     
                                    </tr>
-                
-                                                        
+
+	
+                                   
                                    <tbody>                
-                                   <?php 
-                                    if(isset($_GET["IdAccount"]) && !empty($_GET["IdAccount"])){
-                                        $data = getAccountById($_GET["IdAccount"])[0];
-                                        // echo "<pre>";
-                                        // print_r($data); die();
-                                            $types = null;
-                                            $gender = null;
-                                            $status = $data["StatusAccount"] ===  0 ? "Hoạt động " : "Đã xóa";
-                                            switch($data['Gender'] ){
-                                                case 0:
-                                                    $gender = "Nam";
-                                                break;
-                                                case 1:
-                                                    $gender = "Nữ";
-                                                break;
-                                                case 2:
-                                                    $gender = "Khác";
-                                                break;
-                                            }
-                                            switch($data['Type']){
-                                                case "NVTN":
-                                                    $types = "Nhân viên thu ngân";
-                                                break;
-                                                case "NVPVB":
-                                                    $types = "Nhân viên phục vụ bàn";
-                                                break;
-                                                case "QL":
-                                                    $types = "Quản lý";
-                                                break;
-                                                case "KH":
-                                                    $types = "Khách Hàng";
-                                                break;
-                                                case "Admin":
-                                                    $types = "Admin";
-                                                break;
-
-                                            }
-                                            extract($data);
-                                            ?>
-                                   <form action="AdminController.php?act=UpdateAccount&IdAccount=<?= $IdAccount?>" method="post" enctype="multipart/form-data">
-                                                <tr>
-                                                <td>Tên</td>
-                                                    <td><input value="<?= $NameAccounts ?>" name = "Name" type="text"></td>
-                                                    
-                                            </tr>
+                                       <form action="AdminController.php?act=AddOrderPro" method="post">
                                             <tr>
-                                                <td>Gmail</td>
-                                                <td><input value="<?= $Gmail ?>" name = "Gmail" type="email"></td>
+                                               <td>Order</td>                                              
+                                               <td>
+                                               <select name="IdOrder" id="">  
+                                                    <?php
+
+                                                    foreach(getIdOrderPro() as $valueOrderPro){
+                                                        echo "
+                                                            <option value='{$valueOrderPro['IdOrder']}'>{$valueOrderPro['IdOrder']}</option>
+                                                        ";
+                                                    }
+                                                    ?>                                                    
+                                                </select>
+                                               </td>
+                                                
+                                           </tr> 
+                                            <tr>
+                                               <td>Tên tài khoản</td>
+                                               <td>
+                                               <select name="IdProduct" id="">
+                                            
+                                                    <?php
+                                                    foreach(getOrProduct() as $valueProduct){
+                                                        echo "
+                                                            <option value='{$valueProduct['IdProduct']}'>{$valueProduct['NameProduct']}</option>
+                                                        ";
+                                                    }
+                                                    ?>
+                                                    
+                                                </select>
+                                               </td>
+                                                
+                                           </tr>   
+                                           <tr>
+                                               <td>Tên kích cỡ</td>
+                                               <td>
+                                                    <input type="text" name = "NameSize" id="" >
+                                                </td>
                                                 
                                             </tr>
-                
                                             <tr>
-                                                <td>Giới tính</td>
-                                                <td>
-                                                    <select name="Gender" id="">
-                                                        <option value="<?= $Gender?>" selected hidden><?= $gender ?></option>
-                                                        <option value="0">Nam</option>
-                                                        <option value="1">Nữ</option>
-                                                        <option value="2">Khác</option>
-                                                    </select>
+                                               <td>Số lượng đặt </td>
+                                               <td>
+                                                    <input type="number" name = "QuantityOrderPro" id="" min="0">
                                                 </td>
-                                                    
+                                                
                                             </tr>
                                             <tr>
-                                                <td>Mật khẩu</td>
-                                                <td>
-                                                    <input value="<?=$Password ?>" type="password" name = "Password" id="">
-                                                </td>
-                                                    
-                                            </tr>
-                                            <tr>
-                                                <td>Ảnh</td>
-                                                <td>
-                                                    <input type="file" name = "Image" value="<?= $ImageAccounts ?>">
-                                                </td>
-                                                    
-                                            </tr>
-                                            <tr>
-                                                <td>Trạng thái</td>
-                                                <td>
-                                                    <select name="Status" id="">
-                                                        <option value="<?= $Status?>" selected hidden><?= $status ?></option>
-                                                        <option value="0">Hoạt động</option>
-                                                        <option value="1">Đã xóa</option>                                                   
-
+                                               <td>Trạng thái</td>
+                                               <td>
+                                                    <select name="StatusOrders" id="">
+                                                        <option value="" selected hidden>Sản phẩm</option>
+                                                        <option value="0">Chưa comment</option>
+                                                        <option value="1">Đã comment</option>
+                                                        
                                                         
                                                     </select>
-                                                </td>
-                                                    
-                                            </tr>
-                                            <tr>
-                                                <td>Chức vụ</td>
-                                                <td>
-                                                    <select name="Type" id="">
-                                                        <option value="<?= $Type ?>" selected hidden><?= $types ?></option>
-                                                        <option value="NVTN">Nhân viên thu ngân</option>
-                                                        <option value="NVPVB">Nhân viên phục vụ bàn</option>
-                                                        <option value="QL">Quản lý</option>
-                                                        <option value="KH">Khách Hàng</option>
-                                                        <option value="Admin">Admin</option>
-                                                    </select>
-                                                </td>
-                                                
-                                            </tr>
-        
-                                            <td><input  name = "submit" type="submit" value="thêm"></td>                              
-                                    </form>  
-                                            <?php
+                                               </td>
+                                               
+                                           </tr>
+                                           <td><input name = "submit" type="submit" value="thêm"></td>                              
+                                        </form>
 
-                                    }else{
-                                        echo "404 Not Fount";
-                                    }
-                                        
-                                    ?>                          
                                    </tbody>
                                </table>
+                            </div>
                         </div>
                     </div>
 
