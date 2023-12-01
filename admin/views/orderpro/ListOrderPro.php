@@ -287,7 +287,7 @@
                                                             $stauts = "Đã commnet";
                                                         break;
                                                         default:
-                                                            $stauts = "Error";
+                                                            $stauts = $values["StatusOrders"] ===  0 ? "Chưa commnet" : "Đã comment";
                                                         break;
     
                                                     }

@@ -298,7 +298,7 @@
                                             </tr>
                                             
         
-                                            <td><a href="AdminController.php?act=ListCategory"><input type="submit" value="thêm"></a> </td>                              
+                                            <td><a href="AdminController.php?act=ListCategory"><input type="submit" value="sửa"></a> </td>                              
                                     </form>
                                     <a href="AdminController.php?act=ListCategory"><input  class="mr20" type="button" value="DANH SÁCH"></a>  
                                     <?php

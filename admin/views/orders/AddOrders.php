@@ -339,7 +339,7 @@
                                                <td>Trạng thái</td>
                                                <td>
                                                     <select name="StatusOrders" id="">
-                                                        <option value="" selected hidden>Sản phẩm</option>
+                                                        <option value="StatusOrders" selected hidden>Sản phẩm</option>
                                                         <option value="0">Chưa thanh toán</option>
                                                         <option value="1">Đã thanh toán rồi</option>
                                                         <option value="2">Đặt bàn trước</option>

@@ -337,7 +337,7 @@
                                                 
                                             </tr>
         
-                                            <td><input  name = "submit" type="submit" value="thêm"></td>                              
+                                            <td><input  name = "submit" type="submit" value="sửa"></td>                              
                                     </form>          
                                       <?php  
                                     }                       

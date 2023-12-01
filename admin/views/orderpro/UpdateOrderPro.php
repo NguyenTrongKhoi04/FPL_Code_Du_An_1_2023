@@ -287,8 +287,6 @@
                                             case 1:
                                                 $stauts = "Đã comment";
                                             break;
-
-
                                         }          
                                       ?>
                                         <form action="AdminController.php?act=UpdateOrderPro&IdOrder_Pro=<?= $IdOrder_Pro?>" method="post">
@@ -353,8 +351,6 @@
                                                 </td>
                                                 
                                             </tr>
-
-                              
 
                                               <input type="text" hidden value="<?= $IdOrder_Pro?>" name="IdOrder_Pro">    
                                             <td><input  name = "submit" type="submit" value="thêm"></td>    

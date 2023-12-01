@@ -314,19 +314,7 @@
                                                 </td>
                                                 
                                             </tr>
-                                            <tr>
-                                               <td>Trạng thái</td>
-                                               <td>
-                                                    <select name="StatusOrders" id="">
-                                                        <option value="" selected hidden>Sản phẩm</option>
-                                                        <option value="0">Chưa comment</option>
-                                                        <option value="1">Đã comment</option>
-                                                        
-                                                        
-                                                    </select>
-                                               </td>
-                                               
-                                           </tr>
+
                                            <td><input name = "submit" type="submit" value="thêm"></td>                              
                                         </form>
 

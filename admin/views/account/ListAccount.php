@@ -283,9 +283,45 @@
                                             foreach(getListAccount() as $values){
 
                                                 $Gender = $values["Gender"] === 0 ? "Nam" :"Nữ";
+                                                $Gender = null;
+                                                switch($values['Gender']){ 
+                                                    case 0:
+                                                        $Gender= "Giới tính nam";
+                                                    break;
+                                                    case 1:
+                                                         $Gender= "Giới tính nữ";
+                                                    break;
+                                                    case 2:
+                                                        $Gender= "Giới tính khác";
+                                                   break;
+                                                   default:
+                                                        $Gender = "Ok";
+                                                    break;
+                                                }
                                                 $status = $values["StatusAccount"] ===  0 ? "Hoạt động bình thường" : "Đã xóa";
-                                                $Role =  $values["Role"] === 0 ? "user" :"admin";
+                                                
+                                                $RoleA = null;
+                                                switch($values['Role']){ 
+                                                    case 0:
+                                                        $RoleA = "Khách hàng";
+                                                    break;
+                                                    case 1:
+                                                         $RoleA = "Chủ quán";
+                                                    break;
+                                                    case 2:
+                                                        $RoleA = "Quản Lý";
+                                                   break;
+                                                   case 3:
+                                                        $RoleA = "Nhân Viên phục vụ bàn";
+                                                    break;
+                                                    case 4:
+                                                        $RoleA = "Nhân viên thu ngân";
+                                                    break;
+                                                    default:
+                                                        $RoleA = "Ok";
+                                                    break;
 
+                                                }
                                                 echo "
                                                 <tr>
                                                     <td>{$values['NameAccount']}</td>
@@ -297,7 +333,7 @@
                                                     </td>  
                                                     
                                                     <td>{$status}</td>
-                                                    <td>{$Role}</td>
+                                                    <td>{$RoleA}</td>
                                                     <td>{$values['DateEditAccount']}</td>
                                                     <td>
                                                         <a href='AdminController.php?act=UpdateAccount&IdAccount={$values['IdAccount']}'>

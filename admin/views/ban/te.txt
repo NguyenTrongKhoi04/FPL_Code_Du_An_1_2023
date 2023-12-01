@@ -1,103 +1,73 @@
+/**
+             * ====================================================================================
+             *                                 BILL
+             * ====================================================================================
+             * IdBill	IdAccount	IdProduct	IdTable	IdAccompanyingFood	QuantityBill	PriceBill	StatusBill	DateEditBill	NoteBill	PaymentsBill	
+             */
+            case 'AddBill':
+                if($_SERVER['REQUEST_METHOD'] === "POST"){
+                    $data = $_POST;    
+                   extract($data);
+                   if(!preg_match("/^\d+(\.\d+)?$/", $PriceBill)){
+                    $mes = 'Giá không hợp lệ';
+                   }
+                   else{
+                    pushBill($data);
+                    $mes = 'Thêm thành công ';
+                   }
+                    
+                }
+                include_once "views/bill/AddBill.php";
+                break;
+            case 'ListBill':
+                if(isset($_GET['delete'])&&($_GET['delete'] !='')){
+                    deleteBill($_GET['delete']);
+                 }
+                include_once "views/bill/ListBill.php";
+                break;
+            // case 'UpdateBill':
+            //     if($_SERVER['REQUEST_METHOD'] === 'POST' ){
+            //         $data = $_POST;
+                  
+            //         if(isset($_GET["IdBill"])) {
+            //              $IdBill = $_GET["IdBill"];   
+            //         }else{
+            //             $IdBill = $data['IdBill'];
+            //         }
+            //         updateBill($data, $IdBill);
+            //         }
+            //      include_once "views/bill/UpdateBill.php";
+            //      break;   
+            /**
+             * ====================================================================================
+             *                                 CART
+             * ====================================================================================
+             * 	IdCart	IdAccount	IdProduct	IdSize	Quantity	Price	
+             */            case 'AddCart':
+                if($_SERVER['REQUEST_METHOD'] === "POST"){
+                    $data = $_POST;    
+                    
+                    pushCart($data);
 
-Toàn văn
-IdProduct	
-IdCategory	
-IdDetails	
-NameProduct	
-QuantityProduct	
-PriceProduct	
-ImageProduct	
-StatusProduct	
-DateEditProduct
-
-Toàn văn
-IdAccount	
-NameAccount	
-Gmail	
-Gender	
-Password	
-ImageAccounts	
-StatusAccount	
-Role	
-DateEditAccount
-
-
-
-Toàn văn
-IdCart	
-IdProduct	
-IdAccount	
-Size	
-PriceCard	
-Quantity	
-DateCart
-
-                                    if(isset($_GET["IdAccount"]) && !empty($_GET["IdAccount"])){
-                                        $dataAccount = getUAcount($_GET['IdAccount']);
-                                        extract($dataAccount['0']);
-                                      ?>
-                                        <form action="AdminController.php?act=UpdateAccount&IdAccount=<?= $IdAccount?>" method="post" enctype="multipart/form-data">
-   
-                                            <tr>
-                                                <td>Tên tài khoản</td>
-                                                <td><input value="<?= $NameAccount ?>" name = "NameAccount" type="text"></td>
-                                                    
-                                            </tr>
-
-                                            <tr>
-                                                <td>Gamil</td>
-                                                <td><input value="<?= $Gmail ?>" name = "Gmail" type="email"></td>
-                                                
-                                            </tr>
-                                            <tr>
-                                                <td>Giới tính</td>
-                                                <td>
-                                                    <select name="Gender" id="">
-                                                            <option value="<?= $Gender ?>" selected hidden><?= $Gender ?></option>
-                                                            <option value="0">Nữ</option>
-                                                            <option value="1">Nam</option>
-                                                        </select>
-                                                </td>
-                                                
-                                            </tr>
-                                            <tr>
-                                                <td>Password</td>
-                                                <td>
-                                                        <input value="<?= $Password ?>" type="password" name = "Password" id="">
-                                                    </td>
-                                                    
-                                            </tr>
-                                            <tr>
-                                                <td>Ảnh</td>
-                                                <td>
-                                                        <input type="file" name = "ImageAccounts" value="<?= $ImageAccounts ?>">
-                                                </td>
-                                                    
-                                            </tr>
-                                                    
-                                            
-                                            <tr>
-                                                <td>Trạng thái tài khoản</td>
-                                                <td>
-                                                    <select name="StatusAccount" id="">
-                                                            <option value="<?= $StatusAccount ?>" selected hidden><?= $StatusAccount ?></option>
-                                                            <option value="0">Hoạt động</option>
-                                                            <option value="1">Đã xóa</option>
-                                                    </select>
-                                                </td>
-                                                
-                                            </tr>
-                                            <tr>
-                                                <td>Role</td>
-                                                <td>
-                                                    <select name="Role" id="">
-                                                            <option value="<?= $Role ?>" selected hidden><?= $Role ?></option>
-                                                            <option value="0">user</option>
-                                                            <option value="1">admin</option>
-                                                        </select>
-                                                </td>
-                                                
-                                            </tr>
-        
-                                            <td><input  name = "submit" type="submit" value="thêm"></td>                              
-                                    </form>  
+                }
+                include_once "views/cart/AddCart.php";
+                break;
+            case 'ListCart':
+                if(isset($_GET['delete'])&&($_GET['delete'] !='')){
+                       deleteCart($_GET['delete']);
+                 }
+                include_once "views/cart/ListCart.php";
+                break;
+            case 'UpdateCart':
+                if($_SERVER['REQUEST_METHOD'] === 'POST' ){
+                   $data = $_POST;
+                      
+                    if(isset($_GET["IdCart"])) {
+                         $IdCart = $_GET["IdCart"];   
+                   }else{
+                        $IdCart = $data['IdCart'];
+                    }
+                    updateCart($data, $IdCart);
+                }
+                 include_once "views/cart/UpdateCart.php";
+                 break;

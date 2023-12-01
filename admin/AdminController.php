@@ -12,6 +12,7 @@ include_once './models/Account.php';
 include_once './models/Order.php';
 include_once './models/OrderPro.php';
 include_once './models/Comment.php';
+include_once './models/ThongKe.php';
 
 // include_once 'models/TaiKhoan.php';
 
@@ -334,81 +335,20 @@ if(!empty($_SESSION['user'])){
                     }
                     include_once "views/orderpro/UpdateOrderPro.php";
                     break;
-            /**
-             * ====================================================================================
-             *                                 BILL
-             * ====================================================================================
-             * IdBill	IdAccount	IdProduct	IdTable	IdAccompanyingFood	QuantityBill	PriceBill	StatusBill	DateEditBill	NoteBill	PaymentsBill	
-             */
-            case 'AddBill':
-                if($_SERVER['REQUEST_METHOD'] === "POST"){
-                    $data = $_POST;    
-                   extract($data);
-                   if(!preg_match("/^\d+(\.\d+)?$/", $PriceBill)){
-                    $mes = 'Giá không hợp lệ';
-                   }
-                   else{
-                    pushBill($data);
-                    $mes = 'Thêm thành công ';
-                   }
-                    
-                }
-                include_once "views/bill/AddBill.php";
-                break;
-            case 'ListBill':
-                if(isset($_GET['delete'])&&($_GET['delete'] !='')){
-                    deleteBill($_GET['delete']);
-                 }
-                include_once "views/bill/ListBill.php";
-                break;
-            // case 'UpdateBill':
-            //     if($_SERVER['REQUEST_METHOD'] === 'POST' ){
-            //         $data = $_POST;
-                  
-            //         if(isset($_GET["IdBill"])) {
-            //              $IdBill = $_GET["IdBill"];   
-            //         }else{
-            //             $IdBill = $data['IdBill'];
-            //         }
-            //         updateBill($data, $IdBill);
-            //         }
-            //      include_once "views/bill/UpdateBill.php";
-            //      break;   
-            /**
-             * ====================================================================================
-             *                                 CART
-             * ====================================================================================
-             * 	IdCart	IdAccount	IdProduct	IdSize	Quantity	Price	
-             */
-            case 'AddCart':
-                if($_SERVER['REQUEST_METHOD'] === "POST"){
-                    $data = $_POST;    
-                    
-                    pushCart($data);
 
-                }
-                include_once "views/cart/AddCart.php";
-                break;
-            case 'ListCart':
-                if(isset($_GET['delete'])&&($_GET['delete'] !='')){
-                       deleteCart($_GET['delete']);
-                 }
-                include_once "views/cart/ListCart.php";
-                break;
-            case 'UpdateCart':
-                if($_SERVER['REQUEST_METHOD'] === 'POST' ){
-                   $data = $_POST;
-                      
-                    if(isset($_GET["IdCart"])) {
-                         $IdCart = $_GET["IdCart"];   
-                   }else{
-                        $IdCart = $data['IdCart'];
-                    }
-                    updateCart($data, $IdCart);
-                }
-                 include_once "views/cart/UpdateCart.php";
-                 break;
-            
+            /**
+             * ====================================================================================
+             *                                   THỐNG KÊ
+             * ====================================================================================
+             */
+            case 'ThongKe':
+            $thongKe = Load_thong_ke();
+            include_once "views/thongke/ListTK.php";
+            break;
+            case 'BieuDo';
+            $thongKe = Load_thong_ke();
+            include_once "views/thongke/BieuDo.php";
+            break;
             /**
              * ====================================================================================
              *                                 COMMENT
