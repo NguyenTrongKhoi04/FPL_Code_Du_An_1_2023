@@ -17,8 +17,12 @@
   --color8: #30CA73;
 }
 
+html {
+  font-size: 14px;
+}
+
 .datban {
-  width: 1920px;
+  width: 1470px;
   margin: 0 auto;
   background: #131313;
   padding: 50px 0;
