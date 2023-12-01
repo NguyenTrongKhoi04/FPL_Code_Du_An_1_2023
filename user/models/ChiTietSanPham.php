@@ -155,3 +155,13 @@ function loginNhanh_DangXacNhan_Account($idAccount){
     $sql = "SELECT * FROM orders WHERE IdAccount ='$idAccount' AND StatusOrders=5";
     return query_One($sql);
 }
+
+function loginNhanh_Check_SoLuong($id){
+    $sql = "SELECT * FROM product  WHERE IdProduct = $id";
+    return query_One($sql);
+}
+
+function loginNhanh_TruSoLuong_Pro($IdProduct){
+    $sql = "UPDATE product SET QuantityProduct = QuantityProduct-1 WHERE IdProduct=$IdProduct ";
+    return pdo_Execute($sql);
+}

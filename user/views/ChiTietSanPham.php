@@ -14,7 +14,7 @@
                     <div class="hr"></div>
                     <ul>
                         <!-- <del>40.000</del> -->
-                        <li>Giá: <span id="displayPrice"></span> VNĐ</li>
+                        <li>Giá: <span style="color: red;opacity: 90%;" id="displayPrice"></span> VNĐ</li>
                         <li><?= $pro['ProductDetails'] ?></li>
                         <li><?= $pro['ProductDescription'] ?></li>
                     </ul>
@@ -22,7 +22,7 @@
                         <div class="tanggiam">
                             <p>Số lượng mua&nbsp;&nbsp;</p>
                             <button type="button" id="decrease">-</button>
-                            <input type="number" value="1" name="Quantity" id="quantity" min="1" max="10">
+                            <input type="number" value="1" name="Quantity" id="quantity" min="1" required max="<?= $pro['QuantityProduct']?>" data-max="<?= $pro['QuantityProduct'] ?>">
                             <button type="button" id="increase">+</button>
 
                         </div>

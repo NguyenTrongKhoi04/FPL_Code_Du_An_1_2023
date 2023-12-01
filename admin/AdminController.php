@@ -113,8 +113,20 @@ if (empty($_SESSION['user'])) {
                 include_once 'views/QuanLyOrder/QuanLyOrder_List_XacNhan.php';
                 break;
             case  'QuanLyOrder_Order_Xac_Nhan':
-                $idOrder= $_GET['id'];
-                xacNhanOrder($idOrder);
+ 
+                $idOrder= isset($_GET['id']) ? $_GET['id'] : ''  ;
+                if(isset($_POST['XacNhan_CheckBox_DuocChon'])){
+                    extract($_POST);
+                    var_dump($arr_XacNhan);
+                    foreach($arr_XacNhan as $i){
+                        xacNhanOrder($i);
+                    }
+                }
+
+                if($idOrder !=''){
+
+                    xacNhanOrder($idOrder);
+                }
                 header('location: AdminController.php?act=QuanLyOrder_Order');
                 break;
             case 'QuanLyOrder_Order_Add':

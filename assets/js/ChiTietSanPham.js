@@ -1,10 +1,11 @@
 const input = document.getElementById("quantity");
 const increaseButton = document.getElementById("increase");
 const decreaseButton = document.getElementById("decrease");
+const maxQuantity = parseInt(input.getAttribute("data-max")); // Lấy giá trị từ data attribute
 
 increaseButton.addEventListener("click", function () {
     const currentValue = parseInt(input.value);
-    if (currentValue < 10) {
+    if (currentValue < maxQuantity) {
         input.value = currentValue + 1;
     }
 });

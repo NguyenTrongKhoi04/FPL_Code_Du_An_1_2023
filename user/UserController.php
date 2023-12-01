@@ -123,9 +123,14 @@ if(isset($_GET['act'])&&($_GET['act'] !='' )){
             // thêm vào cả cart và order
             case 'LoginNhanh_Add_To_CartAndOrder':
                 extract($_POST);
+                $check_SoLuong_Pro = loginNhanh_Check_SoLuong($IdProduct);
                 // echo'<pre>';
                 // print_r($_POST);
-                // echo'</pre>';
+                // echo'</pre>';;
+                if($Quantity > $check_SoLuong_Pro['QuantityProduct'] ){
+                    $mes = "Sản phẩm hiện tại còn: ".$check_SoLuong_Pro['QuantityProduct'];
+                }else{
+                    
                 $priceQuantity = $Quantity * $PriceProduct;
                 
                 // Check xem order này có trong giỏ hàng hay chưa
@@ -133,20 +138,21 @@ if(isset($_GET['act'])&&($_GET['act'] !='' )){
 
                 //xem tài khaorn có đang xác nhạn không
                 $check_Order_DangXacNhan =loginNhanh_DangXacNhan_Account($_SESSION['user']['IdAccount']);
-                var_dump($check_Order_DangXacNhan);
+             
                 if(is_array($check_Order_DangXacNhan)){
                     $mes= 'Không Thể Order Được Tiếp. Đang Trong Quá Trình Xác Nhận Thanh Toán ';
                 }else{
                     if(is_array($check_Order_Pro)){
                         loginNhanh_Cart_Update_Price_The_SameAs($check_Order_Pro['IdOrder_Pro'],$SizeProduct,$Quantity,$PriceProduct);
+                        loginNhanh_TruSoLuong_Pro($IdProduct);
                         $mes ='Order Thành công';
                     }else{
-                        echo 'khoi';
+                        loginNhanh_TruSoLuong_Pro($IdProduct);
                         chiTietSanPham_Add_To_Order_Pro($_SESSION['user']['IdAccount'],$IdProduct,$SizeProduct,$Quantity,$priceQuantity);
                         $mes ='Order Thành Công';
                     }
                 }
-                    
+                }
                 header('location: UserController.php?act=LoadChiTietSanPham&id='.$_GET['id'].'&mes='.$mes);
                 break;
 
@@ -162,6 +168,7 @@ if(isset($_GET['act'])&&($_GET['act'] !='' )){
                 };
                 $id = $_GET['id'];
                 $pro = chiTietSanPham_LoadAll($id);
+         
                 $proSize = chiTietSanPham_LoadSizePro($id);
 
                 $proDetails = chiTietSanPham_LoadDetails($id);
