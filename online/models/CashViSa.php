@@ -11,6 +11,8 @@ function CashViSa_GetAllOrderUser(){
 
         $dataProducts = query_One($sql);
         $dataProductsDetails = $_SESSION['payNowDetails'];
+        echo "<pre>";
+        var_dump($dataProductsDetails); die();
         $idAccountUser = $_SESSION['user']["IdAccount"];
         // Gộp các mảng lại thành một mảng duy nhất
         $result = [

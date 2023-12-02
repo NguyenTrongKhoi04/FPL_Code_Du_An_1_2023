@@ -126,7 +126,7 @@ function onloadProductBest(products, next, back,  classData, numberProductPage) 
         for (let i = 0; i < productsToShow.length; i++) {
           const itemProduct = productsToShow[i];
           productSection.innerHTML += `
-            <a href='?act=LoadChiTietSanPham&id= ${itemProduct["IdProduct"]}&index=1' class='lisstBestProducts'>
+            <a href='?act=LoadChiTietSanPham&id=${itemProduct["IdProduct"]}&index=1' class='lisstBestProducts'>
                 <img src='../assets/img/admin/${itemProduct["ImageProduct"]} ' alt='img'>
                 <article class='titile'>
                   <h1> ${itemProduct["NameProduct"]} </h1>

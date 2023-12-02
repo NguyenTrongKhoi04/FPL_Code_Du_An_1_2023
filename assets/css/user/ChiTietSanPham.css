@@ -89,7 +89,7 @@ html {
   padding: 5px;
 }
 .ChiTietSanPham .ProductDetail .form form .soluong .tanggiam p {
-  font-size: 40px;
+  font-size: 1.5rem;
   color: white;
 }
 .ChiTietSanPham .ProductDetail .form form .soluong .tanggiam button {
@@ -121,7 +121,7 @@ html {
   color: #F7C427;
 }
 .ChiTietSanPham .ProductDetail .form form .soluong span {
-  font-size: 50px;
+  font-size: 1rem;
   color: red;
 }
 .ChiTietSanPham .ProductDetail .form form button {

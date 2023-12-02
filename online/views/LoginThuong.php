@@ -2,7 +2,7 @@
 <div class="Login_thuong">
     <div class="img"><img src="<?= $img_Path?>Login.png" alt=""></div>
     <div class="content_login_thuong">
-        <form action="../online/UserController.php?act=dangnhap" method="POST">
+        <form action="../online/OnlineController.php?act=dangnhap" method="POST">
             <h2>ĐĂNG NHẬP</h2>
             <p>Tài Khoản</p>
             <input type="text" placeholder="" name="tk">

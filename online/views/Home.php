@@ -40,7 +40,7 @@
                     foreach (home_GetAllProduct() as $itemProduct) {
                         // dieu_huong sang chi tiết sản phẩm
                         echo "
-                                <a href= 'UserController.php?act=LoadChiTietSanPham&id={$itemProduct['IdProduct']}&index=1' class='contentListProduct'>
+                                <a href= 'OnlineController.php?act=LoadChiTietSanPham&id={$itemProduct['IdProduct']}&index=1' class='contentListProduct'>
                                     <article class='image'>
                                     <img src='{$imgPathAdmin}{$itemProduct['ImageProduct']}' alt='img'>
                                     </article>
@@ -110,7 +110,7 @@
                     <h1>Đặt bàn</h1>
                     <p>Liên hệ với nhà hàng</p>
                 </article>
-                <form action="UserController.php?act=trangchu" method="post">
+                <form action="OnlineController.php?act=trangchu" method="post">
                     <section class="contentForm">
                         <input required type="datetime-local" name="Date">
                         <select required name="IdTable" class="time">

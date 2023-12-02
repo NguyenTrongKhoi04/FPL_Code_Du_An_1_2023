@@ -40,7 +40,7 @@ if(isset($_GET['act'])&&($_GET['act'] !='' )){
                 } else {
                     $loadHeader = 0;
                     if ($loadHeader == 0) {
-                        header('location: UserController.php');
+                        header('location: OnlineController.php');
                         include_once 'views/Home.php';
                         $loadHeader = 1;
                     }
@@ -48,7 +48,7 @@ if(isset($_GET['act'])&&($_GET['act'] !='' )){
                 break;
             case 'dangxuat':
                 session_destroy();
-                header('location: UserController.php');
+                header('location: OnlineController.php');
                 break;
         /**
             * ====================================================================================
@@ -60,7 +60,7 @@ if(isset($_GET['act'])&&($_GET['act'] !='' )){
                     $dataAccount = $_POST;
                     $alert = CreateAccount_CreateAccount($dataAccount);
                     if ($alert === "") {
-                        header("Location: UserController.php?act=VerifyAccount");
+                        header("Location: OnlineController.php?act=VerifyAccount");
                     }
                 }
                 include_once 'views/CreateAccount.php';
@@ -131,12 +131,12 @@ if(isset($_GET['act'])&&($_GET['act'] !='' )){
                     }
                     if(isset($_POST['pay_now'])){
                         $_SESSION['payNowDetails'] = $_POST;
-                        header("Location: UserController.php?act=ListBan");
+                        header("Location: OnlineController.php?act=ListBan");
     
                     }
 
                 }else{
-                    header("Location: UserController.php");
+                    header("Location: OnlineController.php");
                 }
                 include_once 'views/ChiTietSanPham.php';
                 break;
@@ -150,13 +150,13 @@ if(isset($_GET['act'])&&($_GET['act'] !='' )){
                     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         cart_UpdateCart($_POST["quantity"]);
                         $_SESSION['dataOrderCart'] = cart_GetAllCartByIdAccount($idAccountUser);
-                        header("Location: UserController.php?act=ListBan");
+                        header("Location: OnlineController.php?act=ListBan");
  
                     }
                     if (isset($_GET['Delete']) && ($_GET['Delete'] != '')) {
                         if(cart_Delete($_GET['Delete']) === null){
                             $alert = "Xóa sản phẩm thành công";
-                            header("Location: UserController.php?act=GioHang");
+                            header("Location: OnlineController.php?act=GioHang");
                         }
                     }
                     include_once 'views/Cart.php';
@@ -184,7 +184,7 @@ if(isset($_GET['act'])&&($_GET['act'] !='' )){
                     }else{
                         $alert = datBan_CheckBookingTables($_POST);
                         if($alert === true){
-                            header("Location: UserController.php?act=CashViSa");
+                            header("Location: OnlineController.php?act=CashViSa");
                         }else{
                             echo "<script>alert('$alert')</script>";
                         }
@@ -203,7 +203,7 @@ if(isset($_GET['act'])&&($_GET['act'] !='' )){
                 if($_SERVER['REQUEST_METHOD']==='POST'){ 
                     $alert = CashViSa_PushOrderUser();
                     echo "<script> alert('$alert') </script>";
-                    // header("Location: UserController.php?act=BillPayment");
+                    // header("Location: OnlineController.php?act=BillPayment");
                 }
                 include_once 'views/CashViSa.php' ;
                 break;
@@ -237,11 +237,11 @@ if(isset($_GET['act'])&&($_GET['act'] !='' )){
                     $IdComment = $_GET['IdComment'];
                     if(isset($_POST["delete"])){
                         ListComment_DeleteComment($IdComment);
-                        header("Location: UserController.php?act=ListComment");
+                        header("Location: OnlineController.php?act=ListComment");
                     }else{
                         extract($_POST);
                         ListComment_UpdateComment($IdComment, $content);
-                        header("Location: UserController.php?act=ListComment");
+                        header("Location: OnlineController.php?act=ListComment");
                         
                     }
                 }

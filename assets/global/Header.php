@@ -12,7 +12,7 @@
     <header>
         <div class="content_header">
             <div class="menu">
-                <a href="<?= $userAction ?>">
+                <a href="<?= $onlineAction ?>Home">
                     <img src="<?= $img_Path?>Logo.png" alt="">
                 </a>
                 <ul>
@@ -24,14 +24,14 @@
             </div>
             <?php if(empty($_SESSION['user'])) {?>
                 <div class="login">
-                    <button class="button_Login"><a href="<?= $userAction ?>dangnhap">Đăng nhập</a></button>
-                    <button class="button_Login"><a href="<?= $userAction ?>TaoTaiKhoan">Đăng Ký</a></button>
+                    <button class="button_Login"><a href="<?= $onlineAction ?>dangnhap">Đăng nhập</a></button>
+                    <button class="button_Login"><a href="<?= $onlineAction ?>TaoTaiKhoan">Đăng Ký</a></button>
                 </div>
             <?php }else{ ?>
                 <div class="login">
-                    <a href="UserController.php?act=billthanhtoan" class="login_success"><img src="<?= $img_Path ?>Glyph_ undefined.png" alt=""></a>
-                    <a href="UserController.php?act=GioHang" class="login_success"><img src="<?= $img_Path ?>Vector.png" alt=""></a>
-                    <a href="<?= $userAction ?>dangxuat" class="login_success"><img src="<?= $img_Path ?>out.png" alt=""></a>
+                    <a href="OnlineController.php?act=billthanhtoan" class="login_success"><img src="<?= $img_Path ?>Glyph_ undefined.png" alt=""></a>
+                    <a href="OnlineController.php?act=GioHang" class="login_success"><img src="<?= $img_Path ?>Vector.png" alt=""></a>
+                    <a href="<?= $onlineAction ?>dangxuat" class="login_success"><img src="<?= $img_Path ?>out.png" alt=""></a>
             
                         <div class="avatar">
                             <img src="<?= $img_Path ?><?=$_SESSION['user']['ImageAccounts'] ?>" alt="">

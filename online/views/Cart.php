@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="<?=$userStyle?>/Cart.css">
-<form action="UserController.php?act=GioHang" method="post" class="page" id="formCart" >
+<form action="OnlineController.php?act=GioHang" method="post" class="page" id="formCart" >
     <main>
         <section class="containerMain">
             <section class="listProduct">
@@ -23,7 +23,7 @@
                                 <td>{$valuesCart['PriceProduct']}</td>
                                 <td><input type='number' name='quantity[{$valuesCart['IdCart']}]'   min=1 max={$valuesCart['QuantityProduct']} value='{$valuesCart['QuantityCard']}'></td>
         
-                                <td> <a href='UserController.php?act=GioHang&Delete={$valuesCart['IdCart']}'><i class='ti-trash'></i></a> </td>
+                                <td> <a href='OnlineController.php?act=GioHang&Delete={$valuesCart['IdCart']}'><i class='ti-trash'></i></a> </td>
                             </tr>
                         ";
                     }

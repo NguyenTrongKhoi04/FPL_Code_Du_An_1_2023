@@ -4,7 +4,7 @@
         <div class="ProductDetail">
             <div class="img"><img src="<?= $imgPathAdmin?><?=$pro['ImageProduct']?>"  height="100%"></div>
             <div class="form">
-                <form action="UserController.php?act=LoadChiTietSanPham&id=<?= $_GET['id']?>&index=1" method="POST">
+                <form action="OnlineController.php?act=LoadChiTietSanPham&id=<?= $_GET['id']?>&index=1" method="POST">
                     <input type="hidden" name="IdProduct" value="<?=$pro['IdProduct']?>">
                     <input type="hidden" name="PriceProduct" value="<?=$pro['PriceProduct']?>">
                     <h2><?=$pro['NameProduct']?></h2>
@@ -25,7 +25,7 @@
                         </div>
                         <div class="tanggiam">
                             <p>Size&nbsp;&nbsp;</p>
-                            <select name="SizeProduct" style="font-size: 40px;">
+                            <select name="SizeProduct" style="font-size: 2rem;">
                             <?php foreach($proSize as $i) :?>
                                 <option value="<?=$i['NameSize'] ?>"><?= $i['NameSize']?></option>
                             <?php endforeach ?>
@@ -41,7 +41,7 @@
         <div class="list">
             <?php foreach($pro_LienQuan as $i) :?>
             <div class="pro">
-                <a href="<?= $userAction?>LoadChiTietSanPham&id=<?=$i['IdProduct']?>">
+                <a href="<?= $onlineAction?>LoadChiTietSanPham&id=<?=$i['IdProduct']?>">
                 <div class="img">
                     <img src="<?= $adminImg.$i['ImageProduct']?>" alt="">
                 </div>

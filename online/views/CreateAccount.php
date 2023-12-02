@@ -5,7 +5,7 @@
                 <h1>Đăng ký </h1>
             </article>
 
-            <form action="UserController.php?act=TaoTaiKhoan" method="post" class="main">
+            <form action="OnlineController.php?act=TaoTaiKhoan" method="post" class="main">
                 <article class="nameAge">
                     <article class="name">
                         <label for="">Tên *</label>
