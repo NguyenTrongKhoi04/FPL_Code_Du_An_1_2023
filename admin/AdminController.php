@@ -16,12 +16,12 @@ include_once './models/Account.php';
 include_once './models/Order.php';
 include_once './models/OrderPro.php';
 include_once './models/Comment.php';
-
 // include_once 'models/TaiKhoan.php';
 
 
-if(!empty($_SESSION['user'])){
-    // include_once 'views/LoginThuong.php';
+
+if(empty($_SESSION['user'])){
+    header('location: ../user/UserController.php');
 }else{
         if(isset($_GET['act'])&&($_GET['act'] !='' )){
         $act = $_GET['act'];
@@ -394,7 +394,7 @@ if(!empty($_SESSION['user'])){
                 break;
 
             default:
-                // include_once 'views/Home.php';
+                include_once 'views/Home.php';
                 break;
         }
 

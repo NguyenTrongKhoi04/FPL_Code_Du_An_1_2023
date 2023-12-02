@@ -71,10 +71,9 @@
             <h6 class="collapse-header">Danh mục</h6>
             <a class="collapse-item" href="<?= $adminAction ?>ListCategory">Danh mục chính</a>
             <a class="collapse-item" href="<?=$adminAction?>AddCategory">Thêm danh mục chính </a>
-            <a class="collapse-item" href="<?=$adminAction?>ListSubCategories">Danh mục phụ</a>
             <a class="collapse-item" href="<?=$adminAction?>AddSubCategories">Thêm danh mục phụ</a>
             <h6 class="collapse-header">Size</h6>
-            <a class="collapse-item" href="utilities-border.html">Size</a>
+            <a class="collapse-item" href="<?=$adminAction?>ListSize">Size</a>
             <a class="collapse-item" href="<?=$adminAction?>AddSize">Thêm size</a>
             <a class="collapse-item" href="utilities-border.html">Size Phụ</a>
             <a class="collapse-item" href="<?=$adminAction?>AddSizePro">Thêm size Phụ</a>

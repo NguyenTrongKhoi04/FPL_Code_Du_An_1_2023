@@ -7,7 +7,6 @@ include_once '../assets/global/url_Path.php';
 include_once '../assets/global/Header.php';
 include_once "../assets/global/Validate.php";
 include_once "../assets/global/SendGmail.php";
-
 include_once 'models/Login.php';
 include_once 'models/Home.php';
 include_once 'models/ProductPortfolio.php';
