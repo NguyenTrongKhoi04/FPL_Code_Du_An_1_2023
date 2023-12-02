@@ -251,6 +251,7 @@
                                             <th>Danh Mục Của Sản Phẩm</th>
                                             <th>Ảnh Sản Phẩm</th>
                                             <th>Mô Tả</th>
+                                            <th>Số Lượng Sản Phẩm</th>
                                             <th>Trạng Thái Sản Phẩm</th>
                                             <th>Thời Gian Thêm - Chỉnh Sửa</th>
                                             <th>Thao Tác</th>
@@ -280,22 +281,33 @@
                                                 <td>
                                                     <?php foreach($listProDetails as $details) {?>   
                                                         <?php if($details['IdDetails']==$i['IdDetails']){ ?>
-                                                            <a href=""><?= $details['ProductDetails'] ?></a>
+                                                            <a href="<?= $adminAction ?>UpdateProduct&id=<?= $i['IdProduct'] ?>">Xem Chi Tiết</a>
                                                             <?php } ?>
                                                     <?php } ?>
                                                 </td>
                                                 
                                                 <td>
-                                                    <?php if ($i['StatusProduct'] == 1) { ?>
+                                                    <?php if ($i['QuantityProduct'] == 1) { ?>
                                                         Đã hết
                                                     <?php } else { ?>
                                                         Còn <?= $i['QuantityProduct'] ?> Sản Phẩm
                                                     <?php } ?>
                                                 </td>
+                                                <td>
+                                                <?php if($i['StatusProduct']==1){?>
+                                                        <p style="color: red;">Ngừng bán</p>
+                                                    <?php }else{?>
+                                                        <p>Đang Bán</p>
+                                                        <?php } ?>
+                                                </td>
                                                 <td><?= $i['DateEditProduct'] ?></td>
                                                 <td>
                                                     <a href="<?= $adminAction ?>UpdateProduct&id=<?= $i['IdProduct'] ?>"><input type="button" value="Sửa"></a>
-                                                    <a onclick="return confirm('Bạn Có Muốn Xóa Không')" href="<?= $adminAction ?>DeleteProduct&id=<?= $i['IdProduct'] ?>"><input type="button" value="Xóa"></a>
+                                                    <?php if($i['StatusProduct']==1) {?>
+                                                        <a href="<?= $adminAction ?>RestoreProduct&id=<?= $i['IdProduct'] ?>"><input type="button" value="Tiếp tục bán"></a>
+                                                        <?php }else{ ?>
+                                                        <a onclick="return confirm('Bạn Có Muốn Xóa Không')" href="<?= $adminAction ?>DeleteProduct&id=<?= $i['IdProduct'] ?>"><input type="button" value="Ngừng Bán"></a>
+                                                        <?php } ?>
                                                 </td>
                                                 <td><input type="checkbox" name="" value="<?= $i['IdProduct'] ?>"></td>
                                             </tr>

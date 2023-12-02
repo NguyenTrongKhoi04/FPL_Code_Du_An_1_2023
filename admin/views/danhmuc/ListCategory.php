@@ -270,25 +270,32 @@
                                         foreach(getListCategory() as $values){
 
                                             $status = $values["StatusCategory"] ===  0 ? "Hoạt động bình thường" : "Ngừng hoạt động";
-
                                             
-                                            echo "
+                                        ?>
                                             <tr>
-                                                <td>{$values['NameCategory']}</td>       
-                                                <td>{$status}</td>
+                                                <td><?=$values['NameCategory']?></td>       
+                                                <td><?=$status?></td>
                                 
                                                 <td>
-                                                    <a href='AdminController.php?act=UpdateCategory&IdCategory={$values['IdCategory']}'>
+                                                    <a href='AdminController.php?act=UpdateCategory&IdCategory=<?=$values['IdCategory']?>'>
                                                         <input type='button' value='Sửa'> 
                                                     </a>
-                                                    <a href='AdminController.php?act=ListCategory&delete={$values['IdCategory']}'>
+                                         
+                                                    
+                                                    <?php if($values["StatusCategory"]===1){  ?>
+                                                        <a href='AdminController.php?act=ListCategory&restore=<?=$values['IdCategory']?>'>
+                                                        <input type='button' value='Khôi Phục'>
+                                                    </a>    
+                                                        <?php }else{?>
+                                                            <a href='AdminController.php?act=ListCategory&delete=<?=$values['IdCategory']?>'>
                                                         <input type='button' value='Xóa'>
-                                                    </a>                                                                                                               
+                                                    </a>    
+                                                        <?php }?>
                                                 </td>   
                                         </tr>                                                
-                                            ";
-                                        }
-                                    ?> 
+                                          
+                                        
+                                    <?php } ?> 
                                     </tbody>
                                 </table>
                             </div>

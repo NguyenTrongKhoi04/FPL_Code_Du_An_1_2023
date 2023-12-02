@@ -269,6 +269,7 @@
                                     <?php 
                                     if(isset($_GET["IdAccount"]) && !empty($_GET["IdAccount"])){
                                         $dataAccount = getUAcount($_GET['IdAccount']);
+                                
                                         extract($dataAccount['0']);
                                       ?>
                                         <form action="AdminController.php?act=UpdateAccount&IdAccount=<?= $IdAccount?>" method="post" enctype="multipart/form-data">
@@ -288,11 +289,19 @@
                                                 <td>Giới tính</td>
                                                 <td>
                                                     <select name="Gender" id="">
-                                                          
-                                                        <option value="0">Giới tính Nam</option>
-                                                        <option value="1">Giới tính Nữ</option>
-                                                        <option value="2">Giới tính Khác</option>
-
+                                                        <?php if($Gender == 0){ ?>
+                                                        <option value="0" selected>Nam</option>
+                                                        <option value="1">Nữ</option>
+                                                        <option value="2">Khác</option>
+                                                        <?php }else if($Gender == 1){ ?>
+                                                        <option value="0" >Nam</option>
+                                                        <option value="1">Nữ</option>
+                                                        <option value="2" selected>Khác</option>
+                                                            <?php }else{ ?>
+                                                                <option value="0" >Nam</option>
+                                                        <option value="1">Nữ</option>
+                                                        <option value="2" selected>Khác</option>
+                                                            <?php } ?>
                                                     </select>
                                                 </td>
                                                 
@@ -316,8 +325,13 @@
                                                 <td>Trạng thái tài khoản</td>
                                                 <td>
                                                     <select name="StatusAccount" id="">                                                          
-                                                            <option value="0">Hoạt động bình thường</option>
+                                                        <?php if($StatusAccount == 0){ ?>
+                                                            <option value="0" selected>Hoạt động bình thường</option>
                                                             <option value="1">Đã xóa</option>
+                                                        <?php } else {?>
+                                                            <option value="0">Hoạt động bình thường</option>
+                                                            <option value="1" selected>Đã xóa</option>
+                                                            <?php } ?>
                                                     </select>
                                                 </td>
                                                 
@@ -326,18 +340,28 @@
                                                 <td>Role</td>
                                                 <td>
                                                     <select name="Role" id="">
-                                                            
-                                                        <option value="0">Khách Hàng</option>
-                                                        <option value="1">Chủ quán</option>
-                                                        <option value="2">Quản lý</option>
-                                                        <option value="3">Nhân viên phục vụ bàn</option>
-                                                        <option value="4">Nhân viên thu ngân</option>
+                                                    <?php if($Role == 0){ ?>
+                                                            <option value="0" selected>Khách hàng</option>
+                                                            <option value="1">admin</option>
+                                                            <option value="3">nhân viên</option>
+                                                        <?php } else if($StatusAccount == 1) {?>
+                                                            <option value="0" >Khách hàng</option>
+                                                            <option value="1" selected>admin</option>
+                                                            <option value="3">nhân viên</option>
+                                                            <?php }else{ ?>
+                                                                <option value="0" >Khách hàng</option>
+                                                            <option value="1">admin</option>
+                                                            <option value="3" selected>nhân viên</option>
+                                                                <?php } ?>
+                                                       
                                                     </select>
                                                 </td>
                                                 
                                             </tr>
         
-                                            <td><input  name = "submit" type="submit" value="thêm"></td>                              
+                                            <td><input  name = "submit" type="submit" value="Update">
+                                            <a href="AdminController.php?act=ListAccount"><input type="button" value="Danh Sách Tài Khoản"></a>
+                                            </td>                              
                                     </form>          
                                       <?php  
                                     }                       

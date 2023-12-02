@@ -26,15 +26,29 @@ if(empty($_SESSION['user'])){
         if(isset($_GET['act'])&&($_GET['act'] !='' )){
         $act = $_GET['act'];
         switch($act){
-            /**
+        /**
              * ====================================================================================
              *                                     SIZE 
              * ====================================================================================
              */
+            case 'ListSize':
+                if(isset($_GET['delete'])&&($_GET['delete'] !='' )){
+                    deleteSize($_GET['delete']);
+                } 
+                include_once "views/size/listSize.php";
+                break;
+            case 'UpdateSize':
+                if($_SERVER['REQUEST_METHOD'] === 'POST' ){
+                    $data = $_POST;
+                    
+                    $IdSize = $_GET["IdSize"];  
+                                   
+                    updateSize($data, $IdSize);
+                } 
+                include_once "views/size/updateSize.php";
+                break;
             case 'AddSize':
                 if($_SERVER['REQUEST_METHOD'] === "POST"){
-
-
                     $data = $_POST;
                     extract($data);
                     $checkSize = check_Size($NameSize);
@@ -47,7 +61,15 @@ if(empty($_SESSION['user'])){
                     }}
                     include_once "views/size/addSize.php";
                     break;
-
+        /**
+             * ====================================================================================
+             *                                     TABLES 
+             * ====================================================================================
+             */
+            case 'ListBan':
+                        $listBan = select_All('tables');
+                        include_once "views/ban/ListBan.php";
+                        break;
             case 'UpdateBan':
                 $id = $_GET['id'];
                 $ban_One = select_One('tables', null, "IdTables = $id");
@@ -61,7 +83,7 @@ if(empty($_SESSION['user'])){
 
         /**
              * ====================================================================================
-             *                                 PRODUCT
+             *                                    PRODUCT
              * ====================================================================================
              */
             case 'ListProduct':
@@ -83,24 +105,41 @@ if(empty($_SESSION['user'])){
                     
                 }
                 include_once "views/size/addSize.php";
+                break;
+            case 'UpdateProduct':
+                $id = $_GET['id'];
+                $oneProduct= loadOne_Product($id);
+                $listProCategory = loadAll_Product_Category();
+                extract($oneProduct);
+                $oneProDetails = loadOne_Product_Details($IdDetails);
+                extract($oneProDetails);
 
+                if(isset($_POST['UpdateProduct'])){
+               
+                    extract($_POST);
+                    extract($_FILES);
+
+                    $imgNameProduct = ($imgProduct['size'] != 0) ? $imgProduct['name'] : $ImageProduct ;
+    
+                    if($imgProduct['size'] != 0){
+                        $img=$imgProduct['name'];
+                        move_uploaded_file($imgProduct['tmp_name'], $adminImg . $img);
+                    }
+
+                    update_Product($id,$NameProduct,$QuantityProduct,$PriceProduct,$imgNameProduct, $IdCategory,$ProductDetails, $ProductDescription);
+                }
+                include_once 'views/product/UpdateProduct.php';
                 break;
-            case 'ListSize':
-                if(isset($_GET['delete'])&&($_GET['delete'] !='' )){
-                    deleteSize($_GET['delete']);
-                } 
-                include_once "views/size/listSize.php";
+            case 'DeleteProduct':
+                $id = $_GET['id'];
+                delete_Product($id);
+                header('location: AdminController.php?act=ListProduct');
                 break;
-            case 'UpdateSize':
-                if($_SERVER['REQUEST_METHOD'] === 'POST' ){
-                    $data = $_POST;
-                    
-                    $IdSize = $_GET["IdSize"];  
-                                   
-                    updateSize($data, $IdSize);
-                } 
-                include_once "views/size/updateSize.php";
-                break;
+            case 'RestoreProduct':
+                    $id = $_GET['id'];
+                    restore_Product($id);
+                    header('location: AdminController.php?act=ListProduct');
+                    break;
             /**
              * ====================================================================================
              *                                   CATEGORY
@@ -127,14 +166,17 @@ if(empty($_SESSION['user'])){
                 if(isset($_GET['delete'])&&($_GET['delete'] !='' )){
                     deleteCategory($_GET['delete']);
                 } 
+                if(isset($_GET['restore'])&&($_GET['restore'] !='' )){
+                    restoreCategory($_GET['restore']);
+                } 
                 include_once "views/danhmuc/ListCategory.php";
                 break;
             case 'UpdateCategory':
                 if($_SERVER['REQUEST_METHOD'] === 'POST' ){
                     $data = $_POST;
-                    var_dump($data);
+               
                     $IdCategory = $_GET["IdCategory"];
-                    var_export($IdCategory);              
+                    
                     updateCategory($data, $IdCategory);
                 } 
                 include_once "views/danhmuc/UpdateCategory.php";
@@ -236,17 +278,19 @@ if(empty($_SESSION['user'])){
                 break;
             case 'UpdateAccount':
                 if($_SERVER['REQUEST_METHOD'] === "POST"){
+                    $IdAccount = $_GET['IdAccount'];
+                    $dataAccount = select_One('account','*',"IdAccount = $IdAccount") ;
                     extract($_POST);
                     extract($_FILES);
 
-                    $imgNameProduct = ($imgProduct['size'] != 0) ? $imgProduct['name'] : $ImageProduct ;
+                    $img = ($ImageAccounts['size'] != 0) ? $ImageAccounts['name'] : $dataAccount['ImageAccounts'] ;
     
-                    if($imgProduct['size'] != 0){
-                        $img=$imgProduct['name'];
-                        move_uploaded_file($imgProduct['tmp_name'], $adminImg . $img);
+                    if($ImageAccounts['size'] != 0){
+                        $img=$ImageAccounts['name'];
+                        move_uploaded_file($ImageAccounts['tmp_name'], $adminImg . $img);
                     }
-
-                    update_Product($id,$NameProduct,$QuantityProduct,$PriceProduct,$imgNameProduct, $IdCategory,$ProductDetails, $ProductDescription);
+                    updateAccount($IdAccount, $NameAccount, $Gmail, $Gender , $Password, $img, $StatusAccount,$Role);
+                   
 
                 }
                 include_once "views/account/UpdateAccount.php";

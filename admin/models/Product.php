@@ -46,7 +46,11 @@ function update_Product($id,$NameProduct,$QuantityProduct,$PriceProduct,$ImagePr
 }
 
 function delete_Product($id){
-    $sql ="DELETE FROM product WHERE IdProduct = '$id'";
+    $sql ="UPDATE product SET StatusProduct = 1 WHERE IdProduct = $id";
     return pdo_Execute($sql);
 }
 
+function restore_Product($id){
+    $sql ="UPDATE product SET StatusProduct = 0 WHERE IdProduct = $id";
+    return pdo_Execute($sql);
+}

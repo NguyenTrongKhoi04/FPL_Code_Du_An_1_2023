@@ -20,9 +20,10 @@ function getListSize(){
 }
 
 function deleteSize($IdSize){
-    
-    $sql = "delete from size where IdSize = $IdSize";
+    $sql = "DELETE FROM size_pro WHERE IdSize = $IdSize";
+    pdo_Execute($sql);
 
+    $sql = "delete from size where IdSize = $IdSize";
     return pdo_Execute($sql);
 }
 

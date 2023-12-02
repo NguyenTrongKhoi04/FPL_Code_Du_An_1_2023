@@ -25,7 +25,16 @@ function getListCategory(){
 }
 
 function deleteCategory($idcategory){
+    $sql = "UPDATE product SET StatusProduct= 1 WHERE IdCategory = $idcategory ";
+    pdo_Execute($sql);
 $sql = "update category set StatusCategory = 1 where IdCategory = $idcategory";
+return pdo_Execute($sql);
+}
+
+function restoreCategory($idcategory){
+    $sql = "UPDATE product SET StatusProduct= 0 WHERE IdCategory = $idcategory ";
+    pdo_Execute($sql);
+$sql = "update category set StatusCategory = 0 where IdCategory = $idcategory";
 return pdo_Execute($sql);
 }
 
