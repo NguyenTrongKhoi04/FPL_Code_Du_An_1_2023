@@ -186,28 +186,47 @@ if(empty($_SESSION['user'])){
              *                                   SIZEPRO
              * ====================================================================================
              */
+            case 'DeleteSizePro':
+                $id = $_GET['id'];
+                $idSizePro = $_GET['idSizePro'];
+                Delete_SizePro($idSizePro);
+                header("location: AdminController.php?act=UpdateSizePro&mes=$mes&id=".$_GET['id']);
+                break;
             case 'AddSizePro':
                 if($_SERVER['REQUEST_METHOD'] === "POST"){
-
-                    $data = $_POST;
-                    extract($data);
+                    var_dump($_POST);
+                    extract($_POST);
                     
-                    $checkSizePro = check_SizePro($IdProduct,$IdSize,$Price);
+                    $checkSizePro = check_SizePro($IdProduct,$addSizePro_IdSize,$addSizePro_Price);
+                    if(!is_array($checkSizePro)){
+                        extract($_POST);
+                        extract($_FILES);
+                        echo '<pre>';
+                        print_r($_POST);
+                        echo '</pre>';
+                        var_dump($addSizePro_Img);
+                        $img = ($addSizePro_Img['size'] != 0) ? $addSizePro_Img['name'] : '' ;
+                        if($addSizePro_Img['size'] != 0){
+                            $img=$addSizePro_Img['name'];
+                            move_uploaded_file($addSizePro_Img['tmp_name'], $adminImg . $img);
+                            pushSizePro($IdProduct,$addSizePro_IdSize,$addSizePro_Price,$img);
+                            echo'thành công';
+                        }else{
+                            $mes = 'Bắt buộc phải có ảnh';
+                        }
+                        
+                    }else{
 
-                    if(is_array($checkSizePro)){
-                        $mes = 'Dữ liệu này đã tồn tại mời chọn lại ';
+                        $mes = 'Dữ Liệu Đã Tồn Tại';
                     }
-                    else{
-                            pushSizePro($data);
-                            $mes = 'Thêm thành công ';
-                    }
-
-
-                    
+                    header("location: AdminController.php?act=UpdateSizePro&mes=$mes&id=".$_GET['id']);
                 }
-                include_once "views/sizepro/AddSizePro.php";
                 break;
-            break;
+            case 'OneSizePro':
+                $id = $_GET['id'] ;
+                getSizePro($id);
+                include_once "views/sizepro/UpdateSizePro.php";
+                break;
             case 'ListSizePro':
                 if(isset($_GET['delete'])&&($_GET['delete'] !='' )){
                     
@@ -216,18 +235,18 @@ if(empty($_SESSION['user'])){
                 include_once "views/sizepro/ListSizePro.php";
                 break;
             case 'UpdateSizePro':
-                if($_SERVER['REQUEST_METHOD'] === 'POST' ){
-                    $data = $_POST;
-                    
-                    if(isset($_GET["IdSizePro"])) {
-                        $IdSizePro = $_GET["IdSizePro"];   
-                    }else{
-                        $IdSizePro = $data['IdSizePro'];
-                    }
+                $arr_Data=[];
+                $id = $_GET['id'];
+                $pro = loadAll_Product();
+                $size = getListSize();
+                $name_Pro = loadOne_Product($id);
+            $pro_Size_Price_Img =  getOne_Pro($id);
 
-                    updateSizePro($data, $IdSizePro);
-                } 
-                include_once "views/sizepro/UpdateSizePro.php";
+            // thêm size_pro mới
+            if(isset($_POST['add_New_SizePro'])){
+                echo'khoi';
+            }
+           include_once "views/sizepro/UpdateSizePro.php";
                 break;
             /**
              * ====================================================================================

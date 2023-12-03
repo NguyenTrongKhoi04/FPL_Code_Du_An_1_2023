@@ -316,6 +316,8 @@
                                             <tr>
                                                 <td>Ảnh</td>
                                                 <td>
+                                                    <img src="<?= $adminImg.$ImageAccounts?>" width="100px" alt=""><br>
+                                                    <br>
                                                     <input type="file" name = "ImageAccounts" value="<?= $ImageAccounts ?>">
                                                 </td>                                
                                             </tr>
@@ -327,10 +329,10 @@
                                                     <select name="StatusAccount" id="">                                                          
                                                         <?php if($StatusAccount == 0){ ?>
                                                             <option value="0" selected>Hoạt động bình thường</option>
-                                                            <option value="1">Đã xóa</option>
+                                                            <option value="1">Ngưng hoạt động </option>
                                                         <?php } else {?>
                                                             <option value="0">Hoạt động bình thường</option>
-                                                            <option value="1" selected>Đã xóa</option>
+                                                            <option value="1" selected>Ngưng hoạt động</option>
                                                             <?php } ?>
                                                     </select>
                                                 </td>
@@ -344,7 +346,7 @@
                                                             <option value="0" selected>Khách hàng</option>
                                                             <option value="1">admin</option>
                                                             <option value="3">nhân viên</option>
-                                                        <?php } else if($StatusAccount == 1) {?>
+                                                        <?php } else if($Role == 1) {?>
                                                             <option value="0" >Khách hàng</option>
                                                             <option value="1" selected>admin</option>
                                                             <option value="3">nhân viên</option>

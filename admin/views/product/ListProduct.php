@@ -249,7 +249,7 @@
                                             <th>Số Lượng</th>
                                             <th>Giá Tiền</th>
                                             <th>Danh Mục Của Sản Phẩm</th>
-                                            <th>Ảnh Sản Phẩm</th>
+                                            <th>Quản Lý Giá, Ảnh Của Từng Size </th>
                                             <th>Mô Tả</th>
                                             <th>Số Lượng Sản Phẩm</th>
                                             <th>Trạng Thái Sản Phẩm</th>
@@ -271,11 +271,8 @@
                                                         <?php if($cate['IdCategory']==$i['IdCategory']){echo $cate['NameCategory'];} ?>
                                                     <?php } ?>
                                                 </td>
-                                                <td><?php if($i['ImageProduct']==''){?>
-                                                        <p style="color: red;">Không có ảnh </p>
-                                                    <?php }else{?>
-                                                        <img src="<?= $adminImg . $i['ImageProduct'] ?>" width="50%">
-                                                        <?php } ?>
+                                                <td>
+                                                    <a href="<?= $adminAction?>UpdateSizePro&id=<?= $i['IdProduct']?>">xem chi tiết</a>
                                                 </td>
 
                                                 <td>
