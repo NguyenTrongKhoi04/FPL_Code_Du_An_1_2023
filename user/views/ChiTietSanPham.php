@@ -1,9 +1,11 @@
 
+
    <div class="ChiTietSanPham">
         <link rel="stylesheet" href="../assets/css/user/ChiTietSanPham.css">
         <div class="ProductDetail">
-            <div class="img"><img src="<?= $adminImg ?><?= $pro['ImageProduct'] ?>" height="100%"></div>
+            <div class="img"><img id="sizeImage" src="<?= $adminImg?>" height="100%"></div>
             <div class="form">
+          
                 <?php if ($_SESSION['user']['Role'] == 3) { ?>
                         <form action="<?= $userAction ?>LoginNhanh_Add_To_CartAndOrder&id=<?= $pro['IdProduct'] ?>" method="POST">
                     <?php } else { ?>
@@ -31,9 +33,10 @@
                         <div class="tanggiam">
                             <p>Size&nbsp;&nbsp;</p>
                             <select name="SizeProduct" style="font-size: 40px;" id="selectSize">
-                                <?php foreach ($proSize as $i) : ?>
-                                    <option value="<?= $i['NameSize'] ?>" data-price="<?= $i['PriceProduct']?>" ><?= $i['NameSize'] ?></option>
+                            <?php foreach ($proSize as $i) : ?>
+                                    <option value="<?= $i['NameSize'] ?>" data-image="<?= $i['ImgSizePro'] ?>" data-price="<?= $i['Price']?>" ><?= $i['NameSize'] ?></option>
                                 <?php endforeach ?>
+                                
                             </select>
                         </div>
 
@@ -106,12 +109,18 @@
     <script>
         // Chọn giá trị mặc định là giá trị của option đầu tiên
         var defaultPrice = <?= reset($proSize)['Price'] ?>;
+        var sizeImage = document.getElementById('sizeImage');
+        var defaultImage = '<?= $adminImg.reset($proSize)['ImgSizePro'] ?>';
         document.getElementById('displayPrice').innerText = defaultPrice;
-
+        
+        sizeImage.src = defaultImage;
         // Xử lý sự kiện khi thay đổi option
         document.getElementById('selectSize').addEventListener('change', function() {
             var selectedOption = this.options[this.selectedIndex];
             var price = selectedOption.getAttribute('data-price');
+
             document.getElementById('displayPrice').innerText = price;
+            sizeImage.src = '<?= $adminImg ?>' +selectedOption.getAttribute('data-image');
+
         });
     </script>

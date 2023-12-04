@@ -89,7 +89,33 @@ if(empty($_SESSION['user'])){
                 }
                 include_once "views/ban/UpdateBan.php";
                 break;
-
+            case 'TrangThaiBanDay':
+                $id =$_GET['id'];
+                updateBan_Day($id);
+                header("location:" . $adminAction . "ListBan");
+                break;
+            case 'TrangThaiBanTrong':
+                $id =$_GET['id'];
+                updateBan_Trong($id);
+                header("location:" . $adminAction . "ListBan");
+                break;
+            case 'XoaBan':
+                $id =$_GET['id'];
+                khong_Dung_Ban($id);
+                header("location:" . $adminAction . "ListBan");
+                break;
+            case 'AddBan':
+                if($_SERVER['REQUEST_METHOD']==='POST'){
+                    extract($_POST);
+                    if(empty(check_Ban($NumberTable))){
+                        add_Ban($_POST);
+                        header("location:" . $adminAction . "ListBan");
+                    }else{
+                        echo "<script>alert('Số bàn này đã tồn tại')</script>";
+                    }
+                }
+                include_once "views/ban/AddBan.php";
+                break;
         /**
              * ====================================================================================
              *                                    PRODUCT

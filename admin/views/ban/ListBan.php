@@ -244,6 +244,7 @@
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
+                                       
                                         <tr>
                                             <th>Số Bàn</th>
                                             <th>Số Người Ngồi</th>
@@ -256,16 +257,24 @@
 
                                             <tr>
                                                 <td><?= $i['NumberTable'] ?></td>
-                                                <td><?= $i['NumberPeople'] ?></td>
+                                                <td><?= $i['DefaultNumberPeople'] ?></td>
                                                 <td>
                                                     <?php if ($i['StatusTable'] == 1) { ?>
-                                                        Đang sử dụng
-                                                    <?php } else { ?>
+                                                        Đầy
+                                                    <?php } else if($i['StatusTable'] == 3) { ?>
+                                                        Không sử dụng nữa
+                                                    <?php }else{ ?>
                                                         Trống
-                                                    <?php } ?>
+                                                        <?php } ?>
                                                 </td>
                                                 <td>
-                                                    <a href="<?= $adminAction ?>UpdateBan&id=<?= $i['IdTables'] ?>"><input type="button" value="Sửa"></a>
+                                                    <a href="<?= $adminAction ?>XoaBan&id=<?= $i['IdTables'] ?>"><input type="button" value="Xóa"></a>
+                                                  
+                                                    <?php if ($i['StatusTable'] == 1) { ?>
+                                                        <a href="<?= $adminAction ?>TrangThaiBanTrong&id=<?= $i['IdTables'] ?>"><input type="button" value="Set trạng thái trống"></a>
+                                                    <?php } else { ?>
+                                                        <a href="<?= $adminAction ?>TrangThaiBanDay&id=<?= $i['IdTables'] ?>"><input type="button" value="Set trạng thái đầy "></a>
+                                                    <?php } ?>
                                                 </td>
                                             </tr>
                                         <?php endforeach ?>

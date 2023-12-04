@@ -60,7 +60,7 @@
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
         aria-expanded="true" aria-controls="collapseUtilities">
         <i class="fas fa-fw fa-wrench"></i>
-        <span>Quản lý đồ ăn</span>
+        <span>Quản lý </span>
     </a>
     <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
     data-parent="#accordionSidebar">
@@ -80,25 +80,16 @@
             <h6 class="collapse-header">Pro-Details</h6>
             <a class="collapse-item" href="utilities-animation.html">Details</a>
             <a class="collapse-item" href="utilities-other.html">Thêm Details</a>
+            <h6 class="collapse-header">Orders</h6>
+            <a class="collapse-item" href="<?=$adminAction?>ListOrders">Danh sách Order</a>
+            <a class="collapse-item" href="<?=$adminAction?>ListOrderPro">Danh Sách Order Pro</a>
+            <h6 class="collapse-header">Danh Sách Bàn</h6>
+            <a class="collapse-item" href="<?=$adminAction?>ListBan">Danh Sách Bàn</a>
+            <a class="collapse-item" href="<?=$adminAction?>AddBan">Thêm bàn</a>
         </div>
     </div>
 </li>
 
-<li class="nav-item">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-        aria-expanded="true" aria-controls="collapseUtilities">
-        <i class="fas fa-fw fa-wrench"></i>
-        <span>Bàn ăn</span>
-    </a>
-    <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-        data-parent="#accordionSidebar">
-        <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Orders</h6>
-            <a class="collapse-item" href="<?=$adminAction?>ListOrders">Danh sách Order</a>
-            <a class="collapse-item" href="<?=$adminAction?>ListOrderPro">Danh Sách Order Pro</a>
-            </div>
-    </div>
-</li>
 
 
 <!-- Divider -->
