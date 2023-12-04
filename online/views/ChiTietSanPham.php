@@ -1,13 +1,22 @@
 
-<div class="ChiTietSanPham">
+   <div class="ChiTietSanPham">
         <link rel="stylesheet" href="../assets/css/user/ChiTietSanPham.css">
         <div class="ProductDetail">
-            <div class="img"><img src="<?= $imgPathAdmin?><?=$pro['ImageProduct']?>"  height="100%"></div>
+            <div class="img"><img id="sizeImage" src="<?= $adminImg?>" height="100%"></div>
             <div class="form">
-                <form action="OnlineController.php?act=LoadChiTietSanPham&id=<?= $_GET['id']?>&index=1" method="POST">
+
+          
+                <?php if ($_SESSION['user']['Role'] == 3) { ?>
+                        <form action="<?= $userAction ?>LoginNhanh_Add_To_CartAndOrder&id=<?= $pro['IdProduct'] ?>" method="POST">
+                    <?php } else { ?>
+                        <form action="OnlineController.php?act=LoadChiTietSanPham&id=<?= $_GET['id']?>&index=1" method="POST">
                     <input type="hidden" name="IdProduct" value="<?=$pro['IdProduct']?>">
                     <input type="hidden" name="PriceProduct" value="<?=$pro['PriceProduct']?>">
                     <h2><?=$pro['NameProduct']?></h2>
+                    <?php } ?>
+                    <input type="hidden" name="IdProduct" value="<?= $pro['IdProduct'] ?>">
+                    <input type="hidden" name="PriceProduct" value="<?= $pro['PriceProduct'] ?>">
+>>>>>>> a5f162332087a2c9105d698a9cb03e3becbfe67b
                     <div class="hr"></div>
                     <ul>
                             <!-- <del>40.000</del> -->
@@ -25,10 +34,12 @@
                         </div>
                         <div class="tanggiam">
                             <p>Size&nbsp;&nbsp;</p>
-                            <select name="SizeProduct" style="font-size: 2rem;">
-                            <?php foreach($proSize as $i) :?>
-                                <option value="<?=$i['NameSize'] ?>"><?= $i['NameSize']?></option>
-                            <?php endforeach ?>
+
+                            <select name="SizeProduct" style="font-size: 40px;" id="selectSize">
+                            <?php foreach ($proSize as $i) : ?>
+                                    <option value="<?= $i['NameSize'] ?>" data-image="<?= $i['ImgSizePro'] ?>" data-price="<?= $i['Price']?>" ><?= $i['NameSize'] ?></option>
+                                <?php endforeach ?>
+                                
                             </select>
                         </div>
                         
@@ -39,11 +50,14 @@
             </div>
         </div>
         <div class="list">
-            <?php foreach($pro_LienQuan as $i) :?>
-            <div class="pro">
-                <a href="<?= $onlineAction?>LoadChiTietSanPham&id=<?=$i['IdProduct']?>">
-                <div class="img">
-                    <img src="<?= $adminImg.$i['ImageProduct']?>" alt="">
+            <?php foreach ($pro_LienQuan as $i) : ?>
+                <div class="pro">
+                    <a href="OnlineController.php?act=LoadChiTietSanPham&id=<?= $i['IdProduct'] ?>">
+                        <div class="img">
+                            <img src="<?= $adminImg . $i['ImageProduct'] ?>" alt="">
+                        </div>
+                        <p style="color: white;"><?= $i['NameProduct'] ?></p>
+                    </a>
                 </div>
                 <p style="color: white;"><?= $i['NameProduct']?></p>
                 </a>
@@ -75,11 +89,11 @@
                 
             </div>
             <div class="tang_giam">
-                <button id="giam"><</button>
-                <div class="position-display" id="displaComment">
-                    <?= $_GET["index"] ?> / <?= $dataComment["TotalRecords"] ?>
-                </div>
-                <button id="tang">></button>
+
+                <!-- <button name="tang">
+                   
+                        <div class="position-display"><?= $totalContents ?> / <?= $totalContents ?></div>
+                        <button name="giam">></button> -->
             </div>
         </div>
     </div>
@@ -89,3 +103,22 @@
     }
     ?>
     <script src="../assets/js/ChiTietSanPham.js"></script>
+    <script>
+        // Chọn giá trị mặc định là giá trị của option đầu tiên
+        var defaultPrice = <?= reset($proSize)['Price'] ?>;
+        var sizeImage = document.getElementById('sizeImage');
+        var defaultImage = '<?= $adminImg.reset($proSize)['ImgSizePro'] ?>';
+        document.getElementById('displayPrice').innerText = defaultPrice;
+        
+        sizeImage.src = defaultImage;
+        // Xử lý sự kiện khi thay đổi option
+        document.getElementById('selectSize').addEventListener('change', function() {
+            var selectedOption = this.options[this.selectedIndex];
+            var price = selectedOption.getAttribute('data-price');
+
+            document.getElementById('displayPrice').innerText = price;
+            sizeImage.src = '<?= $adminImg ?>' +selectedOption.getAttribute('data-image');
+
+        });
+    </script>
+>>>>>>> a5f162332087a2c9105d698a9cb03e3becbfe67b
