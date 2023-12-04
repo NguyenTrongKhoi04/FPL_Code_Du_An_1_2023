@@ -263,7 +263,7 @@
 
                                                     </td>
                                                     <td>
-                                                        <input value="<?= $i['Price'] ?>" type="number" name="Price" id="" min="0">
+                                                    <?= $i['Price'] ?>
                                                     </td>
                                                     <td>
                                                         <?php if($i['ImgSizePro'] !=NULL){ ?>

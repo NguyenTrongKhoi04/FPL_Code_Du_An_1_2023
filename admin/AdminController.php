@@ -27,6 +27,15 @@ if(empty($_SESSION['user'])){
         $act = $_GET['act'];
         switch($act){
         /**
+            * ====================================================================================
+            *                                 LOGIN - LOGOUT
+            * ====================================================================================
+            */
+            case 'dangxuat':
+                session_destroy();
+                header('location: AdminController.php');
+                break;
+        /**
              * ====================================================================================
              *                                     SIZE 
              * ====================================================================================
@@ -92,20 +101,21 @@ if(empty($_SESSION['user'])){
                 $listProDetails = loadAll_Product_Details();
                 include_once 'views/product/ListProduct.php';
                 break;
-            case 'AddProduct':
-                $listProCategory = loadAll_Product_Category();
-                if(isset($_POST['AddProduct'])){
-                    extract($_POST);
-                    extract($_FILES);
-                    if($ImageProduct['name'] != ''){
-                        $img=$ImageProduct['name'];
-                        move_uploaded_file($ImageProduct['tmp_name'], $adminImg . $img);
+                case 'AddProduct':
+                    $listProCategory = loadAll_Product_Category();
+                    if(isset($_POST['AddProduct'])){
+                        extract($_POST);
+                        extract($_FILES);
+                        if($ImageProduct['name'] != ''){
+                            $img=$ImageProduct['name'];
+                            move_uploaded_file($ImageProduct['tmp_name'], $adminImg . $img);
+                        }
+    
+                        add_Product($NameProduct,$QuantityProduct,$PriceProduct,$ImageProduct['name'], $IdCategory,$ProductDetails, $ProductDescription);
+    
                     }
-
-                    
-                }
-                include_once "views/size/addSize.php";
-                break;
+                    include_once 'views/product/AddProduct.php';
+                    break;
             case 'UpdateProduct':
                 $id = $_GET['id'];
                 $oneProduct= loadOne_Product($id);
@@ -115,13 +125,13 @@ if(empty($_SESSION['user'])){
                 extract($oneProDetails);
 
                 if(isset($_POST['UpdateProduct'])){
-               
+                  
                     extract($_POST);
                     extract($_FILES);
 
-                    $imgNameProduct = ($imgProduct['size'] != 0) ? $imgProduct['name'] : $ImageProduct ;
+                    $imgNameProduct = (isset($imgProduct)) ? $imgProduct['name'] : $ImageProduct ;
     
-                    if($imgProduct['size'] != 0){
+                    if(isset($imgProduct)){
                         $img=$imgProduct['name'];
                         move_uploaded_file($imgProduct['tmp_name'], $adminImg . $img);
                     }

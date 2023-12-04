@@ -67,7 +67,7 @@
     <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Product</h6>
             <a class="collapse-item" href="<?= $adminAction ?>ListProduct">Danh sách món ăn</a>
-            <a class="collapse-item" href="utilities-color.html">Thêm món ăn</a>
+            <a class="collapse-item" href="<?= $adminAction ?>AddProduct">Thêm món ăn</a>
             <h6 class="collapse-header">Danh mục</h6>
             <a class="collapse-item" href="<?= $adminAction ?>ListCategory">Danh mục chính</a>
             <a class="collapse-item" href="<?=$adminAction?>AddCategory">Thêm danh mục chính </a>

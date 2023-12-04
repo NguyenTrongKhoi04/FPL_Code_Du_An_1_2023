@@ -249,6 +249,7 @@
                                             <th>Số Lượng</th>
                                             <th>Giá Tiền</th>
                                             <th>Danh Mục Của Sản Phẩm</th>
+                                            <th>Ảnh Chính </th>
                                             <th>Quản Lý Giá, Ảnh Của Từng Size </th>
                                             <th>Mô Tả</th>
                                             <th>Số Lượng Sản Phẩm</th>
@@ -270,6 +271,9 @@
                                                     <?php foreach($listProCategory as $cate) {?>   
                                                         <?php if($cate['IdCategory']==$i['IdCategory']){echo $cate['NameCategory'];} ?>
                                                     <?php } ?>
+                                                </td>
+                                                <td>
+                                                    <img src="<?= $adminImg.$i['ImageProduct'] ?>" width="100px" alt="">
                                                 </td>
                                                 <td>
                                                     <a href="<?= $adminAction?>UpdateSizePro&id=<?= $i['IdProduct']?>">xem chi tiết</a>
@@ -303,7 +307,7 @@
                                                     <?php if($i['StatusProduct']==1) {?>
                                                         <a href="<?= $adminAction ?>RestoreProduct&id=<?= $i['IdProduct'] ?>"><input type="button" value="Tiếp tục bán"></a>
                                                         <?php }else{ ?>
-                                                        <a onclick="return confirm('Bạn Có Muốn Xóa Không')" href="<?= $adminAction ?>DeleteProduct&id=<?= $i['IdProduct'] ?>"><input type="button" value="Ngừng Bán"></a>
+                                                        <a onclick="return confirm('Bạn Muốn Ngừng Bán Sản Phẩm Này Không')" href="<?= $adminAction ?>DeleteProduct&id=<?= $i['IdProduct'] ?>"><input type="button" value="Ngừng Bán"></a>
                                                         <?php } ?>
                                                 </td>
                                                 <td><input type="checkbox" name="" value="<?= $i['IdProduct'] ?>"></td>
