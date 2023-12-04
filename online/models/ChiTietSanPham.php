@@ -69,7 +69,6 @@ function chiTietSanPham_Top3_SanPham()
 function chiTietSanPham_Add_To_Order_Pro($idAccount, $IdProduct, $NameSize, $quantityProduct, $priceProduct)
 {
     $sql = "SELECT * FROM orders WHERE IdAccount = '$idAccount' AND StatusOrders =0";
-    var_dump($sql);
     $oneOrder = query_One($sql);
     $oneOrder_IdOrder = $oneOrder['IdOrder'];
     $sql = "INSERT INTO order_pro(IdOrder,IdProduct,NameSize,QuantityOrderPro) VALUES ('$oneOrder_IdOrder','$IdProduct','$NameSize','$quantityProduct')";
@@ -97,15 +96,6 @@ function chiTietSanPham_GetComment($pages){
     LIMIT $from ,$row;");
 }
 
-/**
- * hàm có tác dụng lấy ra top các sản phẩm
- */
-function chiTietSanPham_GetTopProduct(){
-    return query_All(
-        ""
-    );
-
-}
 /**
  * ====================================================================================
  *                                LOGIN NHANH _ LUỒNG OFF
@@ -190,4 +180,16 @@ function loginNhanh_TruSoLuong_Pro($IdProduct){
     $sql = "UPDATE product SET QuantityProduct = QuantityProduct-1 WHERE IdProduct=$IdProduct ";
     return pdo_Execute($sql);
 
+}
+function chiTietSanPham_Add_To_Cart($idProduct,$idAccount,$idSize,$quantityProduct,$priceProduct){
+    $sql = "";
+    $sqlCheckProductInCart = query_All("select QuantityCard from cart where IdProduct = '$idProduct' and IdAccount = '$idAccount' " );
+    if(empty($sqlCheckProductInCart)){
+        $sql = "INSERT INTO cart(IdProduct,IdAccount,NameSize,QuantityCard,PriceCard) VALUES ('$idProduct','$idAccount','$idSize','$quantityProduct','$priceProduct')";
+    }else{
+        $totailQuantity = (int)$sqlCheckProductInCart[0]["QuantityCard"] + (int)$quantityProduct;
+        $sql = "update cart set QuantityCard = '$totailQuantity' where IdProduct = '$idProduct' and IdAccount = '$idAccount' ";
+    }
+    pdo_Execute($sql);
+    return "Sản phẩm đã được thêm vào giỏ hàng";
 }

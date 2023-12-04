@@ -5,12 +5,12 @@
 }
 
 html {
-  font-size: 20px;
+  font-size: 14px;
 }
 
 .ChiTietSanPham {
   margin: 0 auto;
-  width: 1920px;
+  width: 1470px;
   padding: 70px 0;
   background-color: #131313;
 }
@@ -20,10 +20,11 @@ html {
   display: flex;
   justify-content: space-between;
   padding: 59px 0 0 0;
+  width: 85%;
 }
 .ChiTietSanPham .ProductDetail .img {
-  width: 649px;
-  height: 690px;
+  width: 47%;
+  height: 100%;
   border-radius: 30px;
 }
 .ChiTietSanPham .ProductDetail .img img {
@@ -35,15 +36,16 @@ html {
 }
 .ChiTietSanPham .ProductDetail .form {
   width: 56.3546187229%;
-  height: 690px;
+  width: 47%;
+  height: 100%;
   background-color: rgba(51, 51, 51, 0.15);
   border-radius: 30px;
 }
 .ChiTietSanPham .ProductDetail .form form {
-  width: 841px;
+  width: 100%;
   margin: 0 auto;
-  margin-top: 45px;
-  margin-bottom: 55px;
+  margin-top: 5%;
+  margin-bottom: 5%;
 }
 .ChiTietSanPham .ProductDetail .form form h2 {
   color: #F7C427;
@@ -57,7 +59,7 @@ html {
   margin-top: 6px;
   margin-bottom: 20px;
   height: 13px;
-  width: 841px;
+  width: 100%;
   background-color: #F7C427;
 }
 .ChiTietSanPham .ProductDetail .form form ul {
@@ -77,6 +79,7 @@ html {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
 }
 .ChiTietSanPham .ProductDetail .form form .soluong .tanggiam {
   display: flex;
@@ -86,7 +89,7 @@ html {
   padding: 5px;
 }
 .ChiTietSanPham .ProductDetail .form form .soluong .tanggiam p {
-  font-size: 40px;
+  font-size: 1.5rem;
   color: white;
 }
 .ChiTietSanPham .ProductDetail .form form .soluong .tanggiam button {
@@ -118,7 +121,7 @@ html {
   color: #F7C427;
 }
 .ChiTietSanPham .ProductDetail .form form .soluong span {
-  font-size: 50px;
+  font-size: 1rem;
   color: red;
 }
 .ChiTietSanPham .ProductDetail .form form button {
@@ -223,7 +226,7 @@ html {
   justify-content: space-between;
 }
 .ChiTietSanPham .comment .list_comment .content p {
-  width: 85%;
+  width: 80%;
   color: white;
   word-wrap: break-word;
   font-size: 48px;

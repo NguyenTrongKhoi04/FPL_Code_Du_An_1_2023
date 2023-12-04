@@ -5,7 +5,7 @@ function CashViSa_GetAllOrderUser(){
     if(isset($_SESSION['dataOrderCart']) && isset($_SESSION['dataOrderTables'])){
         $message = $_SESSION['dataOrderCart'];
     }
-    if(isset($_SESSION['payNowDetails']) && !empty($_SESSION['payNowDetails']) &&isset($_SESSION['dataOrderTables'])){
+    if(isset($_SESSION['payNowDetails']) && !empty($_SESSION['payNowDetails']) && isset($_SESSION['dataOrderTables'])){
         $idProductUser = $_SESSION['payNowDetails']["IdProduct"];
         $sql = "select NameProduct, ImageProduct from product where IdProduct = $idProductUser";
 
@@ -31,9 +31,10 @@ function CashViSa_PushOrderUser(){
     $message = "";
     $IdAccount = $_SESSION['user']["IdAccount"];
     $totailPriceOrders = $_SESSION['totailPrice'];
-    if(isset($_SESSION['dataOrderCart']) && isset($_SESSION['dataOrderTables'])){
+    if(isset($_SESSION['dataOrderCart']) && isset($_SESSION['dataOrderTables']) && !empty($_SESSION['dataOrderTables'])){
         $dataOrderCart = $_SESSION['dataOrderCart'];
         $dataOrderTables = $_SESSION['dataOrderTables'];
+
         extract($dataOrderTables);
         // thêm dữ liệu vào bảng order
         $IdOrder = pdo_Execute_Return_LastinsertID("insert into orders values(null, '$IdTable',  '$IdAccount', 2, '$totailPriceOrders', '$NumberInPeople','3', '$TimeOrder')") ;
@@ -60,7 +61,7 @@ function CashViSa_PushOrderUser(){
             $message = "Đơn hàng đã được thanh toán";
         }
 
-    }elseif(isset($_SESSION['payNowDetails']) && isset($_SESSION['dataOrderTables'])){
+    }elseif(isset($_SESSION['payNowDetails']) && isset($_SESSION['dataOrderTables']) && !empty($_SESSION['dataOrderTables'])){
         $payNowDetails = array($_SESSION['payNowDetails']);
         $dataOrderTables = $_SESSION['dataOrderTables'];
         extract($dataOrderTables);
@@ -92,5 +93,30 @@ function CashViSa_PushOrderUser(){
     return $message;
 
 }
+function execPostRequest($url, $data)
+{
+    $ch = curl_init($url);
+    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+            'Content-Type: application/json',
+            'Content-Length: ' . strlen($data))
+    );
+    curl_setopt($ch, CURLOPT_TIMEOUT, 5);
+    curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
+    //execute post
+    $result = curl_exec($ch);
+    //close connection
+    curl_close($ch);
+    return $result;
+}
 
+/**
+ * Test momo
+ * NGUYEN VAN A
+ * 9704 0000 0000 0018
+ * 03/07
+ * OTP
+ */
 ?>

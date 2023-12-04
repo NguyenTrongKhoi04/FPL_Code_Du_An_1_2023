@@ -27,7 +27,7 @@ function displayComment(dataComment, next, back,  classData, idIndex, idLengthDa
               <img src=\'../assets/img/admin/${itemComment["ImageAccounts"]}\' alt=\'img\'>
               <article class=\'title\'>
                   <h1>${itemComment["NameAccount"]}</h1>
-                  <p>${itemComment["Role"]}</p>
+                  <p>Khách hàng</p>
               </article>
           </section>
       </section>
@@ -126,7 +126,7 @@ function onloadProductBest(products, next, back,  classData, numberProductPage) 
         for (let i = 0; i < productsToShow.length; i++) {
           const itemProduct = productsToShow[i];
           productSection.innerHTML += `
-            <a href='?act=LoadChiTietSanPham&id= ${itemProduct["IdProduct"]}&index=1' class='lisstBestProducts'>
+            <a href='?act=LoadChiTietSanPham&id=${itemProduct["IdProduct"]}&index=1' class='lisstBestProducts'>
                 <img src='../assets/img/admin/${itemProduct["ImageProduct"]} ' alt='img'>
                 <article class='titile'>
                   <h1> ${itemProduct["NameProduct"]} </h1>

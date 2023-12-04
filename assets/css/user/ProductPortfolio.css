@@ -15,11 +15,11 @@
 }
 
 html {
-  font-size: 20px;
+  font-size: 14px;
 }
 
 .page {
-  width: 1920px;
+  width: 1470px;
   height: 4525px;
   display: grid;
   grid-template-columns: 100%;
