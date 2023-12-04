@@ -40,7 +40,7 @@
                     <input type="number" name="CardDateYear" value="23">
                 </article>
             </section>
-        <input type="submit" value="Thanh toán">
+        <input type="submit" name="payUrl" value="Thanh toán">
         </section>
     </section>
     <section class="bill">
