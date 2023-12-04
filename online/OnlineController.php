@@ -35,6 +35,7 @@ if(isset($_GET['act'])&&($_GET['act'] !='' )){
             * ====================================================================================
             */
             case 'dangnhap':
+            
                 if ($_SESSION['user']['Role'] == 1) {
                     header('location: ../admin/AdminController.php');
                 } else {
