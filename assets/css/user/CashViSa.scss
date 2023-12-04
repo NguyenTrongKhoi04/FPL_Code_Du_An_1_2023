@@ -25,132 +25,12 @@ html{
     width: 1470px;
     height: 1000px;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     margin: 0 auto;
     background-color: var(--color);
 
-    .containerVisa{
-        width: 50%;
-        height: 100%;
-        padding: 2% 3%;
-
-        .contentVisa{
-            background-color: var(--color9);
-            width: 100%;
-            height: 70%;
-            border-radius: 30px;
-            padding: 2% 3%;
-
-
-            .logo{
-                width: 100%;
-                height: 15%;
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-
-                .title{
-                    width: 50%;
-                    height: 100%;
-
-                    align-items: center;
-                    display: flex;
-
-                    h1{
-                        font-size: 1.5rem;
-                    }
-                }
-                .img{
-                    width: 30%;
-                    height: 100%;
-                    display: flex;
-                    justify-content: space-around;
-                    align-items: center;
-                }
-            }
-            .itemVisa{
-                width: 100%;
-                height: 25%;
-            
-                margin: 2% 0;
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-
-                .titleItemVisa{
-                    width: 50%;
-                    height: 70%;
-                
-                    h3{
-                        font-size: 1.5rem;
-                        margin: 1% 0;
-                    }
-                    p{
-                        margin: 1% 0;
-                    }
-                }
-                .contentTitleItemVisa{
-                    width: 50%;
-                    height: 70%;
-                
-
-                    input{
-                        width: 100%;
-                        height: 60%;
-                        border-radius: 10px;
-                        margin: 5% 0;
-                        border: none;
-                        font-size: 1rem;
-                        padding-left: 5%;
-                    }
-                    input:focus{
-                        outline: none;
-                    }
-                }
-                .contentTitleItemVisas{
-                    width: 50%;
-                    height: 70%;
-                
-                    display: flex;
-                    justify-content: space-around;
-                    align-items: center;
-
-                    input{
-                        width: 20%;
-                        height: 60%;
-                        border-radius: 10px;
-                        border: none;
-                        font-size: 1rem;
-                        padding-left: 5%;
-                        text-align: center;
-                    }
-                    input:focus{
-                        outline: none;
-                    } 
-                    p{
-                        font-size: 2rem;
-                    }
-                }
-            }
-        }
-        input[type="submit"]{
-            width: 30%;
-            height: 15%;
-            margin: 10% 36%;
-            font-size: 1.5rem;
-            background-color: var(--color4);
-            color: var(--color6);
-            border: none;
-            border-radius: 10px;
-        }
-        input[type="submit"]:hover{
-            background-color: var(--color2);
-            color: var(--color6);
-            transition: 1s linear;
-        }
-    }
     .bill{
-        width: 50%;
+        width: 80%;
         height: 100%;
         padding: 2% 3%;
 
@@ -265,6 +145,20 @@ html{
                 }
 
             }
+        }
+
+        button{
+            width: 25%;
+            height: 10%;
+            margin: 5% 40%;
+            font-size: 1.5rem;
+            color: var(--color6);
+            background-color: #AD006C;
+            border-radius: 10px;
+        }
+        button:hover{
+            background-color: var(--color3);
+            transition: linear 1s;
         }
     }
 }

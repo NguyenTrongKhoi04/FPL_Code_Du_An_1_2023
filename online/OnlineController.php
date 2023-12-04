@@ -201,7 +201,6 @@ if(isset($_GET['act'])&&($_GET['act'] !='' )){
             case "CashViSa":
                 $listOrderUser = CashViSa_GetAllOrderUser();
                 if($_SERVER['REQUEST_METHOD']==='POST'){ 
-                    CashViSa_PushOrderUser();
 
                     $endpoint = "https://test-payment.momo.vn/v2/gateway/api/create";
                     $partnerCode = 'MOMOBKUN20180529';
@@ -248,10 +247,8 @@ if(isset($_GET['act'])&&($_GET['act'] !='' )){
                             'signature' => $signature);
                         $result = execPostRequest($endpoint, json_encode($data));
                         $jsonResult = json_decode($result, true);  // decode json
-                    
-                        //Just a example, please check more in there
-                    
                         header('Location: ' . $jsonResult['payUrl']);
+                        CashViSa_PushOrderUser();
                     }
                 }
                 include_once 'views/CashViSa.php' ;
