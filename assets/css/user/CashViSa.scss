@@ -150,6 +150,7 @@ html{
         }
 
         button{
+<<<<<<< HEAD
             width: 30%;
             height: 10%;
             margin:2% 35%;
@@ -162,6 +163,19 @@ html{
         button:hover{
             background-color: var(--color3);
             transition:  all 1s;
+=======
+            width: 25%;
+            height: 10%;
+            margin: 5% 40%;
+            font-size: 1.5rem;
+            color: var(--color6);
+            background-color: #AD006C;
+            border-radius: 10px;
+        }
+        button:hover{
+            background-color: var(--color3);
+            transition: linear 1s;
+>>>>>>> origin/VuHongDiep
         }
     }
 }

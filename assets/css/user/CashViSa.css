@@ -129,16 +129,15 @@ html {
   font-weight: 700;
 }
 .page .bill button {
-  width: 30%;
+
+  width: 25%;
   height: 10%;
-  margin: 2% 35%;
-  border-radius: 10px;
+  margin: 5% 40%;
   font-size: 1.5rem;
-  border: none;
+  color: var(--color6);
   background-color: #AD006C;
-  color: var(--color10);
+  border-radius: 10px;
 }
 .page .bill button:hover {
   background-color: var(--color3);
-  transition: all 1s;
 }/*# sourceMappingURL=CashViSa.css.map */

@@ -43,6 +43,7 @@ if(isset($_GET['act'])&&($_GET['act'] !='' )){
             * ====================================================================================
             */
             case 'dangnhap':
+            
                 if ($_SESSION['user']['Role'] == 1) {
                     header('location: ../admin/AdminController.php');
                 }elseif($_SESSION['user']['Role'] == 2) {
@@ -362,11 +363,9 @@ if(isset($_GET['act'])&&($_GET['act'] !='' )){
                             'signature' => $signature);
                         $result = execPostRequest($endpoint, json_encode($data));
                         $jsonResult = json_decode($result, true);  // decode json
-                    
-                        //Just a example, please check more in loginNhanh_ChuaThanhToan_GetAll_Order_ByIdAccount
+
                         header('Location: ' . $jsonResult['payUrl']);
                         CashViSa_PushOrderUser();
-
                     }
                 }
                 include_once 'views/CashViSa.php' ;

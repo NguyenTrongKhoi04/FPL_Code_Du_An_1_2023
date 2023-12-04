@@ -56,6 +56,6 @@
             } ?> 
             </article>
         </section>
-        <button name="payUrl" type="submit" value="<?= cart_Totail($listOrderUser)['totail'] ?>">Thanh toán MOMO</button>
+        <button type="submit" name="payUrl">Thanh toán MoMo</button>
     </section>
 </form>
