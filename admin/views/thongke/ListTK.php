@@ -278,8 +278,10 @@
                                     <tbody> 
                                         <?php 
                                             foreach($thongKe as $values){
+                                                
                                               extract($values);
-                                        ?> 
+                                              $gia_tb= $values['gia_tb '];
+                                        ?>
                                             <tr>
                                                 <td><?php echo $IdCategory?></td>
                                                 <td><?php echo $NameCategory ?></td>

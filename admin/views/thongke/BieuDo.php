@@ -261,38 +261,15 @@
                             <h6 class="m-0 font-weight-bold text-primary">Thống kê sản phẩm danh mục</h6>
                         </div>
                         <div class="card-body">
-                            <div class="table-responsive">
+
+                            <div class="table-responsive"> 
+                        <div
+                                id="myChart" style="width:100%; width:800px; height:500px; align-items: center">
+                        </div>
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 
                                     <tbody> 
-                                        <script>
-                                            google.charts.load('current', {'packages':['corechart']});
-                                            google.charts.setOnLoadCallback(drawChart);
-
-                                            function drawChart() {
-
-                                    // Set Data
-                                            const data = google.visualization.arrayToDataTable([
-                                                ['Product', 'QuantityProduct'],
-                                                <?php foreach($thongKe as $values) { 
-                                                extract($values);
-                                                ?>
-                                                ['<?= $NameCategory ?>', <?= $soluong ?>],
-                                                <?php } ?>
-                                            ]);
-
-                                    // Set Options
-                                            const options = {
-                                                title:'Thống kê sản phẩm theo danh mục',
-                                                is3D:true
-                                            };
-
-                                    // Draw
-                                            const chart = new google.visualization.BarChart(document.getElementById('myChart'));
-                                            chart.draw(data, options);
-
-                                            }
-                                        </script>
+                                       
                                     </tbody>
                                 </table>
                             </div>
@@ -360,7 +337,39 @@
 <script src="../assets/js/jquery.dataTables.min.js"></script>
 <script src="../assets/js/dataTables.bootstrap4.min.js"></script>
 
-<!-- Page level custom scripts -->
+<div id="piechart"></div>
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+<script type="text/javascript">
+// Load google charts
+
+                                            google.charts.load('current', {'packages':['corechart']});
+                                            google.charts.setOnLoadCallback(drawChart);
+
+                                            function drawChart() {
+                                    // Set Data
+                                            const data = google.visualization.arrayToDataTable([
+                                                ['Product', 'QuantityProduct'],
+                                                <?php foreach($thongKe as $values) { 
+                                                extract($values);
+                                                ?>
+                                                ['<?= $NameCategory ?>', <?= $soluong ?>],
+                                                <?php } ?>
+                                            ]);
+                                    // Set Options
+                                            const options = {
+                                                title:'Thống kê sản phẩm theo danh mục',
+                                                is3D:true
+                                            };
+                                    // Draw
+                                            const chart = new google.visualization.BarChart(document.getElementById('myChart'));
+                                            chart.draw(data, options);
+
+                                            }
+
+</script>
+
 <script src="../assets/js/datatables-demo.js"></script>
 </body>
 
