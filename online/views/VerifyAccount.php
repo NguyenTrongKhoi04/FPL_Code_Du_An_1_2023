@@ -5,7 +5,7 @@
                 <h1>Xác nhận Tài khoản</h1>
             </article>
 
-            <form action="UserController.php?act=VerifyAccount" method="post" class="main">
+            <form action="OnlineController.php?act=VerifyAccount" method="post" class="main">
                 <label for="">Nhập mã xác nhận *</label>
                 <input title="Không được để trống" type="text" name="confirmCodeGmail">
                 <?php

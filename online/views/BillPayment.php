@@ -19,8 +19,8 @@
                     ?>
                     <ul>
                         <li>  Tổng tiền: <?= $totailPrice ?> VND </li>
-                        <li> <a href="UserController.php?act=AddComment">Bình luận sản phẩm</a> <i class="ti-angle-down"></i> </li>
-                        <li> <a href="UserController.php?act=ListComment">Sản phẩm đã bình luận</a> <i class="ti-angle-down"></i> </li>
+                        <li> <a href="OnlineController.php?act=AddComment">Bình luận sản phẩm</a> <i class="ti-angle-down"></i> </li>
+                        <li> <a href="OnlineController.php?act=ListComment">Sản phẩm đã bình luận</a> <i class="ti-angle-down"></i> </li>
                         <li>  Tổng số lượng sản phẩm đã sử dụng: <?= count($listOrderPayMent) ?> </li>
                     </ul>
                 </section>

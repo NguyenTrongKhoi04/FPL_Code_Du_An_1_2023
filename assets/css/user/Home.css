@@ -17,11 +17,11 @@
 }
 
 html {
-  font-size: 20px;
+  font-size: 14px;
 }
 
 .page {
-  width: 1920px;
+  width: 1470px;
   height: 11642px;
   display: grid;
   grid-template-columns: 100%;
@@ -705,7 +705,7 @@ html {
   width: 10%;
   height: 16%;
   position: absolute;
-  right: 10%;
+  right: 30%;
   bottom: 10%;
 }
 .page main .displayCommet .Nav .ti-arrow-left, .page main .displayCommet .Nav .ti-arrow-right {

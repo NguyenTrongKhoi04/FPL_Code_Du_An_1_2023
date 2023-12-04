@@ -21,7 +21,7 @@ include_once './models/Comment.php';
 
 
 if(empty($_SESSION['user'])){
-    header('location: ../user/UserController.php');
+    header('location: ../online/OnlineController.php');
 }else{
         if(isset($_GET['act'])&&($_GET['act'] !='' )){
         $act = $_GET['act'];

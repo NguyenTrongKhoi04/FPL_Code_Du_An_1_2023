@@ -5,15 +5,18 @@
         <div class="ProductDetail">
             <div class="img"><img id="sizeImage" src="<?= $adminImg?>" height="100%"></div>
             <div class="form">
+
           
                 <?php if ($_SESSION['user']['Role'] == 3) { ?>
                         <form action="<?= $userAction ?>LoginNhanh_Add_To_CartAndOrder&id=<?= $pro['IdProduct'] ?>" method="POST">
                     <?php } else { ?>
-                        <form action="" method="POST">
+                        <form action="OnlineController.php?act=LoadChiTietSanPham&id=<?= $_GET['id']?>&index=1" method="POST">
+                    <input type="hidden" name="IdProduct" value="<?=$pro['IdProduct']?>">
+                    <input type="hidden" name="PriceProduct" value="<?=$pro['PriceProduct']?>">
+                    <h2><?=$pro['NameProduct']?></h2>
                     <?php } ?>
                     <input type="hidden" name="IdProduct" value="<?= $pro['IdProduct'] ?>">
                     <input type="hidden" name="PriceProduct" value="<?= $pro['PriceProduct'] ?>">
-                    <h2><?= $pro['NameProduct'] ?></h2>
                     <div class="hr"></div>
                     <ul>
                         <!-- <del>40.000</del> -->
@@ -32,11 +35,13 @@
                         </div>
                         <div class="tanggiam">
                             <p>Size&nbsp;&nbsp;</p>
+
                             <select name="SizeProduct" style="font-size: 40px;" id="selectSize">
                             <?php foreach ($proSize as $i) : ?>
                                     <option value="<?= $i['NameSize'] ?>" data-image="<?= $i['ImgSizePro'] ?>" data-price="<?= $i['Price']?>" ><?= $i['NameSize'] ?></option>
                                 <?php endforeach ?>
                                 
+
                             </select>
                         </div>
 
@@ -54,12 +59,13 @@
         <div class="list">
             <?php foreach ($pro_LienQuan as $i) : ?>
                 <div class="pro">
-                    <a href="<?= $userAction ?>LoadChiTietSanPham&id=<?= $i['IdProduct'] ?>">
+                    <a href="OnlineController.php?act=LoadChiTietSanPham&id=<?= $i['IdProduct'] ?>">
                         <div class="img">
                             <img src="<?= $adminImg . $i['ImageProduct'] ?>" alt="">
                         </div>
                         <p style="color: white;"><?= $i['NameProduct'] ?></p>
                     </a>
+
                 </div>
             <?php endforeach ?>
         </div>
@@ -92,10 +98,10 @@
             </div>
             <div class="tang_giam">
 
-                <button name="tang">
+                <!-- <button name="tang">
                    
                         <div class="position-display"><?= $totalContents ?> / <?= $totalContents ?></div>
-                        <button name="giam">></button>
+                        <button name="giam">></button> -->
 
             </div>
         </div>
