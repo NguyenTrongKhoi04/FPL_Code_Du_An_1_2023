@@ -268,24 +268,23 @@
                                     </thead>
                                     <tbody>  
                                     <?php 
-                                        foreach(getListSize() as $values){
+                                        foreach(getListSize() as $values){ ?>
                                             
-                                            echo "
+                                        
                                             <tr>
-                                                <td>{$values['NameSize']}</td>
+                                                <td><?=$values['NameSize']?></td>
                                                 <td>
-                                                    <a href='AdminController.php?act=UpdateSize&IdSize={$values['IdSize']}'>
+                                                    <a href='AdminController.php?act=UpdateSize&IdSize=<?=$values['IdSize']?>'>
                                                         <input type='button' value='Sửa'> 
                                                     </a>
-                                                    <a href='AdminController.php?act=ListSize&delete={$values['IdSize']}'>
-                                                        <input type='button' value='Xóa'>
+                                                    <a href='AdminController.php?act=ListSize&delete=<?=$values['IdSize']?>'>
+                                                        <input type='button' value='Xóa' onclick="return confirm('Xóa Size thì sẽ xóa những sản phẩm có size này')" >
                                                     </a>                                                                                                               
                                                 </td>   
                                         </tr>                                                
-                                            ";
-                                        }
-                                    
-                                    ?> 
+                                            
+                                       <?php } ?> 
+                                     
                                     </tbody>
                                 </table>
                             </div>

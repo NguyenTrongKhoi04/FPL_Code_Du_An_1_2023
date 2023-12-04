@@ -13,9 +13,7 @@
 
     <!-- Custom fonts for this template -->
     <link href="../assets/css/admin/all.min.css" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="../assets/css/admin/sb-admin-2.min.css" rel="stylesheet">
@@ -31,11 +29,8 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-<<<<<<< HEAD:admin/views/taikhoan/UpdateAccount.php
-        <?php include_once '../assets/global/SideBarMenu.php'; ?>
-=======
+
         <?php include_once $SideBarMenu ?>
->>>>>>> origin/KhongTrongKhanh:admin/views/sizepro/UpdateSizePro.php
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
@@ -55,11 +50,9 @@
                     </form>
 
                     <!-- Topbar Search -->
-                    <form
-                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                    <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                                aria-label="Search" aria-describedby="basic-addon2">
+                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
                             <div class="input-group-append">
                                 <button class="btn btn-primary" type="button">
                                     <i class="fas fa-search fa-sm"></i>
@@ -73,18 +66,14 @@
 
                         <!-- Nav Item - Search Dropdown (Visible Only XS) -->
                         <li class="nav-item dropdown no-arrow d-sm-none">
-                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-search fa-fw"></i>
                             </a>
                             <!-- Dropdown - Messages -->
-                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-                                aria-labelledby="searchDropdown">
+                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
                                 <form class="form-inline mr-auto w-100 navbar-search">
                                     <div class="input-group">
-                                        <input type="text" class="form-control bg-light border-0 small"
-                                            placeholder="Search for..." aria-label="Search"
-                                            aria-describedby="basic-addon2">
+                                        <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
                                         <div class="input-group-append">
                                             <button class="btn btn-primary" type="button">
                                                 <i class="fas fa-search fa-sm"></i>
@@ -97,15 +86,13 @@
 
                         <!-- Nav Item - Alerts -->
                         <li class="nav-item dropdown no-arrow mx-1">
-                            <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-bell fa-fw"></i>
                                 <!-- Counter - Alerts -->
                                 <span class="badge badge-danger badge-counter">3+</span>
                             </a>
                             <!-- Dropdown - Alerts -->
-                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="alertsDropdown">
+                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
                                 <h6 class="dropdown-header">
                                     Alerts Center
                                 </h6>
@@ -148,22 +135,19 @@
 
                         <!-- Nav Item - Messages -->
                         <li class="nav-item dropdown no-arrow mx-1">
-                            <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-envelope fa-fw"></i>
                                 <!-- Counter - Messages -->
                                 <span class="badge badge-danger badge-counter">7</span>
                             </a>
                             <!-- Dropdown - Messages -->
-                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="messagesDropdown">
+                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="messagesDropdown">
                                 <h6 class="dropdown-header">
                                     Message Center
                                 </h6>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="<?= $adminImg ?>undraw_profile_1.svg"
-                                            alt="...">
+                                        <img class="rounded-circle" src="<?= $adminImg ?>undraw_profile_1.svg" alt="...">
                                         <div class="status-indicator bg-success"></div>
                                     </div>
                                     <div class="font-weight-bold">
@@ -174,8 +158,7 @@
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="<?= $adminImg ?>undraw_profile_2.svg"
-                                            alt="...">
+                                        <img class="rounded-circle" src="<?= $adminImg ?>undraw_profile_2.svg" alt="...">
                                         <div class="status-indicator"></div>
                                     </div>
                                     <div>
@@ -186,8 +169,7 @@
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="<?= $adminImg ?>undraw_profile_3.svg"
-                                            alt="...">
+                                        <img class="rounded-circle" src="<?= $adminImg ?>undraw_profile_3.svg" alt="...">
                                         <div class="status-indicator bg-warning"></div>
                                     </div>
                                     <div>
@@ -198,8 +180,7 @@
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60"
-                                            alt="...">
+                                        <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60" alt="...">
                                         <div class="status-indicator bg-success"></div>
                                     </div>
                                     <div>
@@ -216,15 +197,12 @@
 
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
-                                <img class="img-profile rounded-circle"
-                                    src="<?= $adminImg ?>undraw_profile.svg">
+                                <img class="img-profile rounded-circle" src="<?= $adminImg ?>undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="userDropdown">
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                                 <a class="dropdown-item" href="#">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
@@ -254,264 +232,147 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Thêm tài khoản</h1>
-                    
+                    <h1 class="h3 mb-2 text-gray-800"><?= $name_Pro['NameProduct'] ?></h1>
+
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-body">
                             <div class="table-responsive">
-                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                   
-                                   <tr>
-                                           <th></th>
-                                           <th>Thông tin</th>
-                                           
-                                           <th></th>
-                                   </tr>
-                
-                                                        
-<<<<<<< HEAD:admin/views/taikhoan/UpdateAccount.php
-                                   <tbody>                
-                                   <?php 
-                                    if(isset($_GET["IdAccount"]) && !empty($_GET["IdAccount"])){
-                                        $data = getAccountById($_GET["IdAccount"])[0];
-                                        // echo "<pre>";
-                                        // print_r($data); die();
-                                            $types = null;
-                                            $gender = null;
-                                            $status = $data["StatusAccount"] ===  0 ? "Hoạt động " : "Đã xóa";
-                                            switch($data['Gender'] ){
-                                                case 0:
-                                                    $gender = "Nam";
-                                                break;
-                                                case 1:
-                                                    $gender = "Nữ";
-                                                break;
-                                                case 2:
-                                                    $gender = "Khác";
-                                                break;
-                                            }
-                                            switch($data['Type']){
-                                                case "NVTN":
-                                                    $types = "Nhân viên thu ngân";
-                                                break;
-                                                case "NVPVB":
-                                                    $types = "Nhân viên phục vụ bàn";
-                                                break;
-                                                case "QL":
-                                                    $types = "Quản lý";
-                                                break;
-                                                case "KH":
-                                                    $types = "Khách Hàng";
-                                                break;
-                                                case "Admin":
-                                                    $types = "Admin";
-                                                break;
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 
-                                            }
-                                            extract($data);
-                                            ?>
-                                   <form action="AdminController.php?act=UpdateAccount&IdAccount=<?= $IdAccount?>" method="post" enctype="multipart/form-data">
-                                                <tr>
-                                                <td>Tên</td>
-                                                    <td><input value="<?= $NameAccounts ?>" name = "Name" type="text"></td>
-                                                    
-                                            </tr>
-                                            <tr>
-                                                <td>Gmail</td>
-                                                <td><input value="<?= $Gmail ?>" name = "Gmail" type="email"></td>
-                                                
-                                            </tr>
-                
-                                            <tr>
-                                                <td>Giới tính</td>
-                                                <td>
-                                                    <select name="Gender" id="">
-                                                        <option value="<?= $Gender?>" selected hidden><?= $gender ?></option>
-                                                        <option value="0">Nam</option>
-                                                        <option value="1">Nữ</option>
-                                                        <option value="2">Khác</option>
-                                                    </select>
-                                                </td>
-                                                    
-                                            </tr>
-                                            <tr>
-                                                <td>Mật khẩu</td>
-                                                <td>
-                                                    <input value="<?=$Password ?>" type="password" name = "Password" id="">
-                                                </td>
-                                                    
-                                            </tr>
-                                            <tr>
-                                                <td>Ảnh</td>
-                                                <td>
-                                                    <input type="file" name = "Image" value="<?= $ImageAccounts ?>">
-                                                </td>
-                                                    
-                                            </tr>
-                                            <tr>
-                                                <td>Trạng thái</td>
-                                                <td>
-                                                    <select name="Status" id="">
-                                                        <option value="<?= $Status?>" selected hidden><?= $status ?></option>
-                                                        <option value="0">Hoạt động</option>
-                                                        <option value="1">Đã xóa</option>                                                   
+                                    <tr>
 
-                                                        
-                                                    </select>
-                                                </td>
-                                                    
-                                            </tr>
-                                            <tr>
-                                                <td>Chức vụ</td>
-                                                <td>
-                                                    <select name="Type" id="">
-                                                        <option value="<?= $Type ?>" selected hidden><?= $types ?></option>
-                                                        <option value="NVTN">Nhân viên thu ngân</option>
-                                                        <option value="NVPVB">Nhân viên phục vụ bàn</option>
-                                                        <option value="QL">Quản lý</option>
-                                                        <option value="KH">Khách Hàng</option>
-                                                        <option value="Admin">Admin</option>
-                                                    </select>
-                                                </td>
-                                                
-                                            </tr>
-        
-                                            <td><input  name = "submit" type="submit" value="thêm"></td>                              
-                                    </form>  
-                                            <?php
-
-                                    }else{
-                                        echo "404 Not Fount";
-                                    }
+                                        <th>Size</th>
+                                        <th>Giá</th>
+                                        <th>Ảnh</th>
+                                        <th>Thao Tác</th>
+                                    </tr>
+                                    <tbody>
                                         
-=======
-                                   <tbody> 
-                                    <?php 
-                                    if(isset($_GET["IdSizePro"]) && !empty($_GET["IdSizePro"])){
-                                        $dataSizePro =getSizePro($_GET['IdSizePro']);
-                                        extract($dataSizePro['0']);
-                           
-                                                
-                                      ?>
-                                        <form action="AdminController.php?act=UpdateSizePro&IdSizePro=<?= $IdSizePro?>" method="post" >
-                                         <tr>
-                                               <td>Sản phẩm</td>
-                                               <td>
-                                                <select name="IdProduct" id="">
-                                                <option value="<?= $IdProduct?>" selected hidden ><?= $NameProduct?></option>
-                                                    <?php
-                                                    foreach(getSPProduct() as $value){
-                                                        extract($value);
-                                                        echo "
-                                                            <option value='{$value['IdProduct']}'>{$value['NameProduct']}</option>
-                                                        ";
-                                                    }
-                                                    ?>                                                  
-                                                </select>
-                                               </td>
-                                               
-                                           </tr> 
-                                            <tr>
-                                               <td>Size</td>
-                                               <td>
-                                                <select name="IdSize" id="">
-                                                    <option value="<?= $IdSize?>" selected hidden ><?= $NameSize?></option>
-                                                    <?php
-                                                    foreach(getAllSize() as $valueSize){
-                                                        extract($valueSize);
-                                                        echo "
-                                                            <option value='{$valueSize['IdSize']}'>{$valueSize['NameSize']}</option>
-                                                        ";
-                                                    }
-                                                    ?>                                                  
-                                                </select>
-                                               </td>
-                                                
-                                           </tr>
-                                           <tr>
-                                               <td>Giá</td>
-                                               <td>
-                                                    <input value="<?php $Price ?>" type="number" name = "Price" id="" min="0">
-                                                </td>
-                                                
-                                           </tr>
+                                        <form action="AdminController.php?act=UpdateSizePro&IdSizePro=<?= $IdSizePro ?>" method="post">
+                                            <?php foreach ($pro_Size_Price_Img as $i) { ?>
+                                                <tr>
+                                                <?php array_push($arr_Data,$i['IdSize']) ?>
+                                                    <td>
+                                                        <?php foreach ($size as $oneSize) {
+                                                            if ($oneSize['IdSize'] == $i['IdSize']) { ?>
+                                                                <?= $oneSize['NameSize'] ?>
 
-                                           <input type="text" hidden value="<?= $IdSizePro ?>" name="IdSizePro">
-                                           <a href="AdminController.php?act=ListSizePro"><input  class="mr20" type="button" value="DANH SÁCH"></a> 
-                                          <td><input name = "submit" type="submit" value="sửa"></td>  
-                                      <?php  
-                                    }                      
->>>>>>> origin/KhongTrongKhanh:admin/views/sizepro/UpdateSizePro.php
-                                    ?>                          
-                                   </tbody>
-                               </table>
+                                                        <?php }
+                                                        } ?>
+
+                                                    </td>
+                                                    <td>
+                                                    <?= $i['Price'] ?>
+                                                    </td>
+                                                    <td>
+                                                        <?php if($i['ImgSizePro'] !=NULL){ ?>
+                                                        <img src="<?= $adminImg . $i['ImgSizePro'] ?>" width="100px" alt="">
+                                                        <?php }else{ ?>                                                    
+                                                            <p style="color: red;">Chưa có ảnh</p>
+                                                        <?php } ?>
+                                                        </td>
+                                                    <td><a href="AdminController.php?act=DeleteSizePro&id=<?=$_GET['id']?>&idSizePro=<?=$i['IdSizePro'] ?>"><input type="button" value="Xóa" name="delete_Size_Pro"></a></td>
+                                                </tr>
+
+                                            <?php } ?>
+                                         <span>&nbsp;&nbsp;</span>
+                                            <a href="AdminController.php?act=ListProduct"><input class="mr20" type="button" value="DANH SÁCH"></a>
+                                        </form>
+                                    
+                                        <!-- nếu còn những size ch add =>> được hiển thị -->
+                                  
+                                        <?php if(check_Het_Size($_GET['id'])) { ?>
+                                            
+                                        <form action="AdminController.php?act=AddSizePro&id=<?=$_GET['id']?>" method="POST" enctype="multipart/form-data">
+                                          <input type="hidden" name="IdProduct" value="<?= $_GET['id']?>">
+                                            <tr>
+                                                <td>
+                                                    <select name="addSizePro_IdSize" id="">
+                                                        <?php $a= check_Size_ConLai($arr_Data); foreach($a as $n){?>
+                                                            <option value="<?= $n['IdSize']?>"><?= $n['NameSize']?></option>
+                                                        <?php }?>
+                                                    </select>   
+                                                </td>
+                                                <td> 
+                                                    <input type="number" min ="0" name="addSizePro_Price" id=""> 
+                                                </td>
+                                                <td>
+                                                    <input type="file" name="addSizePro_Img" >
+                                                </td>
+                                                <td>
+                                                        <input type="submit" name="add_New_SizePro" value='Thêm'>
+                                                </td>
+                                            </tr>
+                                        </form>
+                                        <?php } ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- /.container-fluid -->
+
+                </div>
+                <!-- End of Main Content -->
+
+                <!-- Footer -->
+                <footer class="sticky-footer bg-white">
+                    <div class="container my-auto">
+                        <div class="copyright text-center my-auto">
+                            <span>Copyright &copy; Your Website 2020</span>
                         </div>
                     </div>
-
-                </div>
-                <!-- /.container-fluid -->
+                </footer>
+                <!-- End of Footer -->
 
             </div>
-            <!-- End of Main Content -->
+            <!-- End of Content Wrapper -->
 
-            <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2020</span>
+        </div>
+        <!-- End of Page Wrapper -->
+
+        <!-- Scroll to Top Button-->
+        <a class="scroll-to-top rounded" href="#page-top">
+            <i class="fas fa-angle-up"></i>
+        </a>
+
+        <!-- Logout Modal-->
+        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                        <a class="btn btn-primary" href="login.html">Logout</a>
                     </div>
                 </div>
-            </footer>
-            <!-- End of Footer -->
-
-        </div>
-        <!-- End of Content Wrapper -->
-
-    </div>
-    <!-- End of Page Wrapper -->
-
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
-
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
-                </div>
             </div>
         </div>
-    </div>
 
-    
-    <!-- Bootstrap core JavaScript-->
-<script src="../assets/js/jquery.min.js"></script>
-<script src="../assets/js/bootstrap.bundle.min.js"></script>
 
-<!-- Core plugin JavaScript-->
-<script src="../assets/js/jquery.easing.min.js"></script>
-<!-- Custom scripts for all pages-->
-<script src="../assets/js/sb-admin-2.min.js"></script>
+        <!-- Bootstrap core JavaScript-->
+        <script src="../assets/js/jquery.min.js"></script>
+        <script src="../assets/js/bootstrap.bundle.min.js"></script>
 
-<!-- Page level plugins -->
-<script src="../assets/js/jquery.dataTables.min.js"></script>
-<script src="../assets/js/dataTables.bootstrap4.min.js"></script>
+        <!-- Core plugin JavaScript-->
+        <script src="../assets/js/jquery.easing.min.js"></script>
+        <!-- Custom scripts for all pages-->
+        <script src="../assets/js/sb-admin-2.min.js"></script>
 
-<!-- Page level custom scripts -->
-<script src="../assets/js/datatables-demo.js"></script>
+        <!-- Page level plugins -->
+        <script src="../assets/js/jquery.dataTables.min.js"></script>
+        <script src="../assets/js/dataTables.bootstrap4.min.js"></script>
+
+        <!-- Page level custom scripts -->
+        <script src="../assets/js/datatables-demo.js"></script>
 </body>
 
 </html>

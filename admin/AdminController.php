@@ -16,75 +16,30 @@ include_once './models/Account.php';
 include_once './models/Order.php';
 include_once './models/OrderPro.php';
 include_once './models/Comment.php';
-
 // include_once 'models/TaiKhoan.php';
 
 
-if(!empty($_SESSION['user'])){
-    // include_once 'views/LoginThuong.php';
+
+if(empty($_SESSION['user'])){
+    header('location: ../user/UserController.php');
 }else{
         if(isset($_GET['act'])&&($_GET['act'] !='' )){
         $act = $_GET['act'];
         switch($act){
-            /**
+        /**
+            * ====================================================================================
+            *                                 LOGIN - LOGOUT
+            * ====================================================================================
+            */
+            case 'dangxuat':
+                session_destroy();
+                header('location: AdminController.php');
+                break;
+        /**
              * ====================================================================================
              *                                     SIZE 
              * ====================================================================================
              */
-            case 'AddSize':
-                if($_SERVER['REQUEST_METHOD'] === "POST"){
-
-
-                    $data = $_POST;
-                    extract($data);
-                    $checkSize = check_Size($NameSize);
-                    if(is_array($checkSize)){
-                        $mes = 'Size đã tồn tại ';
-                    }
-                    else{
-                        pushSize($data);
-                        $mes = 'Thêm size thành công' ;
-                    }}
-                    include_once "views/size/addSize.php";
-                    break;
-
-            case 'UpdateBan':
-                $id = $_GET['id'];
-                $ban_One = select_One('tables', null, "IdTables = $id");
-                if (isset($_POST['update']) && ($_POST['update'] != '')) {
-                    extract($_POST);
-                    updateBan($id, $NumberPeople, $NumberTable, $StatusTable);
-                    header("location:" . $adminAction . "ListBan");
-                }
-                include_once "views/ban/UpdateBan.php";
-                break;
-
-        /**
-             * ====================================================================================
-             *                                 PRODUCT
-             * ====================================================================================
-             */
-            case 'ListProduct':
-                $listPro = loadAll_Product();
-                $listProCategory = loadAll_Product_Category();
-                $listProDetails = loadAll_Product_Details();
-                include_once 'views/product/ListProduct.php';
-                break;
-            case 'AddProduct':
-                $listProCategory = loadAll_Product_Category();
-                if(isset($_POST['AddProduct'])){
-                    extract($_POST);
-                    extract($_FILES);
-                    if($ImageProduct['name'] != ''){
-                        $img=$ImageProduct['name'];
-                        move_uploaded_file($ImageProduct['tmp_name'], $adminImg . $img);
-                    }
-
-                    
-                }
-                include_once "views/size/addSize.php";
-
-                break;
             case 'ListSize':
                 if(isset($_GET['delete'])&&($_GET['delete'] !='' )){
                     deleteSize($_GET['delete']);
@@ -101,6 +56,100 @@ if(!empty($_SESSION['user'])){
                 } 
                 include_once "views/size/updateSize.php";
                 break;
+            case 'AddSize':
+                if($_SERVER['REQUEST_METHOD'] === "POST"){
+                    $data = $_POST;
+                    extract($data);
+                    $checkSize = check_Size($NameSize);
+                    if(is_array($checkSize)){
+                        $mes = 'Size đã tồn tại ';
+                    }
+                    else{
+                        pushSize($data);
+                        $mes = 'Thêm size thành công' ;
+                    }}
+                    include_once "views/size/addSize.php";
+                    break;
+        /**
+             * ====================================================================================
+             *                                     TABLES 
+             * ====================================================================================
+             */
+            case 'ListBan':
+                        $listBan = select_All('tables');
+                        include_once "views/ban/ListBan.php";
+                        break;
+            case 'UpdateBan':
+                $id = $_GET['id'];
+                $ban_One = select_One('tables', null, "IdTables = $id");
+                if (isset($_POST['update']) && ($_POST['update'] != '')) {
+                    extract($_POST);
+                    updateBan($id, $NumberPeople, $NumberTable, $StatusTable);
+                    header("location:" . $adminAction . "ListBan");
+                }
+                include_once "views/ban/UpdateBan.php";
+                break;
+
+        /**
+             * ====================================================================================
+             *                                    PRODUCT
+             * ====================================================================================
+             */
+            case 'ListProduct':
+                $listPro = loadAll_Product();
+                $listProCategory = loadAll_Product_Category();
+                $listProDetails = loadAll_Product_Details();
+                include_once 'views/product/ListProduct.php';
+                break;
+                case 'AddProduct':
+                    $listProCategory = loadAll_Product_Category();
+                    if(isset($_POST['AddProduct'])){
+                        extract($_POST);
+                        extract($_FILES);
+                        if($ImageProduct['name'] != ''){
+                            $img=$ImageProduct['name'];
+                            move_uploaded_file($ImageProduct['tmp_name'], $adminImg . $img);
+                        }
+    
+                        add_Product($NameProduct,$QuantityProduct,$PriceProduct,$ImageProduct['name'], $IdCategory,$ProductDetails, $ProductDescription);
+    
+                    }
+                    include_once 'views/product/AddProduct.php';
+                    break;
+            case 'UpdateProduct':
+                $id = $_GET['id'];
+                $oneProduct= loadOne_Product($id);
+                $listProCategory = loadAll_Product_Category();
+                extract($oneProduct);
+                $oneProDetails = loadOne_Product_Details($IdDetails);
+                extract($oneProDetails);
+
+                if(isset($_POST['UpdateProduct'])){
+                  
+                    extract($_POST);
+                    extract($_FILES);
+
+                    $imgNameProduct = (isset($imgProduct)) ? $imgProduct['name'] : $ImageProduct ;
+    
+                    if(isset($imgProduct)){
+                        $img=$imgProduct['name'];
+                        move_uploaded_file($imgProduct['tmp_name'], $adminImg . $img);
+                    }
+
+                    update_Product($id,$NameProduct,$QuantityProduct,$PriceProduct,$imgNameProduct, $IdCategory,$ProductDetails, $ProductDescription);
+                }
+                include_once 'views/product/UpdateProduct.php';
+                break;
+            case 'DeleteProduct':
+                $id = $_GET['id'];
+                delete_Product($id);
+                header('location: AdminController.php?act=ListProduct');
+                break;
+            case 'RestoreProduct':
+                    $id = $_GET['id'];
+                    restore_Product($id);
+                    header('location: AdminController.php?act=ListProduct');
+                    break;
             /**
              * ====================================================================================
              *                                   CATEGORY
@@ -127,14 +176,17 @@ if(!empty($_SESSION['user'])){
                 if(isset($_GET['delete'])&&($_GET['delete'] !='' )){
                     deleteCategory($_GET['delete']);
                 } 
+                if(isset($_GET['restore'])&&($_GET['restore'] !='' )){
+                    restoreCategory($_GET['restore']);
+                } 
                 include_once "views/danhmuc/ListCategory.php";
                 break;
             case 'UpdateCategory':
                 if($_SERVER['REQUEST_METHOD'] === 'POST' ){
                     $data = $_POST;
-                    var_dump($data);
+               
                     $IdCategory = $_GET["IdCategory"];
-                    var_export($IdCategory);              
+                    
                     updateCategory($data, $IdCategory);
                 } 
                 include_once "views/danhmuc/UpdateCategory.php";
@@ -144,28 +196,47 @@ if(!empty($_SESSION['user'])){
              *                                   SIZEPRO
              * ====================================================================================
              */
+            case 'DeleteSizePro':
+                $id = $_GET['id'];
+                $idSizePro = $_GET['idSizePro'];
+                Delete_SizePro($idSizePro);
+                header("location: AdminController.php?act=UpdateSizePro&mes=$mes&id=".$_GET['id']);
+                break;
             case 'AddSizePro':
                 if($_SERVER['REQUEST_METHOD'] === "POST"){
-
-                    $data = $_POST;
-                    extract($data);
+                    var_dump($_POST);
+                    extract($_POST);
                     
-                    $checkSizePro = check_SizePro($IdProduct,$IdSize,$Price);
+                    $checkSizePro = check_SizePro($IdProduct,$addSizePro_IdSize,$addSizePro_Price);
+                    if(!is_array($checkSizePro)){
+                        extract($_POST);
+                        extract($_FILES);
+                        echo '<pre>';
+                        print_r($_POST);
+                        echo '</pre>';
+                        var_dump($addSizePro_Img);
+                        $img = ($addSizePro_Img['size'] != 0) ? $addSizePro_Img['name'] : '' ;
+                        if($addSizePro_Img['size'] != 0){
+                            $img=$addSizePro_Img['name'];
+                            move_uploaded_file($addSizePro_Img['tmp_name'], $adminImg . $img);
+                            pushSizePro($IdProduct,$addSizePro_IdSize,$addSizePro_Price,$img);
+                            echo'thành công';
+                        }else{
+                            $mes = 'Bắt buộc phải có ảnh';
+                        }
+                        
+                    }else{
 
-                    if(is_array($checkSizePro)){
-                        $mes = 'Dữ liệu này đã tồn tại mời chọn lại ';
+                        $mes = 'Dữ Liệu Đã Tồn Tại';
                     }
-                    else{
-                            pushSizePro($data);
-                            $mes = 'Thêm thành công ';
-                    }
-
-
-                    
+                    header("location: AdminController.php?act=UpdateSizePro&mes=$mes&id=".$_GET['id']);
                 }
-                include_once "views/sizepro/AddSizePro.php";
                 break;
-            break;
+            case 'OneSizePro':
+                $id = $_GET['id'] ;
+                getSizePro($id);
+                include_once "views/sizepro/UpdateSizePro.php";
+                break;
             case 'ListSizePro':
                 if(isset($_GET['delete'])&&($_GET['delete'] !='' )){
                     
@@ -174,18 +245,18 @@ if(!empty($_SESSION['user'])){
                 include_once "views/sizepro/ListSizePro.php";
                 break;
             case 'UpdateSizePro':
-                if($_SERVER['REQUEST_METHOD'] === 'POST' ){
-                    $data = $_POST;
-                    
-                    if(isset($_GET["IdSizePro"])) {
-                        $IdSizePro = $_GET["IdSizePro"];   
-                    }else{
-                        $IdSizePro = $data['IdSizePro'];
-                    }
+                $arr_Data=[];
+                $id = $_GET['id'];
+                $pro = loadAll_Product();
+                $size = getListSize();
+                $name_Pro = loadOne_Product($id);
+            $pro_Size_Price_Img =  getOne_Pro($id);
 
-                    updateSizePro($data, $IdSizePro);
-                } 
-                include_once "views/sizepro/UpdateSizePro.php";
+            // thêm size_pro mới
+            if(isset($_POST['add_New_SizePro'])){
+                echo'khoi';
+            }
+           include_once "views/sizepro/UpdateSizePro.php";
                 break;
             /**
              * ====================================================================================
@@ -236,17 +307,19 @@ if(!empty($_SESSION['user'])){
                 break;
             case 'UpdateAccount':
                 if($_SERVER['REQUEST_METHOD'] === "POST"){
+                    $IdAccount = $_GET['IdAccount'];
+                    $dataAccount = select_One('account','*',"IdAccount = $IdAccount") ;
                     extract($_POST);
                     extract($_FILES);
 
-                    $imgNameProduct = ($imgProduct['size'] != 0) ? $imgProduct['name'] : $ImageProduct ;
+                    $img = ($ImageAccounts['size'] != 0) ? $ImageAccounts['name'] : $dataAccount['ImageAccounts'] ;
     
-                    if($imgProduct['size'] != 0){
-                        $img=$imgProduct['name'];
-                        move_uploaded_file($imgProduct['tmp_name'], $adminImg . $img);
+                    if($ImageAccounts['size'] != 0){
+                        $img=$ImageAccounts['name'];
+                        move_uploaded_file($ImageAccounts['tmp_name'], $adminImg . $img);
                     }
-
-                    update_Product($id,$NameProduct,$QuantityProduct,$PriceProduct,$imgNameProduct, $IdCategory,$ProductDetails, $ProductDescription);
+                    updateAccount($IdAccount, $NameAccount, $Gmail, $Gender , $Password, $img, $StatusAccount,$Role);
+                   
 
                 }
                 include_once "views/account/UpdateAccount.php";
@@ -394,7 +467,7 @@ if(!empty($_SESSION['user'])){
                 break;
 
             default:
-                // include_once 'views/Home.php';
+                include_once 'views/Home.php';
                 break;
         }
 

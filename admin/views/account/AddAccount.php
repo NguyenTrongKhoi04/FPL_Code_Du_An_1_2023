@@ -31,11 +31,8 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-<<<<<<< HEAD:admin/views/taikhoan/AddAccount.php
-        <?php include_once $adminSideBarMenu ?>
-=======
+
         <?php include_once $SideBarMenu ?>
->>>>>>> origin/KhongTrongKhanh:admin/views/account/AddAccount.php
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
@@ -273,62 +270,7 @@
 
 
                                    <tbody>                
-<<<<<<< HEAD:admin/views/taikhoan/AddAccount.php
-                                       <form action="AdminController.php?act=AddAccount" method="post" enctype="multipart/form-data">
-                                           <tr>
-                                               <td>Tên</td>
-                                                <td><input name="Name" required type="text"></td>
-                                                
-                                           </tr>
-                                           <tr>
-                                               <td>Gmail
-                                               <td><input name="Gmail" required type="email"></td>
-                                                
-                                           </tr>
-                                           <tr>
-                                               <td>Gới tính</td>
-                                               <td>
-                                                    <select  name="Gender" required id="">
-                                                        <option selected hidden value="">Gới tính</option>
-                                                        <option value="0">Nam</option>
-                                                        <option value="1">Nữ</option>
-                                                        <option value="2">Khác</option>
-                                                    </select>
-                                               </td>
-                                                
-                                           </tr>
-                                           </tr>
-                                               <td>Mật khẩu</td>
-                                               <td><input name="Password" required type="password"></td>
-                                                
-                                           </tr>
-                                           <tr>
-                                               <td>Ảnh</td>
-                                               <td>
-                                                    <input type="file" name = "Image" alt="">
-                                               </td>
-                                                                                         
-                                           <tr>
-                                               <td>Chức vụ</td>
-                                               <td>
-                                                    <select name="Type"  required id="">
-                                                        <option selected hidden value="">Chức vụ</option>
-                                                        <option value="NVTN">Nhân viên thu ngân</option>
-                                                        <option value="NVPVB">Nhân viên phục vụ bàn</option>
-                                                        <option value="QL">Quản lý</option>
-                                                        <option value="KH">Khách Hàng</option>
-                                                        <option value="Admin">Admin</option>
-                                                    </select>
-                                               </td>
-                                                
-                                           </tr>
-                                           <tr>
-                                               <td><input name="submit" required type="submit" value="thêm"></td>
-                                               
-                                           </tr>
-                    
-                                   
-=======
+
                                        <form action="AdminController.php?act=AddAccount" method="post" enctype="multipart/form-data"> 
                                             <tr>
                                                <td>Tên</td>
@@ -345,10 +287,9 @@
                                                <td>Giới tính</td>
                                                <td>
                                                     <select name="Gender" id="">
-                                                        <option value="" selected hidden>Giới tính</option>
-                                                        <option value="0">Giới tính Nam</option>
-                                                        <option value="1">Giới tính Nữ</option>
-                                                        <option value="2">Giới tính Khác</option>
+                                                        <option value="0" selected>Nam</option>
+                                                        <option value="1">Nữ</option>
+                                                        <option value="2">Khác</option>
                                                     </select>
                                                </td>
 
@@ -369,26 +310,13 @@
                                                </td>
                                                 
                                            </tr>
-                                            <tr>
-                                               <td>Trạng thái</td>
-                                               <td>
-                                                    <select name="StatusAccount" id="">
-                                                        <option value="0">Hoạt động bình thường</option>
-                                                        <option value="1">Đã xóa </option>
-                                                    </select>
-                                               </td>
-                                               
-                                           </tr>
+                                           
                                            <tr>
                                                <td>Role</td>
                                                <td>
                                                     <select name="Role" id="">
-                                                        <option value="" selected hidden>Role</option>
-                                                        <option value="0">Khách Hàng</option>
-                                                        <option value="1">Chủ quán</option>
-                                                        <option value="2">Quản lý</option>
-                                                        <option value="3">Nhân viên phục vụ bàn</option>
-                                                        <option value="4">Nhân viên thu ngân</option>
+                                                        <option value="0" selected>Khách Hàng</option>
+                                                        <option value="2">Nhân Viên</option>
                                                     </select>
                                                </td>
                                                
@@ -397,7 +325,6 @@
                                            <td><input name = "submit" type="submit" value="thêm"></td>                              
                                         </form>
 
->>>>>>> origin/KhongTrongKhanh:admin/views/account/AddAccount.php
                                    </tbody>
                                </table>
                             </div>

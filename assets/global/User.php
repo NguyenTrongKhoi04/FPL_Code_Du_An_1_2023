@@ -114,11 +114,13 @@ function check_Login(){
         $tk = $_POST['tk'];
         $mk = ($_POST['mk']);//md5
         $arrCheck = select_One('account',null," Gmail = '$tk' AND Password = '$mk'");
-        
+
         if(is_array($arrCheck)){
             $_SESSION['user']=$arrCheck;
             unset($tk,$mk);
         }
+        
+
     }
 }
 
@@ -128,6 +130,7 @@ function check_LoginNhanh(){
     if(isset($Gmail_tk_nhanh)){
         $arrCheck = select_One('account',null," Gmail = '$Gmail_tk_nhanh'");
         var_dump($arrCheck);
+        die;
         if(is_array($arrCheck)){
             $_SESSION['user']=$arrCheck;
             unset($tk_nhanh);

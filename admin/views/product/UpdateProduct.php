@@ -289,16 +289,13 @@
                                                 <th>Ảnh Sản Phẩm</th>
 
                                                 <td>
-                                                    <img src="<?= $adminImg.$ImageProduct?>" <?php if($ImageProduct !=''){echo 'width="200px"';}?> alt="">
-                                                    <br>
-                                                    <br>
-                                                    <input type="file" name="imgProduct" >
+                                                   <a href="">Ảnh Theo Từng Size</a>
                                                 </td>
                                             </tr>
 
                                             <tr>
                                                 <td>
-                                                    <input type="submit" name="UpdateProduct" value="Thêm">
+                                                    <input type="submit" name="UpdateProduct" value="Update">
                                                 </td>
                                             </tr>
                                         </form>

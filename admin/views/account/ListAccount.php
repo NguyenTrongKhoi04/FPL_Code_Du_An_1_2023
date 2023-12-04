@@ -30,13 +30,9 @@
     <!-- Page Wrapper -->
     <div id="wrapper">
 
-<<<<<<< HEAD:admin/views/taikhoan/ListAccount.php
-        <!-- Sidebar -->        
-        <?php include_once $adminSideBarMenu?>
-=======
+
         <!-- Sidebar -->
         <?php include_once $SideBarMenu ?>
->>>>>>> origin/KhongTrongKhanh:admin/views/account/ListAccount.php
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
@@ -265,84 +261,12 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-<<<<<<< HEAD:admin/views/taikhoan/ListAccount.php
-=======
-                                           
->>>>>>> origin/KhongTrongKhanh:admin/views/account/ListAccount.php
                                             <th>Tên</th>
                                             <th>Gmail</th>
                                             <th>Giới tính</th>
                                             <th>Mật khẩu</th>
                                             <th>Ảnh</th>
                                             <th>Trạng thái</th>
-<<<<<<< HEAD:admin/views/taikhoan/ListAccount.php
-                                            <th>Chức vụ</th>
-                                            <th>Thời gian chỉnh sửa</th>
-                                            <th>Thao Tác</th>   
-                                        </tr>
-                                    </thead>
-                                    <tbody>  
-                                    <?php 
-                                        foreach(getListAccount() as $values){
-                                            $types = null;
-                                            $gender = null;
-                                            $status = $values["StatusAccount"] ===  0 ? "Hoạt động " : "Đã xóa";
-                                            switch($values['Gender'] ){
-                                                case 0:
-                                                    $gender = "Nam";
-                                                break;
-                                                case 1:
-                                                    $gender = "Nữ";
-                                                break;
-                                                case 2:
-                                                    $gender = "Khác";
-                                                break;
-                                            }
-                                            switch($values['Type']){
-                                                case "NVTN":
-                                                    $types = "Nhân viên thu ngân";
-                                                break;
-                                                case "NVPVB":
-                                                    $types = "Nhân viên phục vụ bàn";
-                                                break;
-                                                case "QL":
-                                                    $types = "Quản lý";
-                                                break;
-                                                case "KH":
-                                                    $types = "Khách Hàng";
-                                                break;
-                                                case "Admin":
-                                                    $types = "Chủ Quán";
-                                                break;
-
-                                            }
-                                            
-                                            echo "
-                                            <tr>
-                                                <td>{$values['NameAccounts']}</td>
-                                                <td>{$values['Gmail']}</td>
-                                                <td>{$gender}</td>
-                                                <td>{$values['Password']}</td>
-                                                <td style='max-width: 100px'>
-                                                    <img style='max-width: 100%' src='../assets/img/admin/{$values['ImageAccounts']}' alt='image' >
-                                                </td>          
-                                                <td>{$status}</td>
-                                                <td>{$types}</td>
-                                                <td>{$values['DateEditAccount']}</td>
-
-                                                <td>
-                                                    <a href='AdminController.php?act=UpdateAccount&IdAccount={$values['IdAccount']}'>
-                                                        <input type='button' value='Sửa'> 
-                                                    </a>
-                                                    <a href='AdminController.php?act=ListAccount&delete={$values['IdAccount']}'>
-                                                        <input type='button' value='Xóa'>
-                                                    </a>                                                                                                               
-                                                </td>   
-                                        </tr>                                                
-                                            ";
-                                        }
-                                    ?> 
-=======
                                             <th>Role</th>
                                             <th>Ngày cập nhật</th>
                                             <th>Thao tác</th>
@@ -383,9 +307,6 @@
                                             }
                                             // {$values['']}
                                         ?> 
-
-        
->>>>>>> origin/KhongTrongKhanh:admin/views/account/ListAccount.php
                                     </tbody>
                                 </table>
                             </div>
