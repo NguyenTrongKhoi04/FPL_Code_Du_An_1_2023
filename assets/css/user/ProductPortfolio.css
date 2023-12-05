@@ -75,10 +75,11 @@ html {
   align-items: start;
   flex-wrap: wrap;
   overflow: hidden;
+  align-content: flex-start;
 }
 .page main .lisstProduct .product {
   width: 25%;
-  height: 24%;
+  height: 20%;
   border-radius: 30px;
   color: var(--color6);
   background-color: var(--color2);
@@ -154,6 +155,7 @@ html {
   height: 55%;
   border-radius: 100px;
   background-color: var(--color6);
+  border: none;
 }
 .page main .lisstProduct .product .AddToCart button a {
   color: var(--color);

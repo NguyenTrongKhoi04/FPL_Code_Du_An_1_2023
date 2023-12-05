@@ -7,10 +7,10 @@
         <form action="?act=DanhMucSanPham&idCategory=<?= $_POST['product'] ?? '' ?>" method="post" class="nav">
             <select name="price" id="priceSelect" onchange="this.form.submit()">
                 <option value="">Giá</option>
-                <option value="1000-3000">1000$ - 3000$</option>
-                <option value="3000-6000">3000$ - 6000$</option>
-                <option value="6000-1000000">6000$ - 1000000$</option>
-                <option value="15000-1000000000">15000$ - 1000000000$</option>
+                <option value="1000-3000">1000 VND - 3000 VND</option>
+                <option value="3000-6000">3000 VND - 6000 VND</option>
+                <option value="6000-1000000">6000 VND - 1000000 VND</option>
+                <option value="15000-1000000000">15000 VND - 1000000000 VND</option>
             </select>
             <select name="product" id="priceSelect" onchange="this.form.submit()">
                 <option value="">Sản phẩm</option>
@@ -43,7 +43,7 @@
                             <p>{$itemProductAsRequested['ProductDetails']}</p>
                         </article>
                         <article class='price'>
-                            <h1>{$itemProductAsRequested['PriceProduct']}$</h1>
+                            <h1>{$itemProductAsRequested['PriceProduct']} VND</h1>
                         </article>
                         <article class='AddToCart'>
                             <button>
@@ -70,7 +70,7 @@
                                 <p>{$itemProductPortfolio['ProductDetails']}</p>
                             </article>
                             <article class='price'>
-                                <h1>{$itemProductPortfolio['PriceProduct']}$</h1>
+                                <h1>{$itemProductPortfolio['PriceProduct']} VND</h1>
                             </article>
                             <article class='AddToCart'>
                                 <button>

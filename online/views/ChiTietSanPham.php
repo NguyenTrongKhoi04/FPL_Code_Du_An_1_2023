@@ -3,9 +3,7 @@
         <link rel="stylesheet" href="../assets/css/user/ChiTietSanPham.css">
         <div class="ProductDetail">
             <div class="img"><img id="sizeImage" src="<?= $adminImg?>" height="100%"></div>
-            <div class="form">
-
-          
+            <div class="form">         
                 <?php if ($_SESSION['user']['Role'] == 3) { ?>
                         <form action="<?= $userAction ?>LoginNhanh_Add_To_CartAndOrder&id=<?= $pro['IdProduct'] ?>" method="POST">
                     <?php } else { ?>
@@ -16,7 +14,6 @@
                     <?php } ?>
                     <input type="hidden" name="IdProduct" value="<?= $pro['IdProduct'] ?>">
                     <input type="hidden" name="PriceProduct" value="<?= $pro['PriceProduct'] ?>">
->>>>>>> a5f162332087a2c9105d698a9cb03e3becbfe67b
                     <div class="hr"></div>
                     <ul>
                             <!-- <del>40.000</del> -->

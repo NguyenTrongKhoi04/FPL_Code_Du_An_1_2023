@@ -184,11 +184,8 @@
 
         </section>
     </main>
-
 </section>
 <script src="../assets/js/Home.js"></script>
-
-
 <?php
 if(isset($alert) && !empty($alert)){
     echo "<script> alert('$alert') </script>";

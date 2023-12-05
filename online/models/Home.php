@@ -11,6 +11,7 @@ function home_GetAllProduct()
 
     return query_All($sql);
 }
+
 /**
  * lấy tất cả bàn
  */

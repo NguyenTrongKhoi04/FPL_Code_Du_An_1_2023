@@ -11,9 +11,11 @@ header {
   width: 1470px;
   background-color: #282828;
   margin: 0 auto;
+  height: 170px;
 }
 header .content_header {
   width: 100%;
+  height: 100%;
   display: flex;
   justify-content: space-between;
 }
@@ -22,6 +24,8 @@ header .content_header .menu {
   margin-bottom: 17px;
   margin-left: 30px;
   display: flex;
+  width: 55%;
+  height: 89%;
 }
 header .content_header .menu img {
   width: 137px;
@@ -44,6 +48,23 @@ header .content_header .menu ul li a {
 header .content_header .menu ul li a:hover {
   color: #F7C427;
   text-decoration: underline;
+}
+header .content_header .menu .listCategory {
+  width: 80%;
+  height: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  overflow: none;
+}
+header .content_header .menu .listCategory a {
+  text-decoration: none;
+  font-size: 2rem;
+  color: white;
+}
+header .content_header .menu .listCategory a:hover {
+  color: orange;
 }
 header .content_header .login {
   display: flex;

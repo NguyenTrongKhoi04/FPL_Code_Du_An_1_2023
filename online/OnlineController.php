@@ -4,11 +4,13 @@ ob_start();
 include_once '../app/Pdo.php';
 include_once '../assets/global/User.php';
 include_once '../assets/global/url_Path.php';
+include_once 'models/Header.php';
 include_once '../assets/global/Header.php';
 include_once "../assets/global/Validate.php";
 include_once "../assets/global/SendGmail.php";
-include_once 'models/Login.php';
 include_once 'models/Home.php';
+// include_once '../assets/global/Footer.php';
+include_once 'models/Login.php';
 include_once 'models/ProductPortfolio.php';
 include_once 'models/Cart.php';
 include_once 'models/CreateAccount.php';
@@ -134,9 +136,6 @@ if(isset($_GET['act'])&&($_GET['act'] !='' )){
             case 'LoginNhanh_Add_To_CartAndOrder':
                 extract($_POST);
                 $check_SoLuong_Pro = loginNhanh_Check_SoLuong($IdProduct);
-                // echo'<pre>';
-                // print_r($_POST);
-                // echo'</pre>';;
                 if($Quantity > $check_SoLuong_Pro['QuantityProduct'] ){
                     $mes = "Sản phẩm hiện tại còn: ".$check_SoLuong_Pro['QuantityProduct'];
                 }else{
@@ -266,10 +265,6 @@ if(isset($_GET['act'])&&($_GET['act'] !='' )){
                     }else{
                         $mes_ChoXacNhan ='' ;
                     }
-                    // var_dump($arrOrder[0]['IdOrder']);
-                    // echo '<pre>';
-                    // print_r($arrOrder);
-                    // echo '</pre>';
 
                     if(isset($_POST['Pay_Truc_Tiep'])&&$_POST['Pay_Truc_Tiep'] !=''){
                         loginNhanh_Update_TrangThai_ThanhToan_Orders($_SESSION['user']['IdAccount']);
@@ -314,7 +309,6 @@ if(isset($_GET['act'])&&($_GET['act'] !='' )){
             case "CashViSa":
                 $listOrderUser = CashViSa_GetAllOrderUser();
                 $toatl =  cart_Totail($listOrderUser)['totail'];
-                // echo $toatl; die();
                 if($_SERVER['REQUEST_METHOD']==='POST'){ 
                     $endpoint = "https://test-payment.momo.vn/v2/gateway/api/create";
                     $partnerCode = 'MOMOBKUN20180529';
