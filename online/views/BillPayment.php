@@ -4,7 +4,7 @@
             <aside class="aside">
                 <section class="headerAside">
                     <article class="img">
-                        <img src="<?= $imgPathAdmin.$_SESSION['user']['ImageAccounts']?>" alt="">
+                        <img src="<?= $imgPathAdmin.$dataProfile['ImageAccounts']?>" alt="">
                     </article>
                     <article class="content">
                         <h1><?= $_SESSION['user']["NameAccount"] ?></h1>
@@ -19,6 +19,8 @@
                     ?>
                     <ul>
                         <li>  Tổng tiền: <?= $totailPrice ?> VND </li>
+                        <li> <a href="OnlineController.php?act=PersonalPage">Trang cá nhân</a> <i class="ti-angle-down"></i> </li>
+                        <li> <a href="OnlineController.php?act=billthanhtoan">Lịch sử thanh toán</a> <i class="ti-angle-down"></i> </li>
                         <li> <a href="OnlineController.php?act=AddComment">Bình luận sản phẩm</a> <i class="ti-angle-down"></i> </li>
                         <li> <a href="OnlineController.php?act=ListComment">Sản phẩm đã bình luận</a> <i class="ti-angle-down"></i> </li>
                         <li>  Tổng số lượng sản phẩm đã sử dụng: <?= count($listOrderPayMent) ?> </li>

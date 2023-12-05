@@ -158,15 +158,13 @@
                         echo "<h1>Không có sản phẩm </h1>";
                     } else {
                 ?>
-
-
             </section>
         </section>
         <section class="displayCommet" id="displayCommet">
             <section class="containerDisplayCommet" id="containerDisplayCommet">
                 <?php
                         if (empty(home_GetComment())) {
-                            echo "<h1>Không có bình luận </h1>";
+                            echo "<h1 style='color: white'>Không có bình luận</h1>";
                         } else {
                 ?>
 
@@ -184,6 +182,7 @@
 
         </section>
     </main>
+</section>
 </section>
 <script src="../assets/js/Home.js"></script>
 <?php

@@ -9,7 +9,6 @@ include_once '../assets/global/Header.php';
 include_once "../assets/global/Validate.php";
 include_once "../assets/global/SendGmail.php";
 include_once 'models/Home.php';
-// include_once '../assets/global/Footer.php';
 include_once 'models/Login.php';
 include_once 'models/ProductPortfolio.php';
 include_once 'models/Cart.php';
@@ -22,6 +21,7 @@ include_once 'models/AddComments.php';
 include_once 'models/ListComment.php';
 include_once 'models/LoginNhanh.php';
 include_once 'models/LoginNhanh_Bill.php';
+include_once 'models/PersonalPage.php';
 
 check_LoginNhanh();
 check_Login();
@@ -229,12 +229,11 @@ if(isset($_GET['act'])&&($_GET['act'] !='' )){
             * ====================================================================================
             */        
             case 'billthanhtoan':
+                $dataProfile = PersonalPage_GetProfileUser($_SESSION['user']['IdAccount'])[0];
                 $listOrderPayMent = BillPayment_GetOrderPayment($idAccountUser);
                 include_once 'views/BillPayment.php' ;
                 break; 
            
-
-
                 case 'LoginNhanh_ListOrder':
 
                     if(empty( loginNhanh_ChuaThanhToan_GetAll_Order_ByIdAccount($_SESSION['user']['IdAccount'])) 
@@ -371,6 +370,8 @@ if(isset($_GET['act'])&&($_GET['act'] !='' )){
             case "AddComment":
                 $listOrderPayMent = BillPayment_GetOrderPayment($idAccountUser);
                 $listComment = AddComments_GetComment($idAccountUser);
+                $dataProfile = PersonalPage_GetProfileUser($_SESSION['user']['IdAccount'])[0];
+
                 if($_SERVER['REQUEST_METHOD']==='POST'){ 
                     if(isset($_GET['idProduct']) && isset($_GET['IdOrder'])){
                         $IdProduct = $_GET['idProduct'];
@@ -389,6 +390,8 @@ if(isset($_GET['act'])&&($_GET['act'] !='' )){
             case "ListComment":
                 $listOrderPayMent = BillPayment_GetOrderPayment($idAccountUser);
                 $listComment = ListComment_GetAllComment($idAccountUser);
+                $dataProfile = PersonalPage_GetProfileUser($_SESSION['user']['IdAccount'])[0];
+
                 if($_SERVER['REQUEST_METHOD']==='POST' && isset($_GET['IdComment'])){ 
                     $IdComment = $_GET['IdComment'];
                     if(isset($_POST["delete"])){
@@ -404,7 +407,18 @@ if(isset($_GET['act'])&&($_GET['act'] !='' )){
                 include_once 'views/ListComment.php';
                 break;
 
-            default:
+            case "PersonalPage":
+                $dataProfile = PersonalPage_GetProfileUser($_SESSION['user']['IdAccount'])[0];
+                if($_SERVER['REQUEST_METHOD']==='POST' && isset($_GET['IdAccount'])) {
+                    $IdAccount = $_GET['IdAccount'];
+                    PersonalPage_PushProfileUser($_POST, $_FILES["ImageAccounts"], $IdAccount);
+                    header("Location: OnlineController.php?act=PersonalPage");
+
+                }
+                include_once 'views/PersonalPage.php';
+                break;
+
+                default:
                 include_once 'views/Home.php';
                 break;
         }
@@ -414,12 +428,12 @@ if(isset($_GET['act'])&&($_GET['act'] !='' )){
 }
 
 
-include_once '../assets/global/Footer.php';
-echo "<script>
-setTimeout(function(){
-    location.reload();
-  }, 60000); 
-</script>";
+// echo "<script>
+// setTimeout(function(){
+//     location.reload();
+//   }, 60000); 
+// </script>";
 
+include_once '../assets/global/Footer.php';
 
 
