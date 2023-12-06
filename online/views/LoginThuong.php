@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="../assets/css/user/LoginThuong.css">
+<link rel="stylesheet" href="../assets/css/user/ForgotPassword.css">
 <div class="Login_thuong">
     <div class="img"><img src="<?= $img_Path?>Login.png" alt=""></div>
     <div class="content_login_thuong">
@@ -10,8 +10,8 @@
             <input type="password" placeholder="" name="mk">
             <button type="submit">Đăng nhập</button>
             <div class="option">
-                <a href="">Quên mật khẩu</a>
-                <a href="">Đăng ký</a>
+                <a href="OnlineController.php?act=ForgotPassword">Quên mật khẩu</a>
+                <a href="OnlineController.php?act=TaoTaiKhoan">Đăng ký</a>
             </div>
         </form>
     </div>

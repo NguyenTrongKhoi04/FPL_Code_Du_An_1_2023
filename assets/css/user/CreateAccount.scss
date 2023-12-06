@@ -154,7 +154,7 @@ html{
                 align-items: center;
 
                 
-                p{
+                p, a{
                     color: var(--color4);
                     font-family: Inter;
                     font-size: 1.5rem;
@@ -162,7 +162,7 @@ html{
                     font-weight: 700;
                     line-height: normal;                   
                 }
-                p:nth-child(2){
+                a{
                     color: var(--color6);
                     margin-left: 2%;
                 }

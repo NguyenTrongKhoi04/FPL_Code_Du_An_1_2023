@@ -22,6 +22,7 @@ include_once 'models/ListComment.php';
 include_once 'models/LoginNhanh.php';
 include_once 'models/LoginNhanh_Bill.php';
 include_once 'models/PersonalPage.php';
+include_once 'models/ForgotPassword.php';
 
 check_LoginNhanh();
 check_Login();
@@ -32,7 +33,50 @@ if(isset($_GET['act'])&&($_GET['act'] !='' )){
     if(empty($_SESSION['user'])){
         if($_GET['act']=='dangnhap_AnTaiQuan'){
             include_once 'views/LoginNhanh.php';
-        }else{
+        }elseif($_GET['act']=='TaoTaiKhoan'){
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $dataAccount = $_POST;
+                $alert = CreateAccount_CreateAccount($dataAccount);
+                if ($alert === "") {
+                    header("Location: OnlineController.php?act=VerifyAccount");
+                }
+            }
+            include_once 'views/CreateAccount.php';
+        }elseif($_GET['act']=='VerifyAccount'){
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $dataVerifyAccount = $_POST;
+                $alert = CreateAccount_CreateAccount1($dataVerifyAccount);
+            }
+            include_once 'views/VerifyAccount.php';
+        }
+        elseif($_GET['act']=='ForgotPassword'){
+            if($_SERVER['REQUEST_METHOD']==='POST' ) {
+                extract($_POST);
+                $alert = ForgotPassword_CheckGmail($Gmail);
+                if($alert === true){
+                    header("Location: OnlineController.php?act=VerificationAccount&gmail=$Gmail");
+                }else{
+                    echo "<script> alert('$alert') </script>";
+                }
+            }
+            include_once 'views/ForgotPassword.php';
+        }elseif($_GET['act']=='VerificationAccount'){
+            if($_SERVER['REQUEST_METHOD']==='POST' && isset($_GET['gmail']) && !empty($_GET['gmail'])) {
+                if(isset($_COOKIE['codeRandom'])){
+                    $gmail = $_GET['gmail'];
+                    extract($_POST);
+                    $alert = ForgotPassword_VerificationAccount($_POST, $_COOKIE['codeRandom'], $gmail );
+
+                    echo "<script> alert('$alert') </script>";
+                    
+                }else{
+                    echo "<script> alert('Mã xác nhận đã hết thời gian sử dụng vui lòng thực hiện lại chức năng') </script>";
+
+                }
+            }
+            include_once 'views/VerificationAccount.php';
+        }
+        else{
             include_once 'views/LoginThuong.php';
         }
     } else {
@@ -66,28 +110,6 @@ if(isset($_GET['act'])&&($_GET['act'] !='' )){
             case 'dangxuat':
                 session_destroy();
                 header('location: OnlineController.php');
-                break;
-        /**
-            * ====================================================================================
-            *                                 DANG KY
-            * ====================================================================================
-            */
-            case 'TaoTaiKhoan':
-                if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                    $dataAccount = $_POST;
-                    $alert = CreateAccount_CreateAccount($dataAccount);
-                    if ($alert === "") {
-                        header("Location: OnlineController.php?act=VerifyAccount");
-                    }
-                }
-                include_once 'views/CreateAccount.php';
-                break;
-            case "VerifyAccount":
-                if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                    $dataVerifyAccount = $_POST;
-                    $alert = CreateAccount_CreateAccount1($dataVerifyAccount);
-                }
-                include_once 'views/VerifyAccount.php';
                 break;
         /**
             * ====================================================================================
@@ -417,8 +439,7 @@ if(isset($_GET['act'])&&($_GET['act'] !='' )){
                 }
                 include_once 'views/PersonalPage.php';
                 break;
-
-                default:
+            default:
                 include_once 'views/Home.php';
                 break;
         }
