@@ -247,6 +247,7 @@ if(empty($_SESSION['user'])){
                             move_uploaded_file($addSizePro_Img['tmp_name'], $adminImg . $img);
                             pushSizePro($IdProduct,$addSizePro_IdSize,$addSizePro_Price,$img);
                             echo'thành công';
+                            
                         }else{
                             $mes = 'Bắt buộc phải có ảnh';
                         }

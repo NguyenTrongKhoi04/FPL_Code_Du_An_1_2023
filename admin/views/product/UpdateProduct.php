@@ -206,6 +206,9 @@
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-body">
+                        <h1 style="color: red">
+                                <?php include_once $ThongBao ?>
+                            </h1>
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 
