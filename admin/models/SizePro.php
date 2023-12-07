@@ -24,7 +24,6 @@ function pushSizePro($IdProduct,$addSizePro_IdSize,$addSizePro_Price,$img){
     
 
     $sql= "insert into size_pro values ('','$IdProduct','$addSizePro_IdSize','$addSizePro_Price','$img')";
-
     return pdo_Execute($sql);
 }
 
@@ -33,7 +32,7 @@ function getListSizePro(){
 
     $sql ='
     select sp.*,sz.*,pr.* from size_pro sp 
-     join product pr on sp.IdProduct = pr.IdProduct
+    join product pr on sp.IdProduct = pr.IdProduct
     join size sz on sp.IdSize = sz.IdSize;
     
     ';
@@ -54,7 +53,7 @@ function updateSizePro($dataSizePro, $IdSizePro){
 
     $sqlSizePro = "
 
-    update size_pro set  IdProduct = '$IdProduct' , IdSize = '$IdSize' ,Price = '$Price'where IdSizePro = '$IdSizePro'
+    update size_pro set  IdProduct = '$IdProduct' , IdSize = '$IdSize' ,Price = '$Price' ImageProduct = '$ImageProduct' where IdSizePro = '$IdSizePro'
 
     ";
     
@@ -74,8 +73,7 @@ function getSizePro($IdSizePro){
 
 function check_SizePro($IdProduct,$IdSize,$Price){
 
-    $sql = "SELECT * FROM  size_pro  WHERE IdProduct = '$IdProduct' AND IdSize ='$IdSize' AND Price = '$Price' ";
-    
+    $sql = "SELECT count(*) FROM  size_pro  WHERE IdProduct = '$IdProduct' AND IdSize ='$IdSize' AND Price = '$Price' ";
     return query_One($sql);
 }
 

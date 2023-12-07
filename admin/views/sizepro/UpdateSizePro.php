@@ -232,7 +232,7 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800"><?= $name_Pro['NameProduct'] ?></h1>
+                    <h1 class="h3 mb-2 text-gray-800"><?= $dataSizePro['NameProduct'] ?></h1>
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
@@ -249,59 +249,33 @@
                                     </tr>
                                     <tbody>
                                         
-                                        <form action="AdminController.php?act=UpdateSizePro&IdSizePro=<?= $IdSizePro ?>" method="post">
-                                            <?php foreach ($pro_Size_Price_Img as $i) { ?>
-                                                <tr>
-                                                <?php array_push($arr_Data,$i['IdSize']) ?>
-                                                    <td>
-                                                        <?php foreach ($size as $oneSize) {
-                                                            if ($oneSize['IdSize'] == $i['IdSize']) { ?>
-                                                                <?= $oneSize['NameSize'] ?>
-
-                                                        <?php }
-                                                        } ?>
-
-                                                    </td>
-                                                    <td>
-                                                    <?= $i['Price'] ?>
-                                                    </td>
-                                                    <td>
-                                                        <?php if($i['ImgSizePro'] !=NULL){ ?>
-                                                        <img src="<?= $adminImg . $i['ImgSizePro'] ?>" width="100px" alt="">
-                                                        <?php }else{ ?>                                                    
-                                                            <p style="color: red;">Chưa có ảnh</p>
-                                                        <?php } ?>
-                                                        </td>
-                                                    <td><a href="AdminController.php?act=DeleteSizePro&id=<?=$_GET['id']?>&idSizePro=<?=$i['IdSizePro'] ?>"><input type="button" value="Xóa" name="delete_Size_Pro"></a></td>
-                                                </tr>
-
-                                            <?php } ?>
+                                        <form action="AdminController.php?act=UpdateSizePro&IdSizePro=<?= $dataSizePro['IdSizePro'] ?>" method="post">
                                          <span>&nbsp;&nbsp;</span>
                                             <a href="AdminController.php?act=ListProduct"><input class="mr20" type="button" value="DANH SÁCH"></a>
                                         </form>
                                     
                                         <!-- nếu còn những size ch add =>> được hiển thị -->
                                   
-                                        <?php if(check_Het_Size($_GET['id'])) { ?>
+                                        <?php if(check_Het_Size($_GET['IdSizePro'])) { ?>
                                             
-                                        <form action="AdminController.php?act=AddSizePro&id=<?=$_GET['id']?>" method="POST" enctype="multipart/form-data">
-                                          <input type="hidden" name="IdProduct" value="<?= $_GET['id']?>">
+                                        <form action="AdminController.php?act=UpdateSizePro&IdSizePro=<?=$dataSizePro['IdSizePro']?>" method="POST" enctype="multipart/form-data">
                                             <tr>
                                                 <td>
-                                                    <select name="addSizePro_IdSize" id="">
+                                                    <select name="IdSize" id="">
+                                                        <option value="<?= $dataSizePro['IdSize']?>"><?= $dataSizePro['NameSize']?></option>
                                                         <?php $a= check_Size_ConLai($arr_Data); foreach($a as $n){?>
                                                             <option value="<?= $n['IdSize']?>"><?= $n['NameSize']?></option>
                                                         <?php }?>
                                                     </select>   
                                                 </td>
                                                 <td> 
-                                                    <input type="number" min ="0" name="addSizePro_Price" id=""> 
+                                                    <input type="number" min ="0" name="Price" value="<?= $dataSizePro['Price']?>"> 
                                                 </td>
                                                 <td>
-                                                    <input type="file" name="addSizePro_Img" >
+                                                    <input type="file" name="ImageProduct" value="<?= $dataSizePro['ImageProduct']?>">
                                                 </td>
                                                 <td>
-                                                        <input type="submit" name="add_New_SizePro" value='Thêm'>
+                                                        <input type="submit"  value='Thêm'>
                                                 </td>
                                             </tr>
                                         </form>
