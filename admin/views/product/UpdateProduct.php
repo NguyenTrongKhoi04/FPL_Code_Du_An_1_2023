@@ -206,9 +206,6 @@
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-body">
-                        <h1 style="color: red">
-                                <?php include_once $ThongBao ?>
-                            </h1>
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 
@@ -260,12 +257,21 @@
                                             </tr>
                                             <tr>
                                                 <th>Ảnh Sản Phẩm</th>
-
+                                                
                                                 <td>
-                                                   <a href="">Ảnh Theo Từng Size</a>
+                                                   <img src="../assets/img/admin/<?php echo $ImageProduct ?>" alt=""  width="100px" >
                                                 </td>
-                                            </tr>
 
+
+                                            </tr>
+                                            <tr>
+                                                <th>Ảnh Sản Phẩm từng size</th>
+                                                
+                                                <td>
+                                                    <a href="<?= $adminAction?>UpdateSizePro&id=<?=$IdProduct?>">Xem chi tiết</a>           
+                                                </td>
+
+                                            </tr>
                                             <tr>
                                                 <td>
                                                     <input type="submit" name="UpdateProduct" value="Update">

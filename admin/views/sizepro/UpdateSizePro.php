@@ -209,6 +209,13 @@
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-body">
+
+                        <?php if(isset($_GET['mes'])) : ?>
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary" style="color:red !important;"><?= $_GET['mes'] ?></h6>
+                                </div>
+                                 <?php endif ?>
+
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 
