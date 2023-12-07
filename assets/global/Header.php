@@ -16,10 +16,8 @@
             <div class="menu">
                 <a href="<?= $onlineAction ?>Home">
                     <img src="<?= $img_Path?>Logo.png" alt="">
-<<<<<<< HEAD
-=======
 
->>>>>>> a5f162332087a2c9105d698a9cb03e3becbfe67b
+
                 </a>
                 <?php if (empty($_SESSION['user'])) { ?>
                     <ul>
@@ -41,13 +39,7 @@
             </div>
             <?php if (empty($_SESSION['user'])) { ?>
                 <div class="login">
-<<<<<<< HEAD
-                    <button class="button_Login"><a href="<?= $onlineAction ?>dangnhap">Đăng nhập</a></button>
-                    <button class="button_Login"><a href="<?= $onlineAction ?>TaoTaiKhoan">Đăng 
-                </div>
-            <?php } else { ?>
-                <div class="login">
-=======
+
 
                     <button class="button_Login"><a href="<?= $onlineAction ?>dangnhap">Đăng nhập</a></button>
                     <button class="button_Login"><a href="<?= $onlineAction ?>TaoTaiKhoan">Đăng Ký</a></button>
@@ -55,8 +47,6 @@
                 </div>
             <?php } else { ?>
                 <div class="login">
-
->>>>>>> a5f162332087a2c9105d698a9cb03e3becbfe67b
                     <a href="OnlineController.php?act=billthanhtoan" class="login_success"><img src="<?= $img_Path ?>Glyph_ undefined.png" alt=""></a>
                     <a href="OnlineController.php?act=GioHang" class="login_success"><img src="<?= $img_Path ?>Vector.png" alt=""></a>
                     <a href="<?= $onlineAction ?>dangxuat" class="login_success"><img src="<?= $img_Path ?>out.png" alt=""></a>
