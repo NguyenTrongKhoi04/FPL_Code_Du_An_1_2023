@@ -4,7 +4,7 @@
  * Trả về 1 mảng gồm các ID của bàn có người ngồi
  */
 function datBan_ListTables(){
-    $listTables = query_All("SELECT * FROM tables where StatusTable != 0");
+    $listTables = query_All("SELECT * FROM tables where StatusTable = 0");
     $maxDefaulTables = query_One("select max(DefaultNumberPeople) from tables")["max(DefaultNumberPeople)"];
     
     $arrFull =[

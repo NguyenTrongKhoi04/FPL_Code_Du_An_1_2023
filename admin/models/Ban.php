@@ -22,7 +22,7 @@ function khong_Dung_Ban($id){
 
 function add_Ban($data){
     extract($data);
-    $sql = "INSERT INTO `tables`(`NumberTable`,'DefaultNumberPeople') VALUES ('$NumberTable','$DefaultNumberPeople')";
+    $sql = "INSERT INTO tables VALUES (null ,'$NumberTable','$DefaultNumberPeople', 0)";
     return pdo_Execute($sql);
 }
 

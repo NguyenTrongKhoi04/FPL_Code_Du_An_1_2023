@@ -85,18 +85,17 @@ function updateOrder($dataOrder, $IdOrder){
 function getOrder($IdOrder){
     $sql = "select od.*,tb.*,ac.* from orders od 
     join tables tb on od.IdTable = tb.IdTables
-     join account ac on od.IdAccount = ac.IdAccount ;
+     join account ac on od.IdAccount = ac.IdAccount 
      where od.IdOrder = $IdOrder
     ";
-    
+
     return query_All($sql);
 }
 
 function check_Order($IdTable,$IdAccount){
 
 
-        $sql = "SELECT * FROM  orders  WHERE IdTable = '$IdTable' AND IdAccount ='$IdAccount' ";
-  
+        $sql = "SELECT count(*) FROM  orders  WHERE IdTable = '$IdTable' AND IdAccount ='$IdAccount' ";
         return query_One($sql);
     
 }

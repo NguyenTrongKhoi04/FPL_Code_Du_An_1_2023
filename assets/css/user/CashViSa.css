@@ -33,8 +33,10 @@ html {
 }
 .page .bill {
   width: 80%;
-  height: 100%;
+  height: 65%;
   padding: 2% 3%;
+  z-index: 9999999;
+  margin-top: 5%;
 }
 .page .bill .containerBill {
   width: 100%;
@@ -129,7 +131,6 @@ html {
   font-weight: 700;
 }
 .page .bill button {
-
   width: 25%;
   height: 10%;
   margin: 5% 40%;
@@ -140,4 +141,5 @@ html {
 }
 .page .bill button:hover {
   background-color: var(--color3);
+  transition: linear 1s;
 }/*# sourceMappingURL=CashViSa.css.map */

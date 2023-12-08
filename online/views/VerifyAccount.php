@@ -18,7 +18,7 @@
             <section class="footerMain">
                 <section class="itemContent">
                     <p>Tôi đã có tải khoản</p>
-                    <p> Đăng nhập</p>
+                    <a href="OnlineController.php?act=LoginThuong">Đăng nhập</a>
                 </section>
             </section>
         </section>

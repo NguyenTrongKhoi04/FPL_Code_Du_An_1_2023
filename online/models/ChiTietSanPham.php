@@ -100,9 +100,11 @@ function chiTietSanPham_GetComment($pages){
  * hàm có tác dụng lấy ra top các sản phẩm
  */
 function chiTietSanPham_GetTopProduct(){
-    return query_All(
-        ""
-    );
+    return query_All("SELECT p.IdProduct, p.NameProduct, p.ImageProduct, p.PriceProduct
+    FROM product p
+    WHERE p.StatusProduct = 0
+    ORDER BY p.IdProduct DESC
+    LIMIT 3");
 
 }
 function chiTietSanPham_Add_To_Cart($idProduct,$idAccount,$idSize,$quantityProduct,$priceProduct){

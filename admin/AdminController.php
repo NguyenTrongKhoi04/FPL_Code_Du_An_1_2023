@@ -5,6 +5,7 @@ ob_start();
 include_once '../app/Pdo.php';
 include_once '../assets/global/User.php';
 include_once '../assets/global/url_Path.php';
+include_once '../assets/global/Validate.php';
 include_once 'models/Account.php';
 include_once 'models/Ban.php';
 include_once 'models/Product.php';
@@ -230,34 +231,25 @@ if(empty($_SESSION['user'])){
                 break;
             case 'AddSizePro':
                 if($_SERVER['REQUEST_METHOD'] === "POST"){
-                    var_dump($_POST);
                     extract($_POST);
+                    extract($_FILES["ImgSizePro"]);
                     
-                    $checkSizePro = check_SizePro($IdProduct,$addSizePro_IdSize,$addSizePro_Price);
-                    if(!is_array($checkSizePro)){
-                        extract($_POST);
-                        extract($_FILES);
-                        echo '<pre>';
-                        print_r($_POST);
-                        echo '</pre>';
-                        var_dump($addSizePro_Img);
-                        $img = ($addSizePro_Img['size'] != 0) ? $addSizePro_Img['name'] : '' ;
-                        if($addSizePro_Img['size'] != 0){
-                            $img=$addSizePro_Img['name'];
-                            move_uploaded_file($addSizePro_Img['tmp_name'], $adminImg . $img);
-                            pushSizePro($IdProduct,$addSizePro_IdSize,$addSizePro_Price,$img);
-                            echo'thành công';
-                            
+                    if(check_SizePro($IdProduct,$IdSize,$Price)["count(*)"] === 0){
+                        if(validateImg($_FILES["ImgSizePro"]) === true){
+                            move_uploaded_file($tmp_name, $adminImg . $name);
+                            pushSizePro($IdProduct,$IdSize,$Price,$name);
+                            $mes = 'Thành công';
                         }else{
-                            $mes = 'Bắt buộc phải có ảnh';
+                            $mes = validateImg($_FILES);
                         }
                         
                     }else{
 
                         $mes = 'Dữ Liệu Đã Tồn Tại';
                     }
-                    header("location: AdminController.php?act=UpdateSizePro&mes=$mes&id=".$_GET['id']);
                 }
+                include_once "views/sizepro/AddSizePro.php";
+
                 break;
             case 'OneSizePro':
                 $id = $_GET['id'] ;
@@ -272,17 +264,16 @@ if(empty($_SESSION['user'])){
                 include_once "views/sizepro/ListSizePro.php";
                 break;
             case 'UpdateSizePro':
-                $arr_Data=[];
-                $id = $_GET['id'];
-                $pro = loadAll_Product();
-                $size = getListSize();
-                $name_Pro = loadOne_Product($id);
-            $pro_Size_Price_Img =  getOne_Pro($id);
+                if(isset($_GET['IdSizePro']) && !empty($_GET['IdSizePro'])){
+                    $dataSizePro = getSizePro($_GET['IdSizePro'])[0];
+                    // thêm size_pro mới
+                    if($_SERVER['REQUEST_METHOD'] === "POST"){
+                        echo "<pre>";
+                        var_dump($_POST); die();
+                    }
+                    
 
-            // thêm size_pro mới
-            if(isset($_POST['add_New_SizePro'])){
-                echo'khoi';
-            }
+                } 
            include_once "views/sizepro/UpdateSizePro.php";
                 break;
             /**
@@ -360,11 +351,7 @@ if(empty($_SESSION['user'])){
                 if($_SERVER['REQUEST_METHOD'] === "POST"){
                     $data = $_POST;    
                     extract($data);
-
-
-                    $checkOrder = check_Order($IdTable,$IdAccount);
-                    
-                    if(is_array($checkOrder)){
+                    if(check_Order($IdTable,$IdAccount)["count(*)"] === 1){
                            
                             $mes = 'Bàn đã được đặt trước ';
                         }
@@ -419,15 +406,12 @@ if(empty($_SESSION['user'])){
                 include_once "views/orderpro/ListOrderPro.php";
                 break;
             case 'UpdateOrderPro':
-                if($_SERVER['REQUEST_METHOD'] === 'POST' ){
+                if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET["IdOrder_Pro"]) ){
                       $data = $_POST;
+                    //   echo $IdOrder_Pro; die();
                 
-                      if(isset($_GET["IdOrder_Pro"])) {
-                        $IdOrder_Pro = $_GET["IdOrder_Pro"];   
-                     }else{
-                         $IdOrder_Pro = $data['IdOrder_Pro'];
-                    }
-                    updateOrderPro($data, $IdOrder_Pro);
+                      updateOrderPro($data, $_GET["IdOrder_Pro"]);
+
                     }
                     include_once "views/orderpro/UpdateOrderPro.php";
                     break;

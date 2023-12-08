@@ -226,7 +226,7 @@
                 
 
                                    <tbody>                
-                                   <form action="AdminController.php?act=AddSizePro" method="post" >
+                                   <form action="AdminController.php?act=AddSizePro" method="post" enctype="multipart/form-data">
                                               <tr>
                                                 <td>Product</td>
                                                 <td>
@@ -264,6 +264,13 @@
                                                <td>Giá</td>
                                                <td>
                                                     <input type="number" name = "Price" id="" min="0">
+                                                </td>
+                                                
+                                           </tr>
+                                            <tr>
+                                               <td>Ảnh</td>
+                                               <td>
+                                                    <input type="file" name = "ImgSizePro">
                                                 </td>
                                                 
                                            </tr>

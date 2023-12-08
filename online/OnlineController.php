@@ -4,11 +4,12 @@ ob_start();
 include_once '../app/Pdo.php';
 include_once '../assets/global/User.php';
 include_once '../assets/global/url_Path.php';
+include_once 'models/Header.php';
 include_once '../assets/global/Header.php';
 include_once "../assets/global/Validate.php";
 include_once "../assets/global/SendGmail.php";
-include_once 'models/Login.php';
 include_once 'models/Home.php';
+include_once 'models/Login.php';
 include_once 'models/ProductPortfolio.php';
 include_once 'models/Cart.php';
 include_once 'models/CreateAccount.php';
@@ -20,6 +21,8 @@ include_once 'models/AddComments.php';
 include_once 'models/ListComment.php';
 include_once 'models/LoginNhanh.php';
 include_once 'models/LoginNhanh_Bill.php';
+include_once 'models/PersonalPage.php';
+include_once 'models/ForgotPassword.php';
 
 check_LoginNhanh();
 check_Login();
@@ -30,7 +33,50 @@ if(isset($_GET['act'])&&($_GET['act'] !='' )){
     if(empty($_SESSION['user'])){
         if($_GET['act']=='dangnhap_AnTaiQuan'){
             include_once 'views/LoginNhanh.php';
-        }else{
+        }elseif($_GET['act']=='TaoTaiKhoan'){
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $dataAccount = $_POST;
+                $alert = CreateAccount_CreateAccount($dataAccount);
+                if ($alert === "") {
+                    header("Location: OnlineController.php?act=VerifyAccount");
+                }
+            }
+            include_once 'views/CreateAccount.php';
+        }elseif($_GET['act']=='VerifyAccount'){
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $dataVerifyAccount = $_POST;
+                $alert = CreateAccount_CreateAccount1($dataVerifyAccount);
+            }
+            include_once 'views/VerifyAccount.php';
+        }
+        elseif($_GET['act']=='ForgotPassword'){
+            if($_SERVER['REQUEST_METHOD']==='POST' ) {
+                extract($_POST);
+                $alert = ForgotPassword_CheckGmail($Gmail);
+                if($alert === true){
+                    header("Location: OnlineController.php?act=VerificationAccount&gmail=$Gmail");
+                }else{
+                    echo "<script> alert('$alert') </script>";
+                }
+            }
+            include_once 'views/ForgotPassword.php';
+        }elseif($_GET['act']=='VerificationAccount'){
+            if($_SERVER['REQUEST_METHOD']==='POST' && isset($_GET['gmail']) && !empty($_GET['gmail'])) {
+                if(isset($_COOKIE['codeRandom'])){
+                    $gmail = $_GET['gmail'];
+                    extract($_POST);
+                    $alert = ForgotPassword_VerificationAccount($_POST, $_COOKIE['codeRandom'], $gmail );
+
+                    echo "<script> alert('$alert') </script>";
+                    
+                }else{
+                    echo "<script> alert('Mã xác nhận đã hết thời gian sử dụng vui lòng thực hiện lại chức năng') </script>";
+
+                }
+            }
+            include_once 'views/VerificationAccount.php';
+        }
+        else{
             include_once 'views/LoginThuong.php';
         }
     } else {
@@ -67,28 +113,6 @@ if(isset($_GET['act'])&&($_GET['act'] !='' )){
                 break;
         /**
             * ====================================================================================
-            *                                 DANG KY
-            * ====================================================================================
-            */
-            case 'TaoTaiKhoan':
-                if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                    $dataAccount = $_POST;
-                    $alert = CreateAccount_CreateAccount($dataAccount);
-                    if ($alert === "") {
-                        header("Location: OnlineController.php?act=VerifyAccount");
-                    }
-                }
-                include_once 'views/CreateAccount.php';
-                break;
-            case "VerifyAccount":
-                if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                    $dataVerifyAccount = $_POST;
-                    $alert = CreateAccount_CreateAccount1($dataVerifyAccount);
-                }
-                include_once 'views/VerifyAccount.php';
-                break;
-        /**
-            * ====================================================================================
             *                                     HOME
             * ====================================================================================
             */     
@@ -96,9 +120,10 @@ if(isset($_GET['act'])&&($_GET['act'] !='' )){
                 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $dataBooking = $_POST;
                     $alert = home_BookingTable($dataBooking);
+                    echo "<script> alert('$alert') </script>";
                 }
                 include_once 'views/Home.php';
-
+            break;
         /**
             * ====================================================================================
             *                                PRODUCT PORTFOLIO
@@ -108,8 +133,10 @@ if(isset($_GET['act'])&&($_GET['act'] !='' )){
                 if (isset($_GET['idCategory']) && !empty($_GET['idCategory'])) {
                     $idCategory = $_GET['idCategory'];
                     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                        extract($_POST);
-                        $GetAllProductAsRequested = productPortfolio_GetAllProductAsRequested($price, $product, $idCategory);
+                        $GetAllProductAsRequested = productPortfolio_GetAllProductAsRequested($_POST, $idCategory);
+                        if ($GetAllProductAsRequested === false) {
+                            echo " <script> alert('Không có sản phẩm bạn cần tìm') </script> ";
+                        }
                     } else {
                         $dataProductPortfolio = productPortfolio_GetAllProduct($idCategory);
                     }
@@ -134,9 +161,6 @@ if(isset($_GET['act'])&&($_GET['act'] !='' )){
             case 'LoginNhanh_Add_To_CartAndOrder':
                 extract($_POST);
                 $check_SoLuong_Pro = loginNhanh_Check_SoLuong($IdProduct);
-                // echo'<pre>';
-                // print_r($_POST);
-                // echo'</pre>';;
                 if($Quantity > $check_SoLuong_Pro['QuantityProduct'] ){
                     $mes = "Sản phẩm hiện tại còn: ".$check_SoLuong_Pro['QuantityProduct'];
                 }else{
@@ -172,12 +196,12 @@ if(isset($_GET['act'])&&($_GET['act'] !='' )){
             * ====================================================================================
             */     
             case 'LoadChiTietSanPham':
-                if(isset($_GET['index']) && isset($_GET['id'])){
+                if(isset($_GET['id'])){
                     $id = $_GET['id'];
                     $pro = chiTietSanPham_LoadAll($id);
                     $proSize = chiTietSanPham_LoadSizePro($id);
                     $proDetails = chiTietSanPham_LoadDetails($id);
-                    $dataComment = chiTietSanPham_GetComment($_GET['index']);
+
                     // lấy danh mục và danh mục phụ của $pro để tìm ra được các sản phẩm Cùng loại
                     $pro_LienQuan = chiTietSanPham_ProCungLoai($pro['IdCategory'],$pro['NameProduct']);
     
@@ -188,7 +212,9 @@ if(isset($_GET['act'])&&($_GET['act'] !='' )){
                     if(isset($_POST['add_to_cart'])){
                         extract($_POST);
                         $priceQuantity = $pro['PriceProduct'] * $Quantity;
-                        $alert = chiTietSanPham_Add_To_Cart($IdProduct, $_SESSION['user']['IdAccount'],$SizeProduct,$Quantity,$priceQuantity);
+                        $alert = chiTietSanPham_Add_To_Cart($id, $_SESSION['user']['IdAccount'],$SizeProduct,$Quantity,$priceQuantity);
+                        echo "<script>alert('$alert')</script>";
+
                     }
                     if(isset($_POST['pay_now'])){
                         $_SESSION['payNowDetails'] = $_POST;
@@ -230,12 +256,11 @@ if(isset($_GET['act'])&&($_GET['act'] !='' )){
             * ====================================================================================
             */        
             case 'billthanhtoan':
+                $dataProfile = PersonalPage_GetProfileUser($_SESSION['user']['IdAccount'])[0];
                 $listOrderPayMent = BillPayment_GetOrderPayment($idAccountUser);
                 include_once 'views/BillPayment.php' ;
                 break; 
            
-
-
                 case 'LoginNhanh_ListOrder':
 
                     if(empty( loginNhanh_ChuaThanhToan_GetAll_Order_ByIdAccount($_SESSION['user']['IdAccount'])) 
@@ -266,10 +291,6 @@ if(isset($_GET['act'])&&($_GET['act'] !='' )){
                     }else{
                         $mes_ChoXacNhan ='' ;
                     }
-                    // var_dump($arrOrder[0]['IdOrder']);
-                    // echo '<pre>';
-                    // print_r($arrOrder);
-                    // echo '</pre>';
 
                     if(isset($_POST['Pay_Truc_Tiep'])&&$_POST['Pay_Truc_Tiep'] !=''){
                         loginNhanh_Update_TrangThai_ThanhToan_Orders($_SESSION['user']['IdAccount']);
@@ -314,7 +335,6 @@ if(isset($_GET['act'])&&($_GET['act'] !='' )){
             case "CashViSa":
                 $listOrderUser = CashViSa_GetAllOrderUser();
                 $toatl =  cart_Totail($listOrderUser)['totail'];
-                // echo $toatl; die();
                 if($_SERVER['REQUEST_METHOD']==='POST'){ 
                     $endpoint = "https://test-payment.momo.vn/v2/gateway/api/create";
                     $partnerCode = 'MOMOBKUN20180529';
@@ -377,6 +397,8 @@ if(isset($_GET['act'])&&($_GET['act'] !='' )){
             case "AddComment":
                 $listOrderPayMent = BillPayment_GetOrderPayment($idAccountUser);
                 $listComment = AddComments_GetComment($idAccountUser);
+                $dataProfile = PersonalPage_GetProfileUser($_SESSION['user']['IdAccount'])[0];
+
                 if($_SERVER['REQUEST_METHOD']==='POST'){ 
                     if(isset($_GET['idProduct']) && isset($_GET['IdOrder'])){
                         $IdProduct = $_GET['idProduct'];
@@ -395,6 +417,8 @@ if(isset($_GET['act'])&&($_GET['act'] !='' )){
             case "ListComment":
                 $listOrderPayMent = BillPayment_GetOrderPayment($idAccountUser);
                 $listComment = ListComment_GetAllComment($idAccountUser);
+                $dataProfile = PersonalPage_GetProfileUser($_SESSION['user']['IdAccount'])[0];
+
                 if($_SERVER['REQUEST_METHOD']==='POST' && isset($_GET['IdComment'])){ 
                     $IdComment = $_GET['IdComment'];
                     if(isset($_POST["delete"])){
@@ -410,6 +434,16 @@ if(isset($_GET['act'])&&($_GET['act'] !='' )){
                 include_once 'views/ListComment.php';
                 break;
 
+            case "PersonalPage":
+                $dataProfile = PersonalPage_GetProfileUser($_SESSION['user']['IdAccount'])[0];
+                if($_SERVER['REQUEST_METHOD']==='POST' && isset($_GET['IdAccount'])) {
+                    $IdAccount = $_GET['IdAccount'];
+                    PersonalPage_PushProfileUser($_POST, $_FILES["ImageAccounts"], $IdAccount);
+                    header("Location: OnlineController.php?act=PersonalPage");
+
+                }
+                include_once 'views/PersonalPage.php';
+                break;
             default:
                 include_once 'views/Home.php';
                 break;
@@ -420,12 +454,12 @@ if(isset($_GET['act'])&&($_GET['act'] !='' )){
 }
 
 
-include_once '../assets/global/Footer.php';
-echo "<script>
-setTimeout(function(){
-    location.reload();
-  }, 60000); 
-</script>";
+// echo "<script>
+// setTimeout(function(){
+//     location.reload();
+//   }, 60000); 
+// </script>";
 
+include_once '../assets/global/Footer.php';
 
 
