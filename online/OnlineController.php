@@ -213,6 +213,8 @@ if(isset($_GET['act'])&&($_GET['act'] !='' )){
                         extract($_POST);
                         $priceQuantity = $pro['PriceProduct'] * $Quantity;
                         $alert = chiTietSanPham_Add_To_Cart($id, $_SESSION['user']['IdAccount'],$SizeProduct,$Quantity,$priceQuantity);
+                        echo "<script>alert('$alert')</script>";
+
                     }
                     if(isset($_POST['pay_now'])){
                         $_SESSION['payNowDetails'] = $_POST;

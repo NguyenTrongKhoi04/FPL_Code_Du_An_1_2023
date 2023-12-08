@@ -290,9 +290,13 @@ html {
   transition: transform 0.5s ease-in-out;
   margin-left: 25px;
 }
-.home .content .Slideshow_Product .content_pro h2 {
-  margin-top: 7px;
+.home .content .Slideshow_Product .content_pro h1 {
   margin-bottom: 4px;
+  padding-left: 10px;
+}
+.home .content .Slideshow_Product .content_pro .description {
+  height: 60px;
+  overflow-x: auto;
   padding-left: 10px;
 }
 .home .content .Slideshow_Product .content_pro h3 {

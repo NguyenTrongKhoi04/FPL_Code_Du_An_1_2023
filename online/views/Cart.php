@@ -1,10 +1,16 @@
 <link rel="stylesheet" href="<?=$userStyle?>/Cart.css">
-<form action="OnlineController.php?act=GioHang" method="post" class="page" id="formCart" >
+<style>
+ .page{
+    background-image: url('../../assets/img/html/snapedit_1701874861222.png');
+ } 
+</style>
+<form action="OnlineController.php?act=GioHang"  method="post" class="page" id="formCart" >
     <main>
         <section class="containerMain">
             <section class="listProduct">
                 <table>
                     <tr>
+                        <th><input type="checkbox" name="" id="checkAll"></th>
                         <th>Ảnh </th>
                         <th>Tên </th>
                         <th>Kích cỡ</th>
@@ -16,16 +22,15 @@
                     <?php
                     foreach($dataCart as $valuesCart){
                         echo "
-                            <tr>
-                                <td><img src='$imgPathAdmin{$valuesCart['ImageProduct']}' alt='img'></td>
-                                <td>{$valuesCart['NameProduct']}</td>
-                                <td>{$valuesCart['NameSize']}</td>
-                                <td>{$valuesCart['PriceProduct']}</td>
-                                <td><input type='number' name='quantity[{$valuesCart['IdCart']}]'   min=1 max={$valuesCart['QuantityProduct']} value='{$valuesCart['QuantityCard']}'></td>
-        
-                                <td> <a href='OnlineController.php?act=GioHang&Delete={$valuesCart['IdCart']}'><i class='ti-trash'></i></a> </td>
-                            </tr>
-                        ";
+                        <tr>
+                            <td><input type='checkbox'  class='rowCheckbox' data-quantity-id='{$valuesCart['IdCart']}'></td>
+                            <td><img src='$imgPathAdmin{$valuesCart['ImageProduct']}' alt='img'></td>
+                            <td>{$valuesCart['NameProduct']}</td>
+                            <td>{$valuesCart['NameSize']}</td>
+                            <td>{$valuesCart['PriceProduct']}</td>
+                            <td><input type='number' name='quantity[{$valuesCart['IdCart']}]' min=1 max={$valuesCart['QuantityProduct']}' value='{$valuesCart['QuantityCard']}' id='quantity{$valuesCart['IdCart']}' disabled></td>
+                            <td><a href='OnlineController.php?act=GioHang&Delete={$valuesCart['IdCart']}'><i class='ti-trash'></i></a></td>
+                        </tr>";
                     }
                     ?>
                 </table>
@@ -52,4 +57,4 @@
         echo "<script> alert('$alert') </script>";
     }
     ?>
-    <!-- <script src="../assets/js/Cart.js"></script> -->
+    <script src="../assets/js/Cart.js"></script>
