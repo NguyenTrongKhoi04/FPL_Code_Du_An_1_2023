@@ -252,7 +252,8 @@ if(empty($_SESSION['user'])){
                         $mes = 'Dữ Liệu Đã Tồn Tại';
                     }
                 }
-                include_once "views/sizepro/AddSizePro.php";
+              
+                header("location: AdminController.php?act=UpdateSizePro&mes=$mes&id=".$_GET['id']);
 
                 break;
             case 'OneSizePro':
@@ -277,7 +278,7 @@ if(empty($_SESSION['user'])){
     
                 // thêm size_pro mới
                 if(isset($_POST['add_New_SizePro'])){
-                    echo'khoi';
+                    
                 }
                include_once "views/sizepro/UpdateSizePro.php";
                     break;
@@ -462,7 +463,7 @@ if(empty($_SESSION['user'])){
                     }
                  include_once "views/comment/UpdateComment.php";
 
-
+             break;
 
         /**
              * ====================================================================================
@@ -504,7 +505,7 @@ if(empty($_SESSION['user'])){
                 break;
 
             default:
-                include_once 'views/Home.php';
+                include_once 'views/size/AddSize.php';
                 break;
         }
 

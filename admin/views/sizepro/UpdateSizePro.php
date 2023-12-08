@@ -228,7 +228,7 @@
                                     </tr>
                                     <tbody>
                                         
-                                        <form action="AdminController.php?act=UpdateSizePro&IdSizePro=<?= $IdSizePro ?>" method="post">
+                                        <form action="AdminController.php?act=UpdateSizePro&id=<?= $IdSizePro ?>" method="post">
                                             <?php foreach ($pro_Size_Price_Img as $i) { ?>
                                                 <tr>
                                                 <?php array_push($arr_Data,$i['IdSize']) ?>

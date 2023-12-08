@@ -340,24 +340,11 @@
                                                 </td>
                                                     
                                             </tr>
-                                            <tr>
-                                                <td>Trạng thái sản phẩm</td>
-                                                <td>
-                                                    <select name="StatusComment" id="">
-                                                            <option value="<?= $StatusComment?>" selected hidden><?= $stauts ?></option>
-                                                            <option value="0">Đồ ăn rất tệ</option>
-                                                            <option value="1">Đồ ăn tệ</option>
-                                                            <option value="2">Đồ ăn ngon</option>
-                                                            <option value="3">Đồ ăn rất ngon</option>
-                                                            <option value="4">Đồ ăn tuyệt vời</option>
-                                                    </select>
-                                                </td>
-                                                
-                                            </tr>
+                                                <input type="hidden" value="0" name="StatusComment" >
 
 
                                               <input type="text" hidden value="<?= $IdComment?>" name="IdComment">    
-                                            <td><input  name = "submit" type="submit" value="thêm"></td>    
+                                            <td><input  name = "submit" type="submit" value="sửa"></td>    
  
                                     </form>  
                                 
