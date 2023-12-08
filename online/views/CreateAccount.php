@@ -1,11 +1,11 @@
     <link rel="stylesheet" href="../assets/css/user/CreateAccount.css">
-    <section class="page">
-        <section class="main">
-            <article class="headerMain">
-                <h1>Đăng ký </h1>
-            </article>
-
-            <form action="OnlineController.php?act=TaoTaiKhoan" method="post" class="main">
+    <div class="box_login">
+        <div class="layer"></div>
+        <div class="login">
+            <div class="img_login">
+                <img src="../img/HazelnutFettuccinewitSautéedMushrooms_Adventures in Cooking1.png" width="100%" alt="">
+            </div>
+            <form action="OnlineController.php?act=TaoTaiKhoan" method="post" class="main" class="content_login">
                 <article class="nameAge">
                     <article class="name">
                         <label for="">Tên *</label>
@@ -33,21 +33,5 @@
 
                 <input type="submit" value="Đăng nhập">
             </form>
-            <section class="footerMain">
-                <section class="itemContent">
-                    <p>Tôi đã có tải khoản</p>
-                    <a href="OnlineController.php?act=LoginThuong">Đăng nhập</a>
-                </section>
-            </section>
-        </section>
-        <article class="banner">
-            <img src="<?= $img_Path ?>banner1.png" alt="banner1">
-        </article>
-    </section>
-    <?php
-    if (isset($alert)) {
-        echo "
-        <script> alert('$alert') </script>
-        ";
-    }
-    ?>
+        </div>
+    </div>

@@ -120,9 +120,10 @@ if(isset($_GET['act'])&&($_GET['act'] !='' )){
                 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $dataBooking = $_POST;
                     $alert = home_BookingTable($dataBooking);
+                    echo "<script> alert('$alert') </script>";
                 }
                 include_once 'views/Home.php';
-
+            break;
         /**
             * ====================================================================================
             *                                PRODUCT PORTFOLIO
@@ -132,8 +133,10 @@ if(isset($_GET['act'])&&($_GET['act'] !='' )){
                 if (isset($_GET['idCategory']) && !empty($_GET['idCategory'])) {
                     $idCategory = $_GET['idCategory'];
                     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                        extract($_POST);
-                        $GetAllProductAsRequested = productPortfolio_GetAllProductAsRequested($price, $product, $idCategory);
+                        $GetAllProductAsRequested = productPortfolio_GetAllProductAsRequested($_POST, $idCategory);
+                        if ($GetAllProductAsRequested === false) {
+                            echo " <script> alert('Không có sản phẩm bạn cần tìm') </script> ";
+                        }
                     } else {
                         $dataProductPortfolio = productPortfolio_GetAllProduct($idCategory);
                     }
@@ -193,12 +196,12 @@ if(isset($_GET['act'])&&($_GET['act'] !='' )){
             * ====================================================================================
             */     
             case 'LoadChiTietSanPham':
-                if(isset($_GET['index']) && isset($_GET['id'])){
+                if(isset($_GET['id'])){
                     $id = $_GET['id'];
                     $pro = chiTietSanPham_LoadAll($id);
                     $proSize = chiTietSanPham_LoadSizePro($id);
                     $proDetails = chiTietSanPham_LoadDetails($id);
-                    $dataComment = chiTietSanPham_GetComment($_GET['index']);
+
                     // lấy danh mục và danh mục phụ của $pro để tìm ra được các sản phẩm Cùng loại
                     $pro_LienQuan = chiTietSanPham_ProCungLoai($pro['IdCategory'],$pro['NameProduct']);
     
@@ -209,7 +212,7 @@ if(isset($_GET['act'])&&($_GET['act'] !='' )){
                     if(isset($_POST['add_to_cart'])){
                         extract($_POST);
                         $priceQuantity = $pro['PriceProduct'] * $Quantity;
-                        $alert = chiTietSanPham_Add_To_Cart($IdProduct, $_SESSION['user']['IdAccount'],$SizeProduct,$Quantity,$priceQuantity);
+                        $alert = chiTietSanPham_Add_To_Cart($id, $_SESSION['user']['IdAccount'],$SizeProduct,$Quantity,$priceQuantity);
                     }
                     if(isset($_POST['pay_now'])){
                         $_SESSION['payNowDetails'] = $_POST;

@@ -1,222 +1,191 @@
-<section class="page">
-    <link rel="stylesheet" href="<?= $userStyle ?>Home.css">
-    <main>
-        <section class="seoProduct">
-            <section class="containerItem1">
-                <section class="contentItem1">
-                    <h1>Ăn uống lành mạnh là quan trọng một phần của lối sống</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Neque congue arcu</p>
-                </section>
-                <section class="contentItemImg">
-                    <img src="<?= $img_Path  ?>Image.png" alt="img">
-                    <article class="lisstImg">
-                        <img src="<?= $img_Path ?>spices1.png" alt="img">
-                        <img src="<?= $img_Path ?>spices2.png" alt="img">
-                        <img src="<?= $img_Path ?>spices3.png" alt="img">
-                    </article>
-                </section>
-            </section>
-            <section class="containerItem2">
-                <section class="product">
-                    <img src="<?= $img_Path ?>Image1.png" alt="img">
-                    <h1>Bắt đầu lên kế hoạch ăn kiêng ngay hôm nay</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Neque congue arcu</p>
-                </section>
-                <section class="product">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Neque congue arcu</p>
-                    <img src="<?= $img_Path ?>Image2.png" alt="img">
-                </section>
-            </section>
-        </section>
-        <section class="myProduct">
-            <section class="contentMyProduct">
-                <h1>Sản phẩm của chúng tôi</h1>
-            </section>
-        
-            <section class="listProduct">
-                <?php if (empty(home_GetAllProduct())) {
-                    echo "<h1>Không có sản phẩm </h1>";
-                } else {
-                    foreach (home_GetAllProduct() as $itemProduct) {
-                        // dieu_huong sang chi tiết sản phẩm
-                        echo "
-                                <a href= 'OnlineController.php?act=LoadChiTietSanPham&id={$itemProduct['IdProduct']}&index=1' class='contentListProduct'>
-                                    <article class='image'>
-                                    <img src='{$imgPathAdmin}{$itemProduct['ImageProduct']}' alt='img'>
-                                    </article>
-                                    <article class='title'>
-                                        <h1>{$itemProduct['NameProduct']}</h1>
-                                    </article>
-                                    <article class='description'>
-                                        <p>{$itemProduct['ProductDetails']}</p>
-                                    </article>
-                                    <article class='price'>
-                                        <h1>{$itemProduct['PriceProduct']}$</h1>
-                                    </article>      
-                                </a>                         
-                                ";
-                    }
+    <div class="home">
+        <link rel="stylesheet" href="<?= $userStyle ?>Home.css">
+        <!-- BANNER -->
+        <div class="banner">
+            <div class="content_banner">
+                <p>Chào Mừng Đến Với</p>
+                <hr>
+                <h1>TERRACE RESTAURANT</h1>
+                <hr>
+                <div class="p_phu">
+                    <p>Nơi Hội Tụ Của Sự Sáng Tạo và Hương Vị Truyền Thống</p>
+                    <p>Mỗi Bữa Ăn Là Một Hành Trình Đặc Sắc</p>
+                </div>
+                <button>khám Phá Ngay</button>
+                <img class="footer_banner" src="<?=$img_Path?>snapedit_1701874146870.png" alt="">
+            </div>
+        </div>
+        <!-- Introduce -->
+        <div class="content">
+            <h1>Sản Phẩm Mới nhất</h1>
+            <div class="intro">
+                <div class="intro1">
+                    <div class="img">
+                        <img src="<?=$imgPathAdmin.home_GetNewTwoProduct()[0]["ImageProduct"]?>" alt="<?= home_GetNewTwoProduct()[0]["ImageProduct"]?>">
+                    </div>
+                    <div class="content_intro1">
+                    <h1> <?= home_GetNewTwoProduct()[0]["NameProduct"] ?> </h1>
+                        <p>
+                            <?= home_GetNewTwoProduct()[0]["ProductDetails"] ?>
+                        </p>
+                        <p>
+                            <?= home_GetNewTwoProduct()[0]["ProductDescription"] ?>
+                        </p>
+                        <div class="button_intro1">
+                            <a href='?act=LoadChiTietSanPham&id=<?= home_GetNewTwoProduct()[0]["IdProduct"] ?>&index=1' class='button_div'>
+                                <button>Chi tiết sản phẩm</button>
+                             </a>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="intro2">
+                    <div class="content_intro2">
+                        <h1> <?= home_GetNewTwoProduct()[1]["NameProduct"] ?> </h1>
+                        <p>
+                            <?= home_GetNewTwoProduct()[1]["ProductDetails"] ?>
+                        </p>
+                        <p>
+                            <?= home_GetNewTwoProduct()[1]["ProductDescription"] ?>
+                        </p>
+                        <div class="button_intro2">
+                            <a href='?act=LoadChiTietSanPham&id=<?= home_GetNewTwoProduct()[1]["IdProduct"] ?>&index=1' class='button_div'>
+                                <button>Chi tiết sản phẩm</button>
+                             </a>
+                        </div>
+                    </div>
+                    <div class="img">
+                        <img src="<?=$imgPathAdmin.home_GetNewTwoProduct()[1]["ImageProduct"]?>" alt="<?= home_GetNewTwoProduct()[1]["ImageProduct"]?>">
+                    </div>
+                </div>
+            </div>
+            <h1 style="margin-top: 80px;">Món Ăn Hấp Dẫn</h1>
+            <div class="Slideshow_Product" id="slideshow">
+                <?php 
+                foreach(home_GetAllProduct() as $itemProduct) {
+                    echo "
+                    <div class='content_pro'>       
+                        <img src='../assets/img/admin/{$itemProduct['ImageProduct']} ' alt='img'>
+                        <article class='titile'>
+                          <h1> {$itemProduct['NameProduct']} </h1>
+                        </article>
+                        <article class='description'>
+                          <p> {$itemProduct['ProductDetails']} </p>
+                        </article>
+                        <a href='?act=LoadChiTietSanPham&id={$itemProduct['IdProduct']}' class='button_div'>
+                            <button>Chi tiết sản phẩm</button>
+                        </a>
+                    </div>
+                    ";
                 }
-                ?>
-            </section>
-
-        </section>
-        <section class="chef">
-            <img src="<?= $img_Path ?>Image4.png" alt="img">
-            <img src="<?= $img_Path ?>Leaf1.png" alt="img">
-            <img src="<?= $img_Path ?>Leaf.png" alt="img">
-            <article class="contentChef">
-                <h1>Đầu bếp xuất sắc</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Purus lorem id penatibus imperdiet. Turpis
-                    egestas ultricies purus auctor tincidunt lacus nunc. </p>
-            </article>
-
-        </section>
-        <section class="seoIngredient">
-            <section class="Ingredient">
-                <img src="<?= $img_Path ?>CircleIcon.png" alt="img">
-                <h1>Chất lượng cao</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Neque congue arcu</p>
-            </section>
-            <section class="Ingredient">
-                <img src="<?= $img_Path ?>CircleIcon1.png" alt="img">
-                <h1>Rau theo mùa</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Neque congue arcu</p>
-            </section>
-            <section class="Ingredient">
-                <img src="<?= $img_Path ?>CircleIcon2.png" alt="img">
-                <h1>Hoa quả tươi</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Neque congue arcu</p>
-            </section>
-
-        </section>
-        <section class="bestProducts">
-            <article class="contentTitileBestProduct">
-                <h1>Các sản phẩm bán chạy nhất</h1>
-            </article>
-            <i class="ti-arrow-left" id="leftBestProducts"></i>
-            <i class="ti-arrow-right" id="rightBestProducts"></i>
-            <section class="contentLisstBestProducts" id="contentLisstBestProducts">
-                <?php
-                if (empty(home_GetAllProduct())) {
-                    echo "<h1 style='color: 'while';'>Không có sản phẩm </h1>";
-                } else {
-                ?>
-            </section>
-        </section>
-        <section class="book">
-            <section class="contentBook">
-                <article class="headerBook">
-                    <h1>Đặt bàn</h1>
-                    <p>Liên hệ với nhà hàng</p>
-                </article>
-                <form action="OnlineController.php?act=trangchu" method="post">
-                    <section class="contentForm">
-                        <input required type="datetime-local" name="Date">
-                        <select required name="IdTable" class="time">
-                            <option value=''>Chọn số bàn</option>
+               ?>
+            </div>
+            <form action="OnlineController.php?act=trangchu" method="POST">
+                <div class="choose_table">
+                    <h1>Đặt Bàn</h1>
+                    <div class="pick_option">
+                        <input type="datetime-local" name="Date">
+                        <select name="IdTable" id="">
+                            <option value="" disabled selected hidden>Chọn Bàn</option>
                             <?php
                             
-                            if (!empty(home_GetAllTable()["Tables"])) {
-                                foreach (home_GetAllTable()["Tables"] as $itemTable) {
-                                    echo "<option value='{$itemTable['IdTables']}'>
-                                        Bàn: {$itemTable['NumberTable']} _ 
-                                        Số lượng người tối đa: {$itemTable['DefaultNumberPeople']}
-                                        </option>";
-                                }
+                            foreach(home_GetAllTable()['Tables'] as $valuesTables){
+                                echo "
+                                <option value='{$valuesTables['IdTables']}'>Bàn:{$valuesTables['NumberTable']}-Tối đa {$valuesTables['DefaultNumberPeople']} người </option>
+                                ";
+                            }
+                            ?>
+
+                        </select>
+                        <select name="NumberPeopleInTables" id="">
+                            <option value="" disabled selected hidden>Số Lượng Người</option>
+                            <?php 
+                            for($i = 1; $i <= home_GetAllTable()['TableMax']['max(DefaultNumberPeople)']; $i++){
+                                echo "
+                                <option value='{$i}'>{$i}</option>
+                                ";
                             }
                             ?>
                         </select>
-                        <select required name="NumberPeopleInTables" class="persion">
-                            <option value="">Chọn số lượng người</option>
-                            <?php
-                                $maxTable = home_GetAllTable()["TableMax"]["max(DefaultNumberPeople)"];
-                            if (!empty(home_GetAllTable()["TableMax"])) {
-                                for ($i = 1; $i <= $maxTable ; $i++) {
-                                    echo "<option value='{$i}'>{$i} Người </option>";
-                                }
-                            }
-                            ?>
-                        </select>
-                    </section>
-                    <article class="footerBook">
-                        <button type="submit">Đặt Ngay</button>
-                    </article>
-                </form>
-            </section>
-        </section>
-        <section class="calorieBalance">
-            <article class="contentCalorieBalance">
-                <h1>Cân bằng năng lượng calo</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            </article>
-            <i class="ti-arrow-left" id="leftContentCalorieBalance"></i>
-            <i class="ti-arrow-right" id="rightContentCalorieBalance"></i>
-            <section class="productCalorieBalance" id="productCalorieBalance">
-                <?php
-                    if (empty(home_GetAllProduct())) {
-                        echo "<h1>Không có sản phẩm </h1>";
-                    } else {
-                ?>
-            </section>
-        </section>
-        <section class="displayCommet" id="displayCommet">
-            <section class="containerDisplayCommet" id="containerDisplayCommet">
-                <?php
-                        if (empty(home_GetComment())) {
-                            echo "<h1 style='color: white'>Không có bình luận</h1>";
-                        } else {
-                ?>
+                    </div>
+                    <button type="submit">Xác Nhận</button>
+                </div>
+            </form>
+            <div class="three_icon_div">
+                <img src="<?=$img_Path?>snapedit_1701911483904.png" alt="">
+                <div class="content_certificate">
+                    <h1>Chứng Nhận</h1>
+                    <div class="certificate">
+                        <div class="content">
+                            <img src="<?=$img_Path?>1CircleIcon.png" alt="">
+                            <h2>Chất Lượng Cao</h2>
+                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempora voluptates laudantium quod nemo quo quos illum nihil possimus iure pariatur?</p>
+                        </div>
+                        <div class="content">
+                            <img src="<?=$img_Path?>2CircleIcon.png" alt="">
+                            <h2>Chất Lượng Cao</h2>
+                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempora voluptates laudantium quod nemo quo quos illum nihil possimus iure pariatur?</p>
+                        </div>
+                        <div class="content">
+                            <img src="<?=$img_Path?>CircleIcon.png" alt="">
+                            <h2>Chất Lượng Cao</h2>
+                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Tempora voluptates laudantium quod nemo quo quos illum nihil possimus iure pariatur?</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="lienhe">
+                <div class="nhap">
+                    <p style="margin-top:0px ;">Nhập Họ Tên</p>
+                    <input type="text" placeholder="Nhập họ tên của bạn...">
+                    <input type="text" placeholder="số điện thoại...">
+                    <input type="text" placeholder="email..." name="" id="">
+                    <button>Gửi Liên Hệ</button>
+                </div>
+                <div class="info_shop">
+                    <h2 style="margin-bottom: 15px;">Liên Hệ Với Chúng Tôi</h2>
+                    <p>Để không ngừng nâng cao chất lượng dịch vụ và đáp ứng tốt hơn nữa các yêu cầu sử dụng sách của
+                        Quý khách, chúng tôi mong muốn nhận được các thông tin phản hồi. Nếu Quý khách có bất kỳ thắc
+                        mắc hoặc đóng góp nào, xin vui lòng liên hệ với chúng tôi theo thông tin dưới đây. Chúng tôi sẽ
+                        phản hồi lại Quý khách trong thời gian sớm nhất.</p>
+                    <h2 style="margin-bottom: 15px;">Thông tin liên hệ</h2>
+                    <p>SĐT: 0989330932</p>
+                    <p>GMAIL: restaurant_tphcm_vietNam46813@gmail.com</p>
+                    <p>ĐỊA CHỈ: Số 78 Đường Phạm Văn Đồng, Bắc Từ Liêm, Hà Nội, Việt Nam</p>
+                </div>
+            </div>
 
-            </section>
+        </div>
 
-            <nav class="Nav">
-                <i id="leftDispayComment" class="ti-arrow-left"></i>
-                <article class="contentNav">
-                    <h3 id="indexComment"></h3>
-                    <h3>/</h3>
-                    <h3 id="dataComment"></h3>
-                </article>
-                <i id="rightDispayComment" class="ti-arrow-right"></i>
-            </nav>
+    </div>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
+<script>
+    let currentIndex = 0;
+    const slides = document.querySelectorAll('.content_pro');
+    const totalSlides = slides.length;
+    const slideshow = document.getElementById('slideshow');
 
-        </section>
-    </main>
-</section>
-</section>
-<script src="../assets/js/Home.js"></script>
-<?php
-if(isset($alert) && !empty($alert)){
-    echo "<script> alert('$alert') </script>";
-};
-                            $products = json_encode(home_GetAllProduct());
-                            $dataComment = json_encode(home_GetComment());
-                            foreach (home_GetComment() as $itemComment);
-                            // dieu_huong sang chi tiết sản phẩm
-                            echo '
-    <script>
-    onloadProductBest(' . $products . ', "leftBestProducts", "rightBestProducts",  "contentLisstBestProducts", 2);
-    </script>';
+    function showSlide(index) {
+        slides.forEach((slide, i) => {
+            const offset = (i - index) * 280; // 300px width + 40px margin
+            slide.style.transform = `translateX(${offset}px)`;
+        });
+    }
 
-                            // dieu_huong sang chi tiết sản phẩm
-                            echo '
-                            <script>
-                                onloadProductCalorieBalance(' . $products . ', "leftContentCalorieBalance", "rightContentCalorieBalance",  "productCalorieBalance", 3);
-                            </script>';
+    function nextSlide() {
+        currentIndex = (currentIndex + 1) % totalSlides;
+        showSlide(currentIndex);
+    }
 
-                            echo '
-    <script>
-    displayComment(' . $dataComment . ', "leftDispayComment", "rightDispayComment", "containerDisplayCommet", "indexComment", "dataComment")
-    </script>
-    ';
+    const mc = new Hammer(slideshow);
+    mc.on('swipeleft', nextSlide);
+    mc.on('swiperight', () => {
+        currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+        showSlide(currentIndex);
+    });
 
+    setInterval(nextSlide, 3000); // Change slide every 2 seconds
+</script>
 
-
-                            if (isset($alert)  && !empty($alert)) {
-                                echo "<script> alert('$alert') </script>";
-                            }
-                        }
-                    }
-                }
-
-?>
+</html>

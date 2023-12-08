@@ -1,5 +1,36 @@
 <link rel="stylesheet" href="../assets/css/user/BillPayment.css">
-<section class="page">
+<div class="BillPayment">
+        <div class="layer"></div>
+        <h1>Lịch Sử Thanh Toán</h1>
+        <div class="content_BillPayment">
+            <div class="header">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>họ</th>
+                            <th>Tên</th>
+                            <th>HN</th>
+                            <th>address</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+            <div class="content">
+                <table>
+                    <tbody>
+                        <?php for ($i = 0; $i < 40; $i++) { ?>
+                            <tr>
+                                <td>1</td>
+                                <td>2</td>
+                                <td>3</td>
+                                <td>4</td>
+                            </tr>
+                        <?php } ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
         <main>
             <aside class="aside">
                 <section class="headerAside">

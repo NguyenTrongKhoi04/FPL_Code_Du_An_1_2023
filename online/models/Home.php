@@ -12,6 +12,15 @@ function home_GetAllProduct()
     return query_All($sql);
 }
 
+function home_GetNewTwoProduct(){
+    return query_All("SELECT p.IdProduct, p.NameProduct, p.ImageProduct, d.*
+    FROM product p
+    JOIN details d ON p.IdDetails = d.IdDetails
+    WHERE p.StatusProduct = 0
+    ORDER BY p.IdProduct DESC
+    LIMIT 2");
+}
+
 /**
  * lấy tất cả bàn
  */
@@ -25,6 +34,7 @@ function home_GetAllTable()
     ];
     return $returnDataTables;
 }
+
 /**
  * đặt bàn onlien chỉ hoạt động khi khách hàng đăng nhập
  * $data: Dữ liệu nhận về từ khách hàng
@@ -50,6 +60,7 @@ function home_BookingTable($data)
                     $IdOrder = pdo_Execute_Return_LastinsertID($sqlOrder);
                     $sqlOrderPro = "insert into order_pro values(null, '$IdOrder',null ,null ,null, 0)";
                     pdo_Execute($sqlOrderPro);
+                    $message = "Đã đặt bàn thành công";
                 }else{
                     $message = "Bàn đã được đặt vui lòng chọn khung giờ hoặc bàn khác...";
                 }   

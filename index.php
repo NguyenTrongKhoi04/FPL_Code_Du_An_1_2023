@@ -1,2 +1,2 @@
 <?php 
-header("location: online/OnlineController.php");
+header("location: online/OnlineController.php");        

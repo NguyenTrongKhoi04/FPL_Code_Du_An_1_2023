@@ -23,48 +23,25 @@ function productPortfolio_GetAllCateogry()
 }
 /**
  * Hàm trả về sản phẩm dựa theo giá và danh mục khách hàng yêu cầu
- * $dataPrice: dữ liệu giá nhận từ khách hàng yêu cầu cần tìm
- * $dataProducte: dữ liệu danh mục nhận từ khách hàng yêu cầu cần tìm
- * $idCategory: id danh mục. Được dùng để tìm dữ liệu trong khoảng danh mục đó
- */
-function productPortfolio_GetAllProductAsRequested($dataPrice, $dataProduct, $idCategory)
-{
-    $sql = "";
-    if ($dataPrice != "" && $dataProduct === "") {
-        $contentPrice = explode("-", $dataPrice);
-        $priceStart = $contentPrice[0];
-        $priceEnd = $contentPrice[1];
-        $sql = "SELECT p.IdProduct, p.NameProduct, p.ImageProduct, p.PriceProduct, d.ProductDetails
-        FROM product p
-        JOIN details d ON p.IdDetails = d.IdDetails
-        WHERE p.StatusProduct = 0
-          AND p.IdCategory = $idCategory
-          AND p.PriceProduct BETWEEN $priceStart AND $priceEnd
-        LIMIT 12;
-        ";
-    } elseif ($dataPrice === "" && $dataProduct != "") {
-        $sql = "select
-        p.IdProduct,p.NameProduct,p.ImageProduct, p.PriceProduct, d.ProductDetails 
-        from product p
-       join details d on p.IdDetails = d.IdDetails 
-       where p.StatusProduct = 0 and p.IdCategory = $dataProduct limit 12 ";
-    } elseif ($dataPrice != "" && $dataProduct != "") {
-        $contentPrice = explode("-", $dataPrice);
-        $priceStart = $contentPrice[0];
-        $priceEnd = $contentPrice[1];
-        $sql = "select
-        p.IdProduct,p.NameProduct,p.ImageProduct, p.PriceProduct, d.ProductDetails 
-        from product p
-        join details d on p.IdDetails = d.IdDetails 
-        where p.StatusProduct = 0 and p.IdCategory = $dataProduct and 
-        PriceProduct between $priceStart and $priceEnd
-        limit 12 ";
-    } else {
-        return 505;
-    }
-    // echo $sql; die();
+ * $data: dữ liệu giá nhận từ khách hàng yêu cầu cần tìm
 
-    return query_All($sql);
+ */
+function productPortfolio_GetAllProductAsRequested($data, $idCategory)
+{
+    extract($data);
+    $message = query_All("
+    SELECT
+    p.IdProduct, p.NameProduct, p.ImageProduct, p.PriceProduct, d.ProductDetails 
+    FROM product p
+    JOIN details d ON p.IdDetails = d.IdDetails WHERE
+    p.StatusProduct = 0 AND p.IdCategory = $idCategory AND
+    p.NameProduct LIKE '%$contentShearch%' 
+    LIMIT 12;
+    ");
+    if(count($message) == 0){
+        $message = false;
+    }
+    return $message ;
 }
 /**
  * Thêm sản phẩm vào giỏ hàng
