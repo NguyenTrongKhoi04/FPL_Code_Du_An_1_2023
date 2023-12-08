@@ -1,75 +1,110 @@
 * {
-  margin: 0px;
-  padding: 0px;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 html {
   font-size: 14px;
 }
 
-.Login_thuong {
-  width: 1470px;
+.box_login {
   margin: 0 auto;
-  background-color: #131313;
+  max-width: 1470px;
+  height: 1500px;
+  background-image: url("../../img/html/snapedit_1701874861222.png");
+  background-size: 100%;
+  padding-bottom: 50px;
+}
+.box_login .layer {
+  width: 100%;
+  margin: 0 auto;
+  height: 100px;
+}
+.box_login .login {
+  margin: 0 auto;
+  margin-top: 40px;
+  max-width: 90%;
+  height: 450px;
   display: flex;
+  justify-content: center;
   align-items: center;
 }
-.Login_thuong .img {
-  width: 50%;
-}
-.Login_thuong .img img {
-  width: 100%;
-  height: 100%;
-}
-.Login_thuong .content_login_thuong {
-  color: white;
-  width: 50%;
-  height: 100%;
-}
-.Login_thuong .content_login_thuong form {
-  width: 80%;
-  margin: 0 auto;
-}
-.Login_thuong .content_login_thuong form > h2 {
-  margin-bottom: 30px;
-  text-align: center;
-  font-size: 70px;
-}
-.Login_thuong .content_login_thuong form > p {
-  font-size: 35px;
-}
-.Login_thuong .content_login_thuong form input {
-  margin-bottom: 30px;
-  width: 88%;
-  border: none;
-  border-radius: 64.5px;
-  padding: 30px 40px;
-  background-color: #D9D9D9;
-  font-size: 35px;
-}
-.Login_thuong .content_login_thuong form input:focus {
-  outline: none;
-}
-.Login_thuong .content_login_thuong form button {
-  margin-top: 15px;
-  width: 100%;
-  padding: 25px;
-  background: linear-gradient(265deg, #F7C427 27.42%, #CA0910 97.16%);
-  border-radius: 64.5px;
-  font-size: 50px;
-  font-weight: bold;
-}
-.Login_thuong .content_login_thuong form .option {
-  width: 100%;
+.box_login .login .content_login {
+  width: 35%;
   display: flex;
-  justify-content: space-between;
-  font-size: 35px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 350px;
+  background-color: white;
 }
-.Login_thuong .content_login_thuong form .option a {
-  color: white;
+.box_login .login .content_login h1 {
+  text-align: center;
+  color: #f7c427;
+  font-size: 40px;
+  margin-bottom: 10px;
+}
+.box_login .login .content_login p {
+  margin-top: 9px;
+  color: black;
+  margin-left: 20px;
+}
+.box_login .login .content_login p {
+  align-self: flex-start;
+}
+.box_login .login .content_login input {
+  padding: 6px;
+  width: 90%;
+}
+.box_login .login .content_login a {
+  margin-top: 5px;
   text-decoration: none;
+  margin-right: 20px;
 }
-.Login_thuong .content_login_thuong form .option a:hover {
+.box_login .login .content_login a {
+  align-self: flex-end;
+}
+.box_login .login .content_login a:hover {
   text-decoration: underline;
-  color: #F7C427;
+}
+.box_login .login .content_login button {
+  margin-top: 15px;
+  width: 90%;
+  background: linear-gradient(265deg, #F7C427 27.42%, #CA0910 97.16%);
+  border: none;
+  font-size: 20px;
+  border-radius: 5px;
+  padding: 8px;
+}
+.box_login .login .content_login .option {
+  display: flex;
+  width: 100%;
+  height: 10%;
+  justify-content: space-between;
+  padding: 0 5%;
+}
+.box_login .login .content_login .option a {
+  margin-top: 5px;
+  text-decoration: none;
+  color: black;
+  margin-right: 20px;
+}
+.box_login .login .content_login .option a {
+  align-self: flex-end;
+}
+.box_login .login .content_login .option a:hover {
+  text-decoration: underline;
+}
+.box_login .login .img_login {
+  width: 65%;
+  height: 100%;
+}
+.box_login .login .img_login img {
+  width: 100%;
+  height: 100%;
+  -o-object-position: center;
+     object-position: center;
+  -o-object-fit: cover;
+     object-fit: cover;
 }/*# sourceMappingURL=LoginThuong.css.map */

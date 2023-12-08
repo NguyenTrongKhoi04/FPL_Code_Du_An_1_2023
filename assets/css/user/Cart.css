@@ -23,8 +23,8 @@ html {
 .page {
   width: 1470px;
   height: 960px;
-  background-color: var(--color);
   margin: 0 auto;
+  background-color: #CA0910;
 }
 .page main {
   width: 100%;
@@ -41,6 +41,7 @@ html {
   width: 100%;
   height: 100%;
   overflow-x: hidden;
+  margin-top: 5%;
 }
 .page main .containerMain .listProduct .selectAllProducts {
   width: 100%;

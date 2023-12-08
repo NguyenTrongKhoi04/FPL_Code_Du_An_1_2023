@@ -13,9 +13,11 @@
 
 <body>
 <div class="wrapper">
-    <div class="header">
+    <div class="header">    
         <div class="logo">
-            <a class="logo_link" href=""><img src="<?= $img_Path?>LogoTest-removebg-preview.png" alt=""></a>
+            <a class="logo_link" href="OnlineController.php">
+                <img src="<?= $img_Path?>LogoTest-removebg-preview.png" alt="">
+            </a>
             <ul>
             <?php 
                         if(!empty(home_GetCategory())){
@@ -32,10 +34,10 @@
         </div>
         <div class="information">
             <?php if (!empty($_SESSION['user'])) { ?>
-                <a href=""><img src="<?= $img_Path?>Vector.png" alt=""></a>
-                <a href=""><img src="<?= $img_Path?>out.png" alt=""></a>
-                <a href=""><img src="<?= $img_Path?>Glyph_ undefined.png" alt=""></a>
-                <a href="">
+                <a href="OnlineController.php?act=GioHang"><img src="<?= $img_Path?>Vector.png" alt=""></a>
+                <a href="OnlineController.php?act=dangxuat"><img src="<?= $img_Path?>out.png" alt=""></a>
+                <a href="OnlineController.php?act=billthanhtoan"><img src="<?= $img_Path?>Glyph_ undefined.png" alt=""></a>
+                <a href="OnlineController.php?act=LoginThuong">
                     <div class="avatar">
                         <img src="<?= $img_Path?>Login.png" width="10px" alt="">
                     </div>

@@ -55,6 +55,8 @@ html {
   overflow-x: auto;
   justify-content: space-around;
   align-content: flex-start;
+  z-index: 9999999;
+  margin-top: 5%;
 }
 .datban .containerTable .listTable .contentTable {
   width: 38%;
@@ -80,6 +82,8 @@ html {
 .datban .containerTable .timeBooking {
   width: 45%;
   height: 50%;
+  z-index: 9999999;
+  margin-top: 5%;
   padding: 0 5%;
 }
 .datban .containerTable .timeBooking input, .datban .containerTable .timeBooking select {
