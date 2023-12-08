@@ -276,7 +276,10 @@
                                                 
                                            </tr>
              
-                                           <td><input name = "submit" type="submit" value="thêm"></td>                              
+                                           <td>
+                                                <input name = "submit" type="submit" value="thêm">
+                                                <a href="AdminController.php?act=ListSize"><input name = "" type="button" value="Danh Sách Size"></a>
+                                            </td>                              
                                         </form>
 
                                    </tbody>

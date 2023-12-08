@@ -293,29 +293,26 @@
                                                         $payment = "Chuyển khoản";
                                                     break;
                                                     default:
-                                                    $payment = "Error";
+                                                    $payment = "Chưa thanh toán";
                                                      break;
                                                 }
                 
                                                     $stauts = null;
                                                     switch($values['StatusOrders']){ 
                                                         case 0:
-                                                            $stauts = "Chưa thanh toán";
+                                                            $stauts = "Đang Chuẩn Bị";
                                                         break;
                                                         case 1:
-                                                            $stauts = "Đã thanh toán rồi";
+                                                            $stauts = "Khách hàng đang sử dụng Order";
                                                         break;
                                                         case 2:
-                                                            $stauts = "Đặt bàn trước";
+                                                            $stauts = "Khách hàng đã sử dụng xong";
                                                         break;
                                                         case 3:
-                                                            $stauts = "Đã đặt bàn, sản phẩm và thanh toán rồi nhưng chưa sử dụng";
-                                                        break;
-                                                        case 4:
-                                                            $stauts = "Đang đợi hết thời gian để được order";
+                                                            $stauts = "Đợi thời gian để order";
                                                         break;
                                                         case 5:
-                                                            $stauts = "Chờ xác minh";
+                                                            $stauts = "Chờ Xác Nhận";
                                                         break;
                                                         default:
                                                             $stauts = "Error";

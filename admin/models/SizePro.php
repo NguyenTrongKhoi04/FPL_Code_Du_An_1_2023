@@ -20,11 +20,10 @@ function getSPProduct(){
  * $IdDetails: Lấy IdDetails mới được thêm vào
  * $dataImage: dữ liệu ảnh từ from file
  * */ 
-function pushSizePro($data){
-    extract($data);
+function pushSizePro($IdProduct,$addSizePro_IdSize,$addSizePro_Price,$img){
+    
 
-    $sql= "insert into size_pro values ('','$IdProduct','$IdSize','$Price')";
-
+    $sql= "insert into size_pro values ('','$IdProduct','$addSizePro_IdSize','$addSizePro_Price','$img')";
     return pdo_Execute($sql);
 }
 
@@ -33,7 +32,7 @@ function getListSizePro(){
 
     $sql ='
     select sp.*,sz.*,pr.* from size_pro sp 
-     join product pr on sp.IdProduct = pr.IdProduct
+    join product pr on sp.IdProduct = pr.IdProduct
     join size sz on sp.IdSize = sz.IdSize;
     
     ';
@@ -54,7 +53,7 @@ function updateSizePro($dataSizePro, $IdSizePro){
 
     $sqlSizePro = "
 
-    update size_pro set  IdProduct = '$IdProduct' , IdSize = '$IdSize' ,Price = '$Price'where IdSizePro = '$IdSizePro'
+    update size_pro set  IdProduct = '$IdProduct' , IdSize = '$IdSize' ,Price = '$Price' ImageProduct = '$ImageProduct' where IdSizePro = '$IdSizePro'
 
     ";
     
@@ -74,9 +73,43 @@ function getSizePro($IdSizePro){
 
 function check_SizePro($IdProduct,$IdSize,$Price){
 
-    $sql = "SELECT * FROM  size_pro  WHERE IdProduct = '$IdProduct' AND IdSize ='$IdSize' AND Price = '$Price' ";
-    
+    $sql = "SELECT count(*) FROM  size_pro  WHERE IdProduct = '$IdProduct' AND IdSize ='$IdSize' AND Price = '$Price' ";
     return query_One($sql);
 }
 
-?>
+function getOne_Pro($id){
+    $sql = "SELECT * FROM size_pro WHERE IdProduct = $id";
+    return query_All($sql);
+}
+
+function check_Size_ConLai($arr_Data){
+
+    if(!empty($arr_Data)){
+        $resultString = implode(', ', $arr_Data);
+        $sql = "SELECT * FROM size WHERE IdSize NOT IN ($resultString)";
+    }else{
+        $sql = "SELECT * FROM size";
+    }
+    unset($arr_Data);
+    return query_All($sql);
+}
+
+function check_Het_Size($id_Pro){
+    $sql = "SELECT COUNT(IdSize) as 'soluong' FROM size_pro WHERE IdProduct = $id_Pro";
+    $check_SizePro = query_One($sql);
+
+    $sql = "SELECT COUNT(IdSize) as 'soluong' FROM size";
+    $check_Size = query_One($sql);
+
+    if($check_Size['soluong'] == $check_SizePro['soluong']){
+        return false;
+    }else{
+        return true;
+    }
+
+}
+
+function Delete_SizePro($id){
+    $sql = "DELETE FROM size_pro WHERE IdSizePro = '$id'";
+    return pdo_Execute($sql);
+}

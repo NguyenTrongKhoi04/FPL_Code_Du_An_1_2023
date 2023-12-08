@@ -54,7 +54,7 @@ function updateComment($dataComment, $IdComment){
 function getComment($IdComment){
     $sql = " select cm.*,pr.*,ac.* from comment cm 
     join product pr on cm.IdProduct = pr.IdProduct
-    join account ac on cm.IdAccount = ac.IdAccount;
+    join account ac on cm.IdAccount = ac.IdAccount
      where cm.IdComment = $IdComment
     ";
     

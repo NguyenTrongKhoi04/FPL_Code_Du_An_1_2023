@@ -42,10 +42,9 @@ function pushOrderPro($data){
 function getListOrderPro(){
 
     $sql ='
-    select op.*,od.*,pr.* from order_pro op 
+    select op.*,od.IdOrder,pr.* from order_pro op 
     join orders od on op.IdOrder = od.IdOrder
-     join product pr on op.IdProduct = pr.IdProduct;
-    ';
+     join product pr on op.IdProduct = pr.IdProduct';
     return query_All($sql);
 }
 
@@ -72,17 +71,11 @@ function updateOrderPro($dataOrderPro, $IdOrder_Pro){
 function getOrderPro($IdOrder_Pro){
     $sql = " select op.*,od.*,pr.* from order_pro op 
     join orders od on op.IdOrder = od.IdOrder
-     join product pr on op.IdProduct = pr.IdProduct;
-     where od.IdOrder_Pro = $IdOrder_Pro
+     join product pr on op.IdProduct = pr.IdProduct
+     where op.IdOrder_Pro = $IdOrder_Pro
     ";
-    
+
     return query_All($sql);
 }
 
-// function check_OrderPro($IdOrder,$IdProduct){
-
-//     $sql = "SELECT * FROM order_pro WHERE IdOrder = '$IdOrder' AND IdProduct = '$IdProduct'";
-    
-//     return query_One($sql);
-// }
 ?>

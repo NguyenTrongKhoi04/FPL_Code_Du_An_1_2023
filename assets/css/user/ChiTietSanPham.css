@@ -1,264 +1,223 @@
-@charset "UTF-8";
 * {
-  margin: 0px;
-  padding: 0px;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
 }
 
 html {
-  font-size: 20px;
+  font-size: 14px;
 }
 
-.ChiTietSanPham {
+.chitietsanpham {
   margin: 0 auto;
-  width: 1920px;
-  padding: 70px 0;
-  background-color: #131313;
+  max-width: 1470px;
+  height: 1500px;
+  background-image: url("../../img/html/snapedit_1701874861222.png");
+  background-size: 100%;
+  padding-bottom: 50px;
 }
-.ChiTietSanPham .ProductDetail {
+.chitietsanpham .layer {
+  width: 100%;
   margin: 0 auto;
-  width: 84.0104166667%;
+  height: 100px;
+}
+.chitietsanpham .product_detail {
+  color: white;
+  width: 80%;
+  background-color: #343434;
+  margin: 0 auto;
+  height: 400px;
+  margin-top: 20px;
   display: flex;
   justify-content: space-between;
-  padding: 59px 0 0 0;
-}
-.ChiTietSanPham .ProductDetail .img {
-  width: 649px;
-  height: 690px;
   border-radius: 30px;
 }
-.ChiTietSanPham .ProductDetail .img img {
+.chitietsanpham .product_detail .anh {
+  width: 50%;
+  height: 100%;
+  border-radius: 30px;
+}
+.chitietsanpham .product_detail .anh img {
   width: 100%;
+  border-radius: 30px;
   -o-object-position: center;
      object-position: center;
   -o-object-fit: cover;
      object-fit: cover;
 }
-.ChiTietSanPham .ProductDetail .form {
-  width: 56.3546187229%;
-  height: 690px;
-  background-color: rgba(51, 51, 51, 0.15);
-  border-radius: 30px;
+.chitietsanpham .product_detail .content {
+  margin-left: 40px;
 }
-.ChiTietSanPham .ProductDetail .form form {
-  width: 841px;
-  margin: 0 auto;
-  margin-top: 45px;
-  margin-bottom: 55px;
+.chitietsanpham .product_detail .content h1 {
+  color: #f7c427;
+  font-size: 45px;
 }
-.ChiTietSanPham .ProductDetail .form form h2 {
-  color: #F7C427;
-  font-family: Bitter;
-  font-size: 3rem;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
+.chitietsanpham .product_detail .content .hr {
+  border-radius: 10px;
+  margin: 15px 0;
+  margin-bottom: 6px;
+  width: 90%;
+  background-color: #f7c427;
+  height: 10px;
 }
-.ChiTietSanPham .ProductDetail .form form .hr {
-  margin-top: 6px;
-  margin-bottom: 20px;
-  height: 13px;
-  width: 841px;
-  background-color: #F7C427;
+.chitietsanpham .product_detail .content ul {
+  width: 90%;
+  font-size: 20px;
+  margin-left: 20px;
 }
-.ChiTietSanPham .ProductDetail .form form ul {
-  font-size: 40px;
-  color: white;
-  margin-left: 34px;
-  font-family: Bitter;
+.chitietsanpham .product_detail .content ul li {
+  margin: 5px 0;
 }
-.ChiTietSanPham .ProductDetail .form form ul li del {
-  color: rgba(255, 255, 255, 0.5);
-}
-.ChiTietSanPham .ProductDetail .form form ul li span {
-  font-size: 50px;
-}
-.ChiTietSanPham .ProductDetail .form form .soluong {
-  margin: 35px 0px;
+.chitietsanpham .product_detail .content .option {
+  margin-top: 10px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
 }
-.ChiTietSanPham .ProductDetail .form form .soluong .tanggiam {
+.chitietsanpham .product_detail .content .option .tanggiam {
+  margin: 0 5px;
   display: flex;
-  border: 1px solid #F7C427;
+  border: 1px solid #f7c427;
   align-items: center;
   border-radius: 5px;
   padding: 5px;
 }
-.ChiTietSanPham .ProductDetail .form form .soluong .tanggiam p {
-  font-size: 40px;
+.chitietsanpham .product_detail .content .option .tanggiam p {
+  font-size: 20px;
   color: white;
 }
-.ChiTietSanPham .ProductDetail .form form .soluong .tanggiam button {
-  width: 50px;
-  font-size: 50px;
+.chitietsanpham .product_detail .content .option .tanggiam button {
+  width: 20px;
+  font-size: 15px;
   text-align: center;
   vertical-align: middle;
   font-weight: bold;
+  background-color: #f7c427;
+  border: none;
 }
-.ChiTietSanPham .ProductDetail .form form .soluong .tanggiam input {
+.chitietsanpham .product_detail .content .option .tanggiam input {
   background-color: transparent;
-  border: 2px solid #F7C427;
-  color: #F7C427;
-  font-size: 35px;
+  border: 2px solid #f7c427;
+  color: #f7c427;
+  font-size: 15px;
   text-align: center;
   padding: 0;
   border: none;
-  width: 40px;
+  width: 15px;
 }
-.ChiTietSanPham .ProductDetail .form form .soluong .tanggiam input::-webkit-inner-spin-button, .ChiTietSanPham .ProductDetail .form form .soluong .tanggiam input::-webkit-outer-spin-button {
+.chitietsanpham .product_detail .content .option .tanggiam input::-webkit-inner-spin-button, .chitietsanpham .product_detail .content .option .tanggiam input::-webkit-outer-spin-button {
   -webkit-appearance: none;
           appearance: none;
   display: none;
 }
-.ChiTietSanPham .ProductDetail .form form .soluong .tanggiam input::-moz-placeholder {
-  color: #F7C427;
+.chitietsanpham .product_detail .content .option .tanggiam input::-moz-placeholder {
+  color: #f7c427;
 }
-.ChiTietSanPham .ProductDetail .form form .soluong .tanggiam input::placeholder {
-  color: #F7C427;
+.chitietsanpham .product_detail .content .option .tanggiam input::placeholder {
+  color: #f7c427;
 }
-.ChiTietSanPham .ProductDetail .form form .soluong span {
-  font-size: 50px;
-  color: red;
+.chitietsanpham .product_detail .content .option .tanggiam select {
+  background-color: transparent;
+  color: #f7c427;
+  border: none;
 }
-.ChiTietSanPham .ProductDetail .form form button {
-  width: 100%;
-  height: 57px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  font-family: Bitter;
-  font-size: 30px;
-  font-weight: 700;
-  background-color: #F7C427;
+.chitietsanpham .product_detail .content .order {
+  margin-top: 15px;
+  margin-right: 10px;
+  font-size: 20px;
+  padding: 10px;
+  border-radius: 6px;
+  border: none;
+  background-color: #f7c427;
 }
-.ChiTietSanPham .ProductDetail .form form button:hover {
-  background-color: #585353;
-  color: #D7D7D7;
+.chitietsanpham .product_detail .content .order:hover {
+  background-color: white;
 }
-.ChiTietSanPham .list {
-  width: 84.0104166667%;
+.chitietsanpham .list {
+  width: 85%;
   margin: 60px auto;
   height: auto;
-  padding: 20px 20px 10px 20px;
-  background-color: #1D1D1D;
-  border-radius: 30px;
+  padding: 10px;
+  background-color: #1d1d1d;
+  border-radius: 10px;
   display: flex;
   overflow-x: hidden;
 }
-.ChiTietSanPham .list:hover {
+.chitietsanpham .list:hover {
   overflow-x: auto;
 }
-.ChiTietSanPham .list::-webkit-scrollbar {
+.chitietsanpham .list::-webkit-scrollbar {
   background-color: transparent;
+  width: 6px;
 }
-.ChiTietSanPham .list::-webkit-scrollbar-thumb {
-  background-color: #3A3838;
-  width: 1px;
+.chitietsanpham .list::-webkit-scrollbar-thumb {
+  background-color: #3a3838;
+  height: 1px !important;
   border-radius: 100px;
 }
-.ChiTietSanPham .list .pro {
-  width: 316px;
+.chitietsanpham .list .pro {
+  width: 15%;
   padding: 15px 0;
   margin: 10px;
-  border-radius: 30px;
-  background-color: #3A3838;
+  border-radius: 10px;
+  background-color: #3a3838;
   text-align: center;
   flex-direction: column;
   flex-shrink: 0;
 }
-.ChiTietSanPham .list .pro img {
+.chitietsanpham .list .pro img {
   display: block;
   margin: 0 auto;
   width: 80%;
   max-width: 80%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
 }
-.ChiTietSanPham .list .pro p {
+.chitietsanpham .list .pro p {
   margin-top: 10px;
-  font-size: 30px;
+  font-size: 15px;
 }
-.ChiTietSanPham .top {
-  width: 84.0104166667%;
-  background-color: #2E2C2C;
-  border-radius: 30px;
-  padding: 33px;
-  padding-bottom: 70px;
+.chitietsanpham .top {
+  width: 85%;
+  border-radius: 10px;
+  padding: 10px;
   margin: 0 auto;
 }
-.ChiTietSanPham .top h2 {
+.chitietsanpham .top h2 {
   text-align: center;
-  color: #F7C427;
-  font-size: 50px;
+  color: #f7c427;
+  font-size: 40px;
   margin-bottom: 30px;
 }
-.ChiTietSanPham .top .list_item {
+.chitietsanpham .top .list_item {
   display: flex;
   justify-content: space-around;
 }
-.ChiTietSanPham .top .list_item .item {
+.chitietsanpham .top .list_item .item {
   background-color: rgba(29, 29, 29, 0.7);
-  border-radius: 30px;
+  border-radius: 10px;
   width: 27%;
-  padding-bottom: 30px;
   text-align: center;
 }
-.ChiTietSanPham .top .list_item .item img {
+.chitietsanpham .top .list_item .item img {
+  border-radius: 10px 10px 0 0;
   width: 100%;
+  height: 300px;
+  -o-object-position: center;
+     object-position: center;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
-.ChiTietSanPham .top .list_item .item p {
-  margin: 15px 0;
-  font-size: 30px;
+.chitietsanpham .top .list_item .item p {
+  margin: 10px 0;
+  font-size: 25px;
   color: white;
 }
-.ChiTietSanPham .top .list_item .item h3 {
-  font-size: 30px;
-  color: #F7C427;
-}
-.ChiTietSanPham .comment {
-  width: 84.0104166667%;
-  margin: 0 auto;
-  margin-top: 30px;
-}
-.ChiTietSanPham .comment .list_comment .content {
-  display: flex;
-  justify-content: space-between;
-}
-.ChiTietSanPham .comment .list_comment .content p {
-  width: 85%;
-  color: white;
-  word-wrap: break-word;
-  font-size: 48px;
-  font-family: Rufina;
-}
-.ChiTietSanPham .comment .list_comment .content .img {
-  display: flex;
-  justify-content: center;
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-  overflow: hidden;
-  align-items: center;
-  background-color: #ccc; /* Màu nền của hình tròn */
-}
-.ChiTietSanPham .comment .list_comment .content .img img {
-  width: 100%;
-}
-.ChiTietSanPham .comment .tang_giam {
-  margin-top: 15px;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.ChiTietSanPham .comment .tang_giam button {
-  background-color: transparent;
-  margin: 0 20px;
-  border: none;
-  color: white;
-  font-size: 30px;
-  font-style: italic;
-}
-.ChiTietSanPham .comment .tang_giam .position-display {
-  color: white;
-  font-size: 30px;
-  font-style: italic;
+.chitietsanpham .top .list_item .item h3 {
+  font-size: 25px;
+  color: #f7c427;
+  margin-bottom: 15px;
 }/*# sourceMappingURL=ChiTietSanPham.css.map */

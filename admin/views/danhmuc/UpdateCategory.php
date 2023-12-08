@@ -286,19 +286,16 @@
                                         
                                             </tr>
                                             <tr>
-                                                <td>Trạng thái</td>
-                                                <td>
-                                                    <select name="Status" id="">
-                                                        <option value="<?= $StatusCategory?>" selected hidden><?= $StatusCategory ?></option>
-                                                        <option value="0">Hoạt động bình thường</option>
-                                                        <option value="1">Ngừng hoạt dộng</option>                                                                                         
-                                                    </select>
-                                                </td>
+                                                <input type="hidden" name="Status" value="0">
                                                     
                                             </tr>
                                             
         
+<<<<<<< HEAD
                                             <td><a href="AdminController.php?act=ListCategory"><input type="submit" value="sửa"></a> </td>                              
+=======
+                                            <td><a href="AdminController.php?act=ListCategory"><input type="submit" value="Update"></a> </td>                              
+>>>>>>> 825b9c9a93c862a44f4e7c3d73d83d6e8faf5b52
                                     </form>
                                     <a href="AdminController.php?act=ListCategory"><input  class="mr20" type="button" value="DANH SÁCH"></a>  
                                     <?php

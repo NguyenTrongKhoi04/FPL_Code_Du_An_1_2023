@@ -14,9 +14,15 @@
 
 <!-- Nav Item - Dashboard -->
 <li class="nav-item">
-    <a class="nav-link" href="index.html">
+       <a class="nav-link" href="AdminController.php">
         <i class="fas fa-fw fa-tachometer-alt"></i>
-        <span>Trang chủ</span></a>
+        <span>Trang chủ</span>
+    </a>
+    <a class="nav-link" href="<?=$adminAction?>dangxuat">
+        <i class="fas fa-fw fa-tachometer-alt"></i>
+        <span>Đăng Xuất</span>
+    </a>
+
 </li>
 
 <!-- Divider -->
@@ -44,7 +50,6 @@
             <a class="collapse-item" href="buttons.html">Danh Sách Giỏ Hàng</a>
             <a class="collapse-item" href="<?=$adminAction?>ListComment">Danh Sách Comment</a>
             <a class="collapse-item" href="<?=$adminAction?>ListBill">Danh Sách Bill</a>
-
         </div>
     </div>
     
@@ -55,47 +60,36 @@
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
         aria-expanded="true" aria-controls="collapseUtilities">
         <i class="fas fa-fw fa-wrench"></i>
-        <span>Quản lý đồ ăn</span>
+        <span>Quản lý </span>
     </a>
     <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
     data-parent="#accordionSidebar">
     <div class="bg-white py-2 collapse-inner rounded">
-
             <h6 class="collapse-header">Product</h6>
             <a class="collapse-item" href="<?= $adminAction ?>ListProduct">Danh sách món ăn</a>
-            <a class="collapse-item" href="utilities-color.html">Thêm món ăn</a>
+            <a class="collapse-item" href="<?= $adminAction ?>AddProduct">Thêm món ăn</a>
             <h6 class="collapse-header">Danh mục</h6>
             <a class="collapse-item" href="<?= $adminAction ?>ListCategory">Danh mục chính</a>
             <a class="collapse-item" href="<?=$adminAction?>AddCategory">Thêm danh mục chính </a>
-            <a class="collapse-item" href="<?=$adminAction?>ListSubCategories">Danh mục phụ</a>
             <a class="collapse-item" href="<?=$adminAction?>AddSubCategories">Thêm danh mục phụ</a>
             <h6 class="collapse-header">Size</h6>
-            <a class="collapse-item" href="utilities-border.html">Size</a>
+            <a class="collapse-item" href="<?=$adminAction?>ListSize">Size</a>
             <a class="collapse-item" href="<?=$adminAction?>AddSize">Thêm size</a>
             <a class="collapse-item" href="utilities-border.html">Size Phụ</a>
             <a class="collapse-item" href="<?=$adminAction?>AddSizePro">Thêm size Phụ</a>
             <h6 class="collapse-header">Pro-Details</h6>
             <a class="collapse-item" href="utilities-animation.html">Details</a>
             <a class="collapse-item" href="utilities-other.html">Thêm Details</a>
+            <h6 class="collapse-header">Orders</h6>
+            <a class="collapse-item" href="<?=$adminAction?>ListOrders">Danh sách Order</a>
+            <a class="collapse-item" href="<?=$adminAction?>ListOrderPro">Danh Sách Order Pro</a>
+            <h6 class="collapse-header">Danh Sách Bàn</h6>
+            <a class="collapse-item" href="<?=$adminAction?>ListBan">Danh Sách Bàn</a>
+            <a class="collapse-item" href="<?=$adminAction?>AddBan">Thêm bàn</a>
         </div>
     </div>
 </li>
 
-<li class="nav-item">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-        aria-expanded="true" aria-controls="collapseUtilities">
-        <i class="fas fa-fw fa-wrench"></i>
-        <span>Bàn ăn</span>
-    </a>
-    <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-        data-parent="#accordionSidebar">
-        <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Orders</h6>
-            <a class="collapse-item" href="<?=$adminAction?>ListOrders">Danh sách Order</a>
-            <a class="collapse-item" href="<?=$adminAction?>ListOrderPro">Danh Sách Order Pro</a>
-            </div>
-    </div>
-</li>
 
 
 <!-- Divider -->

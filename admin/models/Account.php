@@ -15,11 +15,7 @@ function pushAccount($NameAccount, $Gmail, $Password, $ImageAccounts){
 }
 
 function getListAccount(){
-
-    $sql ='
-    select * from account
-    ';
-
+    $sql ='select * from account';
     return query_All($sql);
 }
 
@@ -54,6 +50,7 @@ function getUAcount($IdAccount){
     $sql = "select * from account where IdAccount = $IdAccount";
     return query_All($sql);
 }
+
 
 function check_Gmail_Account($gmail){
     $sql = "SELECT * FROM account WHERE Gmail = '$gmail'";

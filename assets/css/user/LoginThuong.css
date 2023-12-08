@@ -4,11 +4,11 @@
 }
 
 html {
-  font-size: 20px;
+  font-size: 14px;
 }
 
 .Login_thuong {
-  width: 1920px;
+  width: 1470px;
   margin: 0 auto;
   background-color: #131313;
   display: flex;
@@ -16,6 +16,10 @@ html {
 }
 .Login_thuong .img {
   width: 50%;
+}
+.Login_thuong .img img {
+  width: 100%;
+  height: 100%;
 }
 .Login_thuong .content_login_thuong {
   color: white;

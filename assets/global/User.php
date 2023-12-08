@@ -18,6 +18,9 @@
  *      =>> "SELECT * FROM bang1 ORDER BY id DESC , ten , loai DESC "
  */
  function select_All($tenBang,$tenCot=null,$limit=null,$params=null,$desc=null){
+    if($tenCot==null){
+        $tenCot = ' * ';
+    }
     $sql ='SELECT '.$tenCot.' FROM '.$tenBang;
 
     //Kiểm tra tham sô truyền vào. Nếu 
@@ -75,13 +78,19 @@
         $sql .=" LIMIT ".$limit." ";
     }
     }
-
-    $sql .= join('',$arrList);
-    // var_dump($sql);
+    if(isset($arrList)){
+        $sql .= join('',$arrList);
+    }
     return query_All($sql);
 };
 
-
+/**
+ * return dự liệu được lọc bằng Where
+ * $where: điều kiện được viết dưới dạng chuỗi thuần
+ * $limit: giới hạn
+ * ví dụ: select_One('tables', null, "IdTable = 1");
+ *      =>> "SELECT * FROM tables WHERE IdTable = 1"
+ */
 function select_One($tenBang,$tenCot=null,$where,$limit=null){
     if(empty($tenCot)){
         $tenCot = ' * ';
@@ -94,7 +103,6 @@ function select_One($tenBang,$tenCot=null,$where,$limit=null){
     if(isset($limit)){
         $sql.=' LIMIT '.$limit;
     }
-    var_dump($sql);
     $account=query_One($sql);
     return $account;
 }
@@ -105,15 +113,31 @@ function check_Login(){
     if(isset($tk)&&isset($mk)){
         $tk = $_POST['tk'];
         $mk = ($_POST['mk']);//md5
-        $arrCheck = select_One('account',null," Name = '$tk' AND Password = '$mk'");
-        
+        $arrCheck = select_One('account',null," Gmail = '$tk' AND Password = '$mk'");
+
         if(is_array($arrCheck)){
             $_SESSION['user']=$arrCheck;
-            // echo '<pre>';
-            // print_r($_SESSION);
-            // echo '</pre>';
             unset($tk,$mk);
         }
+        
+
     }
 }
 
+function check_LoginNhanh(){
+    $NameAccount_tk_nhanh = $_POST['NameAccount_tk_nhanh'] ?? null;
+    $Gmail_tk_nhanh = $_POST['Gmail_tk_nhanh'] ?? null;
+    if(isset($Gmail_tk_nhanh)){
+        $arrCheck = select_One('account',null," Gmail = '$Gmail_tk_nhanh'");
+        var_dump($arrCheck);
+        die;
+        if(is_array($arrCheck)){
+            $_SESSION['user']=$arrCheck;
+            unset($tk_nhanh);
+        }else{
+                tao_TaiKhoan_LoginNhanh($NameAccount_tk_nhanh,$Gmail_tk_nhanh);
+                $_SESSION['user']= select_One('account',null," Gmail = '$Gmail_tk_nhanh'");
+                // header('location: UserController.php');
+        }   
+    }
+}

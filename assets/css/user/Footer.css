@@ -4,14 +4,15 @@
 }
 
 html {
-  font-size: 20px;
+  font-size: 14px;
 }
 
 footer {
   margin: 0 auto;
-  width: 1920px;
-  height: 400px;
-  padding-top: 84px;
+  width: 1470px;
+  height: -moz-fit-content;
+  height: fit-content;
+  padding-top: 20px;
   background-color: #282828;
 }
 footer .head_footer {
@@ -21,10 +22,14 @@ footer .head_footer {
   justify-content: space-between;
   align-items: center;
   color: white;
+  margin-left: 20px !important;
+}
+footer .head_footer .email {
+  margin-right: 40px;
 }
 footer .head_footer .email h3 {
   font-size: 32px;
-  margin-bottom: 55px;
+  margin-bottom: 20px;
 }
 footer .head_footer .email form {
   display: flex;
@@ -33,28 +38,28 @@ footer .head_footer .email form > input {
   background-color: transparent;
   display: block;
   border: 1px solid white;
-  padding: 30px 40px;
+  padding: 10px;
   width: 443px;
   color: white;
-  font-size: 24px;
+  font-size: 15px;
 }
 footer .head_footer .email form > input:focus {
   outline: none;
 }
 footer .head_footer .email form > input::-moz-placeholder {
   color: white;
-  font-size: 24px;
+  font-size: 15px;
 }
 footer .head_footer .email form > input::placeholder {
   color: white;
-  font-size: 24px;
+  font-size: 15px;
 }
 footer .head_footer .email form button {
   background-color: #F7C427;
-  font-size: 32px;
+  font-size: 15px;
   margin-left: 20px;
   color: black;
-  padding: 20px 46px;
+  padding: 10px;
   border: none;
 }
 footer .head_footer .email p {
@@ -64,6 +69,7 @@ footer .head_footer .email p {
 footer .head_footer .logo_content {
   width: 40%;
   display: flex;
+  margin-left: 30px;
   align-items: center;
 }
 footer .head_footer .logo_content img {

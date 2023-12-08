@@ -267,12 +267,14 @@
                                         <tr>
                                            <th>Sản phẩm</th>
                                             <th>Size</th>
-                                            <th>Giá </th>
+                                            <th>Giá</th>
+                                            <th>Ảnh</th>
                                             <th>thao tác</th>
                                            
 
                                         </tr>
                                     </thead>
+                                    
                                     <tbody> 
                                         <?php 
                                             foreach(getListSizePro() as $values){
@@ -282,6 +284,7 @@
                                                     <td>{$values['NameProduct']}</td>
                                                     <td>{$values['NameSize']}</td>
                                                     <td>{$values['Price']}</td>
+                                                    <td> <img style='width=100px; height:100px;' src='$adminImg{$values['ImgSizePro']}' alt='{$values['ImgSizePro']}'> </td>
 
                                                     <td>
                                                         <a href='AdminController.php?act=UpdateSizePro&IdSizePro={$values['IdSizePro']}'>

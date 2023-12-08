@@ -31,6 +31,7 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
+
         <?php include_once $SideBarMenu ?>
         <!-- End of Sidebar -->
 
@@ -269,6 +270,7 @@
 
 
                                    <tbody>                
+
                                        <form action="AdminController.php?act=AddAccount" method="post" enctype="multipart/form-data"> 
                                             <tr>
                                                <td>Tên</td>
@@ -285,10 +287,9 @@
                                                <td>Giới tính</td>
                                                <td>
                                                     <select name="Gender" id="">
-                                                        <option value="" selected hidden>Giới tính</option>
-                                                        <option value="0">Giới tính Nam</option>
-                                                        <option value="1">Giới tính Nữ</option>
-                                                        <option value="2">Giới tính Khác</option>
+                                                        <option value="0" selected>Nam</option>
+                                                        <option value="1">Nữ</option>
+                                                        <option value="2">Khác</option>
                                                     </select>
                                                </td>
 
@@ -309,26 +310,13 @@
                                                </td>
                                                 
                                            </tr>
-                                            <tr>
-                                               <td>Trạng thái</td>
-                                               <td>
-                                                    <select name="StatusAccount" id="">
-                                                        <option value="0">Hoạt động bình thường</option>
-                                                        <option value="1">Đã xóa </option>
-                                                    </select>
-                                               </td>
-                                               
-                                           </tr>
+                                           
                                            <tr>
                                                <td>Role</td>
                                                <td>
                                                     <select name="Role" id="">
-                                                        <option value="" selected hidden>Role</option>
-                                                        <option value="0">Khách Hàng</option>
-                                                        <option value="1">Chủ quán</option>
-                                                        <option value="2">Quản lý</option>
-                                                        <option value="3">Nhân viên phục vụ bàn</option>
-                                                        <option value="4">Nhân viên thu ngân</option>
+                                                        <option value="0" selected>Khách Hàng</option>
+                                                        <option value="2">Nhân Viên</option>
                                                     </select>
                                                </td>
                                                
