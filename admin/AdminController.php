@@ -267,19 +267,20 @@ if(empty($_SESSION['user'])){
                 }
                 include_once "views/sizepro/ListSizePro.php";
                 break;
-            case 'UpdateSizePro':
-                if(isset($_GET['IdSizePro']) && !empty($_GET['IdSizePro'])){
-                    $dataSizePro = getSizePro($_GET['IdSizePro'])[0];
-                    // thêm size_pro mới
-                    if($_SERVER['REQUEST_METHOD'] === "POST"){
-                        echo "<pre>";
-                        var_dump($_POST); die();
-                    }
-                    
-
-                } 
-           include_once "views/sizepro/UpdateSizePro.php";
-                break;
+                case 'UpdateSizePro':
+                    $arr_Data=[];
+                    $id = $_GET['id'];
+                    $pro = loadAll_Product();
+                    $size = getListSize();
+                    $name_Pro = loadOne_Product($id);
+                $pro_Size_Price_Img =  getOne_Pro($id);
+    
+                // thêm size_pro mới
+                if(isset($_POST['add_New_SizePro'])){
+                    echo'khoi';
+                }
+               include_once "views/sizepro/UpdateSizePro.php";
+                    break;
             /**
              * ====================================================================================
              *                                           ACCOUNT	

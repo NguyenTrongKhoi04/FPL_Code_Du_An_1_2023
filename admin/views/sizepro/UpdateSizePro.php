@@ -50,49 +50,23 @@
                     </form>
 
                     <!-- Topbar Search -->
-                    <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                        <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">
-                                    <i class="fas fa-search fa-sm"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+                                      
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
 
                         <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-                        <li class="nav-item dropdown no-arrow d-sm-none">
-                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-search fa-fw"></i>
-                            </a>
+
                             <!-- Dropdown - Messages -->
-                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
-                                <form class="form-inline mr-auto w-100 navbar-search">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-                                        <div class="input-group-append">
-                                            <button class="btn btn-primary" type="button">
-                                                <i class="fas fa-search fa-sm"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </li>
+
 
                         <!-- Nav Item - Alerts -->
-                        <li class="nav-item dropdown no-arrow mx-1">
-                            <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-bell fa-fw"></i>
+
                                 <!-- Counter - Alerts -->
-                                <span class="badge badge-danger badge-counter">3+</span>
-                            </a>
+                               
                             <!-- Dropdown - Alerts -->
-                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
+                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="alertsDropdown">
                                 <h6 class="dropdown-header">
                                     Alerts Center
                                 </h6>
@@ -134,20 +108,19 @@
                         </li>
 
                         <!-- Nav Item - Messages -->
-                        <li class="nav-item dropdown no-arrow mx-1">
-                            <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-envelope fa-fw"></i>
+                        
                                 <!-- Counter - Messages -->
-                                <span class="badge badge-danger badge-counter">7</span>
-                            </a>
+                                
                             <!-- Dropdown - Messages -->
-                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="messagesDropdown">
+                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="messagesDropdown">
                                 <h6 class="dropdown-header">
                                     Message Center
                                 </h6>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="<?= $adminImg ?>undraw_profile_1.svg" alt="...">
+                                        <img class="rounded-circle" src="<?= $adminImg ?>undraw_profile_1.svg"
+                                            alt="...">
                                         <div class="status-indicator bg-success"></div>
                                     </div>
                                     <div class="font-weight-bold">
@@ -158,7 +131,8 @@
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="<?= $adminImg ?>undraw_profile_2.svg" alt="...">
+                                        <img class="rounded-circle" src="<?= $adminImg ?>undraw_profile_2.svg"
+                                            alt="...">
                                         <div class="status-indicator"></div>
                                     </div>
                                     <div>
@@ -169,7 +143,8 @@
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="<?= $adminImg ?>undraw_profile_3.svg" alt="...">
+                                        <img class="rounded-circle" src="<?= $adminImg ?>undraw_profile_3.svg"
+                                            alt="...">
                                         <div class="status-indicator bg-warning"></div>
                                     </div>
                                     <div>
@@ -180,7 +155,8 @@
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60" alt="...">
+                                        <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60"
+                                            alt="...">
                                         <div class="status-indicator bg-success"></div>
                                     </div>
                                     <div>
@@ -196,11 +172,7 @@
                         <div class="topbar-divider d-none d-sm-block"></div>
 
                         <!-- Nav Item - User Information -->
-                        <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
-                                <img class="img-profile rounded-circle" src="<?= $adminImg ?>undraw_profile.svg">
-                            </a>
+                        
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                                 <a class="dropdown-item" href="#">
@@ -232,11 +204,18 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800"><?= $dataSizePro['NameProduct'] ?></h1>
+                    <h1 class="h3 mb-2 text-gray-800"><?= $name_Pro['NameProduct'] ?></h1>
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-body">
+
+                        <?php if(isset($_GET['mes'])) : ?>
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary" style="color:red !important;"><?= $_GET['mes'] ?></h6>
+                                </div>
+                                 <?php endif ?>
+
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 
@@ -249,33 +228,59 @@
                                     </tr>
                                     <tbody>
                                         
-                                        <form action="AdminController.php?act=UpdateSizePro&IdSizePro=<?= $dataSizePro['IdSizePro'] ?>" method="post">
+                                        <form action="AdminController.php?act=UpdateSizePro&IdSizePro=<?= $IdSizePro ?>" method="post">
+                                            <?php foreach ($pro_Size_Price_Img as $i) { ?>
+                                                <tr>
+                                                <?php array_push($arr_Data,$i['IdSize']) ?>
+                                                    <td>
+                                                        <?php foreach ($size as $oneSize) {
+                                                            if ($oneSize['IdSize'] == $i['IdSize']) { ?>
+                                                                <?= $oneSize['NameSize'] ?>
+
+                                                        <?php }
+                                                        } ?>
+
+                                                    </td>
+                                                    <td>
+                                                    <?= $i['Price'] ?>
+                                                    </td>
+                                                    <td>
+                                                        <?php if($i['ImgSizePro'] !=NULL){ ?>
+                                                        <img src="<?= $adminImg . $i['ImgSizePro'] ?>" width="100px" alt="">
+                                                        <?php }else{ ?>                                                    
+                                                            <p style="color: red;">Chưa có ảnh</p>
+                                                        <?php } ?>
+                                                        </td>
+                                                    <td><a href="AdminController.php?act=DeleteSizePro&id=<?=$_GET['id']?>&idSizePro=<?=$i['IdSizePro'] ?>"><input type="button" value="Xóa" name="delete_Size_Pro"></a></td>
+                                                </tr>
+
+                                            <?php } ?>
                                          <span>&nbsp;&nbsp;</span>
                                             <a href="AdminController.php?act=ListProduct"><input class="mr20" type="button" value="DANH SÁCH"></a>
                                         </form>
                                     
                                         <!-- nếu còn những size ch add =>> được hiển thị -->
                                   
-                                        <?php if(check_Het_Size($_GET['IdSizePro'])) { ?>
+                                        <?php if(check_Het_Size($_GET['id'])) { ?>
                                             
-                                        <form action="AdminController.php?act=UpdateSizePro&IdSizePro=<?=$dataSizePro['IdSizePro']?>" method="POST" enctype="multipart/form-data">
+                                        <form action="AdminController.php?act=AddSizePro&id=<?=$_GET['id']?>" method="POST" enctype="multipart/form-data">
+                                          <input type="hidden" name="IdProduct" value="<?= $_GET['id']?>">
                                             <tr>
                                                 <td>
                                                     <select name="IdSize" id="">
-                                                        <option value="<?= $dataSizePro['IdSize']?>"><?= $dataSizePro['NameSize']?></option>
                                                         <?php $a= check_Size_ConLai($arr_Data); foreach($a as $n){?>
                                                             <option value="<?= $n['IdSize']?>"><?= $n['NameSize']?></option>
                                                         <?php }?>
                                                     </select>   
                                                 </td>
                                                 <td> 
-                                                    <input type="number" min ="0" name="Price" value="<?= $dataSizePro['Price']?>"> 
+                                                    <input type="number" min ="0" name="Price" id=""> 
                                                 </td>
                                                 <td>
-                                                    <input type="file" name="ImageProduct" value="<?= $dataSizePro['ImageProduct']?>">
+                                                    <input type="file" name="ImgSizePro" >
                                                 </td>
                                                 <td>
-                                                        <input type="submit"  value='Thêm'>
+                                                    <input type="submit" name="add_New_SizePro" value='Thêm'>
                                                 </td>
                                             </tr>
                                         </form>

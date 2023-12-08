@@ -78,7 +78,7 @@ function check_SizePro($IdProduct,$IdSize,$Price){
 }
 
 function getOne_Pro($id){
-    $sql = "SELECT * FROM size_pro WHERE IdProduct = $id";
+    $sql = "SELECT * FROM size_pro WHERE IdProduct = '$id'";
     return query_All($sql);
 }
 

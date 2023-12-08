@@ -235,9 +235,7 @@
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
-                        </div>
+
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -310,7 +308,7 @@
                                                         <a onclick="return confirm('Bạn Muốn Ngừng Bán Sản Phẩm Này Không')" href="<?= $adminAction ?>DeleteProduct&id=<?= $i['IdProduct'] ?>"><input type="button" value="Ngừng Bán"></a>
                                                         <?php } ?>
                                                 </td>
-                                                <td><input type="checkbox" name="" value="<?= $i['IdProduct'] ?>"></td>
+                                              
                                             </tr>
                                         <?php endforeach ?>
                                     </tbody>
