@@ -11,7 +11,9 @@
                     <p>Nơi Hội Tụ Của Sự Sáng Tạo và Hương Vị Truyền Thống</p>
                     <p>Mỗi Bữa Ăn Là Một Hành Trình Đặc Sắc</p>
                 </div>
-                <button>khám Phá Ngay</button>
+                <a href="OnlineController.php?act=DanhMucSanPham&idCategory=">
+                    <button>khám Phá Ngay</button>
+                </a>
                 <img class="footer_banner" src="<?=$img_Path?>snapedit_1701874146870.png" alt="">
             </div>
         </div>

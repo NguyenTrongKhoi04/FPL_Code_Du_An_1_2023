@@ -109,7 +109,7 @@ function chiTietSanPham_GetTopProduct(){
 }
 function chiTietSanPham_Add_To_Cart($idProduct,$idAccount,$idSize,$quantityProduct,$priceProduct){
     $sql = "";
-    $sqlCheckProductInCart = query_All("select QuantityCard from cart where IdProduct = '$idProduct' and IdAccount = '$idAccount' " );
+    $sqlCheckProductInCart = query_All("select QuantityCard from cart where IdProduct = '$idProduct' and IdAccount = '$idAccount' and NameSize = '$idSize'" );
     if(empty($sqlCheckProductInCart)){
         $sql = "INSERT INTO cart(IdProduct,IdAccount,NameSize,QuantityCard,PriceCard) VALUES ('$idProduct','$idAccount','$idSize','$quantityProduct','$priceProduct')";
     }else{
@@ -203,4 +203,13 @@ function loginNhanh_TruSoLuong_Pro($IdProduct){
     $sql = "UPDATE product SET QuantityProduct = QuantityProduct-1 WHERE IdProduct=$IdProduct ";
     return pdo_Execute($sql);
 
+}
+/**
+ * Lấy toàn bộ comment 
+*/
+function chiTietSanPham__GetComment($IdProduct)
+{
+    $sql = "select c.Content, ac.ImageAccounts, ac.NameAccount, ac.Role from comment c
+    join account ac on c.IdAccount = ac.IdAccount where StatusComment = 0 and IdProduct = '$IdProduct'";
+    return query_All($sql);
 }

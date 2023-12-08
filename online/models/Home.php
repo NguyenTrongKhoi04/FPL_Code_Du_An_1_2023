@@ -26,7 +26,7 @@ function home_GetNewTwoProduct(){
  */
 function home_GetAllTable()
 {
-    $Tables = query_All("select * from  tables where  StatusTable = 1 ");
+    $Tables = query_All("select * from  tables where  StatusTable = 0");
     $TableMax = query_One("select max(DefaultNumberPeople) from tables");
     $returnDataTables = [
         "Tables" => $Tables,
@@ -76,15 +76,6 @@ function home_BookingTable($data)
     return $message;
 }
 
-/**
- * Lấy toàn bộ comment 
-*/
-function home_GetComment()
-{
-    $sql = "select c.Content, ac.ImageAccounts, ac.NameAccount, ac.Role from comment c
-    join account ac on c.IdAccount = ac.IdAccount where StatusComment = 0";
-    return query_All($sql);
-}
 
 /**
  * Hàm có tác dụng kiểm tra  và order bàn tự động

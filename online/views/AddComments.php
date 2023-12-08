@@ -4,7 +4,7 @@
             <aside class="aside">
             <section class="headerAside">
                     <article class="img">
-                        <img src="<?= $imgPathAdmin.$_SESSION['user']['ImageAccounts']?>" alt="">
+                        <img src="../assets/img/admin/<?= $dataProfile['ImageAccounts']?>" alt="">
                     </article>
                     <article class="content">
                         <h1><?= $_SESSION['user']["NameAccount"] ?></h1>

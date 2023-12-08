@@ -12,7 +12,7 @@ html {
 .chitietsanpham {
   margin: 0 auto;
   max-width: 1470px;
-  height: 1500px;
+  height: 1905px;
   background-image: url("../../img/html/snapedit_1701874861222.png");
   background-size: 100%;
   padding-bottom: 50px;
@@ -179,6 +179,38 @@ html {
 .chitietsanpham .list .pro p {
   margin-top: 10px;
   font-size: 15px;
+}
+.chitietsanpham .list .comment {
+  width: 31%;
+  width: 31%;
+  padding: 15px 0;
+  margin: 10px;
+  border-radius: 10px;
+  background-color: #3a3838;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+.chitietsanpham .list .comment .content {
+  width: 100%;
+  height: 50%;
+}
+.chitietsanpham .list .comment .content p {
+  color: white;
+}
+.chitietsanpham .list .comment .persion {
+  width: 100%;
+  height: 50%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.chitietsanpham .list .comment .persion img {
+  width: 30%;
+  height: 100%;
+  border-radius: 100px;
+}
+.chitietsanpham .list .comment .persion h3 {
+  color: white;
 }
 .chitietsanpham .top {
   width: 85%;

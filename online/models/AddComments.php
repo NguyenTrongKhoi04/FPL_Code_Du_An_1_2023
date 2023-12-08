@@ -6,7 +6,7 @@ function AddComments_GetComment($IdAccount)
                 from orders o
                 join order_pro op on op.IdOrder = o.IdOrder
                 join product p on op.IdProduct = p.IdProduct
-                where o.IdAccount = '$IdAccount' and o.StatusOrders = 2 and o.PaymentMethod != 0 and op.StatusOrders = 0 ");
+                where o.IdAccount = '$IdAccount' and o.StatusOrders = 3 and o.PaymentMethod != 0 and op.StatusOrders = 0 ");
 }
 
 function AddComments_AddComment($IdProduct, $IdAccount, $data, $IdOrder)

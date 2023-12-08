@@ -130,8 +130,8 @@ if(isset($_GET['act'])&&($_GET['act'] !='' )){
             * ====================================================================================
             */            
             case 'DanhMucSanPham':
-                if (isset($_GET['idCategory']) && !empty($_GET['idCategory'])) {
-                    $idCategory = $_GET['idCategory'];
+                if (isset($_GET['idCategory']) ) {
+                    $idCategory = empty($_GET['idCategory']) ? null : $_GET['idCategory'];
                     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         $GetAllProductAsRequested = productPortfolio_GetAllProductAsRequested($_POST, $idCategory);
                         if ($GetAllProductAsRequested === false) {
@@ -342,8 +342,8 @@ if(isset($_GET['act'])&&($_GET['act'] !='' )){
                     $secretKey = 'at67qH6mk8w5Y1nAyMoYKMWACiEi2bsa';
                     $orderInfo = "Thanh toán qua MoMo";
                     // số tiền cần thanh toán
-                    $amount = "10000";
-                    // $amount = $toatl;
+                    // $amount = "10000";
+                    $amount = $toatl;
                     $orderId = time() ."";
                     // trả về trang web sau khi thanh toán xong
                     $redirectUrl = "https://webhook.site/b3088a6a-2d17-4f8d-a383-71389a6c600b";

@@ -6,11 +6,20 @@
  */
 function productPortfolio_GetAllProduct($idCategory)
 {
-    $sql = "select
-     p.IdProduct,p.NameProduct,p.ImageProduct, p.PriceProduct, d.ProductDetails 
-     from product p
-    join details d on p.IdDetails = d.IdDetails 
-    where p.StatusProduct = 0 and p.IdCategory = $idCategory limit 12 ";
+    $sql = "";
+    if($idCategory === NULL) {
+        $sql = "select
+         p.IdProduct,p.NameProduct,p.ImageProduct, p.PriceProduct, d.ProductDetails 
+         from product p
+        join details d on p.IdDetails = d.IdDetails 
+        where p.StatusProduct = 0  limit 12 ";
+    }else{
+        $sql = "select
+         p.IdProduct,p.NameProduct,p.ImageProduct, p.PriceProduct, d.ProductDetails 
+         from product p
+        join details d on p.IdDetails = d.IdDetails 
+        where p.StatusProduct = 0 and p.IdCategory = $idCategory limit 12 ";
+    }
     return query_All($sql);
 }
 /**

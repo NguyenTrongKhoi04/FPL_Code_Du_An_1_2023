@@ -42,6 +42,25 @@
     <div class="list">
         <?php
 
+        foreach (chiTietSanPham__GetComment($_GET['id']) as $valuesComment) {
+            echo "
+                <div class='comment'>
+                    <article class='content'>
+                        <p>{$valuesComment['Content']}</p>
+                    </article> 
+                    <article class='persion'>
+                        <img src='{$imgPathAdmin}{$valuesComment['ImageAccounts']}' alt='{$valuesComment['ImageAccounts']}'>
+                        <h3>{$valuesComment['NameAccount']}</h3>
+                    </article>
+                </div>
+                ";
+        }
+
+        ?>
+    </div>
+    <div class="list">
+        <?php
+
         foreach (home_GetAllProduct() as $valuesPro) {
             echo "
                 <div class='pro'>
