@@ -11,7 +11,7 @@ function BillPayment_GetOrderPayment($IdAccount)
                 join product p on op.IdProduct = p.IdProduct
                 join tables t on o.IdTable = t.IdTables
                 join account ac on ac.IdAccount = o.IdAccount
-                where o.IdAccount = '$IdAccount' and o.StatusOrders = 2 and o.PaymentMethod != 0");
+                where o.IdAccount = '$IdAccount' and o.StatusOrders = 3 and o.PaymentMethod != 0");
      
 }
 ?>

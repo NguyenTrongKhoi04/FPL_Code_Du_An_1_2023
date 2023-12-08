@@ -403,13 +403,8 @@ if(isset($_GET['act'])&&($_GET['act'] !='' )){
                     if(isset($_GET['idProduct']) && isset($_GET['IdOrder'])){
                         $IdProduct = $_GET['idProduct'];
                         $IdOrder = $_GET['IdOrder'];
-                        $alert = AddComments_AddComment($IdProduct, $idAccountUser, $_POST, $IdOrder);
-                        if($alert === null){
-                            echo " <script> alert('$alert') </script> ";
-                        }else{
-                            echo " <script> alert('Hệ thống đang bảo trì') </script> ";
-
-                        }
+                         AddComments_AddComment($IdProduct, $idAccountUser, $_POST, $IdOrder);
+                         echo " <script> alert('Sản phẩm đã được bình luận') </script> ";
                     }
                 }
                 include_once 'views/AddComments.php';
