@@ -140,8 +140,9 @@ if(empty($_SESSION['user'])){
                         }
     
                         add_Product($NameProduct,$QuantityProduct,$PriceProduct,$ImageProduct['name'], $IdCategory,$ProductDetails, $ProductDescription);
-    
+                        header('location: AdminController.php?act=ListProduct');
                     }
+                    
                     include_once 'views/product/AddProduct.php';
                     break;
             case 'UpdateProduct':
@@ -249,7 +250,7 @@ if(empty($_SESSION['user'])){
                         $mes = 'Dữ Liệu Đã Tồn Tại';
                     }
                 }
-                include_once "views/sizepro/AddSizePro.php";
+                header("location: AdminController.php?act=UpdateSizePro&mes=$mes&id=".$_GET['id']);
 
                 break;
             case 'OneSizePro':
@@ -278,19 +279,6 @@ if(empty($_SESSION['user'])){
                 }
                include_once "views/sizepro/UpdateSizePro.php";
                     break;
-            /**
-             * ====================================================================================
-             *                                   THỐNG KÊ
-             * ====================================================================================
-             */
-            case 'ThongKe':
-                $thongKe = Load_thong_ke();
-                include_once "views/thongke/ListTK.php";
-                break;
-                case 'BieuDo';
-                $thongKe = Load_thong_ke();
-                include_once "views/thongke/BieuDo.php";
-                break;
             /**
              * ====================================================================================
              *                                           ACCOUNT	
@@ -450,7 +438,7 @@ if(empty($_SESSION['user'])){
                    updateComment($data, $IdComment);
                     }
                  include_once "views/comment/UpdateComment.php";
-
+                    break;
 
 
         /**
@@ -491,9 +479,16 @@ if(empty($_SESSION['user'])){
                 }
                 include_once 'views/QuanLyOrder/QuanLyOrder_Add_Order.php';
                 break;
-
+                case 'ThongKe':
+                    $thongKe = Load_thong_ke();
+                    include_once "views/thongke/ListTK.php";
+                    break;
+                    case 'BieuDo';
+                    $thongKe = Load_thong_ke();
+                    include_once "views/thongke/BieuDo.php";
+                    break;
             default:
-                include_once 'views/Home.php';
+            include_once 'views/size/AddSize.php';
                 break;
         }
 

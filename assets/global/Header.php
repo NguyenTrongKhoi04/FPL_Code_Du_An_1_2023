@@ -35,8 +35,8 @@
         <div class="information">
             <?php if (!empty($_SESSION['user'])) { ?>
                 <a href="OnlineController.php?act=GioHang"><img src="<?= $img_Path?>Vector.png" alt=""></a>
-                <a href="OnlineController.php?act=dangxuat"><img src="<?= $img_Path?>out.png" alt=""></a>
                 <a href="OnlineController.php?act=billthanhtoan"><img src="<?= $img_Path?>Glyph_ undefined.png" alt=""></a>
+                <a href="OnlineController.php?act=dangxuat"><img src="<?= $img_Path?>out.png" alt=""></a>
                 <a href="OnlineController.php?act=LoginThuong">
                     <div class="avatar">
                         <img src="<?= $img_Path?>Login.png" width="10px" alt="">

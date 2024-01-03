@@ -255,9 +255,6 @@
                                                     <td>{$values['DateEditComment']}</td>
         
                                                     <td>
-                                                        <a href='AdminController.php?act=UpdateComment&IdComment={$values['IdComment']}'>
-                                                            <input type='button' value='Sửa'> 
-                                                        </a>
                                                         <a href='AdminController.php?act=ListComment&delete={$values['IdComment']}'>
                                                             <input type='button' value='Xóa'>
                                                         </a>                                                                                                               

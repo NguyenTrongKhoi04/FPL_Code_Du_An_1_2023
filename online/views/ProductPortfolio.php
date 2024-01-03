@@ -34,7 +34,7 @@
                     <div class='content_pro'>
                         <img src='../assets/img/admin/{$valueProducts['ImageProduct']}' alt='{$valueProducts['ImageProduct']}'>
                         <h2>{$valueProducts['NameProduct']}</h2>
-                        <h3>{$valueProducts['PriceProduct']} VNĐ</h3>
+              
                         <!-- Mô tả chính -->
                         <p>{$valueProducts['ProductDetails']}</p>
                         <a href='?act=LoadChiTietSanPham&id={$valueProducts['IdProduct']}' class='button_div'>
@@ -49,7 +49,7 @@
                     <div class='content_pro'>
                         <img src='../assets/img/admin/{$valueProducts['ImageProduct']}' alt='{$valueProducts['ImageProduct']}'>
                         <h2>{$valueProducts['NameProduct']}</h2>
-                        <h3>{$valueProducts['PriceProduct']} VNĐ</h3>
+              
                         <!-- Mô tả chính -->
                         <p>{$valueProducts['ProductDetails']}</p>
                         <a href='?act=LoadChiTietSanPham&id={$valueProducts['IdProduct']}' class='button_div'>
